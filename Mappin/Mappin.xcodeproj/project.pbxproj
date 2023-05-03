@@ -12,6 +12,17 @@
 		D4F57CD72A0243AC00582857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F57CD62A0243AC00582857 /* Assets.xcassets */; };
 		D4F57CDA2A0243AC00582857 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F57CD92A0243AC00582857 /* Preview Assets.xcassets */; };
 		D4F57CE22A0244E200582857 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = D4F57CE12A0244E200582857 /* ComposableArchitecture */; };
+		D4F57CEE2A02548E00582857 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CED2A02548E00582857 /* Color+.swift */; };
+		D4F57CF12A02565300582857 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CF02A02565300582857 /* Pin.swift */; };
+		D4F57CF32A02576100582857 /* MockEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CF22A02576100582857 /* MockEntity.swift */; };
+		D4F57CF52A02595800582857 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CF42A02595800582857 /* Location.swift */; };
+		D4F57CF82A02609100582857 /* AddPinIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CF72A02609100582857 /* AddPinIntent.swift */; };
+		D4F57CFC2A02635400582857 /* LocationAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CFB2A02635400582857 /* LocationAuthorization.swift */; };
+		D4F57CFF2A02659200582857 /* AddPinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CFE2A02659200582857 /* AddPinUseCase.swift */; };
+		D4F57D032A02738C00582857 /* AddPinRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D022A02738C00582857 /* AddPinRepository.swift */; };
+		D4F57D052A0282FF00582857 /* GeoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D042A0282FF00582857 /* GeoCodeRepository.swift */; };
+		D4F57D082A0283CD00582857 /* GeoCodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D072A0283CD00582857 /* GeoCodeUseCase.swift */; };
+		D4F57D0B2A02A9AC00582857 /* PinMusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D0A2A02A9AC00582857 /* PinMusicReducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +31,18 @@
 		D4F57CD42A0243AB00582857 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D4F57CD62A0243AC00582857 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4F57CD92A0243AC00582857 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D4F57CED2A02548E00582857 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		D4F57CF02A02565300582857 /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		D4F57CF22A02576100582857 /* MockEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEntity.swift; sourceTree = "<group>"; };
+		D4F57CF42A02595800582857 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		D4F57CF72A02609100582857 /* AddPinIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPinIntent.swift; sourceTree = "<group>"; };
+		D4F57CF92A0260D100582857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D4F57CFB2A02635400582857 /* LocationAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAuthorization.swift; sourceTree = "<group>"; };
+		D4F57CFE2A02659200582857 /* AddPinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPinUseCase.swift; sourceTree = "<group>"; };
+		D4F57D022A02738C00582857 /* AddPinRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPinRepository.swift; sourceTree = "<group>"; };
+		D4F57D042A0282FF00582857 /* GeoCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCodeRepository.swift; sourceTree = "<group>"; };
+		D4F57D072A0283CD00582857 /* GeoCodeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCodeUseCase.swift; sourceTree = "<group>"; };
+		D4F57D0A2A02A9AC00582857 /* PinMusicReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinMusicReducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,11 +76,13 @@
 		D4F57CD12A0243AB00582857 /* Mappin */ = {
 			isa = PBXGroup;
 			children = (
+				D4F57CF92A0260D100582857 /* Info.plist */,
+				D4F57CD22A0243AB00582857 /* MappinApp.swift */,
+				D4F57CEB2A02547100582857 /* Common */,
 				D4F57CE52A02453800582857 /* Data */,
 				D4F57CE42A02452600582857 /* Domain */,
 				D4F57CE32A02452000582857 /* Presentation */,
-				D4F57CD22A0243AB00582857 /* MappinApp.swift */,
-				D4F57CD62A0243AC00582857 /* Assets.xcassets */,
+				D4F57CEA2A024DBE00582857 /* Resource */,
 				D4F57CD82A0243AC00582857 /* Preview Content */,
 			);
 			path = Mappin;
@@ -74,6 +99,7 @@
 		D4F57CE32A02452000582857 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				D4F57D092A02A91600582857 /* Reducers */,
 				D4F57CD42A0243AB00582857 /* ContentView.swift */,
 			);
 			path = Presentation;
@@ -82,6 +108,9 @@
 		D4F57CE42A02452600582857 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				D4F57D012A02734400582857 /* Repositories */,
+				D4F57CFD2A02656F00582857 /* UseCases */,
+				D4F57CEF2A02550E00582857 /* Entities */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -91,6 +120,100 @@
 			children = (
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		D4F57CEA2A024DBE00582857 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57CD62A0243AC00582857 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		D4F57CEB2A02547100582857 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57CFA2A02631C00582857 /* Auth */,
+				D4F57CF62A02604900582857 /* Intent */,
+				D4F57CEC2A02548400582857 /* Extension */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D4F57CEC2A02548400582857 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57CED2A02548E00582857 /* Color+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		D4F57CEF2A02550E00582857 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57CF22A02576100582857 /* MockEntity.swift */,
+				D4F57CF02A02565300582857 /* Pin.swift */,
+				D4F57CF42A02595800582857 /* Location.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		D4F57CF62A02604900582857 /* Intent */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57CF72A02609100582857 /* AddPinIntent.swift */,
+			);
+			path = Intent;
+			sourceTree = "<group>";
+		};
+		D4F57CFA2A02631C00582857 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57CFB2A02635400582857 /* LocationAuthorization.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		D4F57CFD2A02656F00582857 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57D062A0283B300582857 /* GeoCodeUseCase */,
+				D4F57D002A0265D100582857 /* PinUseCases */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		D4F57D002A0265D100582857 /* PinUseCases */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57CFE2A02659200582857 /* AddPinUseCase.swift */,
+			);
+			path = PinUseCases;
+			sourceTree = "<group>";
+		};
+		D4F57D012A02734400582857 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57D022A02738C00582857 /* AddPinRepository.swift */,
+				D4F57D042A0282FF00582857 /* GeoCodeRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		D4F57D062A0283B300582857 /* GeoCodeUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57D072A0283CD00582857 /* GeoCodeUseCase.swift */,
+			);
+			path = GeoCodeUseCase;
+			sourceTree = "<group>";
+		};
+		D4F57D092A02A91600582857 /* Reducers */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57D0A2A02A9AC00582857 /* PinMusicReducer.swift */,
+			);
+			path = Reducers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,8 +292,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F57CFC2A02635400582857 /* LocationAuthorization.swift in Sources */,
 				D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */,
+				D4F57CEE2A02548E00582857 /* Color+.swift in Sources */,
+				D4F57D032A02738C00582857 /* AddPinRepository.swift in Sources */,
+				D4F57CFF2A02659200582857 /* AddPinUseCase.swift in Sources */,
+				D4F57D0B2A02A9AC00582857 /* PinMusicReducer.swift in Sources */,
+				D4F57CF82A02609100582857 /* AddPinIntent.swift in Sources */,
+				D4F57D082A0283CD00582857 /* GeoCodeUseCase.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
+				D4F57CF12A02565300582857 /* Pin.swift in Sources */,
+				D4F57D052A0282FF00582857 /* GeoCodeRepository.swift in Sources */,
+				D4F57CF52A02595800582857 /* Location.swift in Sources */,
+				D4F57CF32A02576100582857 /* MockEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,11 +436,16 @@
 				DEVELOPMENT_TEAM = VT6KC94KM7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Mappin/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Good?";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Good?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -331,11 +470,16 @@
 				DEVELOPMENT_TEAM = VT6KC94KM7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Mappin/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Good?";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Good?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

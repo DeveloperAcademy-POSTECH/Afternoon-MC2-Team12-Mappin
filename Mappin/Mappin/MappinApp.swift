@@ -12,6 +12,9 @@ struct MappinApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear {
+                    _ = LocationManager.shared
+                }
         }
     }
 }
