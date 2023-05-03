@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF03F8C32A026BA100E90660 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C22A026BA100E90660 /* Music.swift */; };
+		AF03F8C62A0279B400E90660 /* SearchMusicUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */; };
+		AF03F8C82A027A8600E90660 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C72A027A8600E90660 /* Weather.swift */; };
+		AF03F8CB2A02803300E90660 /* SearchMusicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8CA2A02803300E90660 /* SearchMusicRepository.swift */; };
+		AF03F8CD2A02835200E90660 /* RequestWeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */; };
+		AF03F8CF2A02885F00E90660 /* RequestWeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8CE2A02885F00E90660 /* RequestWeatherRepository.swift */; };
 		D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD22A0243AB00582857 /* MappinApp.swift */; };
 		D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD42A0243AB00582857 /* ContentView.swift */; };
 		D4F57CD72A0243AC00582857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F57CD62A0243AC00582857 /* Assets.xcassets */; };
@@ -15,6 +21,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF03F8C22A026BA100E90660 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicUseCase.swift; sourceTree = "<group>"; };
+		AF03F8C72A027A8600E90660 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		AF03F8CA2A02803300E90660 /* SearchMusicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicRepository.swift; sourceTree = "<group>"; };
+		AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWeatherUseCase.swift; sourceTree = "<group>"; };
+		AF03F8CE2A02885F00E90660 /* RequestWeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWeatherRepository.swift; sourceTree = "<group>"; };
 		D4F57CCF2A0243AB00582857 /* Mappin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mappin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F57CD22A0243AB00582857 /* MappinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappinApp.swift; sourceTree = "<group>"; };
 		D4F57CD42A0243AB00582857 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -34,6 +46,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF03F8C12A02663500E90660 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				AF03F8C22A026BA100E90660 /* Music.swift */,
+				AF03F8C72A027A8600E90660 /* Weather.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		AF03F8C42A026C8D00E90660 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */,
+				AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		AF03F8C92A027EE900E90660 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				AF03F8CA2A02803300E90660 /* SearchMusicRepository.swift */,
+				AF03F8CE2A02885F00E90660 /* RequestWeatherRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		D4F57CC62A0243AB00582857 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +121,9 @@
 		D4F57CE42A02452600582857 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				AF03F8C92A027EE900E90660 /* Repositories */,
+				AF03F8C42A026C8D00E90660 /* UseCases */,
+				AF03F8C12A02663500E90660 /* Entities */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -170,7 +212,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */,
+				AF03F8CD2A02835200E90660 /* RequestWeatherUseCase.swift in Sources */,
+				AF03F8CF2A02885F00E90660 /* RequestWeatherRepository.swift in Sources */,
+				AF03F8CB2A02803300E90660 /* SearchMusicRepository.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
+				AF03F8C32A026BA100E90660 /* Music.swift in Sources */,
+				AF03F8C62A0279B400E90660 /* SearchMusicUseCase.swift in Sources */,
+				AF03F8C82A027A8600E90660 /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +347,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mappin/Preview Content\"";
-				DEVELOPMENT_TEAM = VT6KC94KM7;
+				DEVELOPMENT_TEAM = 8R3N359429;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -312,7 +360,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pccommen.Mappin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kozi.mappin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -328,7 +376,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mappin/Preview Content\"";
-				DEVELOPMENT_TEAM = VT6KC94KM7;
+				DEVELOPMENT_TEAM = 8R3N359429;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -341,7 +389,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pccommen.Mappin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kozi.mappin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
