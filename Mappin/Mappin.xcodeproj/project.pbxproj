@@ -73,6 +73,13 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
+		AF03F8D02A02AB2700E90660 /* Reducers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Reducers;
+			sourceTree = "<group>";
+		};
 		D4F57CC62A0243AB00582857 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +120,7 @@
 		D4F57CE32A02452000582857 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				AF03F8D02A02AB2700E90660 /* Reducers */,
 				D4F57CD42A0243AB00582857 /* ContentView.swift */,
 			);
 			path = Presentation;

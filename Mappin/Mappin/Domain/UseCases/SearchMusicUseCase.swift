@@ -13,14 +13,14 @@ protocol SearchMusicUseCase {
 
 final class DefaultSearchMusicUseCase: SearchMusicUseCase {
     
-    let musicRepository: MusicRepository
+    private let musicRepository: RequestSearchMusicRepository
     
-    init(musicRepository: MusicRepository) {
+    init(musicRepository: RequestSearchMusicRepository) {
         self.musicRepository = musicRepository
     }
     
     func execute(searchTerm: String) async throws -> Music {
-        return try await musicRepository.requsetSearchMusic(searchTerm: searchTerm)
+        return try await musicRepository.requestSearchMusic(searchTerm: searchTerm)
     }
     
 }
