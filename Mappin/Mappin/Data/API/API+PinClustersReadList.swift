@@ -27,9 +27,5 @@ extension API {
         var task: Task {
             .requestParameters(parameters: parameters.dictionary ?? [:], encoding: URLEncoding.queryString)
         }
-        
-        var headers: [String : String]? {
-            nil
-        }
     }
 }

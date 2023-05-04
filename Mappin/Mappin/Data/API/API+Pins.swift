@@ -46,9 +46,5 @@ extension API {
                 return .requestPlain
             }
         }
-        
-        var headers: [String : String]? {
-            nil
-        }
     }
 }
