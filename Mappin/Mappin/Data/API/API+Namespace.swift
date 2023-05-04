@@ -18,6 +18,6 @@ enum API {
 
 extension API.TargetType {
     var baseURL: URL {
-        URL(string: "http://test.eba-abpsggka.ap-northeast-2.elasticbeanstalk.com/")!
+        return URL(string: "http://test.eba-abpsggka.ap-northeast-2.elasticbeanstalk.com")!
     }
 }

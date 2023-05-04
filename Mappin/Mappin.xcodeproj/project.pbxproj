@@ -19,6 +19,7 @@
 		3AB4F7932A0379F6004C0F76 /* PinsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7922A0379F6004C0F76 /* PinsRepository.swift */; };
 		3AB4F7972A037A84004C0F76 /* APIPinsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7962A037A84004C0F76 /* APIPinsRepository.swift */; };
 		3AB4F7992A037CA5004C0F76 /* Encodable+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7982A037CA5004C0F76 /* Encodable+Dictionary.swift */; };
+		3AE353DA2A0390E000D5A2B5 /* APIJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353D92A0390E000D5A2B5 /* APIJSONDecoder.swift */; };
 		D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD22A0243AB00582857 /* MappinApp.swift */; };
 		D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD42A0243AB00582857 /* ContentView.swift */; };
 		D4F57CD72A0243AC00582857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F57CD62A0243AC00582857 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		3AB4F7922A0379F6004C0F76 /* PinsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsRepository.swift; sourceTree = "<group>"; };
 		3AB4F7962A037A84004C0F76 /* APIPinsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPinsRepository.swift; sourceTree = "<group>"; };
 		3AB4F7982A037CA5004C0F76 /* Encodable+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Dictionary.swift"; sourceTree = "<group>"; };
+		3AE353D92A0390E000D5A2B5 /* APIJSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIJSONDecoder.swift; sourceTree = "<group>"; };
 		D4F57CCF2A0243AB00582857 /* Mappin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mappin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F57CD22A0243AB00582857 /* MappinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappinApp.swift; sourceTree = "<group>"; };
 		D4F57CD42A0243AB00582857 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,8 +97,8 @@
 		3AB4F7772A0377F6004C0F76 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				3AB4F7782A03780B004C0F76 /* Moya+Async.swift */,
-				3AB4F7982A037CA5004C0F76 /* Encodable+Dictionary.swift */,
+				3AE353D82A0390C200D5A2B5 /* Implementation */,
+				3AE353D72A0390BA00D5A2B5 /* Extension */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -133,6 +135,23 @@
 			isa = PBXGroup;
 			children = (
 				3AB4F7962A037A84004C0F76 /* APIPinsRepository.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		3AE353D72A0390BA00D5A2B5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3AB4F7782A03780B004C0F76 /* Moya+Async.swift */,
+				3AB4F7982A037CA5004C0F76 /* Encodable+Dictionary.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		3AE353D82A0390C200D5A2B5 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				3AE353D92A0390E000D5A2B5 /* APIJSONDecoder.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -387,6 +406,7 @@
 				D4F57CFF2A02659200582857 /* AddPinUseCase.swift in Sources */,
 				D4F57D0B2A02A9AC00582857 /* PinMusicReducer.swift in Sources */,
 				D4F57CF82A02609100582857 /* AddPinIntent.swift in Sources */,
+				3AE353DA2A0390E000D5A2B5 /* APIJSONDecoder.swift in Sources */,
 				D4F57D082A0283CD00582857 /* GeoCodeUseCase.swift in Sources */,
 				D4F57D0D2A03812000582857 /* asd.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,

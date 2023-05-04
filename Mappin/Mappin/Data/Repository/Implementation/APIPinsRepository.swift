@@ -10,7 +10,7 @@ import Moya
 
 struct APIPinsRepository: PinsRepository {
     private let provider = MoyaProvider<API.Pins>()
-    private let decoder = JSONDecoder()
+    private let decoder = APIJSONDecoder()
     
     func create(pin: DTO.Pin) async throws {
         _ = try await provider.request(.create(pin: pin)).get()
