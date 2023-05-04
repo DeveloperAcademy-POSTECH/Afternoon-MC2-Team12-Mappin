@@ -20,6 +20,9 @@
 		3AB4F7972A037A84004C0F76 /* APIPinsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7962A037A84004C0F76 /* APIPinsRepository.swift */; };
 		3AB4F7992A037CA5004C0F76 /* Encodable+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7982A037CA5004C0F76 /* Encodable+Dictionary.swift */; };
 		3AE353DA2A0390E000D5A2B5 /* APIJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353D92A0390E000D5A2B5 /* APIJSONDecoder.swift */; };
+		3AE353DC2A03935A00D5A2B5 /* API+PinClustersReadList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DB2A03935A00D5A2B5 /* API+PinClustersReadList.swift */; };
+		3AE353DE2A03949B00D5A2B5 /* PinClustersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */; };
+		3AE353E02A0394BA00D5A2B5 /* APIPinClustersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DF2A0394BA00D5A2B5 /* APIPinClustersRepository.swift */; };
 		D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD22A0243AB00582857 /* MappinApp.swift */; };
 		D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD42A0243AB00582857 /* ContentView.swift */; };
 		D4F57CD72A0243AC00582857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F57CD62A0243AC00582857 /* Assets.xcassets */; };
@@ -51,6 +54,9 @@
 		3AB4F7962A037A84004C0F76 /* APIPinsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPinsRepository.swift; sourceTree = "<group>"; };
 		3AB4F7982A037CA5004C0F76 /* Encodable+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Dictionary.swift"; sourceTree = "<group>"; };
 		3AE353D92A0390E000D5A2B5 /* APIJSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIJSONDecoder.swift; sourceTree = "<group>"; };
+		3AE353DB2A03935A00D5A2B5 /* API+PinClustersReadList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+PinClustersReadList.swift"; sourceTree = "<group>"; };
+		3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinClustersRepository.swift; sourceTree = "<group>"; };
+		3AE353DF2A0394BA00D5A2B5 /* APIPinClustersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPinClustersRepository.swift; sourceTree = "<group>"; };
 		D4F57CCF2A0243AB00582857 /* Mappin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mappin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F57CD22A0243AB00582857 /* MappinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappinApp.swift; sourceTree = "<group>"; };
 		D4F57CD42A0243AB00582857 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 			children = (
 				3AB4F7682A0373BF004C0F76 /* API+Namespace.swift */,
 				3AB4F7712A0374E2004C0F76 /* API+Pins.swift */,
+				3AE353DB2A03935A00D5A2B5 /* API+PinClustersReadList.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -127,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				3AB4F7922A0379F6004C0F76 /* PinsRepository.swift */,
+				3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -135,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				3AB4F7962A037A84004C0F76 /* APIPinsRepository.swift */,
+				3AE353DF2A0394BA00D5A2B5 /* APIPinClustersRepository.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -404,6 +413,7 @@
 				D4F57CEE2A02548E00582857 /* Color+.swift in Sources */,
 				D4F57D032A02738C00582857 /* AddPinRepository.swift in Sources */,
 				D4F57CFF2A02659200582857 /* AddPinUseCase.swift in Sources */,
+				3AE353DC2A03935A00D5A2B5 /* API+PinClustersReadList.swift in Sources */,
 				D4F57D0B2A02A9AC00582857 /* PinMusicReducer.swift in Sources */,
 				D4F57CF82A02609100582857 /* AddPinIntent.swift in Sources */,
 				3AE353DA2A0390E000D5A2B5 /* APIJSONDecoder.swift in Sources */,
@@ -413,6 +423,7 @@
 				D4F57CF12A02565300582857 /* Pin.swift in Sources */,
 				D4F57D052A0282FF00582857 /* GeoCodeRepository.swift in Sources */,
 				D4F57CF52A02595800582857 /* Location.swift in Sources */,
+				3AE353E02A0394BA00D5A2B5 /* APIPinClustersRepository.swift in Sources */,
 				D4F57CF32A02576100582857 /* MockEntity.swift in Sources */,
 				3AB4F7902A0379B1004C0F76 /* DTO+PinCluster.swift in Sources */,
 				3AB4F7972A037A84004C0F76 /* APIPinsRepository.swift in Sources */,
@@ -423,6 +434,7 @@
 				3AB4F78C2A0379A2004C0F76 /* DTO+Music.swift in Sources */,
 				3AB4F7992A037CA5004C0F76 /* Encodable+Dictionary.swift in Sources */,
 				3AB4F7792A03780B004C0F76 /* Moya+Async.swift in Sources */,
+				3AE353DE2A03949B00D5A2B5 /* PinClustersRepository.swift in Sources */,
 				3AB4F78A2A03797C004C0F76 /* DTO+Namespace.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
 				3AB4F7692A0373BF004C0F76 /* API+Namespace.swift in Sources */,

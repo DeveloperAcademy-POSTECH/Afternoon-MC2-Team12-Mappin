@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Moya
 
 extension API {
     enum Pins: TargetType {
@@ -40,7 +41,7 @@ extension API {
         var task: Task {
             switch self {
             case let .create(pin), let .update(_, pin):
-                return .requestParameters(parameters: pin.dictionary ?? [:], encoding: encoding)
+                return .requestParameters(parameters: pin.dictionary ?? [:], encoding: JSONEncoding.default)
             default:
                 return .requestPlain
             }
