@@ -9,17 +9,17 @@ import Foundation
 
 extension API {
     enum Pins: TargetType {
-        case create
+        case create(pin: DTO.Pin)
         case readList
         case readDetail(id: Int)
-        case update
+        case update(id: Int, pin: DTO.Pin)
         case delete(id: Int)
         
         var path: String {
             switch self {
-            case .create, .readList, .update:
+            case .create, .readList:
                 return "/pins"
-            case let .readDetail(id), let .delete(id):
+            case let .readDetail(id), let .update(id, _), let .delete(id):
                 return "/pins/\(id)"
             }
         }
@@ -38,7 +38,12 @@ extension API {
         }
         
         var task: Task {
-            .requestPlain
+            switch self {
+            case let .create(pin), let .update(_, pin):
+                return .requestParameters(parameters: pin.dictionary ?? [:], encoding: encoding)
+            default:
+                return .requestPlain
+            }
         }
         
         var headers: [String : String]? {

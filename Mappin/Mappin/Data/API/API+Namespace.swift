@@ -12,6 +12,8 @@ enum API {
     typealias TargetType = Moya.TargetType
     typealias Method = Moya.Method
     typealias Task = Moya.Task
+    
+    static let encoding = JSONEncoding.default
 }
 
 extension API.TargetType {
