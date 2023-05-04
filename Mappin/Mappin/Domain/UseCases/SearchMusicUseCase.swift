@@ -13,9 +13,9 @@ protocol SearchMusicUseCase {
 
 final class DefaultSearchMusicUseCase: SearchMusicUseCase {
     
-    private let musicRepository: RequestSearchMusicRepository
+    private let musicRepository: RequestSearchMusicRepositoryInterface
     
-    init(musicRepository: RequestSearchMusicRepository) {
+    init(musicRepository: RequestSearchMusicRepositoryInterface) {
         self.musicRepository = musicRepository
     }
     

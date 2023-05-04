@@ -14,9 +14,9 @@ protocol RequestWeatherUseCase {
 
 final class DefaultRequestWeatherUseCase: RequestWeatherUseCase {
     
-    private let weatherRepository: RequestWeatherRepository
+    private let weatherRepository: RequestWeatherRepositoryInterface
     
-    init(weatherRepository: RequestWeatherRepository) {
+    init(weatherRepository: RequestWeatherRepositoryInterface) {
         self.weatherRepository = weatherRepository
     }
     
