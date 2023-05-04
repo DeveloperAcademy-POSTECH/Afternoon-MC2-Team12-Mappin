@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol RequestWeatherRepository {
+protocol RequestWeatherRepositoryInterface {
     func requestWeather(latitude: Double, longitude: Double) -> Weather
 }

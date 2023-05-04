@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol RequestSearchMusicRepository {
+protocol RequestSearchMusicRepositoryInterface {
     func requestSearchMusic(searchTerm: String) async throws -> Music
 }
