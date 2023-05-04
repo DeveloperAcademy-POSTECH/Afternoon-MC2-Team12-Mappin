@@ -7,15 +7,11 @@
 
 import Foundation
 
-struct MusicList {
-    let musicList: [Music]
-}
-
 struct Music: Equatable, Identifiable {
     let id: String
     let title: String
     let artist: String
     let artwork: String?
-    let appleMusicUrl: URL
+    let appleMusicUrl: URL?
 }
 
