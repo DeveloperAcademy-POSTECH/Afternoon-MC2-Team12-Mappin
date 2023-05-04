@@ -14,6 +14,7 @@
 		AF6800B62A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800B42A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift */; };
 		AF6800B72A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800B52A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift */; };
 		AF6800BA2A037A000096D65B /* RequestSearchMusicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800B92A037A000096D65B /* RequestSearchMusicRepository.swift */; };
+		AF6800BC2A0393F60096D65B /* PinMusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800BB2A0393F50096D65B /* PinMusicReducer.swift */; };
 		D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD22A0243AB00582857 /* MappinApp.swift */; };
 		D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD42A0243AB00582857 /* ContentView.swift */; };
 		D4F57CD72A0243AC00582857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F57CD62A0243AC00582857 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		AF6800B42A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSearchMusicRepositoryInterface.swift; sourceTree = "<group>"; };
 		AF6800B52A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestWeatherRepositoryInterface.swift; sourceTree = "<group>"; };
 		AF6800B92A037A000096D65B /* RequestSearchMusicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSearchMusicRepository.swift; sourceTree = "<group>"; };
+		AF6800BB2A0393F50096D65B /* PinMusicReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinMusicReducer.swift; sourceTree = "<group>"; };
 		D4F57CCF2A0243AB00582857 /* Mappin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mappin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F57CD22A0243AB00582857 /* MappinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappinApp.swift; sourceTree = "<group>"; };
 		D4F57CD42A0243AB00582857 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -126,7 +128,7 @@
 		AF03F8D02A02AB2700E90660 /* Reducers */ = {
 			isa = PBXGroup;
 			children = (
-				D4F57D272A03980C00582857 /* PinMusicReducer.swift */,
+				AF6800BB2A0393F50096D65B /* PinMusicReducer.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -384,6 +386,7 @@
 				AF03F8C32A026BA100E90660 /* Music.swift in Sources */,
 				AF03F8C62A0279B400E90660 /* SearchMusicUseCase.swift in Sources */,
 				AF03F8C82A027A8600E90660 /* Weather.swift in Sources */,
+				AF6800BC2A0393F60096D65B /* PinMusicReducer.swift in Sources */,
 				AF6800BA2A037A000096D65B /* RequestSearchMusicRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

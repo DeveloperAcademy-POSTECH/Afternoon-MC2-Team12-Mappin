@@ -8,8 +8,9 @@
 import Foundation
 
 protocol RequestWeatherUseCase {
-    func execute(latitude: Double,
-                 longitude: Double) async throws -> Weather
+    func execute(
+        latitude: Double,
+        longitude: Double) async throws -> Weather
 }
 
 final class DefaultRequestWeatherUseCase: RequestWeatherUseCase {
@@ -22,8 +23,7 @@ final class DefaultRequestWeatherUseCase: RequestWeatherUseCase {
     
     func execute(latitude: Double,
                  longitude: Double) async throws -> Weather {
-        return weatherRepository.requestWeather(latitude: latitude,
-                                                longitude: longitude)
+        return try await weatherRepository.requestWeather(latitude: latitude, longitude: longitude)
     }
     
 }

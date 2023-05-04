@@ -8,5 +8,8 @@
 import Foundation
 
 protocol RequestWeatherRepositoryInterface {
-    func requestWeather(latitude: Double, longitude: Double) -> Weather
+    func requestWeather(
+        latitude: Double,
+        longitude: Double
+    ) async throws -> Weather
 }
