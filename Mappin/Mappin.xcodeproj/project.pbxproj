@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3AB4F7852A03792D004C0F76 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7842A03792D004C0F76 /* CombineMoya */; };
 		3AB4F7872A03792D004C0F76 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7862A03792D004C0F76 /* Moya */; };
+		3AB4F7692A0373BF004C0F76 /* API+Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7682A0373BF004C0F76 /* API+Namespace.swift */; };
+		3AB4F7722A0374E2004C0F76 /* API+Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7712A0374E2004C0F76 /* API+Pins.swift */; };
 		D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD22A0243AB00582857 /* MappinApp.swift */; };
 		D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD42A0243AB00582857 /* ContentView.swift */; };
 		D4F57CD72A0243AC00582857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F57CD62A0243AC00582857 /* Assets.xcassets */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3AB4F7682A0373BF004C0F76 /* API+Namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Namespace.swift"; sourceTree = "<group>"; };
+		3AB4F7712A0374E2004C0F76 /* API+Pins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Pins.swift"; sourceTree = "<group>"; };
 		D4F57CCF2A0243AB00582857 /* Mappin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mappin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F57CD22A0243AB00582857 /* MappinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappinApp.swift; sourceTree = "<group>"; };
 		D4F57CD42A0243AB00582857 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +67,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3AB4F7672A0373A8004C0F76 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3AB4F7682A0373BF004C0F76 /* API+Namespace.swift */,
+				3AB4F7712A0374E2004C0F76 /* API+Pins.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		D4F57CC62A0243AB00582857 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +137,7 @@
 		D4F57CE52A02453800582857 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				3AB4F7672A0373A8004C0F76 /* API */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -316,6 +330,9 @@
 				D4F57D052A0282FF00582857 /* GeoCodeRepository.swift in Sources */,
 				D4F57CF52A02595800582857 /* Location.swift in Sources */,
 				D4F57CF32A02576100582857 /* MockEntity.swift in Sources */,
+				3AB4F7722A0374E2004C0F76 /* API+Pins.swift in Sources */,
+				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
+				3AB4F7692A0373BF004C0F76 /* API+Namespace.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
