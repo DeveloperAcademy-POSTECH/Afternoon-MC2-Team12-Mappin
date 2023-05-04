@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct MusicList {
+    let musicList: [Music]
+}
+
 struct Music: Equatable, Identifiable {
     let id: String
     let title: String

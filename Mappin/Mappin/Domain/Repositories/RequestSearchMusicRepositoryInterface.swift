@@ -8,5 +8,5 @@
 import Foundation
 
 protocol RequestSearchMusicRepositoryInterface {
-    func requestSearchMusic(searchTerm: String) async throws -> Music
+    func requestSearchMusic(searchTerm: String) async throws -> [Music]
 }
