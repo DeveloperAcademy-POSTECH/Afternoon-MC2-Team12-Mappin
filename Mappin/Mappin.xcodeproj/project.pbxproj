@@ -34,6 +34,11 @@
 		D4F57D1A2A03970D00582857 /* MockEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D172A03970D00582857 /* MockEntity.swift */; };
 		D4F57D1B2A03970D00582857 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D182A03970D00582857 /* Location.swift */; };
 		D4F57D1C2A03970D00582857 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D192A03970D00582857 /* Pin.swift */; };
+		D4F57D212A0397C000582857 /* AddPinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D1E2A0397C000582857 /* AddPinUseCase.swift */; };
+		D4F57D222A0397C000582857 /* GeoCodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D202A0397C000582857 /* GeoCodeUseCase.swift */; };
+		D4F57D252A0397CD00582857 /* AddPinRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D232A0397CD00582857 /* AddPinRepository.swift */; };
+		D4F57D262A0397CD00582857 /* GeoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D242A0397CD00582857 /* GeoCodeRepository.swift */; };
+		D4F57D282A03980C00582857 /* PinMusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D272A03980C00582857 /* PinMusicReducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +70,11 @@
 		D4F57D172A03970D00582857 /* MockEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEntity.swift; sourceTree = "<group>"; };
 		D4F57D182A03970D00582857 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D4F57D192A03970D00582857 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		D4F57D1E2A0397C000582857 /* AddPinUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinUseCase.swift; sourceTree = "<group>"; };
+		D4F57D202A0397C000582857 /* GeoCodeUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoCodeUseCase.swift; sourceTree = "<group>"; };
+		D4F57D232A0397CD00582857 /* AddPinRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinRepository.swift; sourceTree = "<group>"; };
+		D4F57D242A0397CD00582857 /* GeoCodeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoCodeRepository.swift; sourceTree = "<group>"; };
+		D4F57D272A03980C00582857 /* PinMusicReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinMusicReducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +104,8 @@
 		AF03F8C42A026C8D00E90660 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				D4F57D1F2A0397C000582857 /* GeoCodeUseCase */,
+				D4F57D1D2A0397C000582857 /* PinUseCases */,
 				AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */,
 				AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */,
 			);
@@ -103,6 +115,8 @@
 		AF03F8C92A027EE900E90660 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				D4F57D232A0397CD00582857 /* AddPinRepository.swift */,
+				D4F57D242A0397CD00582857 /* GeoCodeRepository.swift */,
 				AF6800B52A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift */,
 				AF6800B42A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift */,
 			);
@@ -112,6 +126,7 @@
 		AF03F8D02A02AB2700E90660 /* Reducers */ = {
 			isa = PBXGroup;
 			children = (
+				D4F57D272A03980C00582857 /* PinMusicReducer.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -249,6 +264,22 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		D4F57D1D2A0397C000582857 /* PinUseCases */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57D1E2A0397C000582857 /* AddPinUseCase.swift */,
+			);
+			path = PinUseCases;
+			sourceTree = "<group>";
+		};
+		D4F57D1F2A0397C000582857 /* GeoCodeUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57D202A0397C000582857 /* GeoCodeUseCase.swift */,
+			);
+			path = GeoCodeUseCase;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -328,16 +359,21 @@
 				D4F57CFC2A02635400582857 /* LocationAuthorization.swift in Sources */,
 				D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */,
 				D4F57CEE2A02548E00582857 /* Color+.swift in Sources */,
+				D4F57D252A0397CD00582857 /* AddPinRepository.swift in Sources */,
 				D4F57D1C2A03970D00582857 /* Pin.swift in Sources */,
 				D4F57D032A02738C00582857 /* AddPinRepository.swift in Sources */,
 				D4F57CFF2A02659200582857 /* AddPinUseCase.swift in Sources */,
+				D4F57D282A03980C00582857 /* PinMusicReducer.swift in Sources */,
 				D4F57D0B2A02A9AC00582857 /* PinMusicReducer.swift in Sources */,
 				D4F57CF82A02609100582857 /* AddPinIntent.swift in Sources */,
 				D4F57D082A0283CD00582857 /* GeoCodeUseCase.swift in Sources */,
 				D4F57D1A2A03970D00582857 /* MockEntity.swift in Sources */,
 				D4F57D0D2A03812000582857 /* asd.swift in Sources */,
+				D4F57D262A0397CD00582857 /* GeoCodeRepository.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
+				D4F57D222A0397C000582857 /* GeoCodeUseCase.swift in Sources */,
 				D4F57CF12A02565300582857 /* Pin.swift in Sources */,
+				D4F57D212A0397C000582857 /* AddPinUseCase.swift in Sources */,
 				D4F57D052A0282FF00582857 /* GeoCodeRepository.swift in Sources */,
 				D4F57CF52A02595800582857 /* Location.swift in Sources */,
 				D4F57D1B2A03970D00582857 /* Location.swift in Sources */,
@@ -477,7 +513,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mappin/Preview Content\"";
-				DEVELOPMENT_TEAM = 8R3N359429;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mappin/Info.plist;
@@ -495,7 +531,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kozi.mappin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pccommen.mappin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -511,7 +547,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mappin/Preview Content\"";
-				DEVELOPMENT_TEAM = 8R3N359429;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mappin/Info.plist;
@@ -529,7 +565,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kozi.mappin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pccommen.mappin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
