@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AB4F7852A03792D004C0F76 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7842A03792D004C0F76 /* CombineMoya */; };
+		3AB4F7872A03792D004C0F76 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7862A03792D004C0F76 /* Moya */; };
 		D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD22A0243AB00582857 /* MappinApp.swift */; };
 		D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD42A0243AB00582857 /* ContentView.swift */; };
 		D4F57CD72A0243AC00582857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F57CD62A0243AC00582857 /* Assets.xcassets */; };
@@ -52,7 +54,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AB4F7852A03792D004C0F76 /* CombineMoya in Frameworks */,
 				D4F57CE22A0244E200582857 /* ComposableArchitecture in Frameworks */,
+				3AB4F7872A03792D004C0F76 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +241,8 @@
 			name = Mappin;
 			packageProductDependencies = (
 				D4F57CE12A0244E200582857 /* ComposableArchitecture */,
+				3AB4F7842A03792D004C0F76 /* CombineMoya */,
+				3AB4F7862A03792D004C0F76 /* Moya */,
 			);
 			productName = Mappin;
 			productReference = D4F57CCF2A0243AB00582857 /* Mappin.app */;
@@ -268,6 +274,7 @@
 			mainGroup = D4F57CC62A0243AB00582857;
 			packageReferences = (
 				D4F57CE02A0244E200582857 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				3AB4F7832A03792D004C0F76 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = D4F57CD02A0243AB00582857 /* Products */;
 			projectDirPath = "";
@@ -521,6 +528,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3AB4F7832A03792D004C0F76 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.0;
+			};
+		};
 		D4F57CE02A0244E200582857 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
@@ -532,6 +547,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3AB4F7842A03792D004C0F76 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AB4F7832A03792D004C0F76 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		3AB4F7862A03792D004C0F76 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AB4F7832A03792D004C0F76 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
 		D4F57CE12A0244E200582857 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D4F57CE02A0244E200582857 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
