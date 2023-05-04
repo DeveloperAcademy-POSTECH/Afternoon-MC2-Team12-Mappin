@@ -23,6 +23,7 @@
 		D4F57D052A0282FF00582857 /* GeoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D042A0282FF00582857 /* GeoCodeRepository.swift */; };
 		D4F57D082A0283CD00582857 /* GeoCodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D072A0283CD00582857 /* GeoCodeUseCase.swift */; };
 		D4F57D0B2A02A9AC00582857 /* PinMusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D0A2A02A9AC00582857 /* PinMusicReducer.swift */; };
+		D4F57D0D2A03812000582857 /* asd.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D0C2A03812000582857 /* asd.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		D4F57D042A0282FF00582857 /* GeoCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCodeRepository.swift; sourceTree = "<group>"; };
 		D4F57D072A0283CD00582857 /* GeoCodeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCodeUseCase.swift; sourceTree = "<group>"; };
 		D4F57D0A2A02A9AC00582857 /* PinMusicReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinMusicReducer.swift; sourceTree = "<group>"; };
+		D4F57D0C2A03812000582857 /* asd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asd.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				D4F57D0A2A02A9AC00582857 /* PinMusicReducer.swift */,
+				D4F57D0C2A03812000582857 /* asd.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				D4F57D0B2A02A9AC00582857 /* PinMusicReducer.swift in Sources */,
 				D4F57CF82A02609100582857 /* AddPinIntent.swift in Sources */,
 				D4F57D082A0283CD00582857 /* GeoCodeUseCase.swift in Sources */,
+				D4F57D0D2A03812000582857 /* asd.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
 				D4F57CF12A02565300582857 /* Pin.swift in Sources */,
 				D4F57D052A0282FF00582857 /* GeoCodeRepository.swift in Sources */,
