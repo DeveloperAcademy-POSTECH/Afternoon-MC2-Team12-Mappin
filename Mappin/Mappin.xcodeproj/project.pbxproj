@@ -23,6 +23,13 @@
 		3AE353DC2A03935A00D5A2B5 /* API+PinClustersReadList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DB2A03935A00D5A2B5 /* API+PinClustersReadList.swift */; };
 		3AE353DE2A03949B00D5A2B5 /* PinClustersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */; };
 		3AE353E02A0394BA00D5A2B5 /* APIPinClustersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DF2A0394BA00D5A2B5 /* APIPinClustersRepository.swift */; };
+		AF03F8C32A026BA100E90660 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C22A026BA100E90660 /* Music.swift */; };
+		AF03F8C62A0279B400E90660 /* SearchMusicUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */; };
+		AF03F8C82A027A8600E90660 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C72A027A8600E90660 /* Weather.swift */; };
+		AF03F8CD2A02835200E90660 /* RequestWeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */; };
+		AF6800B62A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800B42A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift */; };
+		AF6800B72A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800B52A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift */; };
+		AF6800BA2A037A000096D65B /* RequestSearchMusicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800B92A037A000096D65B /* RequestSearchMusicRepository.swift */; };
 		D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD22A0243AB00582857 /* MappinApp.swift */; };
 		D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD42A0243AB00582857 /* ContentView.swift */; };
 		D4F57CD72A0243AC00582857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F57CD62A0243AC00582857 /* Assets.xcassets */; };
@@ -40,6 +47,14 @@
 		D4F57D082A0283CD00582857 /* GeoCodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D072A0283CD00582857 /* GeoCodeUseCase.swift */; };
 		D4F57D0B2A02A9AC00582857 /* PinMusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D0A2A02A9AC00582857 /* PinMusicReducer.swift */; };
 		D4F57D0D2A03812000582857 /* asd.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D0C2A03812000582857 /* asd.swift */; };
+		D4F57D1A2A03970D00582857 /* MockEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D172A03970D00582857 /* MockEntity.swift */; };
+		D4F57D1B2A03970D00582857 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D182A03970D00582857 /* Location.swift */; };
+		D4F57D1C2A03970D00582857 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D192A03970D00582857 /* Pin.swift */; };
+		D4F57D212A0397C000582857 /* AddPinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D1E2A0397C000582857 /* AddPinUseCase.swift */; };
+		D4F57D222A0397C000582857 /* GeoCodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D202A0397C000582857 /* GeoCodeUseCase.swift */; };
+		D4F57D252A0397CD00582857 /* AddPinRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D232A0397CD00582857 /* AddPinRepository.swift */; };
+		D4F57D262A0397CD00582857 /* GeoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D242A0397CD00582857 /* GeoCodeRepository.swift */; };
+		D4F57D282A03980C00582857 /* PinMusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D272A03980C00582857 /* PinMusicReducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +72,13 @@
 		3AE353DB2A03935A00D5A2B5 /* API+PinClustersReadList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+PinClustersReadList.swift"; sourceTree = "<group>"; };
 		3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinClustersRepository.swift; sourceTree = "<group>"; };
 		3AE353DF2A0394BA00D5A2B5 /* APIPinClustersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPinClustersRepository.swift; sourceTree = "<group>"; };
+		AF03F8C22A026BA100E90660 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicUseCase.swift; sourceTree = "<group>"; };
+		AF03F8C72A027A8600E90660 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWeatherUseCase.swift; sourceTree = "<group>"; };
+		AF6800B42A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSearchMusicRepositoryInterface.swift; sourceTree = "<group>"; };
+		AF6800B52A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestWeatherRepositoryInterface.swift; sourceTree = "<group>"; };
+		AF6800B92A037A000096D65B /* RequestSearchMusicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSearchMusicRepository.swift; sourceTree = "<group>"; };
 		D4F57CCF2A0243AB00582857 /* Mappin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mappin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F57CD22A0243AB00582857 /* MappinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappinApp.swift; sourceTree = "<group>"; };
 		D4F57CD42A0243AB00582857 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,6 +97,14 @@
 		D4F57D072A0283CD00582857 /* GeoCodeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCodeUseCase.swift; sourceTree = "<group>"; };
 		D4F57D0A2A02A9AC00582857 /* PinMusicReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinMusicReducer.swift; sourceTree = "<group>"; };
 		D4F57D0C2A03812000582857 /* asd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asd.swift; sourceTree = "<group>"; };
+		D4F57D172A03970D00582857 /* MockEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEntity.swift; sourceTree = "<group>"; };
+		D4F57D182A03970D00582857 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		D4F57D192A03970D00582857 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		D4F57D1E2A0397C000582857 /* AddPinUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinUseCase.swift; sourceTree = "<group>"; };
+		D4F57D202A0397C000582857 /* GeoCodeUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoCodeUseCase.swift; sourceTree = "<group>"; };
+		D4F57D232A0397CD00582857 /* AddPinRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinRepository.swift; sourceTree = "<group>"; };
+		D4F57D242A0397CD00582857 /* GeoCodeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoCodeRepository.swift; sourceTree = "<group>"; };
+		D4F57D272A03980C00582857 /* PinMusicReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinMusicReducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,11 +195,62 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
+		AF03F8C12A02663500E90660 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57D182A03970D00582857 /* Location.swift */,
+				D4F57D172A03970D00582857 /* MockEntity.swift */,
+				D4F57D192A03970D00582857 /* Pin.swift */,
+				AF03F8C22A026BA100E90660 /* Music.swift */,
+				AF03F8C72A027A8600E90660 /* Weather.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		AF03F8C42A026C8D00E90660 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57D1F2A0397C000582857 /* GeoCodeUseCase */,
+				D4F57D1D2A0397C000582857 /* PinUseCases */,
+				AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */,
+				AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		AF03F8C92A027EE900E90660 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57D232A0397CD00582857 /* AddPinRepository.swift */,
+				D4F57D242A0397CD00582857 /* GeoCodeRepository.swift */,
+				AF6800B52A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift */,
+				AF6800B42A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		AF03F8D02A02AB2700E90660 /* Reducers */ = {
+			isa = PBXGroup;
+			children = (
+				D4F57D272A03980C00582857 /* PinMusicReducer.swift */,
+			);
+			path = Reducers;
+			sourceTree = "<group>";
+		};
+		AF6800B82A0379E10096D65B /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				AF6800B92A037A000096D65B /* RequestSearchMusicRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		D4F57CC62A0243AB00582857 = {
 			isa = PBXGroup;
 			children = (
 				D4F57CD12A0243AB00582857 /* Mappin */,
 				D4F57CD02A0243AB00582857 /* Products */,
+				D4F57D162A03970000582857 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -207,7 +288,7 @@
 		D4F57CE32A02452000582857 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				D4F57D092A02A91600582857 /* Reducers */,
+				AF03F8D02A02AB2700E90660 /* Reducers */,
 				D4F57CD42A0243AB00582857 /* ContentView.swift */,
 			);
 			path = Presentation;
@@ -216,9 +297,9 @@
 		D4F57CE42A02452600582857 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				D4F57D012A02734400582857 /* Repositories */,
-				D4F57CFD2A02656F00582857 /* UseCases */,
-				D4F57CEF2A02550E00582857 /* Entities */,
+				AF03F8C92A027EE900E90660 /* Repositories */,
+				AF03F8C42A026C8D00E90660 /* UseCases */,
+				AF03F8C12A02663500E90660 /* Entities */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -230,6 +311,7 @@
 				3AB4F7882A037971004C0F76 /* DTO */,
 				3AB4F7912A0379DA004C0F76 /* Repository */,
 				3AB4F7772A0377F6004C0F76 /* Util */,
+				AF6800B82A0379E10096D65B /* Repositories */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -260,16 +342,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		D4F57CEF2A02550E00582857 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				D4F57CF22A02576100582857 /* MockEntity.swift */,
-				D4F57CF02A02565300582857 /* Pin.swift */,
-				D4F57CF42A02595800582857 /* Location.swift */,
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
 		D4F57CF62A02604900582857 /* Intent */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,47 +358,36 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		D4F57CFD2A02656F00582857 /* UseCases */ = {
+		D4F57D162A03970000582857 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				D4F57D062A0283B300582857 /* GeoCodeUseCase */,
-				D4F57D002A0265D100582857 /* PinUseCases */,
+				D4F57D022A02738C00582857 /* AddPinRepository.swift */,
+				D4F57CFE2A02659200582857 /* AddPinUseCase.swift */,
+				D4F57D0A2A02A9AC00582857 /* PinMusicReducer.swift */,
+				D4F57D072A0283CD00582857 /* GeoCodeUseCase.swift */,
+				D4F57D0C2A03812000582857 /* asd.swift */,
+				D4F57CF02A02565300582857 /* Pin.swift */,
+				D4F57D042A0282FF00582857 /* GeoCodeRepository.swift */,
+				D4F57CF42A02595800582857 /* Location.swift */,
+				D4F57CF22A02576100582857 /* MockEntity.swift */,
 			);
-			path = UseCases;
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		D4F57D002A0265D100582857 /* PinUseCases */ = {
+		D4F57D1D2A0397C000582857 /* PinUseCases */ = {
 			isa = PBXGroup;
 			children = (
-				D4F57CFE2A02659200582857 /* AddPinUseCase.swift */,
+				D4F57D1E2A0397C000582857 /* AddPinUseCase.swift */,
 			);
 			path = PinUseCases;
 			sourceTree = "<group>";
 		};
-		D4F57D012A02734400582857 /* Repositories */ = {
+		D4F57D1F2A0397C000582857 /* GeoCodeUseCase */ = {
 			isa = PBXGroup;
 			children = (
-				D4F57D022A02738C00582857 /* AddPinRepository.swift */,
-				D4F57D042A0282FF00582857 /* GeoCodeRepository.swift */,
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-		D4F57D062A0283B300582857 /* GeoCodeUseCase */ = {
-			isa = PBXGroup;
-			children = (
-				D4F57D072A0283CD00582857 /* GeoCodeUseCase.swift */,
+				D4F57D202A0397C000582857 /* GeoCodeUseCase.swift */,
 			);
 			path = GeoCodeUseCase;
-			sourceTree = "<group>";
-		};
-		D4F57D092A02A91600582857 /* Reducers */ = {
-			isa = PBXGroup;
-			children = (
-				D4F57D0A2A02A9AC00582857 /* PinMusicReducer.swift */,
-				D4F57D0C2A03812000582857 /* asd.swift */,
-			);
-			path = Reducers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,6 +472,8 @@
 				D4F57CFC2A02635400582857 /* LocationAuthorization.swift in Sources */,
 				D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */,
 				D4F57CEE2A02548E00582857 /* Color+.swift in Sources */,
+				D4F57D252A0397CD00582857 /* AddPinRepository.swift in Sources */,
+				D4F57D1C2A03970D00582857 /* Pin.swift in Sources */,
 				D4F57D032A02738C00582857 /* AddPinRepository.swift in Sources */,
 				D4F57CFF2A02659200582857 /* AddPinUseCase.swift in Sources */,
 				3AE353DC2A03935A00D5A2B5 /* API+PinClustersReadList.swift in Sources */,
@@ -418,9 +481,13 @@
 				D4F57CF82A02609100582857 /* AddPinIntent.swift in Sources */,
 				3AE353DA2A0390E000D5A2B5 /* APIJSONDecoder.swift in Sources */,
 				D4F57D082A0283CD00582857 /* GeoCodeUseCase.swift in Sources */,
+				D4F57D1A2A03970D00582857 /* MockEntity.swift in Sources */,
 				D4F57D0D2A03812000582857 /* asd.swift in Sources */,
+				D4F57D262A0397CD00582857 /* GeoCodeRepository.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
+				D4F57D222A0397C000582857 /* GeoCodeUseCase.swift in Sources */,
 				D4F57CF12A02565300582857 /* Pin.swift in Sources */,
+				D4F57D212A0397C000582857 /* AddPinUseCase.swift in Sources */,
 				D4F57D052A0282FF00582857 /* GeoCodeRepository.swift in Sources */,
 				D4F57CF52A02595800582857 /* Location.swift in Sources */,
 				3AE353E02A0394BA00D5A2B5 /* APIPinClustersRepository.swift in Sources */,
@@ -438,6 +505,15 @@
 				3AB4F78A2A03797C004C0F76 /* DTO+Namespace.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
 				3AB4F7692A0373BF004C0F76 /* API+Namespace.swift in Sources */,
+				D4F57D1B2A03970D00582857 /* Location.swift in Sources */,
+				D4F57CF32A02576100582857 /* MockEntity.swift in Sources */,
+				AF6800B72A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift in Sources */,
+				AF03F8CD2A02835200E90660 /* RequestWeatherUseCase.swift in Sources */,
+				AF6800B62A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift in Sources */,
+				AF03F8C32A026BA100E90660 /* Music.swift in Sources */,
+				AF03F8C62A0279B400E90660 /* SearchMusicUseCase.swift in Sources */,
+				AF03F8C82A027A8600E90660 /* Weather.swift in Sources */,
+				AF6800BA2A037A000096D65B /* RequestSearchMusicRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,7 +642,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mappin/Preview Content\"";
-				DEVELOPMENT_TEAM = VT6KC94KM7;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mappin/Info.plist;
@@ -584,7 +660,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pccommen.Mappin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pccommen.mappin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -600,7 +676,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mappin/Preview Content\"";
-				DEVELOPMENT_TEAM = VT6KC94KM7;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mappin/Info.plist;
@@ -618,7 +694,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pccommen.Mappin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pccommen.mappin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
