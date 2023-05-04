@@ -6,21 +6,19 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
+import MapKit
 
 struct ContentView: View {
+    
+    @ObservedObject var viewStore: ViewStore<PinMusicReducer.State, PinMusicReducer.Action>
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        Map(coordinateRegion: self.viewStore.binding(get: \.currentLocation,
+                                                     send: PinMusicReducer.Action.updateCurrentLocation),
+            interactionModes: [],
+            showsUserLocation: true,
+            userTrackingMode: self.viewStore.binding(get: \.mapUserTrakingMode, send: PinMusicReducer.Action.changeTrakingMode(.follow)))
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
