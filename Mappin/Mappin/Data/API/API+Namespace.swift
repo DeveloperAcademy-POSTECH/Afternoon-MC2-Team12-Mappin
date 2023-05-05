@@ -26,4 +26,8 @@ extension API.TargetType {
         // TODO: token
         return headers
     }
+    
+    var validationType: ValidationType {
+        .successCodes
+    }
 }
