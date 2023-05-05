@@ -8,8 +8,8 @@
 import Foundation
 import MusicKit
 
-final class RequestMusicRepository: RequestSearchMusicRepositoryInterface {
-    
+final class RequestMusicRepository: RequestMusicRepositoryInterface {
+
     /// 검색한 음악의 응답을 처리합니다.
     ///  - Parameter searchTerm: music title or artistName
     func requestSearchMusic(
@@ -29,6 +29,25 @@ final class RequestMusicRepository: RequestSearchMusicRepositoryInterface {
             return music
         } catch {
             print("Error")
+            return []
+        }
+    }
+    
+    func requestMusicChart() async throws -> [Music] {
+        var chartRequest = MusicCatalogChartsRequest(types: [Song.self])
+        chartRequest.limit = 10
+        do {
+            let chartResponse = try await chartRequest.response().songCharts[0].items
+            let music = chartResponse.map {
+                return Music(id: String(describing: $0.id),
+                             title: $0.title,
+                             artist: $0.artistName,
+                             artwork: String(describing: $0.artwork?.url(width: 55, height: 55)),
+                             appleMusicUrl: $0.url)
+            }
+            return music
+        } catch {
+            print("error")
             return []
         }
     }
