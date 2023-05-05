@@ -9,12 +9,12 @@ import Foundation
 import Moya
 
 struct APIPinClustersRepository: PinClustersRepository {
-    private let provider = MoyaProvider<API.PinClustersReadList>()
+    private let provider = APIProvider()
     private let decoder = APIJSONDecoder()
     
     func readList(radius: Float) async throws -> [DTO.PinCluster] {
-        let parameters = API.PinClustersReadList.Parameters(radius: radius)
-        let data = try await provider.request(.init(parameters: parameters)).get().data
+        let parameters = PinClustersListAPITarget.Parameters(radius: radius)
+        let data = try await provider.request(.readPinClusters(parameters: parameters)).get().data
         return try decoder.decode([DTO.PinCluster].self, from: data)
     }
 }
