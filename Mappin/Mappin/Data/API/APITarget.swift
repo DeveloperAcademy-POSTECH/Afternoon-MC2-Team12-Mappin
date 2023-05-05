@@ -12,6 +12,7 @@ class APITarget: TargetType {
     typealias Method = Moya.Method
     typealias Task = Moya.Task
     
+    static let environment: Environment = .test
     static var currentUser: CurrentUser?
     
     let path: String
@@ -31,7 +32,7 @@ class APITarget: TargetType {
     }
     
     var baseURL: URL {
-        URL(string: "http://localhost:8000")!
+        Self.environment.url
     }
     
     var headers: [String : String]? {
@@ -71,5 +72,28 @@ class APITarget: TargetType {
     
     private var csrfToken: String? {
         HTTPCookieStorage.shared.cookies?.first(where: { $0.name == "csrftoken" })?.value
+    }
+}
+
+extension APITarget {
+    enum Environment {
+        case local
+        case test
+        case prod
+        
+        var url: URL {
+            URL(string: urlString)!
+        }
+        
+        private var urlString: String {
+            switch self {
+            case .local:
+                return "http://localhost:8000"
+            case .test:
+                return "http://test.eba-abpsggka.ap-northeast-2.elasticbeanstalk.com"
+            case .prod:
+                return "http://prod.eba-abpsggka.ap-northeast-2.elasticbeanstalk.com"
+            }
+        }
     }
 }
