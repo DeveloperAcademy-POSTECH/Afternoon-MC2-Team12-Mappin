@@ -7,9 +7,8 @@
 
 import Foundation
 
-final class UsersSignupAPITarget: APITarget, ParametersRequestable, Responsable {
-    typealias Parameters = AuthenticationParameters
-    typealias Response = DTO.User
+final class UsersSignupAPITarget: APITarget, ParametersRequestable {
+    typealias Parameters = AuthParameters
     
     let parameters: Parameters
     

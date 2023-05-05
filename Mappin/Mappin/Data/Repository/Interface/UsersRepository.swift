@@ -8,6 +8,6 @@
 import Foundation
 
 protocol UsersRepository {
-    func signup(username: String, password: String) async throws -> DTO.User
+    func signup(username: String, password: String) async
     func login(username: String, password: String) async throws -> String
 }

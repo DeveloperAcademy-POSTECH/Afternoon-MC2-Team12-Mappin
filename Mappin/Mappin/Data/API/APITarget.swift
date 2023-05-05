@@ -12,6 +12,8 @@ class APITarget: TargetType {
     typealias Method = Moya.Method
     typealias Task = Moya.Task
     
+    static var currentUser: CurrentUser?
+    
     let path: String
     let method: Method
     
@@ -35,11 +37,25 @@ class APITarget: TargetType {
     var headers: [String : String]? {
         var headers = [String: String]()
         headers.updateValue("application/json", forKey: "Content-Type")
+        if let csrfToken = csrfToken {
+            headers.updateValue(csrfToken, forKey: "X-CSRFToken")
+        }
+        if let authToken = Self.currentUser?.authToken {
+            headers.updateValue("Token \(authToken)", forKey: "Authorization")
+        }
         return headers
     }
     
     var validationType: ValidationType {
         .successCodes
+    }
+    
+    var description: String {
+        """
+        endpoint: \(method.rawValue) \(baseURL.absoluteString)\(path)
+        parameters: \(parameters ?? [:])
+        headers: \(headers ?? [:])
+        """
     }
     
     private var parameters: [String: Any]? {
@@ -51,5 +67,9 @@ class APITarget: TargetType {
             return nil
         }
         return method == .get ? URLEncoding.default : JSONEncoding.default
+    }
+    
+    private var csrfToken: String? {
+        HTTPCookieStorage.shared.cookies?.first(where: { $0.name == "csrftoken" })?.value
     }
 }

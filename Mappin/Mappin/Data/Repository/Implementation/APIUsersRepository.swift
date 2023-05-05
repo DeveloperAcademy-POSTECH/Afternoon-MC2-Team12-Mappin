@@ -11,10 +11,9 @@ import Moya
 struct APIUsersRepository: UsersRepository {
     private let provider = APIProvider()
     
-    func signup(username: String, password: String) async throws -> DTO.User {
+    func signup(username: String, password: String) async {
         let parameters = UsersSignupAPITarget.Parameters(username: username, password: password)
-        let target = APITarget.signupUser(parameters: parameters)
-        return try await provider.requestResponsable(target)
+        await provider.justRequest(.signupUser(parameters: parameters))
     }
     
     func login(username: String, password: String) async throws -> String {
