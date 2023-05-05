@@ -15,7 +15,8 @@ class APITarget: TargetType {
     let path: String
     let method: Method
     
-    init(path: String, method: Method) {
+    init(path: String,
+         method: Method) {
         self.path = path
         self.method = method
     }
@@ -28,8 +29,7 @@ class APITarget: TargetType {
     }
     
     var baseURL: URL {
-        // TODO: environment
-        return URL(string: "http://test.eba-abpsggka.ap-northeast-2.elasticbeanstalk.com")!
+        URL(string: "http://localhost:8000")!
     }
     
     var headers: [String : String]? {

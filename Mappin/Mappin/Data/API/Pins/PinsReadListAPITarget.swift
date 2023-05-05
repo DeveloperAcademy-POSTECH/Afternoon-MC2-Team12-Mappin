@@ -7,5 +7,6 @@
 
 import Foundation
 
-final class PinsReadListAPITarget: APITarget {
+final class PinsReadListAPITarget: APITarget, Responsable {
+    typealias Response = [DTO.Pin]
 }

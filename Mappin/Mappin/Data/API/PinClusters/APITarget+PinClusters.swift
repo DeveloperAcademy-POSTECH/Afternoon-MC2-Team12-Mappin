@@ -10,8 +10,8 @@ import Foundation
 extension APITarget {
     private static let basePath = "/pin_clusters"
     
-    static func readPinClusters(parameters: PinClustersListAPITarget.Parameters) -> APITarget {
-        PinClustersListAPITarget(
+    static func readPinClusters(parameters: PinClustersListAPITarget.Parameters) -> PinClustersListAPITarget {
+        .init(
             path: basePath,
             method: .get,
             parameters: parameters

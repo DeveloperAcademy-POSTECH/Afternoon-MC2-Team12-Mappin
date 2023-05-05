@@ -7,8 +7,12 @@
 
 import Foundation
 
-final class UsersLoginAPITarget: APITarget, ParametersRequestable {
+final class UsersLoginAPITarget: APITarget, ParametersRequestable, Responsable {
     typealias Parameters = AuthenticationParameters
+    
+    struct Response: Decodable {
+        let token: String
+    }
     
     let parameters: Parameters
     

@@ -10,27 +10,24 @@ import Moya
 
 struct APIPinsRepository: PinsRepository {
     private let provider = APIProvider()
-    private let decoder = APIJSONDecoder()
     
     func create(pin: DTO.Pin) async throws {
-        _ = try await provider.request(.createPin(parameters: pin)).get()
+        try await provider.justRequest(.createPin(parameters: pin))
     }
     
     func readList() async throws -> [DTO.Pin] {
-        let data = try await provider.request(.readPins).get().data
-        return try decoder.decode([DTO.Pin].self, from: data)
+        try await provider.requestResponsable(APITarget.readPins)
     }
     
     func readDetail(id: Int) async throws -> DTO.Pin {
-        let data = try await provider.request(.readPin(id: id)).get().data
-        return try decoder.decode(DTO.Pin.self, from: data)
+        try await provider.requestResponsable(APITarget.readPin(id: id))
     }
     
     func update(pin: DTO.Pin) async throws {
-        _ = try await provider.request(.updatePin(parameters: pin)).get()
+        try await provider.justRequest(.updatePin(parameters: pin))
     }
     
     func delete(id: Int) async throws {
-        _ = try await provider.request(.deletePin(id: id)).get()
+        try await provider.justRequest(.deletePin(id: id))
     }
 }

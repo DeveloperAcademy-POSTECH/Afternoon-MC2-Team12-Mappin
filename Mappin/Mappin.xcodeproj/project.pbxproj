@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3AB4F7692A0373BF004C0F76 /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7682A0373BF004C0F76 /* APITarget.swift */; };
-		3AB4F7792A03780B004C0F76 /* Moya+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7782A03780B004C0F76 /* Moya+Async.swift */; };
 		3AB4F7852A03792D004C0F76 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7842A03792D004C0F76 /* CombineMoya */; };
 		3AB4F7872A03792D004C0F76 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7862A03792D004C0F76 /* Moya */; };
 		3AB4F78A2A03797C004C0F76 /* DTO+Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7892A03797C004C0F76 /* DTO+Namespace.swift */; };
@@ -34,6 +33,8 @@
 		3AD1DE3D2A053EAD00A49E95 /* PinsUpdateAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD1DE3C2A053EAD00A49E95 /* PinsUpdateAPITarget.swift */; };
 		3AD1DE422A053F8300A49E95 /* ParametersRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD1DE412A053F8300A49E95 /* ParametersRequestable.swift */; };
 		3AD1DE442A05419200A49E95 /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD1DE432A05419200A49E95 /* APIProvider.swift */; };
+		3AD1DE462A0544E900A49E95 /* Responsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD1DE452A0544E900A49E95 /* Responsable.swift */; };
+		3AD1DE482A055B3300A49E95 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD1DE472A055B3300A49E95 /* APIError.swift */; };
 		3AE353DA2A0390E000D5A2B5 /* APIJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353D92A0390E000D5A2B5 /* APIJSONDecoder.swift */; };
 		3AE353DC2A03935A00D5A2B5 /* PinClustersListAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DB2A03935A00D5A2B5 /* PinClustersListAPITarget.swift */; };
 		3AE353DE2A03949B00D5A2B5 /* PinClustersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */; };
@@ -65,7 +66,6 @@
 
 /* Begin PBXFileReference section */
 		3AB4F7682A0373BF004C0F76 /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
-		3AB4F7782A03780B004C0F76 /* Moya+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+Async.swift"; sourceTree = "<group>"; };
 		3AB4F7892A03797C004C0F76 /* DTO+Namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DTO+Namespace.swift"; sourceTree = "<group>"; };
 		3AB4F78B2A0379A2004C0F76 /* DTO+Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DTO+Music.swift"; sourceTree = "<group>"; };
 		3AB4F78D2A0379AB004C0F76 /* DTO+Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DTO+Pin.swift"; sourceTree = "<group>"; };
@@ -89,6 +89,8 @@
 		3AD1DE3C2A053EAD00A49E95 /* PinsUpdateAPITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsUpdateAPITarget.swift; sourceTree = "<group>"; };
 		3AD1DE412A053F8300A49E95 /* ParametersRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersRequestable.swift; sourceTree = "<group>"; };
 		3AD1DE432A05419200A49E95 /* APIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
+		3AD1DE452A0544E900A49E95 /* Responsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responsable.swift; sourceTree = "<group>"; };
+		3AD1DE472A055B3300A49E95 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		3AE353D92A0390E000D5A2B5 /* APIJSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIJSONDecoder.swift; sourceTree = "<group>"; };
 		3AE353DB2A03935A00D5A2B5 /* PinClustersListAPITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinClustersListAPITarget.swift; sourceTree = "<group>"; };
 		3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinClustersRepository.swift; sourceTree = "<group>"; };
@@ -231,7 +233,9 @@
 			isa = PBXGroup;
 			children = (
 				3AD1DE252A05375C00A49E95 /* AuthenticationParameters.swift */,
+				3AD1DE472A055B3300A49E95 /* APIError.swift */,
 				3AD1DE412A053F8300A49E95 /* ParametersRequestable.swift */,
+				3AD1DE452A0544E900A49E95 /* Responsable.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -239,7 +243,6 @@
 		3AE353D72A0390BA00D5A2B5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				3AB4F7782A03780B004C0F76 /* Moya+Async.swift */,
 				3AB4F7982A037CA5004C0F76 /* Encodable+Dictionary.swift */,
 			);
 			path = Extension;
@@ -537,12 +540,14 @@
 				D4F57D262A0397CD00582857 /* GeoCodeRepository.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
 				D4F57D222A0397C000582857 /* GeoCodeUseCase.swift in Sources */,
+				3AD1DE462A0544E900A49E95 /* Responsable.swift in Sources */,
 				3AD1DE362A053CB300A49E95 /* PinsDeleteAPITarget.swift in Sources */,
 				3AD1DE342A053B4A00A49E95 /* APITarget+Users.swift in Sources */,
 				3AB7EF492A0519D700B8FEDB /* DTO+User.swift in Sources */,
 				D4F57D212A0397C000582857 /* AddPinUseCase.swift in Sources */,
 				3AE353E02A0394BA00D5A2B5 /* APIPinClustersRepository.swift in Sources */,
 				3AB4F7902A0379B1004C0F76 /* DTO+PinCluster.swift in Sources */,
+				3AD1DE482A055B3300A49E95 /* APIError.swift in Sources */,
 				3AB4F7972A037A84004C0F76 /* APIPinsRepository.swift in Sources */,
 				3AB4F7932A0379F6004C0F76 /* PinsRepository.swift in Sources */,
 				D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */,
@@ -550,7 +555,6 @@
 				3AD1DE262A05375C00A49E95 /* AuthenticationParameters.swift in Sources */,
 				3AB4F78C2A0379A2004C0F76 /* DTO+Music.swift in Sources */,
 				3AB4F7992A037CA5004C0F76 /* Encodable+Dictionary.swift in Sources */,
-				3AB4F7792A03780B004C0F76 /* Moya+Async.swift in Sources */,
 				3AE353DE2A03949B00D5A2B5 /* PinClustersRepository.swift in Sources */,
 				3AB4F78A2A03797C004C0F76 /* DTO+Namespace.swift in Sources */,
 				3AD1DE322A053B4100A49E95 /* APITarget+PinClusters.swift in Sources */,

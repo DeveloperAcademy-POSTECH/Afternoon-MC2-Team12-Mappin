@@ -10,8 +10,8 @@ import Foundation
 extension APITarget {
     private static let basePath = "/pins"
     
-    static func createPin(parameters: PinsCreateAPITarget.Parameters) -> APITarget {
-        PinsCreateAPITarget(
+    static func createPin(parameters: PinsCreateAPITarget.Parameters) -> PinsCreateAPITarget {
+        .init(
             path: basePath,
             method: .post,
             parameters: parameters
@@ -23,23 +23,23 @@ extension APITarget {
         method: .get
     )
     
-    static func readPin(id: Int) -> APITarget {
-        PinsReadDetailAPITarget(
+    static func readPin(id: Int) -> PinsReadDetailAPITarget {
+        .init(
             path: basePath + "/\(id)",
             method: .delete
         )
     }
     
-    static func updatePin(parameters: PinsUpdateAPITarget.Parameters) -> APITarget {
-        PinsUpdateAPITarget(
+    static func updatePin(parameters: PinsUpdateAPITarget.Parameters) -> PinsUpdateAPITarget {
+        .init(
             path: basePath + "/\(parameters.id)",
             method: .put,
             parameters: parameters
         )
     }
     
-    static func deletePin(id: Int) -> APITarget {
-        PinsDeleteAPITarget(
+    static func deletePin(id: Int) -> PinsDeleteAPITarget {
+        .init(
             path: basePath + "/\(id)",
             method: .delete
         )
