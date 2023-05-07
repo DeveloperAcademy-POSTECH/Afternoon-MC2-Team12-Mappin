@@ -12,6 +12,7 @@
 		AF03F8C82A027A8600E90660 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C72A027A8600E90660 /* Weather.swift */; };
 		AF03F8CD2A02835200E90660 /* RequestWeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */; };
 		AF1078C72A039E8B00DB8EDA /* MusicChartUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1078C62A039E8B00DB8EDA /* MusicChartUseCase.swift */; };
+		AF1078CA2A05101B00DB8EDA /* MusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1078C92A05101B00DB8EDA /* MusicReducer.swift */; };
 		AF6800B62A0379CD0096D65B /* RequestMusicRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800B42A0379CD0096D65B /* RequestMusicRepositoryInterface.swift */; };
 		AF6800B72A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800B52A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift */; };
 		AF6800BA2A037A000096D65B /* RequestMusicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800B92A037A000096D65B /* RequestMusicRepository.swift */; };
@@ -40,6 +41,7 @@
 		AF03F8C72A027A8600E90660 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWeatherUseCase.swift; sourceTree = "<group>"; };
 		AF1078C62A039E8B00DB8EDA /* MusicChartUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicChartUseCase.swift; sourceTree = "<group>"; };
+		AF1078C92A05101B00DB8EDA /* MusicReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicReducer.swift; sourceTree = "<group>"; };
 		AF6800B42A0379CD0096D65B /* RequestMusicRepositoryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMusicRepositoryInterface.swift; sourceTree = "<group>"; };
 		AF6800B52A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestWeatherRepositoryInterface.swift; sourceTree = "<group>"; };
 		AF6800B92A037A000096D65B /* RequestMusicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMusicRepository.swift; sourceTree = "<group>"; };
@@ -103,7 +105,7 @@
 				D4F57D1F2A0397C000582857 /* GeoCodeUseCase */,
 				D4F57D1D2A0397C000582857 /* PinUseCases */,
 				AF1078C52A039E4500DB8EDA /* MusicUseCases */,
-				AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */,
+				AF1078C82A04FB2900DB8EDA /* WeatherUseCases */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				AF6800BB2A0393F50096D65B /* PinMusicReducer.swift */,
+				AF1078C92A05101B00DB8EDA /* MusicReducer.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -134,6 +137,14 @@
 				AF1078C62A039E8B00DB8EDA /* MusicChartUseCase.swift */,
 			);
 			path = MusicUseCases;
+			sourceTree = "<group>";
+		};
+		AF1078C82A04FB2900DB8EDA /* WeatherUseCases */ = {
+			isa = PBXGroup;
+			children = (
+				AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */,
+			);
+			path = WeatherUseCases;
 			sourceTree = "<group>";
 		};
 		AF6800B82A0379E10096D65B /* Repositories */ = {
@@ -377,6 +388,7 @@
 				D4F57D1B2A03970D00582857 /* Location.swift in Sources */,
 				AF6800B72A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift in Sources */,
 				AF03F8CD2A02835200E90660 /* RequestWeatherUseCase.swift in Sources */,
+				AF1078CA2A05101B00DB8EDA /* MusicReducer.swift in Sources */,
 				AF1078C72A039E8B00DB8EDA /* MusicChartUseCase.swift in Sources */,
 				AF6800B62A0379CD0096D65B /* RequestMusicRepositoryInterface.swift in Sources */,
 				AF03F8C32A026BA100E90660 /* Music.swift in Sources */,
