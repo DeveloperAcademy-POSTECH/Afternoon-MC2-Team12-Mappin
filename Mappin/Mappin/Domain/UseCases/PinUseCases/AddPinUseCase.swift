@@ -8,42 +8,37 @@
 import Foundation
 
 protocol AddPinUseCase {
-    
-    @discardableResult
+
     func excute(
-        deviceId: UUID,
-        song: MockEntity,
-        weather: MockEntity,
-        location: Location,
-        currentDate: Date
-    ) async throws -> Pin
+        song: Music
+    ) async throws
     
 }
 
 final class DefaultAddPinUseCase: AddPinUseCase {
     
     private let addPinRepository: AddPinRepository
+    private let locationRepository: LocationRepository
+    private let geoCodeRepository: GeoCodeRepository
+    private let weatherRepository: RequestWeatherRepositoryInterface
+    private let deviceRepository: DeviceRepository
     
     init(addPinRepository: AddPinRepository, geoCodeRepository: GeoCodeRepository) {
         self.addPinRepository = addPinRepository
     }
     
-    func excute(deviceId: UUID,
-                song: MockEntity,
-                weather: MockEntity,
-                location: Location,
-                currentDate: Date) async throws -> Pin {
+    func excute(song: Music) async throws {
+        
+        let deviceId = deviceRepository.deviceId
+        let latitude = locationRepository.latitude
+        let longitude = locationRepository.longitude
+        let geocodeResult = try await geoCodeRepository.requestGeoCode(latitude: latitude, longitude: longitude)
+        let weather = try await weatherRepository.requestWeather(latitude: latitude, longitude: longitude)
         
         
-        let parameterValue: Pin = Pin(id: UUID().uuidString,
-                                      count: 1,
-                                      userName: deviceId.uuidString,
-                                      song: song,
-                                      weather: weather,
-                                      createdAt: currentDate,
-                                      location: location)
         
-        return try await addPinRepository.requestAddPin(query: parameterValue)
+        
+        return try await addPinRepository.requestAddPin(newPin: parameterValue)
     }
 }
 

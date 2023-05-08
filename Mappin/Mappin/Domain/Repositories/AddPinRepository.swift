@@ -11,6 +11,6 @@ protocol AddPinRepository {
     
     @discardableResult
     func requestAddPin(
-        query: Pin
-    ) async throws -> Pin
+        newPin: Pin
+    ) async throws
 }

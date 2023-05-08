@@ -11,7 +11,15 @@ import MapKit
 
 struct ContentView: View {
     
-    @ObservedObject var viewStore: ViewStore<PinMusicReducer.State, PinMusicReducer.Action>
+    let store: StoreOf<PinMusicReducer>
+    
+    @ObservedObject var viewStore: ViewStoreOf<PinMusicReducer>
+
+    init(store: StoreOf<PinMusicReducer>) {
+        self.store = store
+        self.viewStore = ViewStore(self.store, observe: { $0 })
+    }
+
     
     var body: some View {
         Map(coordinateRegion: self.viewStore.binding(get: \.currentLocation,

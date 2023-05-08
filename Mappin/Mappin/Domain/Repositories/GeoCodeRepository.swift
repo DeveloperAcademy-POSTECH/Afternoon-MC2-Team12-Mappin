@@ -13,5 +13,5 @@ protocol GeoCodeRepository {
     func requestGeoCode (
         latitude: Double,
         longitude: Double
-    ) async throws -> Location
+    ) async throws -> (locality: String, subLocality: String)
 }

@@ -6,15 +6,22 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
+import MapKit
 
 @main
 struct MappinApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .onAppear {
-                    _ = LocationManager.shared
-                }
+            ContentView(
+                store: Store(
+                    initialState: PinMusicReducer.State(),
+                    reducer: PinMusicReducer()._printChanges()
+                )
+            )
+            .onAppear {
+                _ = LocationManager.shared
+            }
         }
     }
 }

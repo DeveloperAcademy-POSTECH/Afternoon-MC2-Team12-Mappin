@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct Pin: Equatable, Identifiable {
     
@@ -16,6 +17,5 @@ struct Pin: Equatable, Identifiable {
     let weather: MockEntity? // Weather?
     let createdAt: Date?
     let location: Location?
-    
 }
 
