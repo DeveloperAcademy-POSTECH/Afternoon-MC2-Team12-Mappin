@@ -13,8 +13,11 @@ final class APIProvider: MoyaProvider<APITarget> {
     
     private let decoder = APIJSONDecoder()
     
-    func justRequest(_ target: Target) async {
-        _ = await request(target)
+    func justRequest(_ target: Target) async throws {
+        let result = await request(target)
+        if case let .failure(error) = result {
+            throw try getAPIError(error)
+        }
     }
     
     func requestResponsable<T: Target & Responsable>(_ target: T) async throws -> T.Response {
@@ -37,11 +40,15 @@ final class APIProvider: MoyaProvider<APITarget> {
             printLog(title: "response", message: String(data: response.data, encoding: .utf8) ?? "")
             return try decoder.decode(T.Response.self, from: response.data)
         case let .failure(error):
-            guard let data = error.response?.data else {
-                throw APIError.unknown
-            }
-            throw try decoder.decode(APIError.self, from: data)
+            throw try getAPIError(error)
         }
+    }
+    
+    private func getAPIError(_ error: MoyaError) throws -> APIError {
+        guard let data = error.response?.data else {
+            return .unknown
+        }
+        return try decoder.decode(APIError.self, from: data)
     }
     
     // TODO: Logger

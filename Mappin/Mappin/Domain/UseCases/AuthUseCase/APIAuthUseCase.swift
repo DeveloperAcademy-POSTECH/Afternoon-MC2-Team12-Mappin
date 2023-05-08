@@ -19,7 +19,7 @@ struct APIAuthUseCase: AuthUseCase {
     
     func getAuthToken() async throws -> String {
         if currentUser.authToken == nil {
-            await usersRepository.signup(
+            try await usersRepository.signup(
                 username: currentUser.username,
                 password: currentUser.password
             )
