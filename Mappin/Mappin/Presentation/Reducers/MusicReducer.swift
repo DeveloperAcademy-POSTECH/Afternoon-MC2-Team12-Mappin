@@ -24,6 +24,7 @@ struct MusicReducer: ReducerProtocol {
         case requestMusicChart
         case applyMusic([Music])
         case resetMusic
+        case openAppleMusic(url: URL?)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -49,7 +50,24 @@ struct MusicReducer: ReducerProtocol {
         case .resetMusic:
             state.music = []
             return .none
+        case .openAppleMusic(let url):
+            openAppleMusic(url: url)
+            return .none
         }
     }
     
+}
+
+extension MusicReducer {
+    /// 유저가 애플 뮤직에서 음악을 재생할 수 있도록 이동합니다.
+    /// return: void
+    func openAppleMusic(url: URL?) {
+        guard let appleMusicUrl = url,
+              UIApplication.shared.canOpenURL(appleMusicUrl)
+        else {
+            print("URL이 없는 음악이거나, URL을 열 수 없음.")
+            return
+        }
+        UIApplication.shared.open(appleMusicUrl)
+    }
 }
