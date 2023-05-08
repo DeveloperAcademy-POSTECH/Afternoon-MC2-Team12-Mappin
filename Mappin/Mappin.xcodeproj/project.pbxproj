@@ -50,7 +50,6 @@
 		AF03F8C62A0279B400E90660 /* SearchMusicUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */; };
 		AF03F8C82A027A8600E90660 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C72A027A8600E90660 /* Weather.swift */; };
 		AF03F8CD2A02835200E90660 /* RequestWeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */; };
-		AF6800BA2A037A000096D65B /* RequestMusicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800B92A037A000096D65B /* RequestMusicRepository.swift */; };
 		AF9E9D372A08E4DD00EC8D9E /* MusicItemCollection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D352A08E4DD00EC8D9E /* MusicItemCollection+.swift */; };
 		AF9E9D382A08E4DD00EC8D9E /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D362A08E4DD00EC8D9E /* String+.swift */; };
 		AF9E9D3B2A08E52600EC8D9E /* RequestMusicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D392A08E52600EC8D9E /* RequestMusicRepository.swift */; };
@@ -118,9 +117,7 @@
 		AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWeatherUseCase.swift; sourceTree = "<group>"; };
 		AF1078C62A039E8B00DB8EDA /* MusicChartUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicChartUseCase.swift; sourceTree = "<group>"; };
 		AF1078C92A05101B00DB8EDA /* MusicReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicReducer.swift; sourceTree = "<group>"; };
-		AF6800B92A037A000096D65B /* RequestMusicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMusicRepository.swift; sourceTree = "<group>"; };
 		AF6800BB2A0393F50096D65B /* PinMusicReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinMusicReducer.swift; sourceTree = "<group>"; };
-		AF6800BF2A0399310096D65B /* RequestWeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWeatherRepository.swift; sourceTree = "<group>"; };
 		AF9E9D352A08E4DD00EC8D9E /* MusicItemCollection+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MusicItemCollection+.swift"; path = "../../../../../Mappin 복사본/Mappin/Mappin/Common/Extension/MusicItemCollection+.swift"; sourceTree = "<group>"; };
 		AF9E9D362A08E4DD00EC8D9E /* String+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+.swift"; path = "../../../../../Mappin 복사본/Mappin/Mappin/Common/Extension/String+.swift"; sourceTree = "<group>"; };
 		AF9E9D392A08E52600EC8D9E /* RequestMusicRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestMusicRepository.swift; path = "../../../../../../Mappin 복사본/Mappin/Mappin/Data/Repositories/RequestMusicRepository.swift"; sourceTree = "<group>"; };
@@ -374,15 +371,6 @@
 			path = WeatherUseCases;
 			sourceTree = "<group>";
 		};
-		AF6800B82A0379E10096D65B /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				AF6800B92A037A000096D65B /* RequestMusicRepository.swift */,
-				AF6800BF2A0399310096D65B /* RequestWeatherRepository.swift */,
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
 		D4F57CC62A0243AB00582857 = {
 			isa = PBXGroup;
 			children = (
@@ -450,7 +438,6 @@
 				3AB4F7882A037971004C0F76 /* DTO */,
 				3AB4F7912A0379DA004C0F76 /* Repository */,
 				3AB4F7772A0377F6004C0F76 /* Util */,
-				AF6800B82A0379E10096D65B /* Repositories */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -662,7 +649,6 @@
 				3AD1DE3D2A053EAD00A49E95 /* PinsUpdateAPITarget.swift in Sources */,
 				AF03F8C82A027A8600E90660 /* Weather.swift in Sources */,
 				3AD1DE422A053F8300A49E95 /* ParametersRequestable.swift in Sources */,
-				AF6800BA2A037A000096D65B /* RequestMusicRepository.swift in Sources */,
 				3AD1DE222A05370C00A49E95 /* UsersSignupAPITarget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
