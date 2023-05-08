@@ -11,6 +11,5 @@ protocol RequestMusicRepositoryInterface {
     func requestSearchMusic(
         searchTerm: String
     ) async throws -> [Music]
-    
     func requestMusicChart() async throws -> [Music]
 }

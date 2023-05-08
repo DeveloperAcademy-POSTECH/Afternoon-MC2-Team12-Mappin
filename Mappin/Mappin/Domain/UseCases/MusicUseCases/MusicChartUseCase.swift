@@ -13,7 +13,7 @@ protocol MusicChartUseCase {
 
 final class DefaultMusicChartUseCase: MusicChartUseCase {
     
-    let musicRepository: RequestMusicRepositoryInterface
+    private let musicRepository: RequestMusicRepositoryInterface
     
     init(musicRepository: RequestMusicRepositoryInterface) {
         self.musicRepository = musicRepository
