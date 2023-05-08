@@ -46,14 +46,16 @@
 		3AE353DC2A03935A00D5A2B5 /* PinClustersListAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DB2A03935A00D5A2B5 /* PinClustersListAPITarget.swift */; };
 		3AE353DE2A03949B00D5A2B5 /* PinClustersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */; };
 		3AE353E02A0394BA00D5A2B5 /* APIPinClustersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DF2A0394BA00D5A2B5 /* APIPinClustersRepository.swift */; };
-		3AE353E12A03A04100D5A2B5 /* PinMusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D272A03980C00582857 /* PinMusicReducer.swift */; };
 		AF03F8C32A026BA100E90660 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C22A026BA100E90660 /* Music.swift */; };
 		AF03F8C62A0279B400E90660 /* SearchMusicUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */; };
 		AF03F8C82A027A8600E90660 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C72A027A8600E90660 /* Weather.swift */; };
 		AF03F8CD2A02835200E90660 /* RequestWeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */; };
-		AF6800B62A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800B42A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift */; };
-		AF6800B72A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800B52A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift */; };
-		AF6800BA2A037A000096D65B /* RequestSearchMusicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800B92A037A000096D65B /* RequestSearchMusicRepository.swift */; };
+		AF9E9D432A08E68B00EC8D9E /* RequestMusicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D412A08E68B00EC8D9E /* RequestMusicRepository.swift */; };
+		AF9E9D442A08E68B00EC8D9E /* RequestWeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D422A08E68B00EC8D9E /* RequestWeatherRepository.swift */; };
+		AF9E9D492A08E78E00EC8D9E /* RequestWeatherRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D472A08E78D00EC8D9E /* RequestWeatherRepositoryInterface.swift */; };
+		AF9E9D4A2A08E78E00EC8D9E /* RequestMusicRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D482A08E78E00EC8D9E /* RequestMusicRepositoryInterface.swift */; };
+		AF9E9D4D2A08E7E000EC8D9E /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D4B2A08E7E000EC8D9E /* String+.swift */; };
+		AF9E9D4E2A08E7E000EC8D9E /* MusicItemCollection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D4C2A08E7E000EC8D9E /* MusicItemCollection+.swift */; };
 		D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD22A0243AB00582857 /* MappinApp.swift */; };
 		D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD42A0243AB00582857 /* ContentView.swift */; };
 		D4F57CD72A0243AC00582857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F57CD62A0243AC00582857 /* Assets.xcassets */; };
@@ -113,9 +115,15 @@
 		AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicUseCase.swift; sourceTree = "<group>"; };
 		AF03F8C72A027A8600E90660 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWeatherUseCase.swift; sourceTree = "<group>"; };
-		AF6800B42A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSearchMusicRepositoryInterface.swift; sourceTree = "<group>"; };
-		AF6800B52A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestWeatherRepositoryInterface.swift; sourceTree = "<group>"; };
-		AF6800B92A037A000096D65B /* RequestSearchMusicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSearchMusicRepository.swift; sourceTree = "<group>"; };
+		AF1078C62A039E8B00DB8EDA /* MusicChartUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicChartUseCase.swift; sourceTree = "<group>"; };
+		AF1078C92A05101B00DB8EDA /* MusicReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicReducer.swift; sourceTree = "<group>"; };
+		AF6800BB2A0393F50096D65B /* PinMusicReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinMusicReducer.swift; sourceTree = "<group>"; };
+		AF9E9D412A08E68B00EC8D9E /* RequestMusicRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestMusicRepository.swift; path = Mappin/Data/Repository/Implementation/RequestMusicRepository.swift; sourceTree = SOURCE_ROOT; };
+		AF9E9D422A08E68B00EC8D9E /* RequestWeatherRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestWeatherRepository.swift; path = Mappin/Data/Repository/Implementation/RequestWeatherRepository.swift; sourceTree = SOURCE_ROOT; };
+		AF9E9D472A08E78D00EC8D9E /* RequestWeatherRepositoryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestWeatherRepositoryInterface.swift; sourceTree = "<group>"; };
+		AF9E9D482A08E78E00EC8D9E /* RequestMusicRepositoryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMusicRepositoryInterface.swift; sourceTree = "<group>"; };
+		AF9E9D4B2A08E7E000EC8D9E /* String+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		AF9E9D4C2A08E7E000EC8D9E /* MusicItemCollection+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MusicItemCollection+.swift"; sourceTree = "<group>"; };
 		D4F57CCF2A0243AB00582857 /* Mappin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mappin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F57CD22A0243AB00582857 /* MappinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappinApp.swift; sourceTree = "<group>"; };
 		D4F57CD42A0243AB00582857 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -196,6 +204,8 @@
 			children = (
 				3AB4F7922A0379F6004C0F76 /* PinsRepository.swift */,
 				3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */,
+				AF9E9D482A08E78E00EC8D9E /* RequestMusicRepositoryInterface.swift */,
+				AF9E9D472A08E78D00EC8D9E /* RequestWeatherRepositoryInterface.swift */,
 				3AB7EF442A05181100B8FEDB /* UsersRepository.swift */,
 			);
 			path = Interface;
@@ -206,6 +216,8 @@
 			children = (
 				3AB4F7962A037A84004C0F76 /* APIPinsRepository.swift */,
 				3AE353DF2A0394BA00D5A2B5 /* APIPinClustersRepository.swift */,
+				AF9E9D412A08E68B00EC8D9E /* RequestMusicRepository.swift */,
+				AF9E9D422A08E68B00EC8D9E /* RequestWeatherRepository.swift */,
 				3AB7EF462A0519AE00B8FEDB /* APIUsersRepository.swift */,
 			);
 			path = Implementation;
@@ -318,8 +330,8 @@
 				3AD1DE492A055FC300A49E95 /* AuthUseCase */,
 				D4F57D1F2A0397C000582857 /* GeoCodeUseCase */,
 				D4F57D1D2A0397C000582857 /* PinUseCases */,
-				AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */,
-				AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */,
+				AF1078C52A039E4500DB8EDA /* MusicUseCases */,
+				AF1078C82A04FB2900DB8EDA /* WeatherUseCases */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -329,8 +341,6 @@
 			children = (
 				D4F57D232A0397CD00582857 /* AddPinRepository.swift */,
 				D4F57D242A0397CD00582857 /* GeoCodeRepository.swift */,
-				AF6800B52A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift */,
-				AF6800B42A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -338,17 +348,27 @@
 		AF03F8D02A02AB2700E90660 /* Reducers */ = {
 			isa = PBXGroup;
 			children = (
-				D4F57D272A03980C00582857 /* PinMusicReducer.swift */,
+				AF6800BB2A0393F50096D65B /* PinMusicReducer.swift */,
+				AF1078C92A05101B00DB8EDA /* MusicReducer.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
 		};
-		AF6800B82A0379E10096D65B /* Repositories */ = {
+		AF1078C52A039E4500DB8EDA /* MusicUseCases */ = {
 			isa = PBXGroup;
 			children = (
-				AF6800B92A037A000096D65B /* RequestSearchMusicRepository.swift */,
+				AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */,
+				AF1078C62A039E8B00DB8EDA /* MusicChartUseCase.swift */,
 			);
-			path = Repositories;
+			path = MusicUseCases;
+			sourceTree = "<group>";
+		};
+		AF1078C82A04FB2900DB8EDA /* WeatherUseCases */ = {
+			isa = PBXGroup;
+			children = (
+				AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */,
+			);
+			path = WeatherUseCases;
 			sourceTree = "<group>";
 		};
 		D4F57CC62A0243AB00582857 = {
@@ -418,7 +438,6 @@
 				3AB4F7882A037971004C0F76 /* DTO */,
 				3AB4F7912A0379DA004C0F76 /* Repository */,
 				3AB4F7772A0377F6004C0F76 /* Util */,
-				AF6800B82A0379E10096D65B /* Repositories */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -445,6 +464,8 @@
 			isa = PBXGroup;
 			children = (
 				D4F57CED2A02548E00582857 /* Color+.swift */,
+				AF9E9D4C2A08E7E000EC8D9E /* MusicItemCollection+.swift */,
+				AF9E9D4B2A08E7E000EC8D9E /* String+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -468,6 +489,7 @@
 		D4F57D162A03970000582857 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
+				D4F57D272A03980C00582857 /* PinMusicReducer.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -567,10 +589,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF9E9D4A2A08E78E00EC8D9E /* RequestMusicRepositoryInterface.swift in Sources */,
 				D4F57CFC2A02635400582857 /* LocationAuthorization.swift in Sources */,
 				3AB7EF472A0519AE00B8FEDB /* APIUsersRepository.swift in Sources */,
 				D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */,
-				3AE353E12A03A04100D5A2B5 /* PinMusicReducer.swift in Sources */,
 				3AD1DE552A05668200A49E95 /* UserDefaultsWrapper.swift in Sources */,
 				D4F57CEE2A02548E00582857 /* Color+.swift in Sources */,
 				3AD1DE442A05419200A49E95 /* APIProvider.swift in Sources */,
@@ -587,10 +609,13 @@
 				3AD1DE242A05371600A49E95 /* UsersLoginAPITarget.swift in Sources */,
 				3AD1DE4B2A055FD800A49E95 /* AuthUseCase.swift in Sources */,
 				D4F57D262A0397CD00582857 /* GeoCodeRepository.swift in Sources */,
+				AF9E9D442A08E68B00EC8D9E /* RequestWeatherRepository.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
+				AF9E9D4D2A08E7E000EC8D9E /* String+.swift in Sources */,
 				D4F57D222A0397C000582857 /* GeoCodeUseCase.swift in Sources */,
 				3AD1DE462A0544E900A49E95 /* Responsable.swift in Sources */,
 				3AD1DE362A053CB300A49E95 /* PinsDeleteAPITarget.swift in Sources */,
+				AF9E9D492A08E78E00EC8D9E /* RequestWeatherRepositoryInterface.swift in Sources */,
 				3AD1DE342A053B4A00A49E95 /* APITarget+Users.swift in Sources */,
 				3AB7EF492A0519D700B8FEDB /* DTO+User.swift in Sources */,
 				D4F57D212A0397C000582857 /* AddPinUseCase.swift in Sources */,
@@ -609,22 +634,21 @@
 				3AD1DE5A2A0569B800A49E95 /* MockCurrentUser.swift in Sources */,
 				3AD1DE322A053B4100A49E95 /* APITarget+PinClusters.swift in Sources */,
 				3AD1DE3B2A053EA100A49E95 /* PinsReadDetailAPITarget.swift in Sources */,
+				AF9E9D432A08E68B00EC8D9E /* RequestMusicRepository.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
 				3AB4F7692A0373BF004C0F76 /* APITarget.swift in Sources */,
 				D4F57D1B2A03970D00582857 /* Location.swift in Sources */,
-				AF6800B72A0379CD0096D65B /* RequestWeatherRepositoryInterface.swift in Sources */,
 				3AD1DE502A05632400A49E95 /* DefaultCurrentUser.swift in Sources */,
 				3AD1DE282A05396F00A49E95 /* PinsCreateAPITarget.swift in Sources */,
+				AF9E9D4E2A08E7E000EC8D9E /* MusicItemCollection+.swift in Sources */,
 				AF03F8CD2A02835200E90660 /* RequestWeatherUseCase.swift in Sources */,
 				3AD1DE532A05667900A49E95 /* DeviceId.swift in Sources */,
-				AF6800B62A0379CD0096D65B /* RequestSearchMusicRepositoryInterface.swift in Sources */,
 				AF03F8C32A026BA100E90660 /* Music.swift in Sources */,
 				AF03F8C62A0279B400E90660 /* SearchMusicUseCase.swift in Sources */,
 				3AB7EF452A05181100B8FEDB /* UsersRepository.swift in Sources */,
 				3AD1DE3D2A053EAD00A49E95 /* PinsUpdateAPITarget.swift in Sources */,
 				AF03F8C82A027A8600E90660 /* Weather.swift in Sources */,
 				3AD1DE422A053F8300A49E95 /* ParametersRequestable.swift in Sources */,
-				AF6800BA2A037A000096D65B /* RequestSearchMusicRepository.swift in Sources */,
 				3AD1DE222A05370C00A49E95 /* UsersSignupAPITarget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -754,7 +778,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mappin/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8R3N359429;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mappin/Info.plist;
@@ -772,7 +796,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pccommen.mappin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kozi.mappin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -788,7 +812,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mappin/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8R3N359429;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mappin/Info.plist;
@@ -806,7 +830,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pccommen.mappin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kozi.mappin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

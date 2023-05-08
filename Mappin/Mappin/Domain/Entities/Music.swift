@@ -11,7 +11,6 @@ struct Music: Equatable, Identifiable {
     let id: String
     let title: String
     let artist: String
-    let artwork: String?
+    let artwork: URL?
     let appleMusicUrl: URL?
 }
-
