@@ -27,6 +27,10 @@ extension LaunchScreenView {
         let authUseCase: AuthUseCase = APIAuthUseCase(currentUser: currentUser)
         let reducer = LaunchScreenReducer(authUseCase: authUseCase, currentUser: currentUser)
         let store = Store(initialState: LaunchScreenReducer.State(), reducer: reducer)
+        
+        // TODO: 수정 필요
+        APITarget.currentUser = currentUser
+        
         return LaunchScreenView(store: store)
     }
 }

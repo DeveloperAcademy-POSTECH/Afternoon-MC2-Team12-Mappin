@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import ComposableArchitecture
 
 struct LaunchScreenReducer: ReducerProtocol {
@@ -16,7 +17,7 @@ struct LaunchScreenReducer: ReducerProtocol {
         var isLoading: Bool = true
     }
     
-    enum Action {
+    enum Action: Equatable {
         case viewAppeared
         case setLoading(Bool)
     }
@@ -24,15 +25,49 @@ struct LaunchScreenReducer: ReducerProtocol {
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
         case .viewAppeared:
-            return .task {
-                try await applyCSRFToken()
-                try await applyAuthToken()
-                return .setLoading(false)
+            return .publisher {
+                getLaunchingPublisher()
             }
         case let .setLoading(isLoading):
             state.isLoading = isLoading
             return .none
         }
+    }
+    
+    private func getLaunchingPublisher() -> AnyPublisher<Action, Never> {
+        Publishers
+            .Merge(
+                getTokenApplyingPublisher(),
+                getDelayPublisher()
+            )
+            .receive(on: DispatchQueue.main)
+            .map { Action.setLoading(false) }
+            .catch { _ -> Just<Action> in
+                Just(.setLoading(true))
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    private func getTokenApplyingPublisher() -> AnyPublisher<Void, Error> {
+        Future<Void, Error> { promise in
+            Task {
+                do {
+                    try await applyCSRFToken()
+                    try await applyAuthToken()
+                    promise(.success(()))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    private func getDelayPublisher() -> AnyPublisher<Void, Error> {
+        Just(())
+            .delay(for: .seconds(1), scheduler: DispatchQueue.main)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
     
     private func applyCSRFToken() async throws {
