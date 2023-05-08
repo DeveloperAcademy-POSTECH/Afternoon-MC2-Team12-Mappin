@@ -23,7 +23,7 @@ struct LaunchScreenView: View {
 
 extension LaunchScreenView {
     static func build() -> Self {
-        let currentUser: CurrentUser = DefaultCurrentUser.shared
+        let currentUser: CurrentUser = MockCurrentUser()
         let authUseCase: AuthUseCase = APIAuthUseCase(currentUser: currentUser)
         let reducer = LaunchScreenReducer(authUseCase: authUseCase, currentUser: currentUser)
         let store = Store(initialState: LaunchScreenReducer.State(), reducer: reducer)

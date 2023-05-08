@@ -37,8 +37,15 @@ final class APIProvider: MoyaProvider<APITarget> {
     private func getResponse<T: Target & Responsable>(target: T, result: APIResult) throws -> T.Response {
         switch result {
         case let .success(response):
-            printLog(title: "response", message: String(data: response.data, encoding: .utf8) ?? "")
-            return try decoder.decode(T.Response.self, from: response.data)
+            let responseString = String(data: response.data, encoding: .utf8) ?? ""
+            printLog(title: "response", message: responseString)
+            if let decoded = try? decoder.decode(T.Response.self, from: response.data) {
+                return decoded
+            } else if let string = responseString as? T.Response {
+                return string
+            } else {
+                throw APIError.unknown
+            }
         case let .failure(error):
             throw try getAPIError(error)
         }

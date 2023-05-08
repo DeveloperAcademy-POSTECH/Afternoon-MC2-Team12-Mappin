@@ -25,6 +25,7 @@ struct LaunchScreenReducer: ReducerProtocol {
         switch action {
         case .viewAppeared:
             return .task {
+                try await applyCSRFToken()
                 try await applyAuthToken()
                 return .setLoading(false)
             }
@@ -34,8 +35,13 @@ struct LaunchScreenReducer: ReducerProtocol {
         }
     }
     
+    private func applyCSRFToken() async throws {
+        let token = try await authUseCase.getCSRFToken()
+        currentUser.csrfToken = token
+    }
+    
     private func applyAuthToken() async throws {
-        let authToken = try await authUseCase.getAuthToken()
-        currentUser.authToken = authToken
+        let token = try await authUseCase.getAuthToken()
+        currentUser.authToken = token
     }
 }

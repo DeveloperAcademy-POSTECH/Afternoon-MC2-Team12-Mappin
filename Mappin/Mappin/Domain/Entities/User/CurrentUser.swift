@@ -10,5 +10,6 @@ import Foundation
 protocol CurrentUser: AnyObject {
     var username: String { get }
     var password: String { get }
+    var csrfToken: String? { get set }
     var authToken: String? { get set }
 }
