@@ -11,6 +11,9 @@ protocol AddPinRepository {
     
     @discardableResult
     func requestAddPin(
-        newPin: Pin
+        deviceId: String,
+        music: Music,
+        location: Location,
+        weather: Weather
     ) async throws
 }

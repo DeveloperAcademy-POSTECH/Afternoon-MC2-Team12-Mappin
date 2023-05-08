@@ -7,10 +7,7 @@
 
 import UIKit
 
-protocol DeviceRepository {
-    var deviceId: String { get }
-}
-
-class DeviceManager: DeviceRepository {
+class RequestDeviceRepository: DeviceRepository {
+    
     var deviceId: String { UIDevice.current.identifierForVendor!.uuidString }
 }

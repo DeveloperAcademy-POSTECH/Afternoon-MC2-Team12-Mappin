@@ -32,7 +32,6 @@ struct PinMusicReducer: ReducerProtocol {
         switch action {
         case .updateCurrentLocation:
             
-            state.currentLocation =  MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: LocationManager.shared.latitude, longitude: LocationManager.shared.longitude), latitudinalMeters: 350, longitudinalMeters: 350)
             return .none
         case .changeTrakingMode(let newMode):
             state.mapUserTrakingMode = newMode
