@@ -42,6 +42,8 @@
 		3AD1DE552A05668200A49E95 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD1DE542A05668200A49E95 /* UserDefaultsWrapper.swift */; };
 		3AD1DE582A05696A00A49E95 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD1DE572A05696A00A49E95 /* CurrentUser.swift */; };
 		3AD1DE5A2A0569B800A49E95 /* MockCurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD1DE592A0569B800A49E95 /* MockCurrentUser.swift */; };
+		3AD1DE5D2A08DB3100A49E95 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD1DE5C2A08DB3100A49E95 /* LaunchScreenView.swift */; };
+		3AD1DE5F2A08DB7000A49E95 /* LaunchScreenReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD1DE5E2A08DB7000A49E95 /* LaunchScreenReducer.swift */; };
 		3AE353DA2A0390E000D5A2B5 /* APIJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353D92A0390E000D5A2B5 /* APIJSONDecoder.swift */; };
 		3AE353DC2A03935A00D5A2B5 /* PinClustersListAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DB2A03935A00D5A2B5 /* PinClustersListAPITarget.swift */; };
 		3AE353DE2A03949B00D5A2B5 /* PinClustersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */; };
@@ -107,6 +109,8 @@
 		3AD1DE542A05668200A49E95 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		3AD1DE572A05696A00A49E95 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		3AD1DE592A0569B800A49E95 /* MockCurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCurrentUser.swift; sourceTree = "<group>"; };
+		3AD1DE5C2A08DB3100A49E95 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
+		3AD1DE5E2A08DB7000A49E95 /* LaunchScreenReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenReducer.swift; sourceTree = "<group>"; };
 		3AE353D92A0390E000D5A2B5 /* APIJSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIJSONDecoder.swift; sourceTree = "<group>"; };
 		3AE353DB2A03935A00D5A2B5 /* PinClustersListAPITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinClustersListAPITarget.swift; sourceTree = "<group>"; };
 		3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinClustersRepository.swift; sourceTree = "<group>"; };
@@ -294,6 +298,15 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		3AD1DE5B2A08DB1C00A49E95 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				3AD1DE5C2A08DB3100A49E95 /* LaunchScreenView.swift */,
+				3AD1DE5E2A08DB7000A49E95 /* LaunchScreenReducer.swift */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		3AE353D72A0390BA00D5A2B5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +427,7 @@
 		D4F57CE32A02452000582857 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				3AD1DE5B2A08DB1C00A49E95 /* LaunchScreen */,
 				AF03F8D02A02AB2700E90660 /* Reducers */,
 				D4F57CD42A0243AB00582857 /* ContentView.swift */,
 			);
@@ -625,8 +639,10 @@
 				3AB4F7972A037A84004C0F76 /* APIPinsRepository.swift in Sources */,
 				3AB4F7932A0379F6004C0F76 /* PinsRepository.swift in Sources */,
 				D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */,
+				3AD1DE5F2A08DB7000A49E95 /* LaunchScreenReducer.swift in Sources */,
 				3AB4F78E2A0379AB004C0F76 /* DTO+Pin.swift in Sources */,
 				3AD1DE262A05375C00A49E95 /* AuthParameters.swift in Sources */,
+				3AD1DE5D2A08DB3100A49E95 /* LaunchScreenView.swift in Sources */,
 				3AB4F78C2A0379A2004C0F76 /* DTO+Music.swift in Sources */,
 				3AB4F7992A037CA5004C0F76 /* Encodable+Dictionary.swift in Sources */,
 				3AE353DE2A03949B00D5A2B5 /* PinClustersRepository.swift in Sources */,
