@@ -5,7 +5,7 @@
 //  Created by 한지석 on 2023/05/04.
 //
 
-import SwiftUI
+import Foundation
 
 import WeatherKit
 import CoreLocation
