@@ -56,6 +56,11 @@
 		AF9E9D4A2A08E78E00EC8D9E /* RequestMusicRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D482A08E78E00EC8D9E /* RequestMusicRepositoryInterface.swift */; };
 		AF9E9D4D2A08E7E000EC8D9E /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D4B2A08E7E000EC8D9E /* String+.swift */; };
 		AF9E9D4E2A08E7E000EC8D9E /* MusicItemCollection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D4C2A08E7E000EC8D9E /* MusicItemCollection+.swift */; };
+		AF9E9D542A0A10E900EC8D9E /* SearchMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D532A0A10E900EC8D9E /* SearchMusicView.swift */; };
+		AF9E9D552A0A12C700EC8D9E /* PinMusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800BB2A0393F50096D65B /* PinMusicReducer.swift */; };
+		AF9E9D572A0A161A00EC8D9E /* SearchMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D562A0A161A00EC8D9E /* SearchMusicCell.swift */; };
+		AF9E9D582A0A174900EC8D9E /* MusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1078C92A05101B00DB8EDA /* MusicReducer.swift */; };
+		AF9E9D592A0A17B200EC8D9E /* MusicChartUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1078C62A039E8B00DB8EDA /* MusicChartUseCase.swift */; };
 		D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD22A0243AB00582857 /* MappinApp.swift */; };
 		D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD42A0243AB00582857 /* ContentView.swift */; };
 		D4F57CD72A0243AC00582857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F57CD62A0243AC00582857 /* Assets.xcassets */; };
@@ -124,6 +129,8 @@
 		AF9E9D482A08E78E00EC8D9E /* RequestMusicRepositoryInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMusicRepositoryInterface.swift; sourceTree = "<group>"; };
 		AF9E9D4B2A08E7E000EC8D9E /* String+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		AF9E9D4C2A08E7E000EC8D9E /* MusicItemCollection+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MusicItemCollection+.swift"; sourceTree = "<group>"; };
+		AF9E9D532A0A10E900EC8D9E /* SearchMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicView.swift; sourceTree = "<group>"; };
+		AF9E9D562A0A161A00EC8D9E /* SearchMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicCell.swift; sourceTree = "<group>"; };
 		D4F57CCF2A0243AB00582857 /* Mappin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mappin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F57CD22A0243AB00582857 /* MappinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappinApp.swift; sourceTree = "<group>"; };
 		D4F57CD42A0243AB00582857 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -371,6 +378,23 @@
 			path = WeatherUseCases;
 			sourceTree = "<group>";
 		};
+		AF9E9D512A0A10C600EC8D9E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AF9E9D522A0A10DC00EC8D9E /* SearchMusic */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AF9E9D522A0A10DC00EC8D9E /* SearchMusic */ = {
+			isa = PBXGroup;
+			children = (
+				AF9E9D532A0A10E900EC8D9E /* SearchMusicView.swift */,
+				AF9E9D562A0A161A00EC8D9E /* SearchMusicCell.swift */,
+			);
+			path = SearchMusic;
+			sourceTree = "<group>";
+		};
 		D4F57CC62A0243AB00582857 = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +438,7 @@
 		D4F57CE32A02452000582857 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				AF9E9D512A0A10C600EC8D9E /* View */,
 				AF03F8D02A02AB2700E90660 /* Reducers */,
 				D4F57CD42A0243AB00582857 /* ContentView.swift */,
 			);
@@ -600,8 +625,10 @@
 				3AD1DE582A05696A00A49E95 /* CurrentUser.swift in Sources */,
 				D4F57D252A0397CD00582857 /* AddPinRepository.swift in Sources */,
 				D4F57D1C2A03970D00582857 /* Pin.swift in Sources */,
+				AF9E9D572A0A161A00EC8D9E /* SearchMusicCell.swift in Sources */,
 				3AD1DE302A053B3700A49E95 /* APITarget+Pins.swift in Sources */,
 				3AE353DC2A03935A00D5A2B5 /* PinClustersListAPITarget.swift in Sources */,
+				AF9E9D592A0A17B200EC8D9E /* MusicChartUseCase.swift in Sources */,
 				D4F57CF82A02609100582857 /* AddPinIntent.swift in Sources */,
 				3AE353DA2A0390E000D5A2B5 /* APIJSONDecoder.swift in Sources */,
 				3AD1DE392A053E9300A49E95 /* PinsReadListAPITarget.swift in Sources */,
@@ -618,8 +645,10 @@
 				AF9E9D492A08E78E00EC8D9E /* RequestWeatherRepositoryInterface.swift in Sources */,
 				3AD1DE342A053B4A00A49E95 /* APITarget+Users.swift in Sources */,
 				3AB7EF492A0519D700B8FEDB /* DTO+User.swift in Sources */,
+				AF9E9D552A0A12C700EC8D9E /* PinMusicReducer.swift in Sources */,
 				D4F57D212A0397C000582857 /* AddPinUseCase.swift in Sources */,
 				3AE353E02A0394BA00D5A2B5 /* APIPinClustersRepository.swift in Sources */,
+				AF9E9D582A0A174900EC8D9E /* MusicReducer.swift in Sources */,
 				3AB4F7902A0379B1004C0F76 /* DTO+PinCluster.swift in Sources */,
 				3AD1DE482A055B3300A49E95 /* APIError.swift in Sources */,
 				3AB4F7972A037A84004C0F76 /* APIPinsRepository.swift in Sources */,
@@ -647,6 +676,7 @@
 				AF03F8C62A0279B400E90660 /* SearchMusicUseCase.swift in Sources */,
 				3AB7EF452A05181100B8FEDB /* UsersRepository.swift in Sources */,
 				3AD1DE3D2A053EAD00A49E95 /* PinsUpdateAPITarget.swift in Sources */,
+				AF9E9D542A0A10E900EC8D9E /* SearchMusicView.swift in Sources */,
 				AF03F8C82A027A8600E90660 /* Weather.swift in Sources */,
 				3AD1DE422A053F8300A49E95 /* ParametersRequestable.swift in Sources */,
 				3AD1DE222A05370C00A49E95 /* UsersSignupAPITarget.swift in Sources */,
