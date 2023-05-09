@@ -16,23 +16,22 @@ protocol GetPinsUseCase {
 final class DefaultGetPinUseCase: GetPinsUseCase {
     
     private let locatationRepository: LocationRepository
-    private let getPinsRepository: GetPinsRepository
+    private let pinsRepository: PinsRepository
     
-    init(locatationRepository: LocationRepository, getPinsRepository: GetPinsRepository) {
+    init(locatationRepository: LocationRepository,
+         pinsRepository: PinsRepository) {
         self.locatationRepository = locatationRepository
-        self.getPinsRepository = getPinsRepository
+        self.pinsRepository = pinsRepository
     }
     
     func excuteUsingMap(latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin] {
         let center: (Double, Double) = (locatationRepository.latitude, locatationRepository.longitude)
-        
-        return try await getPinsRepository.GetPinsUsingMap(center: center, latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+        return []
     }
     
     func excuteUsingList(latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin] {
         let center: (Double, Double) = (locatationRepository.latitude, locatationRepository.longitude)
-        
-        return try await getPinsRepository.GetPinsUsingList(center: center, latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+        return []
 
     }
 }

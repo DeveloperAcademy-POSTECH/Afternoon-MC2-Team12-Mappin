@@ -30,6 +30,28 @@ struct ContentView: View {
     }
 }
 
+extension ContentView {
+    static func build() -> Self {
+        let pinsRepository = APIPinsRepository()
+        let locationRepository = RequestLocationRepository.manager
+        return ContentView(store: Store(
+            initialState: PinMusicReducer.State(),
+            reducer: PinMusicReducer(
+                addPinUseCase: DefaultAddPinUseCase(
+                    pinsRepository: pinsRepository,
+                    geoCodeRepository: RequestGeoCodeRepository(),
+                    locationRepository: locationRepository,
+                    weatherRepository: RequestWeatherRepository(),
+                    deviceRepository: RequestDeviceRepository()
+                ),
+                getPinsUseCase: DefaultGetPinUseCase(
+                    locatationRepository: locationRepository,
+                    pinsRepository: pinsRepository
+                )
+            )
+        ))
+    }
+}
 
 extension UUID: Identifiable {
     public var id: String { self.uuidString }

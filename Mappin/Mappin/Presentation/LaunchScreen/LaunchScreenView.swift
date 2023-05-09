@@ -22,8 +22,10 @@ struct LaunchScreenView: View {
                     get: \.isCompleted,
                     send: { .setCompleted($0) }
                 )) {
-                    // TODO: connect another view
-                    Text("Next View")
+                    ContentView.build()
+                        .onAppear {
+                            _ = RequestLocationRepository.manager
+                        }
                 }
         }
     }

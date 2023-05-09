@@ -17,19 +17,19 @@ protocol AddPinUseCase {
 
 final class DefaultAddPinUseCase: AddPinUseCase {
     
-    private let addPinRepository: AddPinRepository
+    private let pinsRepository: PinsRepository
     private let locationRepository: LocationRepository
     private let geoCodeRepository: GeoCodeRepository
     private let weatherRepository: RequestWeatherRepositoryInterface
     private let deviceRepository: DeviceRepository
     
-    init(addPinRepository: AddPinRepository,
+    init(pinsRepository: PinsRepository,
          geoCodeRepository: GeoCodeRepository,
          locationRepository: LocationRepository,
          weatherRepository: RequestWeatherRepositoryInterface,
          deviceRepository: DeviceRepository) {
         
-        self.addPinRepository = addPinRepository
+        self.pinsRepository = pinsRepository
         self.locationRepository = locationRepository
         self.weatherRepository = weatherRepository
         self.deviceRepository = deviceRepository
@@ -48,9 +48,6 @@ final class DefaultAddPinUseCase: AddPinUseCase {
                                 longitude: longtitude,
                                 locality: geoCodeResult.locality,
                                 subLocality: geoCodeResult.subLocality)
-        
-        
-        return try await addPinRepository.requestAddPin(deviceId: deviceId, music: music, location: location, weather: weather)
     }
 }
 
