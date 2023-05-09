@@ -5,21 +5,25 @@
 //  Created by 한지석 on 2023/05/05.
 //
 
-import Foundation
+import UIKit
 
 import ComposableArchitecture
+import Combine
 
 struct MusicReducer: ReducerProtocol {
     
-    let searchMusicUseCase: SearchMusicUseCase
-    let musicChartUseCase: MusicChartUseCase
+    let searchMusicUseCase = DefaultSearchMusicUseCase(musicRepository: RequestMusicRepository())
+    let musicChartUseCase = DefaultMusicChartUseCase(musicRepository: RequestMusicRepository())
+//    let searchMusicUseCase: SearchMusicUseCase
+//    let musicChartUseCase: MusicChartUseCase
     
-    struct State {
+    struct State: Equatable {
         var searchTerm: String = ""
-        var music: [Music]
+        var music: [Music] = []
     }
     
     enum Action {
+        case resetSearchTerm
         case searchTermChanged(searchTerm: String)
         case requestMusicChart
         case applyMusic([Music])
@@ -29,6 +33,9 @@ struct MusicReducer: ReducerProtocol {
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
+        case .resetSearchTerm:
+            state.searchTerm = ""
+            return .none
         case .searchTermChanged(let searchTerm):
             state.searchTerm = searchTerm
             return .task {
@@ -46,6 +53,7 @@ struct MusicReducer: ReducerProtocol {
             }
         case .applyMusic(let music):
             state.music = music
+            print(state.music)
             return .none
         case .resetMusic:
             state.music = []
