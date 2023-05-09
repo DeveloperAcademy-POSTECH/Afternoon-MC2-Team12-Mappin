@@ -13,9 +13,17 @@ struct LaunchScreenView: View {
     
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
+            // TODO: add logo
             Text("Launch Screen")
                 .onAppear {
                     viewStore.send(.viewAppeared)
+                }
+                .fullScreenCover(isPresented: viewStore.binding(
+                    get: \.isCompleted,
+                    send: { .setCompleted($0) }
+                )) {
+                    // TODO: connect another view
+                    Text("Next View")
                 }
         }
     }

@@ -14,12 +14,12 @@ struct LaunchScreenReducer: ReducerProtocol {
     let currentUser: CurrentUser
     
     struct State: Equatable {
-        var isLoading: Bool = true
+        var isCompleted: Bool = false
     }
     
     enum Action: Equatable {
         case viewAppeared
-        case setLoading(Bool)
+        case setCompleted(Bool)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -28,8 +28,8 @@ struct LaunchScreenReducer: ReducerProtocol {
             return .publisher {
                 getLaunchingPublisher()
             }
-        case let .setLoading(isLoading):
-            state.isLoading = isLoading
+        case let .setCompleted(isCompleted):
+            state.isCompleted = isCompleted
             return .none
         }
     }
@@ -41,9 +41,9 @@ struct LaunchScreenReducer: ReducerProtocol {
                 getDelayPublisher()
             )
             .receive(on: DispatchQueue.main)
-            .map { Action.setLoading(false) }
+            .map { Action.setCompleted(true) }
             .catch { _ -> Just<Action> in
-                Just(.setLoading(true))
+                Just(.setCompleted(false))
             }
             .eraseToAnyPublisher()
     }
