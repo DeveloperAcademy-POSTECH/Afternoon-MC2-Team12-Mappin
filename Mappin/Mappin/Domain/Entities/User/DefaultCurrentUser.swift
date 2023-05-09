@@ -21,8 +21,8 @@ final class DefaultCurrentUser: CurrentUser {
         String(deviceId.suffix(8))
     }
     
-    var csrfToken: String? = cachedCSRFToken
     var authToken: String?
+    var csrfToken: String? = cachedCSRFToken
     
     private var deviceId: String {
         DeviceId.get()!
