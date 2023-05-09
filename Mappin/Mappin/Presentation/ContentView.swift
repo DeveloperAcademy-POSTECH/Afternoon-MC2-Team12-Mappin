@@ -14,7 +14,9 @@ struct ContentView: View {
     let store: StoreOf<PinMusicReducer>
     
     @ObservedObject var viewStore: ViewStoreOf<PinMusicReducer>
-
+    @State var temp: Double = 100
+    @State var action: MapView.Action = .none
+    
     init(store: StoreOf<PinMusicReducer>) {
         self.store = store
         self.viewStore = ViewStore(self.store, observe: { $0 })
@@ -22,11 +24,13 @@ struct ContentView: View {
 
     
     var body: some View {
-        Map(coordinateRegion: self.viewStore.binding(get: \.currentLocation,
-                                                     send: PinMusicReducer.Action.updateCurrentLocation),
-            interactionModes: [],
-            showsUserLocation: true,
-            userTrackingMode: self.viewStore.binding(get: \.mapUserTrakingMode, send: PinMusicReducer.Action.changeTrakingMode(.follow)))
+        MapView(action: $action, userTrackingMode: .follow)
+            .ignoresSafeArea()
+            .opacity(Double(action.yame))
     }
 }
 
+
+extension UUID: Identifiable {
+    public var id: String { self.uuidString }
+}

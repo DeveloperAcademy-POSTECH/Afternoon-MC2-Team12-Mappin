@@ -6,3 +6,18 @@
 //
 
 import Foundation
+
+protocol GetPinsRepository {
+    func GetPinsUsingMap(
+        center: (latitude: Double, longitude: Double),
+        latitudeDelta: Double,
+        longitudeDelta: Double
+    ) async throws -> [Pin]
+    
+    func GetPinsUsingList(
+        center: (latitude: Double, longitude: Double),
+        latitudeDelta: Double,
+        longitudeDelta: Double
+    ) async throws -> [Pin]
+}
+

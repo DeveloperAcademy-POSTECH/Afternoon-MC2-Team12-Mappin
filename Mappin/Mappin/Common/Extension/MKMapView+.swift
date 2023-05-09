@@ -5,4 +5,12 @@
 //  Created by changgyo seo on 2023/05/09.
 //
 
-import Foundation
+import MapKit
+
+extension  MKMapView {
+    
+    func removeAllAnotation() {
+        removeAnnotations(self.annotations)
+    }
+}
+

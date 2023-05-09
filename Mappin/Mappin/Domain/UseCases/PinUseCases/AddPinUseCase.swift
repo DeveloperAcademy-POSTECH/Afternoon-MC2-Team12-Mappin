@@ -10,7 +10,7 @@ import Foundation
 protocol AddPinUseCase {
 
     func excute(
-        song: Music
+        music: Music
     ) async throws
     
 }
@@ -36,7 +36,7 @@ final class DefaultAddPinUseCase: AddPinUseCase {
         self.geoCodeRepository = geoCodeRepository
     }
     
-    func excute(song: Music) async throws {
+    func excute(music: Music) async throws {
         
         let deviceId = deviceRepository.deviceId
         let latitude = locationRepository.latitude
@@ -50,7 +50,7 @@ final class DefaultAddPinUseCase: AddPinUseCase {
                                 subLocality: geoCodeResult.subLocality)
         
         
-        return try await addPinRepository.requestAddPin(deviceId: deviceId, music: song, location: location, weather: weather)
+        return try await addPinRepository.requestAddPin(deviceId: deviceId, music: music, location: location, weather: weather)
     }
 }
 

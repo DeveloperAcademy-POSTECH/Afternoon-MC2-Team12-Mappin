@@ -20,7 +20,7 @@ struct MappinApp: App {
                 )
             )
             .onAppear {
-                _ = LocationManager.shared
+                _ = RequestLocationRepository.manager
             }
         }
     }
