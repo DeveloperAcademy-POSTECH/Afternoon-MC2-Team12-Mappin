@@ -13,6 +13,7 @@ import MusicKit
 struct SearchMusicView: View {
     
     @State private var searchTerm: String = ""
+    @State private var isSelected: Bool = false
     
     let store: StoreOf<MusicReducer>
     @ObservedObject var viewStore: ViewStoreOf<MusicReducer>
@@ -23,11 +24,21 @@ struct SearchMusicView: View {
     }
     
     var body: some View {
-        VStack {
-            titleWithCancel
-            searchBar
-            searchMusicList
+        NavigationView {
+            VStack {
+//                titleWithCancel
+//                searchBar
+                searchMusicList
+            }
+            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarItems(
+                leading:
+                    Text("현재 위치에 음악 핀하기")
+                    .font(.system(size: 16, weight: .bold))
+                )
         }
+        .searchable(text: viewStore.binding(get: \.searchTerm, send: MusicReducer.Action.searchTermChanged),
+                    placement: .navigationBarDrawer(displayMode: .always))
         .onAppear {
             settingMuesicAuthorization()
         }
@@ -62,14 +73,12 @@ struct SearchMusicView: View {
         HStack {
             HStack {
                 Image(systemName: "magnifyingglass")
-                TextField("Search", text: viewStore.binding(get: \.searchTerm,
-                                                            send: MusicReducer.Action.searchTermChanged))
+                TextField("Search", text: viewStore.binding(get: \.searchTerm, send: MusicReducer.Action.searchTermChanged))
                     .foregroundColor(.primary)
                     .frame(height: 36)
                 if !viewStore.searchTerm.isEmpty {
                     Button(action: {
                         viewStore.send(.resetSearchTerm)
-                        viewStore.send(.requestMusicChart)
                     }) {
                         Image(systemName: "xmark.circle.fill")
                     }
@@ -88,14 +97,26 @@ struct SearchMusicView: View {
             .cornerRadius(10.0)
         }
         .padding(.horizontal)
+//        .padding(.bottom, 26)
     }
     
     var searchMusicList: some View {
-        List(viewStore.music) { music in
-            SearchMusicCell(music: music)
+        withAnimation {
+            List(!viewStore.searchTerm.isEmpty ? viewStore.searchMusic : viewStore.musicChart) { music in
+                SearchMusicCell(isSelected: $isSelected, music: music)
+            }
+            .listStyle(.inset)
+            .onTapGesture {
+                if let index = music.firstIndex(where: { $0.id == item.id }) {
+                    items[index].isSelected.toggle()
+                }
+            }
         }
-        .scrollContentBackground(.hidden)
     }
+    
+
+        
+    
     
     func settingMuesicAuthorization() {
         Task {
