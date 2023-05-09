@@ -12,4 +12,13 @@ extension String {
         let size = String(format: "%.0fx%.0f", size, size)
         return replacingOccurrences(of: "99x99", with: size)
     }
+    
+    func getTemperature() -> String {
+        String(
+            self
+                .split(separator: ".")
+                .compactMap{ Int($0) }
+                .first!
+        )
+    }
 }

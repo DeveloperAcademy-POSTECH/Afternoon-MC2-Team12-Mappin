@@ -20,15 +20,11 @@ final class RequestWeatherRepository: RequestWeatherRepositoryInterface {
     ) async throws -> Weather {
         let location = CLLocation(latitude: latitude,
                                   longitude: longitude)
-        
         let responseWeather = try await weatherService.weather(for: location)
         let temperature = String(describing: responseWeather.currentWeather.temperature)
-            .split(separator: ".")
-            .compactMap { Int($0) }
-            .first!
         return Weather(id: UUID().uuidString,
-                       temperature: String(describing: temperature),
+                       temperature: temperature.getTemperature(),
                        symbolName: responseWeather.currentWeather.symbolName)
     }
-    
+
 }
