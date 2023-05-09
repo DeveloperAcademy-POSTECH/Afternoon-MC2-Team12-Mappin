@@ -12,19 +12,19 @@ protocol PinsRepository {
         applemusicId: String,
         title: String,
         artistName: String,
-        latitude: Float,
-        longitude: Float,
+        latitude: Double,
+        longitude: Double,
         administrativeArea: String,
         locality: String,
         weather: String,
-        temperture: Int
+        temperature: Int
     ) async throws
     
     func readList(
-        centerLatitude: Float,
-        centerLongitude: Float,
-        horizontalRadius: Float,
-        verticalRadius: Float
+        centerLatitude: Double,
+        centerLongitude: Double,
+        horizontalRadius: Double,
+        verticalRadius: Double
     ) async throws -> [DTO.Pin]
     
     func readDetail(id: Int) async throws -> DTO.Pin

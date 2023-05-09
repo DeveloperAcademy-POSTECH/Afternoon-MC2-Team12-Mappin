@@ -12,10 +12,10 @@ struct APIPinClustersRepository: PinClustersRepository {
     private let provider = APIProvider()
     
     func readList(
-        centerLatitude: Float,
-        centerLongitude: Float,
-        horizontalRadius: Float,
-        verticalRadius: Float
+        centerLatitude: Double,
+        centerLongitude: Double,
+        horizontalRadius: Double,
+        verticalRadius: Double
     ) async throws -> [DTO.PinCluster] {
         let parameters = PinClustersListAPITarget.Parameters(
             center_latitude: centerLatitude,

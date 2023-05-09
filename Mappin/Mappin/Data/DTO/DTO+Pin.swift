@@ -11,9 +11,12 @@ extension DTO {
     struct Pin: Codable, Identifiable {
         let id: Int
         let music: DTO.Music
-        let user_id: Int
-        let latitude: Float
-        let longitude: Float
+        let latitude: Double
+        let longitude: Double
+        let administrative_area: String
+        let locality: String
+        let weather: String
+        let temperature: Int
         let created_at: Date
     }
 }

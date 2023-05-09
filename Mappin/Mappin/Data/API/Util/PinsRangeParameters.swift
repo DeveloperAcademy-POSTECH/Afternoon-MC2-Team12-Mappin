@@ -8,8 +8,8 @@
 import Foundation
 
 struct PinsRangeParameters: Encodable {
-    let center_latitude: Float
-    let center_longitude: Float
-    let horizontal_radius: Float
-    let vertical_radius: Float
+    let center_latitude: Double
+    let center_longitude: Double
+    let horizontal_radius: Double
+    let vertical_radius: Double
 }

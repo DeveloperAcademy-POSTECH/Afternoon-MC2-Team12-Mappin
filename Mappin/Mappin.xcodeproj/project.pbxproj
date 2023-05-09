@@ -14,6 +14,7 @@
 		3A1DC8E92A0A161D00B7462E /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1DC8E82A0A161D00B7462E /* ToastManager.swift */; };
 		3A1DC8EB2A0A21FB00B7462E /* ToastManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1DC8EA2A0A21FB00B7462E /* ToastManagerProtocol.swift */; };
 		3A1DC8ED2A0A4EAC00B7462E /* PinsRangeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1DC8EC2A0A4EAC00B7462E /* PinsRangeParameters.swift */; };
+		3A1DC8EF2A0A8D9600B7462E /* BinaryFloatingPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1DC8EE2A0A8D9600B7462E /* BinaryFloatingPoint+.swift */; };
 		3AB4F7692A0373BF004C0F76 /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7682A0373BF004C0F76 /* APITarget.swift */; };
 		3AB4F7852A03792D004C0F76 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7842A03792D004C0F76 /* CombineMoya */; };
 		3AB4F7872A03792D004C0F76 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7862A03792D004C0F76 /* Moya */; };
@@ -110,6 +111,7 @@
 		3A1DC8E82A0A161D00B7462E /* ToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManager.swift; sourceTree = "<group>"; };
 		3A1DC8EA2A0A21FB00B7462E /* ToastManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManagerProtocol.swift; sourceTree = "<group>"; };
 		3A1DC8EC2A0A4EAC00B7462E /* PinsRangeParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsRangeParameters.swift; sourceTree = "<group>"; };
+		3A1DC8EE2A0A8D9600B7462E /* BinaryFloatingPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryFloatingPoint+.swift"; sourceTree = "<group>"; };
 		3AB4F7682A0373BF004C0F76 /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
 		3AB4F7892A03797C004C0F76 /* DTO+Namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DTO+Namespace.swift"; sourceTree = "<group>"; };
 		3AB4F78B2A0379A2004C0F76 /* DTO+Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DTO+Music.swift"; sourceTree = "<group>"; };
@@ -617,6 +619,7 @@
 				AF9E9D4C2A08E7E000EC8D9E /* MusicItemCollection+.swift */,
 				AF9E9D4B2A08E7E000EC8D9E /* String+.swift */,
 				D45C9DF92A0A22DD00FAA39C /* MKMapView+.swift */,
+				3A1DC8EE2A0A8D9600B7462E /* BinaryFloatingPoint+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 				3AD1DE612A08E83700A49E95 /* CSRFTokenRepository.swift in Sources */,
 				D4F19C612A0917CC00ABB567 /* DeviceRepository.swift in Sources */,
 				3AB4F7932A0379F6004C0F76 /* PinsRepository.swift in Sources */,
+				3A1DC8EF2A0A8D9600B7462E /* BinaryFloatingPoint+.swift in Sources */,
 				D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */,
 				3AD1DE5F2A08DB7000A49E95 /* LaunchScreenReducer.swift in Sources */,
 				3AB4F78E2A0379AB004C0F76 /* DTO+Pin.swift in Sources */,

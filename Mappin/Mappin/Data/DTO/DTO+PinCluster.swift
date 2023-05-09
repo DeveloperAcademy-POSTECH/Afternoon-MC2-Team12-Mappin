@@ -11,7 +11,7 @@ extension DTO {
     struct PinCluster: Codable {
         let main_pin: DTO.Pin
         let pins_count: Int
-        let latitude: Float
-        let longitude: Float
+        let latitude: Double
+        let longitude: Double
     }
 }

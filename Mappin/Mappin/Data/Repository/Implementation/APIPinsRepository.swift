@@ -15,33 +15,35 @@ struct APIPinsRepository: PinsRepository {
         applemusicId: String,
         title: String,
         artistName: String,
-        latitude: Float,
-        longitude: Float,
+        latitude: Double,
+        longitude: Double,
         administrativeArea: String,
         locality: String,
         weather: String,
-        temperture: Int
+        temperature: Int
     ) async throws {
         let parameters = PinsCreateAPITarget.Parameters(
-            applemusic_id: applemusicId,
-            title: title,
-            artist_name: artistName,
-            latitude: latitude,
-            longitude: longitude,
+            music: .init(
+                applemusic_id: applemusicId,
+                title: title,
+                artist_name: artistName
+            ),
+            latitude: latitude.decimalRounded(6),
+            longitude: longitude.decimalRounded(6),
             administrative_area: administrativeArea,
             locality: locality,
             weather: weather,
-            temperture: temperture
+            temperature: temperature
         )
         let target = APITarget.createPin(parameters: parameters)
         try await provider.justRequest(target)
     }
     
     func readList(
-        centerLatitude: Float,
-        centerLongitude: Float,
-        horizontalRadius: Float,
-        verticalRadius: Float
+        centerLatitude: Double,
+        centerLongitude: Double,
+        horizontalRadius: Double,
+        verticalRadius: Double
     ) async throws -> [DTO.Pin] {
         let parameters = PinsReadListAPITarget.Parameters(
             center_latitude: centerLatitude,

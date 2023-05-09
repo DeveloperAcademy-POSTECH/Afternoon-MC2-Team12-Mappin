@@ -12,7 +12,7 @@ extension APITarget {
     
     static func createPin(parameters: PinsCreateAPITarget.Parameters) -> PinsCreateAPITarget {
         .init(
-            path: basePath,
+            path: basePath + "/",
             method: .post,
             parameters: parameters
         )

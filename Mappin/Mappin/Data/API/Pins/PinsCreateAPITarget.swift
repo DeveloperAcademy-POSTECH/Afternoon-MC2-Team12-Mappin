@@ -9,15 +9,18 @@ import Foundation
 
 final class PinsCreateAPITarget: APITarget, ParametersRequestable {
     struct Parameters: Encodable {
-        let applemusic_id: String
-        let title: String
-        let artist_name: String
-        let latitude: Float
-        let longitude: Float
+        struct Music: Encodable {
+            let applemusic_id: String
+            let title: String
+            let artist_name: String
+        }
+        let music: Music
+        let latitude: Double
+        let longitude: Double
         let administrative_area: String
         let locality: String
         let weather: String
-        let temperture: Int
+        let temperature: Int
     }
     
     let parameters: Parameters
