@@ -55,10 +55,17 @@ final class APIProvider: MoyaProvider<APITarget> {
         guard let data = error.response?.data else {
             return .unknown
         }
+        printLog(title: "response error", data: data)
         return try decoder.decode(APIError.self, from: data)
     }
     
-    // TODO: Logger
+    // TODO: - Logger
+    
+    private func printLog(title: String, data: Data) {
+        let message = String(data: data, encoding: .utf8) ?? ""
+        printLog(title: title, message: message)
+    }
+    
     private func printLog(title: String, message: String) {
         print("@LOG \(title)\n\(message)")
     }

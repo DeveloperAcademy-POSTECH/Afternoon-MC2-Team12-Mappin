@@ -25,16 +25,21 @@ struct APIAuthUseCase: AuthUseCase {
     }
     
     func getAuthToken() async throws -> String {
-        if currentUser.authToken == nil {
+        do {
+            return try await getAuthTokenFromLogin()
+        } catch {
             try await usersRepository.signup(
                 username: currentUser.username,
                 password: currentUser.password
             )
+            return try await getAuthTokenFromLogin()
         }
-        let token = try await usersRepository.login(
+    }
+    
+    private func getAuthTokenFromLogin() async throws -> String {
+        try await usersRepository.login(
             username: currentUser.username,
             password: currentUser.password
         )
-        return token
     }
 }
