@@ -12,14 +12,16 @@ import ComposableArchitecture
 struct LaunchScreenReducer: ReducerProtocol {
     let authUseCase: AuthUseCase
     let currentUser: CurrentUser
+    let toastManager: ToastManagerProtocol
     
     struct State: Equatable {
         var isCompleted: Bool = false
     }
     
-    enum Action: Equatable {
+    enum Action {
         case viewAppeared
         case setCompleted(Bool)
+        case setError(Error)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -30,6 +32,9 @@ struct LaunchScreenReducer: ReducerProtocol {
             }
         case let .setCompleted(isCompleted):
             state.isCompleted = isCompleted
+            return .none
+        case let .setError(error):
+            handleError(error)
             return .none
         }
     }
@@ -42,8 +47,8 @@ struct LaunchScreenReducer: ReducerProtocol {
             )
             .receive(on: DispatchQueue.main)
             .map { Action.setCompleted(true) }
-            .catch { _ -> Just<Action> in
-                Just(.setCompleted(false))
+            .catch { error -> Just<Action> in
+                Just(.setError(error))
             }
             .eraseToAnyPublisher()
     }
@@ -78,5 +83,12 @@ struct LaunchScreenReducer: ReducerProtocol {
     private func applyAuthToken() async throws {
         let token = try await authUseCase.getAuthToken()
         currentUser.authToken = token
+    }
+    
+    private func handleError(_ error: Error) {
+        guard let error = error as? APIError else {
+            return
+        }
+        toastManager.setMessage(error.detail)
     }
 }

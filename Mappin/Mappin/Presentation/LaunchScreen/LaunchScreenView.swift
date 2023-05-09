@@ -31,9 +31,10 @@ struct LaunchScreenView: View {
 
 extension LaunchScreenView {
     static func build() -> Self {
-        let currentUser: CurrentUser = MockCurrentUser()
+        let currentUser: CurrentUser = DefaultCurrentUser.shared
         let authUseCase: AuthUseCase = APIAuthUseCase(currentUser: currentUser)
-        let reducer = LaunchScreenReducer(authUseCase: authUseCase, currentUser: currentUser)
+        let toastManager: ToastManagerProtocol = ToastManager.shared
+        let reducer = LaunchScreenReducer(authUseCase: authUseCase, currentUser: currentUser, toastManager: toastManager)
         let store = Store(initialState: LaunchScreenReducer.State(), reducer: reducer)
         
         // TODO: 수정 필요
