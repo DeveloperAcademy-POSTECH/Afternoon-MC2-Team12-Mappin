@@ -8,5 +8,10 @@
 import Foundation
 
 protocol PinClustersRepository {
-    func readList(centerLatitude: Float, centerLongitude: Float, horizontalRadius: Float, verticalRadius: Float) async throws -> [DTO.PinCluster]
+    func readList(
+        centerLatitude: Float,
+        centerLongitude: Float,
+        horizontalRadius: Float,
+        verticalRadius: Float
+    ) async throws -> [DTO.PinCluster]
 }

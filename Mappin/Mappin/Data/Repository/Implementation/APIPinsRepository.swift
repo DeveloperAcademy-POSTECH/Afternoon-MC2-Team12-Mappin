@@ -11,12 +11,39 @@ import Moya
 struct APIPinsRepository: PinsRepository {
     private let provider = APIProvider()
     
-    func create(pin: DTO.Pin) async throws {
-        try await provider.justRequest(.createPin(parameters: pin))
+    func create(
+        applemusicId: String,
+        title: String,
+        artistName: String,
+        latitude: Float,
+        longitude: Float,
+        administrativeArea: String,
+        locality: String,
+        weather: String,
+        temperture: Int
+    ) async throws {
+        let parameters = PinsCreateAPITarget.Parameters(
+            applemusic_id: applemusicId,
+            title: title,
+            artist_name: artistName,
+            latitude: latitude,
+            longitude: longitude,
+            administrative_area: administrativeArea,
+            locality: locality,
+            weather: weather,
+            temperture: temperture
+        )
+        let target = APITarget.createPin(parameters: parameters)
+        try await provider.justRequest(target)
     }
     
-    func readList(centerLatitude: Float, centerLongitude: Float, horizontalRadius: Float, verticalRadius: Float) async throws -> [DTO.Pin] {
-        let parameters = PinClustersListAPITarget.Parameters(
+    func readList(
+        centerLatitude: Float,
+        centerLongitude: Float,
+        horizontalRadius: Float,
+        verticalRadius: Float
+    ) async throws -> [DTO.Pin] {
+        let parameters = PinsReadListAPITarget.Parameters(
             center_latitude: centerLatitude,
             center_longitude: centerLongitude,
             horizontal_radius: horizontalRadius,

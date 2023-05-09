@@ -11,7 +11,12 @@ import Moya
 struct APIPinClustersRepository: PinClustersRepository {
     private let provider = APIProvider()
     
-    func readList(centerLatitude: Float, centerLongitude: Float, horizontalRadius: Float, verticalRadius: Float) async throws -> [DTO.PinCluster] {
+    func readList(
+        centerLatitude: Float,
+        centerLongitude: Float,
+        horizontalRadius: Float,
+        verticalRadius: Float
+    ) async throws -> [DTO.PinCluster] {
         let parameters = PinClustersListAPITarget.Parameters(
             center_latitude: centerLatitude,
             center_longitude: centerLongitude,
