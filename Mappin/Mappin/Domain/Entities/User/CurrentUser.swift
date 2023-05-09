@@ -10,5 +10,12 @@ import Foundation
 protocol CurrentUser: AnyObject {
     var username: String { get }
     var password: String { get }
+    var csrfToken: String? { get set }
     var authToken: String? { get set }
+}
+
+extension CurrentUser {
+    static var cachedCSRFToken: String? {
+        HTTPCookieStorage.shared.cookies?.first(where: { $0.name == "csrftoken" })?.value
+    }
 }

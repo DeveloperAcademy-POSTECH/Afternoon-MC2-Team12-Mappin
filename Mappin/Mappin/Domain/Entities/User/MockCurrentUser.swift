@@ -19,6 +19,7 @@ final class MockCurrentUser: CurrentUser {
         _password
     }
     
+    var csrfToken: String? = cachedCSRFToken
     var authToken: String?
     
     private static var randomHashId: String {

@@ -38,7 +38,7 @@ class APITarget: TargetType {
     var headers: [String : String]? {
         var headers = [String: String]()
         headers.updateValue("application/json", forKey: "Content-Type")
-        if let csrfToken = csrfToken {
+        if let csrfToken = Self.currentUser?.csrfToken {
             headers.updateValue(csrfToken, forKey: "X-CSRFToken")
         }
         if let authToken = Self.currentUser?.authToken {
@@ -68,10 +68,6 @@ class APITarget: TargetType {
             return nil
         }
         return method == .get ? URLEncoding.default : JSONEncoding.default
-    }
-    
-    private var csrfToken: String? {
-        HTTPCookieStorage.shared.cookies?.first(where: { $0.name == "csrftoken" })?.value
     }
 }
 
