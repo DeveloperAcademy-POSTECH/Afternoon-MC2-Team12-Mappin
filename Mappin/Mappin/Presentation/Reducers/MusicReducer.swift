@@ -53,7 +53,6 @@ struct MusicReducer: ReducerProtocol {
             }
         case .applyMusic(let music):
             state.music = music
-            print(state.music)
             return .none
         case .resetMusic:
             state.music = []

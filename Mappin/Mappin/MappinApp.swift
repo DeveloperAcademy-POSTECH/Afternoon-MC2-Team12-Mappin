@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
+import MapKit
 
 @main
 struct MappinApp: App {
     var body: some Scene {
         WindowGroup {
-            ZStack(alignment: .bottom) {
-                LaunchScreenView.build()
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                ToastView.build()
+            ContentView(
+                store: Store(
+                    initialState: PinMusicReducer.State(),
+                    reducer: PinMusicReducergit ()._printChanges()
+                )
+            )
+            .onAppear {
+                _ = RequestLocationRepository.manager
             }
         }
     }

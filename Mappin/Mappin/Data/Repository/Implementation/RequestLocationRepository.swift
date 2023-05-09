@@ -7,9 +7,9 @@
 
 import CoreLocation
 
-final class LocationManager: NSObject, CLLocationManagerDelegate {
+final class RequestLocationRepository: NSObject, CLLocationManagerDelegate, LocationRepository {
     
-    static var shared = LocationManager()
+    static var manager = RequestLocationRepository()
     
     var manager: CLLocationManager
     var latitude: Double

@@ -71,6 +71,20 @@
 		AF9E9D572A0A161A00EC8D9E /* SearchMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D562A0A161A00EC8D9E /* SearchMusicCell.swift */; };
 		AF9E9D582A0A174900EC8D9E /* MusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1078C92A05101B00DB8EDA /* MusicReducer.swift */; };
 		AF9E9D592A0A17B200EC8D9E /* MusicChartUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1078C62A039E8B00DB8EDA /* MusicChartUseCase.swift */; };
+		D45C9DFA2A0A22DD00FAA39C /* MKMapView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9DF92A0A22DD00FAA39C /* MKMapView+.swift */; };
+		D45C9DFD2A0A231200FAA39C /* SinglePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9DFC2A0A231200FAA39C /* SinglePin.swift */; };
+		D45C9E002A0A234500FAA39C /* ClusteredPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9DFF2A0A234500FAA39C /* ClusteredPin.swift */; };
+		D45C9E082A0A246F00FAA39C /* PinAnnotationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9E072A0A246F00FAA39C /* PinAnnotationProtocol.swift */; };
+		D45C9E0A2A0A279A00FAA39C /* MyPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9E092A0A279A00FAA39C /* MyPin.swift */; };
+		D45C9E0C2A0A461B00FAA39C /* GetPinsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9E0B2A0A461B00FAA39C /* GetPinsRepository.swift */; };
+		D4F19C542A08DC0300ABB567 /* MKCoordinateRegion+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F19C532A08DC0300ABB567 /* MKCoordinateRegion+.swift */; };
+		D4F19C562A08E7A100ABB567 /* RequestDeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F19C552A08E7A100ABB567 /* RequestDeviceRepository.swift */; };
+		D4F19C5C2A0915F000ABB567 /* RequestGeoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F19C5B2A0915F000ABB567 /* RequestGeoCodeRepository.swift */; };
+		D4F19C5D2A09160200ABB567 /* PinMusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6800BB2A0393F50096D65B /* PinMusicReducer.swift */; };
+		D4F19C5F2A09179200ABB567 /* LocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F19C5E2A09179200ABB567 /* LocationRepository.swift */; };
+		D4F19C612A0917CC00ABB567 /* DeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F19C602A0917CC00ABB567 /* DeviceRepository.swift */; };
+		D4F19C632A091A2A00ABB567 /* GetPinsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F19C622A091A2A00ABB567 /* GetPinsUseCase.swift */; };
+		D4F19C652A091D0D00ABB567 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F19C642A091D0D00ABB567 /* MapView.swift */; };
 		D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD22A0243AB00582857 /* MappinApp.swift */; };
 		D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CD42A0243AB00582857 /* ContentView.swift */; };
 		D4F57CD72A0243AC00582857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F57CD62A0243AC00582857 /* Assets.xcassets */; };
@@ -78,12 +92,10 @@
 		D4F57CE22A0244E200582857 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = D4F57CE12A0244E200582857 /* ComposableArchitecture */; };
 		D4F57CEE2A02548E00582857 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CED2A02548E00582857 /* Color+.swift */; };
 		D4F57CF82A02609100582857 /* AddPinIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CF72A02609100582857 /* AddPinIntent.swift */; };
-		D4F57CFC2A02635400582857 /* LocationAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CFB2A02635400582857 /* LocationAuthorization.swift */; };
-		D4F57D1A2A03970D00582857 /* MockEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D172A03970D00582857 /* MockEntity.swift */; };
+		D4F57CFC2A02635400582857 /* RequestLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57CFB2A02635400582857 /* RequestLocationRepository.swift */; };
 		D4F57D1B2A03970D00582857 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D182A03970D00582857 /* Location.swift */; };
 		D4F57D1C2A03970D00582857 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D192A03970D00582857 /* Pin.swift */; };
 		D4F57D212A0397C000582857 /* AddPinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D1E2A0397C000582857 /* AddPinUseCase.swift */; };
-		D4F57D222A0397C000582857 /* GeoCodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D202A0397C000582857 /* GeoCodeUseCase.swift */; };
 		D4F57D252A0397CD00582857 /* AddPinRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D232A0397CD00582857 /* AddPinRepository.swift */; };
 		D4F57D262A0397CD00582857 /* GeoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F57D242A0397CD00582857 /* GeoCodeRepository.swift */; };
 /* End PBXBuildFile section */
@@ -150,6 +162,19 @@
 		AF9E9D4C2A08E7E000EC8D9E /* MusicItemCollection+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MusicItemCollection+.swift"; sourceTree = "<group>"; };
 		AF9E9D532A0A10E900EC8D9E /* SearchMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicView.swift; sourceTree = "<group>"; };
 		AF9E9D562A0A161A00EC8D9E /* SearchMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicCell.swift; sourceTree = "<group>"; };
+		D45C9DF92A0A22DD00FAA39C /* MKMapView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+.swift"; sourceTree = "<group>"; };
+		D45C9DFC2A0A231200FAA39C /* SinglePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePin.swift; sourceTree = "<group>"; };
+		D45C9DFF2A0A234500FAA39C /* ClusteredPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusteredPin.swift; sourceTree = "<group>"; };
+		D45C9E072A0A246F00FAA39C /* PinAnnotationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAnnotationProtocol.swift; sourceTree = "<group>"; };
+		D45C9E092A0A279A00FAA39C /* MyPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPin.swift; sourceTree = "<group>"; };
+		D45C9E0B2A0A461B00FAA39C /* GetPinsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPinsRepository.swift; sourceTree = "<group>"; };
+		D4F19C532A08DC0300ABB567 /* MKCoordinateRegion+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+.swift"; sourceTree = "<group>"; };
+		D4F19C552A08E7A100ABB567 /* RequestDeviceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDeviceRepository.swift; sourceTree = "<group>"; };
+		D4F19C5B2A0915F000ABB567 /* RequestGeoCodeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestGeoCodeRepository.swift; sourceTree = "<group>"; };
+		D4F19C5E2A09179200ABB567 /* LocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRepository.swift; sourceTree = "<group>"; };
+		D4F19C602A0917CC00ABB567 /* DeviceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRepository.swift; sourceTree = "<group>"; };
+		D4F19C622A091A2A00ABB567 /* GetPinsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPinsUseCase.swift; sourceTree = "<group>"; };
+		D4F19C642A091D0D00ABB567 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D4F57CCF2A0243AB00582857 /* Mappin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mappin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F57CD22A0243AB00582857 /* MappinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappinApp.swift; sourceTree = "<group>"; };
 		D4F57CD42A0243AB00582857 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -158,12 +183,10 @@
 		D4F57CED2A02548E00582857 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		D4F57CF72A02609100582857 /* AddPinIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPinIntent.swift; sourceTree = "<group>"; };
 		D4F57CF92A0260D100582857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		D4F57CFB2A02635400582857 /* LocationAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAuthorization.swift; sourceTree = "<group>"; };
-		D4F57D172A03970D00582857 /* MockEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEntity.swift; sourceTree = "<group>"; };
+		D4F57CFB2A02635400582857 /* RequestLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationRepository.swift; sourceTree = "<group>"; };
 		D4F57D182A03970D00582857 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D4F57D192A03970D00582857 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		D4F57D1E2A0397C000582857 /* AddPinUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinUseCase.swift; sourceTree = "<group>"; };
-		D4F57D202A0397C000582857 /* GeoCodeUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoCodeUseCase.swift; sourceTree = "<group>"; };
 		D4F57D232A0397CD00582857 /* AddPinRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinRepository.swift; sourceTree = "<group>"; };
 		D4F57D242A0397CD00582857 /* GeoCodeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoCodeRepository.swift; sourceTree = "<group>"; };
 		D4F57D272A03980C00582857 /* PinMusicReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinMusicReducer.swift; sourceTree = "<group>"; };
@@ -248,12 +271,17 @@
 		3AB4F7942A037A69004C0F76 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				D4F57D232A0397CD00582857 /* AddPinRepository.swift */,
+				D4F57D242A0397CD00582857 /* GeoCodeRepository.swift */,
 				3AB4F7922A0379F6004C0F76 /* PinsRepository.swift */,
 				3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */,
 				AF9E9D482A08E78E00EC8D9E /* RequestMusicRepositoryInterface.swift */,
 				AF9E9D472A08E78D00EC8D9E /* RequestWeatherRepositoryInterface.swift */,
 				3AB7EF442A05181100B8FEDB /* UsersRepository.swift */,
 				3AD1DE602A08E83700A49E95 /* CSRFTokenRepository.swift */,
+				D4F19C5E2A09179200ABB567 /* LocationRepository.swift */,
+				D4F19C602A0917CC00ABB567 /* DeviceRepository.swift */,
+				D45C9E0B2A0A461B00FAA39C /* GetPinsRepository.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -261,6 +289,9 @@
 		3AB4F7952A037A6E004C0F76 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				D4F57CFB2A02635400582857 /* RequestLocationRepository.swift */,
+				D4F19C552A08E7A100ABB567 /* RequestDeviceRepository.swift */,
+				D4F19C5B2A0915F000ABB567 /* RequestGeoCodeRepository.swift */,
 				3AB4F7962A037A84004C0F76 /* APIPinsRepository.swift */,
 				3AE353DF2A0394BA00D5A2B5 /* APIPinClustersRepository.swift */,
 				AF9E9D412A08E68B00EC8D9E /* RequestMusicRepository.swift */,
@@ -373,7 +404,6 @@
 			children = (
 				3AD1DE562A05695800A49E95 /* User */,
 				D4F57D182A03970D00582857 /* Location.swift */,
-				D4F57D172A03970D00582857 /* MockEntity.swift */,
 				D4F57D192A03970D00582857 /* Pin.swift */,
 				AF03F8C22A026BA100E90660 /* Music.swift */,
 				AF03F8C72A027A8600E90660 /* Weather.swift */,
@@ -385,21 +415,11 @@
 			isa = PBXGroup;
 			children = (
 				3AD1DE492A055FC300A49E95 /* AuthUseCase */,
-				D4F57D1F2A0397C000582857 /* GeoCodeUseCase */,
 				D4F57D1D2A0397C000582857 /* PinUseCases */,
 				AF1078C52A039E4500DB8EDA /* MusicUseCases */,
 				AF1078C82A04FB2900DB8EDA /* WeatherUseCases */,
 			);
 			path = UseCases;
-			sourceTree = "<group>";
-		};
-		AF03F8C92A027EE900E90660 /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				D4F57D232A0397CD00582857 /* AddPinRepository.swift */,
-				D4F57D242A0397CD00582857 /* GeoCodeRepository.swift */,
-			);
-			path = Repositories;
 			sourceTree = "<group>";
 		};
 		AF03F8D02A02AB2700E90660 /* Reducers */ = {
@@ -432,6 +452,34 @@
 			isa = PBXGroup;
 			children = (
 				AF9E9D522A0A10DC00EC8D9E /* SearchMusic */,
+            );
+            path = View;
+            sourceTree = "<group>";
+        };
+		D45C9DFB2A0A22FE00FAA39C /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				D45C9E012A0A236D00FAA39C /* Pin */,
+				D4F19C642A091D0D00ABB567 /* MapView.swift */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
+		D45C9E012A0A236D00FAA39C /* Pin */ = {
+			isa = PBXGroup;
+			children = (
+				D45C9E052A0A245000FAA39C /* Protocol */,
+				D45C9E042A0A244B00FAA39C /* View */,
+			);
+			path = Pin;
+			sourceTree = "<group>";
+		};
+		D45C9E042A0A244B00FAA39C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D45C9DFC2A0A231200FAA39C /* SinglePin.swift */,
+				D45C9DFF2A0A234500FAA39C /* ClusteredPin.swift */,
+				D45C9E092A0A279A00FAA39C /* MyPin.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -443,6 +491,14 @@
 				AF9E9D562A0A161A00EC8D9E /* SearchMusicCell.swift */,
 			);
 			path = SearchMusic;
+            sourceTree = "<group>";
+        };
+		D45C9E052A0A245000FAA39C /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D45C9E072A0A246F00FAA39C /* PinAnnotationProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		D4F57CC62A0243AB00582857 = {
@@ -493,6 +549,7 @@
 				AF9E9D512A0A10C600EC8D9E /* View */,
 				AF03F8D02A02AB2700E90660 /* Reducers */,
 				D4F57CD42A0243AB00582857 /* ContentView.swift */,
+				D45C9DFB2A0A22FE00FAA39C /* MapView */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -500,7 +557,6 @@
 		D4F57CE42A02452600582857 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				AF03F8C92A027EE900E90660 /* Repositories */,
 				AF03F8C42A026C8D00E90660 /* UseCases */,
 				AF03F8C12A02663500E90660 /* Entities */,
 				3AD1DE512A05665A00A49E95 /* Util */,
@@ -541,8 +597,10 @@
 			isa = PBXGroup;
 			children = (
 				D4F57CED2A02548E00582857 /* Color+.swift */,
+				D4F19C532A08DC0300ABB567 /* MKCoordinateRegion+.swift */,
 				AF9E9D4C2A08E7E000EC8D9E /* MusicItemCollection+.swift */,
 				AF9E9D4B2A08E7E000EC8D9E /* String+.swift */,
+				D45C9DF92A0A22DD00FAA39C /* MKMapView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -558,7 +616,6 @@
 		D4F57CFA2A02631C00582857 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				D4F57CFB2A02635400582857 /* LocationAuthorization.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -575,16 +632,9 @@
 			isa = PBXGroup;
 			children = (
 				D4F57D1E2A0397C000582857 /* AddPinUseCase.swift */,
+				D4F19C622A091A2A00ABB567 /* GetPinsUseCase.swift */,
 			);
 			path = PinUseCases;
-			sourceTree = "<group>";
-		};
-		D4F57D1F2A0397C000582857 /* GeoCodeUseCase */ = {
-			isa = PBXGroup;
-			children = (
-				D4F57D202A0397C000582857 /* GeoCodeUseCase.swift */,
-			);
-			path = GeoCodeUseCase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -666,10 +716,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F57CFC2A02635400582857 /* RequestLocationRepository.swift in Sources */,
+				D4F19C562A08E7A100ABB567 /* RequestDeviceRepository.swift in Sources */,
 				AF9E9D4A2A08E78E00EC8D9E /* RequestMusicRepositoryInterface.swift in Sources */,
-				D4F57CFC2A02635400582857 /* LocationAuthorization.swift in Sources */,
+				D4F57CFC2A02635400582857 /* RequestLocationRepository.swift in Sources */,
 				3AB7EF472A0519AE00B8FEDB /* APIUsersRepository.swift in Sources */,
 				D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */,
+				D45C9DFD2A0A231200FAA39C /* SinglePin.swift in Sources */,
 				3AD1DE552A05668200A49E95 /* UserDefaultsWrapper.swift in Sources */,
 				D4F57CEE2A02548E00582857 /* Color+.swift in Sources */,
 				3AD1DE442A05419200A49E95 /* APIProvider.swift in Sources */,
@@ -678,20 +731,22 @@
 				D4F57D252A0397CD00582857 /* AddPinRepository.swift in Sources */,
 				D4F57D1C2A03970D00582857 /* Pin.swift in Sources */,
 				AF9E9D572A0A161A00EC8D9E /* SearchMusicCell.swift in Sources */,
+				D4F19C5C2A0915F000ABB567 /* RequestGeoCodeRepository.swift in Sources */,
 				3AD1DE302A053B3700A49E95 /* APITarget+Pins.swift in Sources */,
 				3AE353DC2A03935A00D5A2B5 /* PinClustersListAPITarget.swift in Sources */,
 				AF9E9D592A0A17B200EC8D9E /* MusicChartUseCase.swift in Sources */,
 				D4F57CF82A02609100582857 /* AddPinIntent.swift in Sources */,
 				3AE353DA2A0390E000D5A2B5 /* APIJSONDecoder.swift in Sources */,
+				D4F19C5D2A09160200ABB567 /* PinMusicReducer.swift in Sources */,
 				3AD1DE392A053E9300A49E95 /* PinsReadListAPITarget.swift in Sources */,
-				D4F57D1A2A03970D00582857 /* MockEntity.swift in Sources */,
 				3AD1DE242A05371600A49E95 /* UsersLoginAPITarget.swift in Sources */,
 				3AD1DE4B2A055FD800A49E95 /* AuthUseCase.swift in Sources */,
+				D45C9DFA2A0A22DD00FAA39C /* MKMapView+.swift in Sources */,
 				D4F57D262A0397CD00582857 /* GeoCodeRepository.swift in Sources */,
+				D4F19C5F2A09179200ABB567 /* LocationRepository.swift in Sources */,
 				AF9E9D442A08E68B00EC8D9E /* RequestWeatherRepository.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
 				AF9E9D4D2A08E7E000EC8D9E /* String+.swift in Sources */,
-				D4F57D222A0397C000582857 /* GeoCodeUseCase.swift in Sources */,
 				3AD1DE462A0544E900A49E95 /* Responsable.swift in Sources */,
 				3AD1DE362A053CB300A49E95 /* PinsDeleteAPITarget.swift in Sources */,
 				AF9E9D492A08E78E00EC8D9E /* RequestWeatherRepositoryInterface.swift in Sources */,
@@ -702,12 +757,18 @@
 				D4F57D212A0397C000582857 /* AddPinUseCase.swift in Sources */,
 				3AE353E02A0394BA00D5A2B5 /* APIPinClustersRepository.swift in Sources */,
 				AF9E9D582A0A174900EC8D9E /* MusicReducer.swift in Sources */,
+				D45C9E0C2A0A461B00FAA39C /* GetPinsRepository.swift in Sources */,
+				D4F57D212A0397C000582857 /* AddPinUseCase.swift in Sources */,
+				3AE353E02A0394BA00D5A2B5 /* APIPinClustersRepository.swift in Sources */,
+				D45C9E0A2A0A279A00FAA39C /* MyPin.swift in Sources */,
 				3AB4F7902A0379B1004C0F76 /* DTO+PinCluster.swift in Sources */,
 				3AD1DE632A08E84000A49E95 /* APICSRFTokenRepository.swift in Sources */,
 				3AD1DE482A055B3300A49E95 /* APIError.swift in Sources */,
+				D45C9E082A0A246F00FAA39C /* PinAnnotationProtocol.swift in Sources */,
 				3AB4F7972A037A84004C0F76 /* APIPinsRepository.swift in Sources */,
 				3A1DC8E12A08E9A800B7462E /* CSRFTokenAPITarget.swift in Sources */,
 				3AD1DE612A08E83700A49E95 /* CSRFTokenRepository.swift in Sources */,
+				D4F19C612A0917CC00ABB567 /* DeviceRepository.swift in Sources */,
 				3AB4F7932A0379F6004C0F76 /* PinsRepository.swift in Sources */,
 				D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */,
 				3AD1DE5F2A08DB7000A49E95 /* LaunchScreenReducer.swift in Sources */,
@@ -715,15 +776,18 @@
 				3AD1DE262A05375C00A49E95 /* AuthParameters.swift in Sources */,
 				3AD1DE5D2A08DB3100A49E95 /* LaunchScreenView.swift in Sources */,
 				3AB4F78C2A0379A2004C0F76 /* DTO+Music.swift in Sources */,
+				D4F19C542A08DC0300ABB567 /* MKCoordinateRegion+.swift in Sources */,
 				3AB4F7992A037CA5004C0F76 /* Encodable+Dictionary.swift in Sources */,
 				3AE353DE2A03949B00D5A2B5 /* PinClustersRepository.swift in Sources */,
 				3AB4F78A2A03797C004C0F76 /* DTO+Namespace.swift in Sources */,
 				3AD1DE5A2A0569B800A49E95 /* MockCurrentUser.swift in Sources */,
 				3AD1DE322A053B4100A49E95 /* APITarget+PinClusters.swift in Sources */,
+				D4F19C632A091A2A00ABB567 /* GetPinsUseCase.swift in Sources */,
 				3AD1DE3B2A053EA100A49E95 /* PinsReadDetailAPITarget.swift in Sources */,
 				AF9E9D432A08E68B00EC8D9E /* RequestMusicRepository.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
 				3AB4F7692A0373BF004C0F76 /* APITarget.swift in Sources */,
+				D4F19C652A091D0D00ABB567 /* MapView.swift in Sources */,
 				D4F57D1B2A03970D00582857 /* Location.swift in Sources */,
 				3AD1DE502A05632400A49E95 /* DefaultCurrentUser.swift in Sources */,
 				3AD1DE282A05396F00A49E95 /* PinsCreateAPITarget.swift in Sources */,
@@ -742,6 +806,7 @@
 				3AD1DE422A053F8300A49E95 /* ParametersRequestable.swift in Sources */,
 				3A1DC8DF2A08E99300B7462E /* APITarget+ETC.swift in Sources */,
 				3AD1DE222A05370C00A49E95 /* UsersSignupAPITarget.swift in Sources */,
+				D45C9E002A0A234500FAA39C /* ClusteredPin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,7 +947,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -916,7 +981,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
