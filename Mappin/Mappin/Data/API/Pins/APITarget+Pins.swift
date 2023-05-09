@@ -18,10 +18,13 @@ extension APITarget {
         )
     }
     
-    static let readPins = PinsReadListAPITarget(
-        path: basePath,
-        method: .get
-    )
+    static func readPins(parameters: PinsReadListAPITarget.Parameters) -> PinsReadListAPITarget {
+        .init(
+            path: basePath,
+            method: .get,
+            parameters: parameters
+        )
+    }
     
     static func readPin(id: Int) -> PinsReadDetailAPITarget {
         .init(
