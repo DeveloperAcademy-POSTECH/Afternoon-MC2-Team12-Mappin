@@ -60,7 +60,7 @@ struct APIPinsRepository: PinsRepository {
     }
     
     func update(pin: DTO.Pin) async throws {
-j        try await provider.justRequest(.updatePin(parameters: pin))
+        try await provider.justRequest(.updatePin(parameters: pin))
     }
     
     func delete(id: Int) async throws {
