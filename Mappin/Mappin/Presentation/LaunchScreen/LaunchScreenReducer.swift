@@ -57,7 +57,6 @@ struct LaunchScreenReducer: ReducerProtocol {
         Future<Void, Error> { promise in
             Task {
                 do {
-                    try await applyCSRFToken()
                     try await applyAuthToken()
                     promise(.success(()))
                 } catch {
