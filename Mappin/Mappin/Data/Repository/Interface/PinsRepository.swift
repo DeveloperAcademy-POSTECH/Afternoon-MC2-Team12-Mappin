@@ -9,15 +9,9 @@ import Foundation
 
 protocol PinsRepository {
     func create(
-        applemusicId: String,
-        title: String,
-        artistName: String,
-        latitude: Double,
-        longitude: Double,
-        administrativeArea: String,
-        locality: String,
-        weather: String,
-        temperature: Int
+        music: Music,
+        location: Location,
+        weather: Weather
     ) async throws
     
     func readList(
@@ -25,9 +19,9 @@ protocol PinsRepository {
         centerLongitude: Double,
         horizontalRadius: Double,
         verticalRadius: Double
-    ) async throws -> [DTO.Pin]
+    ) async throws -> [Pin]
     
-    func readDetail(id: Int) async throws -> DTO.Pin
+    func readDetail(id: Int) async throws -> Pin
     func update(pin: DTO.Pin) async throws
     func delete(id: Int) async throws
 }

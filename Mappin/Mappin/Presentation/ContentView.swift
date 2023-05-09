@@ -45,7 +45,7 @@ extension ContentView {
                     deviceRepository: RequestDeviceRepository()
                 ),
                 getPinsUseCase: DefaultGetPinUseCase(
-                    locatationRepository: locationRepository,
+                    locationRepository: locationRepository,
                     pinsRepository: pinsRepository
                 )
             )

@@ -13,5 +13,5 @@ protocol PinClustersRepository {
         centerLongitude: Double,
         horizontalRadius: Double,
         verticalRadius: Double
-    ) async throws -> [DTO.PinCluster]
+    ) async throws -> [Pin]
 }

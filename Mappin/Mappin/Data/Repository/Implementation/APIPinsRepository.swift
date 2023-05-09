@@ -12,28 +12,22 @@ struct APIPinsRepository: PinsRepository {
     private let provider = APIProvider()
     
     func create(
-        applemusicId: String,
-        title: String,
-        artistName: String,
-        latitude: Double,
-        longitude: Double,
-        administrativeArea: String,
-        locality: String,
-        weather: String,
-        temperature: Int
+        music: Music,
+        location: Location,
+        weather: Weather
     ) async throws {
         let parameters = PinsCreateAPITarget.Parameters(
             music: .init(
-                applemusic_id: applemusicId,
-                title: title,
-                artist_name: artistName
+                applemusic_id: music.id,
+                title: music.title,
+                artist_name: music.artist
             ),
-            latitude: latitude.decimalRounded(6),
-            longitude: longitude.decimalRounded(6),
-            administrative_area: administrativeArea,
-            locality: locality,
-            weather: weather,
-            temperature: temperature
+            latitude: location.latitude.decimalRounded(6),
+            longitude: location.longitude.decimalRounded(6),
+            administrative_area: location.locality,
+            locality: location.subLocality,
+            weather: weather.symbolName,
+            temperature: Int(weather.temperature) ?? 0
         )
         let target = APITarget.createPin(parameters: parameters)
         try await provider.justRequest(target)
@@ -44,7 +38,7 @@ struct APIPinsRepository: PinsRepository {
         centerLongitude: Double,
         horizontalRadius: Double,
         verticalRadius: Double
-    ) async throws -> [DTO.Pin] {
+    ) async throws -> [Pin] {
         let parameters = PinsReadListAPITarget.Parameters(
             center_latitude: centerLatitude,
             center_longitude: centerLongitude,
@@ -52,11 +46,12 @@ struct APIPinsRepository: PinsRepository {
             vertical_radius: verticalRadius
         )
         let target = APITarget.readPins(parameters: parameters)
-        return try await provider.requestResponsable(target)
+        let dtos = try await provider.requestResponsable(target)
+        return dtos.map { $0.entity }
     }
     
-    func readDetail(id: Int) async throws -> DTO.Pin {
-        try await provider.requestResponsable(APITarget.readPin(id: id))
+    func readDetail(id: Int) async throws -> Pin {
+        try await provider.requestResponsable(APITarget.readPin(id: id)).entity
     }
     
     func update(pin: DTO.Pin) async throws {

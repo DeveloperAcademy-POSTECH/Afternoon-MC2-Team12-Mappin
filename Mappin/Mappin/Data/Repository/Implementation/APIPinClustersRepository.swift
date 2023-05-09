@@ -16,7 +16,7 @@ struct APIPinClustersRepository: PinClustersRepository {
         centerLongitude: Double,
         horizontalRadius: Double,
         verticalRadius: Double
-    ) async throws -> [DTO.PinCluster] {
+    ) async throws -> [Pin] {
         let parameters = PinClustersListAPITarget.Parameters(
             center_latitude: centerLatitude,
             center_longitude: centerLongitude,
@@ -24,6 +24,7 @@ struct APIPinClustersRepository: PinClustersRepository {
             vertical_radius: verticalRadius
         )
         let target = APITarget.readPinClusters(parameters: parameters)
-        return try await provider.requestResponsable(target)
+        let dtos = try await provider.requestResponsable(target)
+        return dtos.map { $0.entity }
     }
 }
