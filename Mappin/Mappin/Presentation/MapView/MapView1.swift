@@ -21,7 +21,7 @@ struct MapView: UIViewRepresentable {
         
         let mapView = MKMapView()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: RequestLocationRepository.manager.latitude, longitude: RequestLocationRepository.manager.longitude), span: MKCoordinateSpan(latitudeDelta: 0.0043282051271913355, longitudeDelta: 0.002735072544965078)), animated: true)
+            mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 36.014295, longitude: 129.325791), span: MKCoordinateSpan(latitudeDelta: 0.0043282051271913355, longitudeDelta: 0.002735072544965078)), animated: true)
         }
         mapView.userTrackingMode = .follow
         mapView.showsUserLocation = true

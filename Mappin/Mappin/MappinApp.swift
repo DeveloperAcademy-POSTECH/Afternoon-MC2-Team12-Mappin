@@ -13,15 +13,17 @@ import MapKit
 struct MappinApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(
-                store: Store(
-                    initialState: PinMusicReducer.State(),
-                    reducer: PinMusicReducergit ()._printChanges()
-                )
-            )
-            .onAppear {
-                _ = RequestLocationRepository.manager
-            }
+            PrimaryView()
+            //MapView(action: .constant(.none), userTrackingMode: .follow)
+//            ContentView(
+//                store: Store(
+//                    initialState: PinMusicReducer.State(),
+//                    reducer: PinMusicReducergit ()._printChanges()
+//                )
+//            )
+//            .onAppear {
+//                _ = RequestLocationRepository.manager
+//            }
         }
     }
 }
