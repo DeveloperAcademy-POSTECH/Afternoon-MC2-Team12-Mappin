@@ -9,8 +9,9 @@ import SwiftUI
 
 struct SearchMusicCell: View {
     
-    @Binding var isSelected: Bool
-    let music: Music
+    var music: Music
+    var isSelected: Bool // State로 선언할 경우 다른 곳을 참조할 수 있음.
+    var noSelection: Bool
     
     var body: some View {
         HStack(spacing: 0) {
@@ -49,19 +50,10 @@ struct SearchMusicCell: View {
                 }
             }
             Spacer()
-            Button {
-                
-            } label: {
-                Image(systemName: isSelected ? "checkmark" : "plus")
-                    .foregroundColor(.black)
-            }
+            Image(systemName: isSelected ? "checkmark" : "plus")
+                .foregroundColor(.black)
         }
-        
+        .opacity(noSelection != isSelected ? 1.0 : 0.4)
     }
+    
 }
-
-//struct MusicListCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchMusicCell()
-//    }
-//}
