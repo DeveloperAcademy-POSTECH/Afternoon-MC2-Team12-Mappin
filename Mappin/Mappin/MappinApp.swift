@@ -9,16 +9,12 @@ import SwiftUI
 import ComposableArchitecture
 import MapKit
 
+
 @main
 struct MappinApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView(
-                store: Store(
-                    initialState: PinMusicReducer.State(),
-                    reducer: PinMusicReducergit ()._printChanges()
-                )
-            )
+        WindowGroup {            
+            DefaultMockDIContainer.shared.makeContentView()
             .onAppear {
                 _ = RequestLocationRepository.manager
             }

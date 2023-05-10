@@ -77,8 +77,8 @@
 		D45C9E082A0A246F00FAA39C /* PinAnnotationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9E072A0A246F00FAA39C /* PinAnnotationProtocol.swift */; };
 		D45C9E0A2A0A279A00FAA39C /* MyPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9E092A0A279A00FAA39C /* MyPin.swift */; };
 		D45C9E0C2A0A461B00FAA39C /* GetPinsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9E0B2A0A461B00FAA39C /* GetPinsRepository.swift */; };
-		D45C9E0F2A0A74AF00FAA39C /* MappinSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9E0E2A0A74AF00FAA39C /* MappinSceneDIContainer.swift */; };
-		D45C9E112A0A754B00FAA39C /* MappinFlowCoordinatorDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9E102A0A754B00FAA39C /* MappinFlowCoordinatorDependencies.swift */; };
+		D45C9E0F2A0A74AF00FAA39C /* MappinDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9E0E2A0A74AF00FAA39C /* MappinDIContainer.swift */; };
+		D45C9E112A0A754B00FAA39C /* DefaultMockDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9E102A0A754B00FAA39C /* DefaultMockDIContainer.swift */; };
 		D4F19C542A08DC0300ABB567 /* MKCoordinateRegion+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F19C532A08DC0300ABB567 /* MKCoordinateRegion+.swift */; };
 		D4F19C562A08E7A100ABB567 /* RequestDeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F19C552A08E7A100ABB567 /* RequestDeviceRepository.swift */; };
 		D4F19C5C2A0915F000ABB567 /* RequestGeoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F19C5B2A0915F000ABB567 /* RequestGeoCodeRepository.swift */; };
@@ -170,8 +170,8 @@
 		D45C9E072A0A246F00FAA39C /* PinAnnotationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAnnotationProtocol.swift; sourceTree = "<group>"; };
 		D45C9E092A0A279A00FAA39C /* MyPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPin.swift; sourceTree = "<group>"; };
 		D45C9E0B2A0A461B00FAA39C /* GetPinsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPinsRepository.swift; sourceTree = "<group>"; };
-		D45C9E0E2A0A74AF00FAA39C /* MappinSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappinSceneDIContainer.swift; sourceTree = "<group>"; };
-		D45C9E102A0A754B00FAA39C /* MappinFlowCoordinatorDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappinFlowCoordinatorDependencies.swift; sourceTree = "<group>"; };
+		D45C9E0E2A0A74AF00FAA39C /* MappinDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappinDIContainer.swift; sourceTree = "<group>"; };
+		D45C9E102A0A754B00FAA39C /* DefaultMockDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMockDIContainer.swift; sourceTree = "<group>"; };
 		D4F19C532A08DC0300ABB567 /* MKCoordinateRegion+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+.swift"; sourceTree = "<group>"; };
 		D4F19C552A08E7A100ABB567 /* RequestDeviceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDeviceRepository.swift; sourceTree = "<group>"; };
 		D4F19C5B2A0915F000ABB567 /* RequestGeoCodeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestGeoCodeRepository.swift; sourceTree = "<group>"; };
@@ -508,8 +508,8 @@
 		D45C9E0D2A0A749600FAA39C /* DIContanier */ = {
 			isa = PBXGroup;
 			children = (
-				D45C9E0E2A0A74AF00FAA39C /* MappinSceneDIContainer.swift */,
-				D45C9E102A0A754B00FAA39C /* MappinFlowCoordinatorDependencies.swift */,
+				D45C9E0E2A0A74AF00FAA39C /* MappinDIContainer.swift */,
+				D45C9E102A0A754B00FAA39C /* DefaultMockDIContainer.swift */,
 			);
 			path = DIContanier;
 			sourceTree = "<group>";
@@ -729,7 +729,7 @@
 				3AB7EF472A0519AE00B8FEDB /* APIUsersRepository.swift in Sources */,
 				D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */,
 				D45C9DFD2A0A231200FAA39C /* SinglePin.swift in Sources */,
-				D45C9E112A0A754B00FAA39C /* MappinFlowCoordinatorDependencies.swift in Sources */,
+				D45C9E112A0A754B00FAA39C /* DefaultMockDIContainer.swift in Sources */,
 				3AD1DE552A05668200A49E95 /* UserDefaultsWrapper.swift in Sources */,
 				D4F57CEE2A02548E00582857 /* Color+.swift in Sources */,
 				3AD1DE442A05419200A49E95 /* APIProvider.swift in Sources */,
@@ -811,7 +811,7 @@
 				AF9E9D542A0A10E900EC8D9E /* SearchMusicView.swift in Sources */,
 				AF03F8C82A027A8600E90660 /* Weather.swift in Sources */,
 				3AD1DE422A053F8300A49E95 /* ParametersRequestable.swift in Sources */,
-				D45C9E0F2A0A74AF00FAA39C /* MappinSceneDIContainer.swift in Sources */,
+				D45C9E0F2A0A74AF00FAA39C /* MappinDIContainer.swift in Sources */,
 				3A1DC8DF2A08E99300B7462E /* APITarget+ETC.swift in Sources */,
 				3AD1DE222A05370C00A49E95 /* UsersSignupAPITarget.swift in Sources */,
 				D45C9E002A0A234500FAA39C /* ClusteredPin.swift in Sources */,

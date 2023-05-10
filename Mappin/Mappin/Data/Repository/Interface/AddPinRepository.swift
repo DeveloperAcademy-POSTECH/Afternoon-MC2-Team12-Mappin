@@ -17,3 +17,10 @@ protocol AddPinRepository {
         weather: Weather
     ) async throws
 }
+
+struct TempAddPinRepository: AddPinRepository {
+    
+    func requestAddPin(deviceId: String, music: Music, location: Location, weather: Weather) async throws {
+        
+    }
+}

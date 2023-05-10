@@ -13,19 +13,20 @@ struct MapView: UIViewRepresentable {
     @Binding var action: Action
     
     @State private var zoomLevel: Double = 0.01
+    var region: MKCoordinateRegion = MKCoordinateRegion()
     var isArchive: Bool = false
     var userTrackingMode: MKUserTrackingMode
-    
-    
+ 
     func makeUIView(context: Context) -> MKMapView {
         
         let mapView = MKMapView()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: RequestLocationRepository.manager.latitude, longitude: RequestLocationRepository.manager.longitude), span: MKCoordinateSpan(latitudeDelta: 0.0043282051271913355, longitudeDelta: 0.002735072544965078)), animated: true)
         }
         mapView.userTrackingMode = .follow
         mapView.showsUserLocation = true
-        // mapView.isUserInteractionEnabled = false
+        mapView.isUserInteractionEnabled = isArchive
         mapView.register(ClusterdPin.self, forAnnotationViewWithReuseIdentifier: "")
         
         mapView.delegate = context.coordinator
@@ -36,32 +37,28 @@ struct MapView: UIViewRepresentable {
     func updateUIView(_ mapView: MKMapView, context: Context) {
         switch action {
         case .none:
-            print("MapView is made completely")
+            break
         case .createTemporaryPin(currentLocation: let currentLocation):
-            var pin = Pin.empty
-            print("add pin complety")
+    
+            let newPin = PinAnnotation(Pin.empty)
+            newPin.pin.location.latitude = currentLocation.latitude
+            newPin.pin.location.longitude = currentLocation.longitude
             
-            pin.location.latitude = currentLocation.latitude
-            pin.location.longitude = currentLocation.longitude
-            let temp = PinAnnotation(pin)
-            mapView.addAnnotation(temp)
+            mapView.addAnnotation(newPin)
             
-        case .updatePins(let pins):
+        case .updatePins(let newPins):
+            
             mapView.removeAllAnotation()
+            mapView.addAnnotations(newPins.map { PinAnnotation($0) })
             
-            let annotations = pins.map { PinAnnotation($0) }
-            mapView.addAnnotations(annotations)
+        case .move(here: let here):
             
-        case .zoomLevelUp(center: let center):
-            mapView.setRegion(MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)), animated: true)
-        case .showDetail(pin: let pin):
-            break
-        case .hideDetailPin:
-            break
-        case .reloadPin(let pins):
-            mapView.removeAllAnotation()
-            let annotations = pins.map { PinAnnotation($0) }
-            mapView.addAnnotations(annotations)
+            mapView.setRegion(
+                MKCoordinateRegion(
+                    center: here,
+                    latitudinalMeters: 0.0043282051271913355,
+                    longitudinalMeters: 0.002735072544965078),
+                animated: true)
         }
     }
     
@@ -78,19 +75,11 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            
-        }
-        func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-            
+            parent.region = mapView.region
         }
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             
-            guard let annotation = annotation as? PinAnnotation else { return MKAnnotationView() }
-            guard let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "") as? ClusterdPin else { return MKAnnotationView() }
-            
-            annotationView.pin = annotation.pin
-            return annotationView
         }
     }
 }
@@ -102,29 +91,10 @@ extension MapView {
         case none
         case createTemporaryPin(currentLocation: CLLocationCoordinate2D)
         case updatePins([Pin])
-        case zoomLevelUp(center: CLLocationCoordinate2D)
-        case showDetail(pin: Pin)
-        case hideDetailPin
-        case reloadPin([Pin])
+        case move(here: CLLocationCoordinate2D)
         
         var yame: Int {
-            switch self {
-                
-            case .none:
-                return 1
-            case .createTemporaryPin(_):
-                return 2
-            case .updatePins(_):
-                return 3
-            case .zoomLevelUp(_):
-                return 4
-            case .showDetail(_):
-                return 5
-            case .hideDetailPin:
-                return 6
-            case .reloadPin(_):
-                return 7
-            }
+            (1...10000).randomElement()!
         }
     }
 }

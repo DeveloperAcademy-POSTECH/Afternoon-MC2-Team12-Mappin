@@ -11,8 +11,12 @@ import CoreLocation
 import MapKit
 import SwiftUI
 
+protocol PinMusic: ReducerProtocol {
+    var addPinUseCase: AddPinUseCase { get }
+    var getPinsUseCase: GetPinsUseCase { get }
+}
 
-struct PinMusicReducer: ReducerProtocol {
+struct PinMusicReducer: PinMusic {
     
     let addPinUseCase: AddPinUseCase
     let getPinsUseCase: GetPinsUseCase
@@ -58,4 +62,3 @@ struct PinMusicReducer: ReducerProtocol {
         }
     }
 }
-

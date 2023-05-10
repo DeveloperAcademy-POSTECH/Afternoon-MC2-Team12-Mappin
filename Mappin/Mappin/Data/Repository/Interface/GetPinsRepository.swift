@@ -8,6 +8,7 @@
 import Foundation
 
 protocol GetPinsRepository {
+    
     func GetPinsUsingMap(
         center: (latitude: Double, longitude: Double),
         latitudeDelta: Double,
@@ -21,3 +22,14 @@ protocol GetPinsRepository {
     ) async throws -> [Pin]
 }
 
+struct TempImplementaitionOfGetPinsRepository: GetPinsRepository {
+    func GetPinsUsingMap(center: (latitude: Double, longitude: Double), latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin] {
+        return []
+    }
+    
+    func GetPinsUsingList(center: (latitude: Double, longitude: Double), latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin] {
+        return []
+    }
+    
+    
+}
