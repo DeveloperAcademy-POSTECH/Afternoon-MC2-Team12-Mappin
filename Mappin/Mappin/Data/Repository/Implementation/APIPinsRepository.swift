@@ -24,8 +24,8 @@ struct APIPinsRepository: PinsRepository {
             ),
             latitude: location.latitude.decimalRounded(6),
             longitude: location.longitude.decimalRounded(6),
-            administrative_area: location.locality,
-            locality: location.subLocality,
+            locality: location.locality,
+            sub_locality: location.subLocality,
             weather: weather.symbolName,
             temperature: Int(weather.temperature) ?? 0
         )

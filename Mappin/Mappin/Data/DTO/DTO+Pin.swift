@@ -13,8 +13,8 @@ extension DTO {
         let music: DTO.Music
         let latitude: Double
         let longitude: Double
-        let administrative_area: String
         let locality: String
+        let sub_locality: String
         let weather: String
         let temperature: Int
         let created_at: Date
@@ -44,8 +44,8 @@ extension DTO.Pin {
                 id: UUID().uuidString,
                 latitude: latitude,
                 longitude: longitude,
-                locality: administrative_area,
-                subLocality: locality
+                locality: locality,
+                subLocality: sub_locality
             )
         )
     }

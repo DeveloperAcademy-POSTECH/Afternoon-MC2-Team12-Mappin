@@ -39,8 +39,8 @@ extension DTO.PinCluster {
                 id: UUID().uuidString,
                 latitude: latitude,
                 longitude: longitude,
-                locality: main_pin.administrative_area,
-                subLocality: main_pin.locality
+                locality: main_pin.locality,
+                subLocality: main_pin.sub_locality
             )
         )
     }

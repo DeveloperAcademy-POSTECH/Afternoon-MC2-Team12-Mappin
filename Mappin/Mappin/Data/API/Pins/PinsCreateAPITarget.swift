@@ -17,8 +17,8 @@ final class PinsCreateAPITarget: APITarget, ParametersRequestable {
         let music: Music
         let latitude: Double
         let longitude: Double
-        let administrative_area: String
         let locality: String
+        let sub_locality: String
         let weather: String
         let temperature: Int
     }
