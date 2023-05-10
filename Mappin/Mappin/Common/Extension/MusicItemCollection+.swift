@@ -15,7 +15,7 @@ extension MusicItemCollection where Element == Song {
             return Music(id: String(describing: $0.id),
                          title: $0.title,
                          artist: $0.artistName,
-                         artwork: $0.artwork?.url(width: 99, height: 99),
+                         artwork: $0.artwork?.url(width: 200, height: 200),
                          appleMusicUrl: $0.url)
         }
     }
