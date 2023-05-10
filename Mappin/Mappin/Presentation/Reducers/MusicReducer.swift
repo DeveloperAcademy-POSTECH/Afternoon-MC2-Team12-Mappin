@@ -10,12 +10,14 @@ import UIKit
 import ComposableArchitecture
 import Combine
 
+
 struct MusicReducer: ReducerProtocol {
     
-//    let searchMusicUseCase = DefaultSearchMusicUseCase(musicRepository: RequestMusicRepository())
-//    let musicChartUseCase = DefaultMusicChartUseCase(musicRepository: RequestMusicRepository())
+    //    let searchMusicUseCase = DefaultSearchMusicUseCase(musicRepository: RequestMusicRepository())
+    //    let musicChartUseCase = DefaultMusicChartUseCase(musicRepository: RequestMusicRepository())
     let searchMusicUseCase: SearchMusicUseCase
     let musicChartUseCase: MusicChartUseCase
+    let debounceId = "Kozi"
     
     init(
         searchMusicUseCase: SearchMusicUseCase = DefaultSearchMusicUseCase(),
@@ -30,9 +32,12 @@ struct MusicReducer: ReducerProtocol {
         var searchMusic: [Music] = []
         var musicChart: [Music] = []
         var selectedMusicIndex: String = ""
+        
+        //var just = PassthroughSubject<MusicReducer.Action, Never>()
     }
     
     enum Action {
+//        case none
         case resetSearchTerm
         case searchTermChanged(searchTerm: String)
         case requestMusicChart
@@ -54,12 +59,20 @@ struct MusicReducer: ReducerProtocol {
         case .searchTermChanged(let searchTerm):
             state.searchTerm = searchTerm
             return .task {
-                return .applySearchMusic(try await searchMusicUseCase.execute(searchTerm: searchTerm))
-            } catch: { error in
-                print(error)
+                return try await .applySearchMusic(searchMusicUseCase.execute(searchTerm: searchTerm))
+            } catch: { Error in
+                print(Error)
                 return .resetSearchMusic
             }
+            .debounce(id: debounceId, for: 0.2, scheduler: DispatchQueue.main)
+            .eraseToEffect()
             
+//                .run { action in
+//                    try await action.send(.applySearchMusic(searchMusicUseCase.execute(searchTerm: searchTerm)))
+//                }
+//                .debounce(id: id, for: 0.5, scheduler: DispatchQueue.main)
+//                .eraseToEffect()
+
         case .requestMusicChart:
             return .task {
                 return .applyMusicChart(try await musicChartUseCase.execute())
@@ -76,6 +89,7 @@ struct MusicReducer: ReducerProtocol {
         case .applySearchMusic(let music):
             state.selectedMusicIndex = ""
             state.searchMusic = music
+            print("@LOG \(music.count)")
             return .none
             
         case .resetSearchMusic:
