@@ -17,7 +17,7 @@ final class DefaultSearchMusicUseCase: SearchMusicUseCase {
     
     private let musicRepository: RequestMusicRepositoryInterface
     
-    init(musicRepository: RequestMusicRepositoryInterface) {
+    init(musicRepository: RequestMusicRepositoryInterface = RequestMusicRepository()) {
         self.musicRepository = musicRepository
     }
     
