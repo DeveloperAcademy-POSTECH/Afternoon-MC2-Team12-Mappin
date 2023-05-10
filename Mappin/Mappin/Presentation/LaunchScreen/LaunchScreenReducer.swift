@@ -58,6 +58,7 @@ struct LaunchScreenReducer: ReducerProtocol {
             Task {
                 do {
                     try await applyAuthToken()
+                    try await applyCSRFToken()
                     promise(.success(()))
                 } catch {
                     promise(.failure(error))
@@ -74,14 +75,14 @@ struct LaunchScreenReducer: ReducerProtocol {
             .eraseToAnyPublisher()
     }
     
-    private func applyCSRFToken() async throws {
-        let token = try await authUseCase.getCSRFToken()
-        currentUser.csrfToken = token
-    }
-    
     private func applyAuthToken() async throws {
         let token = try await authUseCase.getAuthToken()
         currentUser.authToken = token
+    }
+    
+    private func applyCSRFToken() async throws {
+        let token = try await authUseCase.getCSRFToken()
+        currentUser.csrfToken = token
     }
     
     private func handleError(_ error: Error) {
