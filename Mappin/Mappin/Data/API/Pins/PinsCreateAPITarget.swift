@@ -8,7 +8,20 @@
 import Foundation
 
 final class PinsCreateAPITarget: APITarget, ParametersRequestable {
-    typealias Parameters = DTO.Pin
+    struct Parameters: Encodable {
+        struct Music: Encodable {
+            let applemusic_id: String
+            let title: String
+            let artist_name: String
+        }
+        let music: Music
+        let latitude: Double
+        let longitude: Double
+        let locality: String
+        let sub_locality: String
+        let weather: String
+        let temperature: Int
+    }
     
     let parameters: Parameters
     

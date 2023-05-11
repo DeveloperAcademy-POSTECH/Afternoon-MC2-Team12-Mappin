@@ -71,10 +71,15 @@ struct MusicReducer: ReducerProtocol {
                 print(error)
                 return .appleMusicError
             }
+<<<<<<< HEAD
             
         case .applyMusicChart(let music):
             state.selectedMusicIndex = ""
             state.musicChart = music
+=======
+        case .applyMusic(let music):
+            state.music = music
+>>>>>>> main
             return .none
             
         case .applySearchMusic(let music):

@@ -11,9 +11,42 @@ extension DTO {
     struct Pin: Codable, Identifiable {
         let id: Int
         let music: DTO.Music
-        let user_id: Int
-        let latitude: Float
-        let longitude: Float
+        let latitude: Double
+        let longitude: Double
+        let locality: String
+        let sub_locality: String
+        let weather: String
+        let temperature: Int
         let created_at: Date
+    }
+}
+
+extension DTO.Pin {
+    var entity: Pin {
+        Pin(
+            id: String(id),
+            count: 0,
+            userName: "",
+            music: Music(
+                id: music.applemusic_id,
+                title: music.title,
+                artist: music.artist_name,
+                artwork: nil,
+                appleMusicUrl: nil
+            ),
+            weather: Weather(
+                id: UUID().uuidString,
+                temperature: String(temperature),
+                symbolName: weather
+            ),
+            createdAt: created_at,
+            location: Location(
+                id: UUID().uuidString,
+                latitude: latitude,
+                longitude: longitude,
+                locality: locality,
+                subLocality: sub_locality
+            )
+        )
     }
 }

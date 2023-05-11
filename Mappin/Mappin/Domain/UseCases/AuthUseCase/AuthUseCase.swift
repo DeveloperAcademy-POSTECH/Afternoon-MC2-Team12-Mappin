@@ -9,4 +9,5 @@ import Foundation
 
 protocol AuthUseCase {
     func getAuthToken() async throws -> String
+    func getCSRFToken() async throws -> String
 }

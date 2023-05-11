@@ -11,14 +11,48 @@ import MapKit
 
 struct ContentView: View {
     
-    @ObservedObject var viewStore: ViewStore<PinMusicReducer.State, PinMusicReducer.Action>
+    let store: StoreOf<PinMusicReducer>
+    
+    @ObservedObject var viewStore: ViewStoreOf<PinMusicReducer>
+    @State var temp: Double = 100
+    @State var action: MapView.Action = .none
+    
+    init(store: StoreOf<PinMusicReducer>) {
+        self.store = store
+        self.viewStore = ViewStore(self.store, observe: { $0 })
+    }
+
     
     var body: some View {
-        Map(coordinateRegion: self.viewStore.binding(get: \.currentLocation,
-                                                     send: PinMusicReducer.Action.updateCurrentLocation),
-            interactionModes: [],
-            showsUserLocation: true,
-            userTrackingMode: self.viewStore.binding(get: \.mapUserTrakingMode, send: PinMusicReducer.Action.changeTrakingMode(.follow)))
+        MapView(action: $action, userTrackingMode: .follow)
+            .ignoresSafeArea()
+            .opacity(Double(action.yame))
     }
 }
 
+extension ContentView {
+    static func build() -> Self {
+        let pinsRepository = APIPinsRepository()
+        let locationRepository = RequestLocationRepository.manager
+        return ContentView(store: Store(
+            initialState: PinMusicReducer.State(),
+            reducer: PinMusicReducer(
+                addPinUseCase: DefaultAddPinUseCase(
+                    pinsRepository: pinsRepository,
+                    geoCodeRepository: RequestGeoCodeRepository(),
+                    locationRepository: locationRepository,
+                    weatherRepository: RequestWeatherRepository(),
+                    deviceRepository: RequestDeviceRepository()
+                ),
+                getPinsUseCase: DefaultGetPinUseCase(
+                    locationRepository: locationRepository,
+                    pinsRepository: pinsRepository
+                )
+            )
+        ))
+    }
+}
+
+extension UUID: Identifiable {
+    public var id: String { self.uuidString }
+}

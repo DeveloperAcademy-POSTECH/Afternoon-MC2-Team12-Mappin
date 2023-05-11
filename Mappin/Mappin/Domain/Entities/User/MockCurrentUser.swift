@@ -20,6 +20,7 @@ final class MockCurrentUser: CurrentUser {
     }
     
     var authToken: String?
+    var csrfToken: String? = cachedCSRFToken
     
     private static var randomHashId: String {
         String(UUID().uuidString.prefix(8))

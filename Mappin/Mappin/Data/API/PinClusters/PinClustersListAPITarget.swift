@@ -8,10 +8,7 @@
 import Foundation
 
 final class PinClustersListAPITarget: APITarget, ParametersRequestable, Responsable {
-    struct Parameters: Encodable {
-        let radius: Float
-    }
-    
+    typealias Parameters = PinsRangeParameters
     typealias Response = [DTO.PinCluster]
     
     let parameters: Parameters

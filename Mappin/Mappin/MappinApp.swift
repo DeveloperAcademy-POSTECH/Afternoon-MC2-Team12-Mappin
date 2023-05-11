@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
+import MapKit
 
 @main
 struct MappinApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .onAppear {
-                    _ = LocationManager.shared
-                }
+            ZStack(alignment: .bottom) {
+                LaunchScreenView.build()
+                ToastView.build()
+            }
         }
     }
 }
