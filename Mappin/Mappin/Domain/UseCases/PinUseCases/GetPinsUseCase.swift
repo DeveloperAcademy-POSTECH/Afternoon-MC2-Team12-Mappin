@@ -32,6 +32,7 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
     func excuteUsingMap(latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin] {
         let center: (Double, Double) = (locationRepository.latitude, locationRepository.longitude)
         return try await pinClustersRepository.readList(
+            category: nil,
             centerLatitude: center.0,
             centerLongitude: center.1,
             horizontalRadius: latitudeDelta,
@@ -42,6 +43,7 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
     func excuteUsingList(latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin] {
         let center: (Double, Double) = (locationRepository.latitude, locationRepository.longitude)
         return try await pinsRepository.readList(
+            category: nil,
             centerLatitude: center.0,
             centerLongitude: center.1,
             horizontalRadius: latitudeDelta,

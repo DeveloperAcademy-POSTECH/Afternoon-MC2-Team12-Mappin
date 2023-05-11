@@ -9,6 +9,7 @@ import Foundation
 
 protocol PinClustersRepository {
     func readList(
+        category: PinsCategory?,
         centerLatitude: Double,
         centerLongitude: Double,
         horizontalRadius: Double,

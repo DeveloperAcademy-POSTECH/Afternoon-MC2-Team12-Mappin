@@ -17,6 +17,7 @@
 		3A1DC8EF2A0A8D9600B7462E /* BinaryFloatingPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1DC8EE2A0A8D9600B7462E /* BinaryFloatingPoint+.swift */; };
 		3A28116D2A0B9CF100469988 /* ArchiveMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A28116C2A0B9CF100469988 /* ArchiveMapView.swift */; };
 		3A2811702A0CB5EC00469988 /* ArchiveMapReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A28116F2A0CB5EC00469988 /* ArchiveMapReducer.swift */; };
+		3A2811722A0D136500469988 /* PinsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2811712A0D136500469988 /* PinsCategory.swift */; };
 		3AB4F7692A0373BF004C0F76 /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7682A0373BF004C0F76 /* APITarget.swift */; };
 		3AB4F7852A03792D004C0F76 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7842A03792D004C0F76 /* CombineMoya */; };
 		3AB4F7872A03792D004C0F76 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7862A03792D004C0F76 /* Moya */; };
@@ -126,6 +127,7 @@
 		3A1DC8EE2A0A8D9600B7462E /* BinaryFloatingPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryFloatingPoint+.swift"; sourceTree = "<group>"; };
 		3A28116C2A0B9CF100469988 /* ArchiveMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveMapView.swift; sourceTree = "<group>"; };
 		3A28116F2A0CB5EC00469988 /* ArchiveMapReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveMapReducer.swift; sourceTree = "<group>"; };
+		3A2811712A0D136500469988 /* PinsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsCategory.swift; sourceTree = "<group>"; };
 		3AB4F7682A0373BF004C0F76 /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
 		3AB4F7892A03797C004C0F76 /* DTO+Namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DTO+Namespace.swift"; sourceTree = "<group>"; };
 		3AB4F78B2A0379A2004C0F76 /* DTO+Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DTO+Music.swift"; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 			children = (
 				3AD1DE522A05667900A49E95 /* DeviceId.swift */,
 				3AD1DE542A05668200A49E95 /* UserDefaultsWrapper.swift */,
+				3A2811712A0D136500469988 /* PinsCategory.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -798,6 +801,9 @@
 				3AB7EF472A0519AE00B8FEDB /* APIUsersRepository.swift in Sources */,
 				D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */,
 				D45C9E112A0A754B00FAA39C /* DefaultMockDIContainer.swift in Sources */,
+				D45C9DFD2A0A231200FAA39C /* SinglePin.swift in Sources */,
+				3A2811722A0D136500469988 /* PinsCategory.swift in Sources */,
+				D45C9E112A0A754B00FAA39C /* MappinFlowCoordinatorDependencies.swift in Sources */,
 				3AD1DE552A05668200A49E95 /* UserDefaultsWrapper.swift in Sources */,
 				D4F57CEE2A02548E00582857 /* Color+.swift in Sources */,
 				3AD1DE442A05419200A49E95 /* APIProvider.swift in Sources */,

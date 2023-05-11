@@ -12,12 +12,14 @@ struct APIPinClustersRepository: PinClustersRepository {
     private let provider = APIProvider()
     
     func readList(
+        category: PinsCategory?,
         centerLatitude: Double,
         centerLongitude: Double,
         horizontalRadius: Double,
         verticalRadius: Double
     ) async throws -> [Pin] {
         let parameters = PinClustersListAPITarget.Parameters(
+            category: category?.rawValue,
             center_latitude: centerLatitude,
             center_longitude: centerLongitude,
             horizontal_radius: horizontalRadius,
