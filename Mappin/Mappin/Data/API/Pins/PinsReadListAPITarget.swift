@@ -7,6 +7,16 @@
 
 import Foundation
 
-final class PinsReadListAPITarget: APITarget, Responsable {
+final class PinsReadListAPITarget: APITarget, ParametersRequestable, Responsable {
+    typealias Parameters = PinsRangeParameters
     typealias Response = [DTO.Pin]
+    
+    let parameters: Parameters
+    
+    init(path: String,
+         method: Method,
+         parameters: Parameters) {
+        self.parameters = parameters
+        super.init(path: path, method: method)
+    }
 }

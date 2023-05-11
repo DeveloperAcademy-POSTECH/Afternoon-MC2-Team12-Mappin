@@ -10,8 +10,8 @@ import Foundation
 protocol CurrentUser: AnyObject {
     var username: String { get }
     var password: String { get }
-    var csrfToken: String? { get set }
     var authToken: String? { get set }
+    var csrfToken: String? { get set }
 }
 
 extension CurrentUser {

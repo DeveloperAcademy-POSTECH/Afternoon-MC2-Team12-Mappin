@@ -15,7 +15,10 @@ final class APIProvider: MoyaProvider<APITarget> {
     
     func justRequest(_ target: Target) async throws {
         let result = await request(target)
-        if case let .failure(error) = result {
+        switch result {
+        case .success:
+            printLog(title: "response", message: "success")
+        case let .failure(error):
             throw try getAPIError(error)
         }
     }
