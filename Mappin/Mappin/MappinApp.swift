@@ -13,10 +13,10 @@ import MapKit
 @main
 struct MappinApp: App {
     var body: some Scene {
-        WindowGroup {            
-            DefaultMockDIContainer.shared.makeContentView()
-            .onAppear {
-                _ = RequestLocationRepository.manager
+        WindowGroup {
+            ZStack(alignment: .bottom) {
+                LaunchScreenView.build()
+                ToastView.build()
             }
         }
     }
