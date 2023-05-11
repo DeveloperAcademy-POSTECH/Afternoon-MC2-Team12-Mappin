@@ -20,7 +20,9 @@ struct APIPinsRepository: PinsRepository {
             music: .init(
                 applemusic_id: music.id,
                 title: music.title,
-                artist_name: music.artist
+                artist_name: music.artist,
+                artwork_url: music.artwork?.absoluteString ?? "",
+                applemusic_url: music.appleMusicUrl?.absoluteString ?? ""
             ),
             latitude: location.latitude.decimalRounded(6),
             longitude: location.longitude.decimalRounded(6),

@@ -31,8 +31,8 @@ extension DTO.Pin {
                 id: music.applemusic_id,
                 title: music.title,
                 artist: music.artist_name,
-                artwork: nil,
-                appleMusicUrl: nil
+                artwork: URL(string: music.artwork_url),
+                appleMusicUrl: URL(string: music.applemusic_url)
             ),
             weather: Weather(
                 id: UUID().uuidString,

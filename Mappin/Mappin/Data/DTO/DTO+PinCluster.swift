@@ -26,8 +26,8 @@ extension DTO.PinCluster {
                 id: main_pin.music.applemusic_id,
                 title: main_pin.music.title,
                 artist: main_pin.music.artist_name,
-                artwork: nil,
-                appleMusicUrl: nil
+                artwork: URL(string: main_pin.music.artwork_url),
+                appleMusicUrl: URL(string: main_pin.music.applemusic_url)
             ),
             weather: Weather(
                 id: UUID().uuidString,
