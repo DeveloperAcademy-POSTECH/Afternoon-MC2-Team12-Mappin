@@ -22,6 +22,5 @@ protocol PinsRepository {
     ) async throws -> [Pin]
     
     func readDetail(id: Int) async throws -> Pin
-    func update(pin: DTO.Pin) async throws
     func delete(id: Int) async throws
 }
