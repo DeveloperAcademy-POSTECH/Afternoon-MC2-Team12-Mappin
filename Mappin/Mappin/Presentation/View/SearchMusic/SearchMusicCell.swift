@@ -17,6 +17,7 @@ struct SearchMusicCell: View {
         HStack(spacing: 0) {
             Text("")
                 .frame(width: 0, height: 0)
+                .padding(.leading, 15)
             Rectangle()
                 .frame(width: 55, height: 55)
                 .foregroundColor(Color(uiColor: .systemGray4))
@@ -51,7 +52,10 @@ struct SearchMusicCell: View {
             }
             Spacer()
             Image(systemName: isSelected ? "checkmark" : "plus")
-                .foregroundColor(.black)
+                .resizable()
+                .frame(width: 17, height: 17)
+                .foregroundColor(isSelected ? .accentColor : .black)
+                .padding(.trailing, 20)
         }
         .opacity(noSelection != isSelected ? 1.0 : 0.4)
     }

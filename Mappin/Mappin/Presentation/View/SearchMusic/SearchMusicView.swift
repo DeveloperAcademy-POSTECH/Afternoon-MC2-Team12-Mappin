@@ -44,6 +44,7 @@ struct SearchMusicView: View {
                         placement: .navigationBarDrawer(displayMode: .always))
             .onAppear {
                 settingMuesicAuthorization()
+                print(MusicAuthorization.currentStatus)
             }
             .task {
                 viewStore.send(.requestMusicChart)
@@ -70,40 +71,13 @@ struct SearchMusicView: View {
                     }
                 } header: {
                     Text(viewStore.searchTerm.isEmpty ? "현재 이 지역 음악 추천" : "검색 결과")
+                        .padding(.leading, 15)
                 }
 
             }
             .listStyle(.inset)
         }
     }
-    
-    /// 최상단 뷰(타이틀, 취소버튼) 구현
-//    var searchMusicList: some View {
-//        withAnimation {
-//            List(!viewStore.searchTerm.isEmpty ? viewStore.searchMusic : viewStore.musicChart) { music in
-//                let isSelected = viewStore.selectedMusicIndex == music.id // selectedMusicIndex == "" -> 초기 상태, 검색했거나 검색창을 켰을 경우. checkmark와 이중 클릭 확인을 하기 위함
-//                let noSelection = viewStore.selectedMusicIndex.isEmpty // 초기 상태, 혹은 유저가 검색을 했을 때. opacity를 주기 위함
-//                // false true
-//                Section {
-//                    SearchMusicCell(music: music, isSelected: isSelected, noSelection: noSelection)
-//                        .onTapGesture {
-//                            if isSelected {
-//                                viewStore.send(.uploadMusic)
-//                            } else {
-//                                viewStore.send(.musicSelected(music.id))
-//                            }
-//                    }
-//                } header: {
-//                    Text("현재 이 지역 음악 추천")
-//                }
-//
-//
-//            }
-//            .listStyle(.inset)
-//        }
-//    }
-    
-
     
     func settingMuesicAuthorization() {
         Task {
@@ -112,11 +86,3 @@ struct SearchMusicView: View {
     }
     
 }
-
-
-
-//struct SearchMusicView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchMusicView()
-//    }
-//}

@@ -32,12 +32,9 @@ struct MusicReducer: ReducerProtocol {
         var searchMusic: [Music] = []
         var musicChart: [Music] = []
         var selectedMusicIndex: String = ""
-        
-        //var just = PassthroughSubject<MusicReducer.Action, Never>()
     }
     
     enum Action {
-//        case none
         case resetSearchTerm
         case searchTermChanged(searchTerm: String)
         case requestMusicChart
@@ -66,12 +63,6 @@ struct MusicReducer: ReducerProtocol {
             }
             .debounce(id: debounceId, for: 0.2, scheduler: DispatchQueue.main)
             .eraseToEffect()
-            
-//                .run { action in
-//                    try await action.send(.applySearchMusic(searchMusicUseCase.execute(searchTerm: searchTerm)))
-//                }
-//                .debounce(id: id, for: 0.5, scheduler: DispatchQueue.main)
-//                .eraseToEffect()
 
         case .requestMusicChart:
             return .task {
@@ -129,3 +120,9 @@ extension MusicReducer {
         UIApplication.shared.open(appleMusicUrl)
     }
 }
+
+//            .run { action in
+//                try await action.send(.applySearchMusic(searchMusicUseCase.execute(searchTerm: searchTerm)))
+//            }
+//            .debounce(id: id, for: 0.5, scheduler: DispatchQueue.main)
+//            .eraseToEffect()
