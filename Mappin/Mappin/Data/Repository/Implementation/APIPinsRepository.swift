@@ -47,6 +47,7 @@ struct APIPinsRepository: PinsRepository {
         )
         let target = APITarget.readPins(parameters: parameters)
         let dtos = try await provider.requestResponsable(target)
+        
         return dtos.map { $0.entity }
     }
     

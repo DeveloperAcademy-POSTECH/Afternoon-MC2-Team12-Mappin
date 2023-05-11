@@ -22,6 +22,10 @@ final class DefaultMockDIContainer {
     
     func DIRepository() {
         
+        container.register(PinClustersRepository.self) { _ in
+            APIPinClustersRepository()
+        }
+        
         container.register(AddPinRepository.self) { _ in
             TempAddPinRepository()
         }
@@ -70,7 +74,8 @@ final class DefaultMockDIContainer {
     func DIUseCase() {
         
         let getPinsRepositoryImplementation = container.resolver.resolve(GetPinsRepository.self)
-        let addPinRepositoryImplementation = container.resolver.resolve(AddPinRepository.self)
+        let getPinsClusterRe = container.resolver.resolve(PinClustersRepository.self)
+        let pinsRepositoryImplementation = container.resolver.resolve(PinsRepository.self)
         let locationRepositoryImplementation = container.resolver.resolve(LocationRepository.self)
         let geoCodeRepositoryImplementation = container.resolver.resolve(GeoCodeRepository.self)
         let requestWeatherRepositoryInterfaceImplementation = container.resolver.resolve(RequestWeatherRepositoryInterface.self)
@@ -80,7 +85,7 @@ final class DefaultMockDIContainer {
         
         container.register(AddPinUseCase.self) { _ in
             DefaultAddPinUseCase(
-                addPinRepository: addPinRepositoryImplementation,
+                pinsRepository: pinsRepositoryImplementation,
                 geoCodeRepository: geoCodeRepositoryImplementation,
                 locationRepository: locationRepositoryImplementation,
                 weatherRepository: requestWeatherRepositoryInterfaceImplementation,
@@ -90,8 +95,9 @@ final class DefaultMockDIContainer {
         
         container.register(GetPinsUseCase.self) { _ in
             DefaultGetPinUseCase(
-                locatationRepository: locationRepositoryImplementation,
-                getPinsRepository: getPinsRepositoryImplementation
+                locationRepository: locationRepositoryImplementation,
+                pinsRepository: pinsRepositoryImplementation,
+                pinClustersRepository: getPinsClusterRe
             )
         }
         

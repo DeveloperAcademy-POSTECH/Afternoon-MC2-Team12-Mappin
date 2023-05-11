@@ -15,6 +15,7 @@ struct ContentView: View {
     
     @ObservedObject var viewStore: ViewStoreOf<PinMusicReducer>
     @State var temp: Double = 100
+    @State var action: MapView.Action = .none
     
     init(store: StoreOf<PinMusicReducer>) {
         self.store = store
@@ -23,9 +24,9 @@ struct ContentView: View {
 
     
     var body: some View {
-//        MapView(action: viewStore.binding(get: \.mapAction, send: .), userTrackingMode: .follow)
-//            .ignoresSafeArea()
-//            .opacity(Double(action.yame))
+        MapView(action: .constant(.none), store: viewStore, userTrackingMode: .follow)
+            .ignoresSafeArea()
+            .opacity(Double(action.yame))
     }
 }
 
@@ -45,7 +46,8 @@ extension ContentView {
                 ),
                 getPinsUseCase: DefaultGetPinUseCase(
                     locationRepository: locationRepository,
-                    pinsRepository: pinsRepository
+                    pinsRepository: pinsRepository,
+                    pinClustersRepository: DefaultMockDIContainer.shared.container.resolver.resolve(PinClustersRepository.self)
                 )
             )
         ))

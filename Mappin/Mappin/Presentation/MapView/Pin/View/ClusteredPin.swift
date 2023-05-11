@@ -17,16 +17,15 @@ class ClusterdPin: MKAnnotationView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        print("sdsdsdsdssdsd")
         
         clusteredCountLabel.text = "\(pin.count)"
         if pin.id == RequestDeviceRepository().deviceId {
             clusteredCountLabel.textColor = .red
-            pinBackGroundImage.image = UIImage(named: "") ?? UIImage(systemName: "pin")
+            pinBackGroundImage.image = UIImage(named: "pinBlue") ?? UIImage(systemName: "pin")
         }
         else {
             clusteredCountLabel.textColor = .blue
-            pinBackGroundImage.image = UIImage(named: "") ?? UIImage(systemName: "pin")
+            pinBackGroundImage.image = UIImage(named: "pinBlue") ?? UIImage(systemName: "pin")
         }
         
         pinBackGroundImage.contentMode = .scaleAspectFit
@@ -34,17 +33,18 @@ class ClusterdPin: MKAnnotationView {
     }
     
     func layout() {
-        for view in [pinBackGroundImage, clusteredCountLabel] {
-            addSubview(view)
+        [pinBackGroundImage, clusteredCountLabel].forEach {
+            addSubview($0)
         }
         
         pinBackGroundImage.translatesAutoresizingMaskIntoConstraints = false
-        pinBackGroundImage.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        pinBackGroundImage.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+        pinBackGroundImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        pinBackGroundImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         clusteredCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        clusteredCountLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        clusteredCountLabel.topAnchor.constraint(equalTo: self.clusteredCountLabel.topAnchor, constant: 21).isActive = true
+        clusteredCountLabel.centerXAnchor.constraint(equalTo: pinBackGroundImage.centerXAnchor).isActive = true
+        clusteredCountLabel.centerYAnchor.constraint(equalTo: pinBackGroundImage.centerYAnchor, constant: -3).isActive = true
+        
     }
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
@@ -56,7 +56,8 @@ class ClusterdPin: MKAnnotationView {
             self.pin = Pin.empty
         }
         self.clusteredCountLabel = UILabel()
-        self.pinBackGroundImage = UIImageView()
+        self.pinBackGroundImage = UIImageView(image: UIImage(named: "pinBlue")!)
+
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
     }
     

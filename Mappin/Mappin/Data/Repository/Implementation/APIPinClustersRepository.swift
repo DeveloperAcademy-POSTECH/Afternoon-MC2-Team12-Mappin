@@ -25,6 +25,7 @@ struct APIPinClustersRepository: PinClustersRepository {
         )
         let target = APITarget.readPinClusters(parameters: parameters)
         let dtos = try await provider.requestResponsable(target)
+        
         return dtos.map { $0.entity }
     }
 }
