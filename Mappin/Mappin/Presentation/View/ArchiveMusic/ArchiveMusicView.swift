@@ -13,10 +13,10 @@ import ComposableArchitecture
 struct ArchiveMusicView: View {
     
     @State var tempButton = false
-    let store: StoreOf<MusicReducer>
-    @ObservedObject var viewStore: ViewStoreOf<MusicReducer>
+    let store: StoreOf<SearchMusicReducer>
+    @ObservedObject var viewStore: ViewStoreOf<SearchMusicReducer>
     
-    init(store: StoreOf<MusicReducer>) {
+    init(store: StoreOf<SearchMusicReducer>) {
         self.store = store
         self.viewStore = ViewStore(self.store, observe: { $0 })
     }
@@ -63,6 +63,7 @@ struct ArchiveMusicView: View {
                          // 초기 상태, 혹은 유저가 검색을 했을 때. opacity를 주기 위함
                         ArchiveMusicCell(music: music)
                             .onTapGesture {
+                                print("피닝 되어있는 위치로 이동!")
                         }
                     }
                     // onDelete

@@ -11,7 +11,7 @@ import ComposableArchitecture
 import Combine
 
 
-struct MusicReducer: ReducerProtocol {
+struct SearchMusicReducer: ReducerProtocol {
     
     //    let searchMusicUseCase = DefaultSearchMusicUseCase(musicRepository: RequestMusicRepository())
     //    let musicChartUseCase = DefaultMusicChartUseCase(musicRepository: RequestMusicRepository())
@@ -80,7 +80,7 @@ struct MusicReducer: ReducerProtocol {
         case .applySearchMusic(let music):
             state.selectedMusicIndex = ""
             state.searchMusic = music
-            print("@LOG \(music.count)")
+            print(state.searchMusic)
             return .none
             
         case .resetSearchMusic:
@@ -108,7 +108,7 @@ struct MusicReducer: ReducerProtocol {
     
 }
 
-extension MusicReducer {
+extension SearchMusicReducer {
     /// 유저가 애플 뮤직에서 음악을 재생할 수 있도록 이동합니다.
     /// return: void
     func openAppleMusic(url: URL?) {

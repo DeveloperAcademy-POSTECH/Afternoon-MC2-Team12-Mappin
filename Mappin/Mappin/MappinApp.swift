@@ -14,8 +14,9 @@ struct MappinApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack(alignment: .bottom) {
-                LaunchScreenView.build()
-                ToastView.build()
+//                LaunchScreenView.build()
+//                ToastView.build()
+                SearchMusicView(store: Store(initialState: SearchMusicReducer.State(), reducer: SearchMusicReducer()))
             }
         }
     }

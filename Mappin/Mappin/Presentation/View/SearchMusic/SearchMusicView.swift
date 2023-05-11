@@ -15,10 +15,10 @@ struct SearchMusicView: View {
     @State private var searchTerm: String = ""
     @State private var selectedCell: String? = nil
     
-    let store: StoreOf<MusicReducer>
-    @ObservedObject var viewStore: ViewStoreOf<MusicReducer>
+    let store: StoreOf<SearchMusicReducer>
+    @ObservedObject var viewStore: ViewStoreOf<SearchMusicReducer>
     
-    init(store: StoreOf<MusicReducer>) {
+    init(store: StoreOf<SearchMusicReducer>) {
         self.store = store
         self.viewStore = ViewStore(self.store, observe: { $0 })
     }
