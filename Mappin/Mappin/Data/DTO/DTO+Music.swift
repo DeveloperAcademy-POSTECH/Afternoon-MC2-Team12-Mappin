@@ -13,5 +13,7 @@ extension DTO {
         let applemusic_id: String
         let title: String
         let artist_name: String
+        let artwork_url: String
+        let applemusic_url: String
     }
 }
