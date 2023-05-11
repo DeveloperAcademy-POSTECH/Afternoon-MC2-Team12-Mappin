@@ -23,39 +23,65 @@ struct PinMusicReducer: PinMusic {
     
     struct State: Equatable {
         
+        var mapAction: MapView.Action = .none
         var currentLocation: MKCoordinateRegion = MKCoordinateRegion()
-        var showingPins: [Pin] = []
+        var pinsUsingMap: [Pin] = []
+        var pinsUsingList: [Pin] = []
         var mapUserTrakingMode: MapUserTrackingMode = .follow
     }
     
     enum Action {
         
-        case loadPinsUsingMap(latitudeDelta: Double, longitudeDelta: Double)
-        case loadPinsUsingList(latitudeDelta: Double, longitudeDelta: Double)
+        case changeAction
+        case loadPins(latitudeDelta: Double, longitudeDelta: Double)
         case mapPins([Pin])
-        case addPin(music: Music)
+        case listPins([Pin])
+        case addPin(music: Music, latitudeDelta: Double, longitudeDelta: Double)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
+        
         switch action {
-        case .loadPinsUsingMap(latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
-            return .task {
-                let pins = try await getPinsUseCase.excuteUsingMap(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
-                return .mapPins(pins)
+        case .changeAction:
+            switch state.mapAction {
+            case .none:
+                return .none
+            case .createTemporaryPin(currentLocation: let currentLocation):
+                return .none
+            case .updatePins(_):
+                return .none
+            case .move(here: let here):
+                //Action.send
+                return .none
             }
-        case .loadPinsUsingList(latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
-            return .task {
-                let pins = try await getPinsUseCase.excuteUsingList(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
-                return .mapPins(pins)
-            }
-        case .addPin(music: let music):
+        
+        case .loadPins(latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
+            return .merge(
+                .task {
+                    
+                    let mapPins = try await getPinsUseCase.excuteUsingMap(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+                    return .mapPins(mapPins)
+                },
+                .task {
+                    
+                    let listPins = try await getPinsUseCase.excuteUsingList(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+                    return .listPins(listPins)
+                }
+            )
+            
+        case .addPin(music: let music, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
             return .task {
                 try await addPinUseCase.excute(music: music)
-                return .mapPins([])
+                return .loadPins(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
             }
             
         case .mapPins(let pins):
-            state.showingPins = pins
+            state.pinsUsingMap = pins
+            state.mapAction = .updatePins(pins)
+            return .none
+            
+        case .listPins(let pins):
+            state.pinsUsingList = pins
             return .none
         default:
             return .none

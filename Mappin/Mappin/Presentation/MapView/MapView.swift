@@ -78,15 +78,15 @@ struct MapView: UIViewRepresentable {
             parent.region = mapView.region
         }
         
-        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            
-        }
+//        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//
+//        }
     }
 }
 
 extension MapView {
     
-    enum Action {
+    enum Action: Equatable {
         
         case none
         case createTemporaryPin(currentLocation: CLLocationCoordinate2D)

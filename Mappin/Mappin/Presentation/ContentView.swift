@@ -15,7 +15,6 @@ struct ContentView: View {
     
     @ObservedObject var viewStore: ViewStoreOf<PinMusicReducer>
     @State var temp: Double = 100
-    @State var action: MapView.Action = .none
     
     init(store: StoreOf<PinMusicReducer>) {
         self.store = store
@@ -24,9 +23,9 @@ struct ContentView: View {
 
     
     var body: some View {
-        MapView(action: $action, userTrackingMode: .follow)
-            .ignoresSafeArea()
-            .opacity(Double(action.yame))
+//        MapView(action: viewStore.binding(get: \.mapAction, send: .), userTrackingMode: .follow)
+//            .ignoresSafeArea()
+//            .opacity(Double(action.yame))
     }
 }
 
