@@ -10,13 +10,13 @@ import ComposableArchitecture
 
 struct ArchiveMapReducer: ReducerProtocol {
     struct State: Equatable {
-        var category: Category = .mine
+        var category: PinsCategory = .mine
         var isListViewPresented: Bool = false
     }
     
     enum Action {
         case viewAppeared
-        case selectCategory(Category)
+        case selectCategory(PinsCategory)
         case setListViewPresented(Bool)
     }
     
@@ -30,26 +30,6 @@ struct ArchiveMapReducer: ReducerProtocol {
         case let .setListViewPresented(presented):
             state.isListViewPresented = presented
             return .none
-        }
-    }
-}
-
-extension ArchiveMapReducer {
-    enum Category: CaseIterable {
-        case mine
-        case others
-        
-        var navigationTitle: String {
-            switch self {
-            case .mine:
-                return "내 핀만"
-            case .others:
-                return "다른 사람들 핀만"
-            }
-        }
-        
-        var buttonTitle: String {
-            navigationTitle + " 보기"
         }
     }
 }

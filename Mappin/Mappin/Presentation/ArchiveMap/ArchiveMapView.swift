@@ -48,7 +48,7 @@ struct ArchiveMapView: View {
     }
     
     private func ToolbarTitleMenu(viewStore: ViewStoreOf<ArchiveMapReducer>) -> some View {
-        ForEach(ArchiveMapReducer.Category.allCases, id: \.self) { category in
+        ForEach(PinsCategory.allCases, id: \.self) { category in
             Button(category.buttonTitle) {
                 viewStore.send(.selectCategory(category))
             }
@@ -63,6 +63,21 @@ extension ArchiveMapView {
             reducer: ArchiveMapReducer()
         )
         return ArchiveMapView(store: store)
+    }
+}
+
+private extension PinsCategory {
+    var navigationTitle: String {
+        switch self {
+        case .mine:
+            return "내 핀만"
+        case .others:
+            return "다른 사람들 핀만"
+        }
+    }
+    
+    var buttonTitle: String {
+        navigationTitle + " 보기"
     }
 }
 

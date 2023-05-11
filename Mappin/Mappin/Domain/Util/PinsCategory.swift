@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PinsCategory: String {
+enum PinsCategory: String, CaseIterable {
     case mine
     case others
 }
