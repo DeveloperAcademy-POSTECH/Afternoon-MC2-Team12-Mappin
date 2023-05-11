@@ -63,7 +63,7 @@ struct MusicReducer: ReducerProtocol {
             }
             .debounce(id: debounceId, for: 0.2, scheduler: DispatchQueue.main)
             .eraseToEffect()
-
+            
         case .requestMusicChart:
             return .task {
                 return .applyMusicChart(try await musicChartUseCase.execute())
@@ -71,15 +71,10 @@ struct MusicReducer: ReducerProtocol {
                 print(error)
                 return .appleMusicError
             }
-<<<<<<< HEAD
             
         case .applyMusicChart(let music):
             state.selectedMusicIndex = ""
             state.musicChart = music
-=======
-        case .applyMusic(let music):
-            state.music = music
->>>>>>> main
             return .none
             
         case .applySearchMusic(let music):
@@ -107,6 +102,7 @@ struct MusicReducer: ReducerProtocol {
         case .uploadMusic:
             print("upload music to server")
             return .none
+        
         }
     }
     

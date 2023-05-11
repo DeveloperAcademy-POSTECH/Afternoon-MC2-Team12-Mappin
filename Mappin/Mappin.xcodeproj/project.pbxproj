@@ -807,12 +807,9 @@
 				3AB4F78A2A03797C004C0F76 /* DTO+Namespace.swift in Sources */,
 				3AD1DE5A2A0569B800A49E95 /* MockCurrentUser.swift in Sources */,
 				3AD1DE322A053B4100A49E95 /* APITarget+PinClusters.swift in Sources */,
-<<<<<<< HEAD
 				AF313BA72A0A2DCE00D38A87 /* ArchiveMusicView.swift in Sources */,
-=======
 				D4F19C632A091A2A00ABB567 /* GetPinsUseCase.swift in Sources */,
 				3A1DC8ED2A0A4EAC00B7462E /* PinsRangeParameters.swift in Sources */,
->>>>>>> main
 				3AD1DE3B2A053EA100A49E95 /* PinsReadDetailAPITarget.swift in Sources */,
 				AF9E9D432A08E68B00EC8D9E /* RequestMusicRepository.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
