@@ -22,10 +22,7 @@ struct LaunchScreenView: View {
                     get: \.isCompleted,
                     send: { .setCompleted($0) }
                 )) {
-                    ContentView.build()
-                        .onAppear {
-                            _ = RequestLocationRepository.manager
-                        }
+                    PrimaryView()
                 }
         }
     }
