@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ArchiveView: View {
-    @Binding var isArchiveViewPresented: Bool
+    @Binding var isPresented: Bool
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false){
@@ -18,7 +18,7 @@ struct ArchiveView: View {
                         .bold()
                     Spacer()
                     Button{
-                        isArchiveViewPresented.toggle()
+                        isPresented.toggle()
                     } label: {
                         Text("취소")
                     }
