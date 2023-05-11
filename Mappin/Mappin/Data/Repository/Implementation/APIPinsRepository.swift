@@ -54,10 +54,6 @@ struct APIPinsRepository: PinsRepository {
         try await provider.requestResponsable(APITarget.readPin(id: id)).entity
     }
     
-    func update(pin: DTO.Pin) async throws {
-        try await provider.justRequest(.updatePin(parameters: pin))
-    }
-    
     func delete(id: Int) async throws {
         try await provider.justRequest(.deletePin(id: id))
     }
