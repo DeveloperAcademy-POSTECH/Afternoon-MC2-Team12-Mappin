@@ -10,25 +10,41 @@ import UIKit
 import ComposableArchitecture
 import Combine
 
+
 struct MusicReducer: ReducerProtocol {
     
-    let searchMusicUseCase = DefaultSearchMusicUseCase(musicRepository: RequestMusicRepository())
-    let musicChartUseCase = DefaultMusicChartUseCase(musicRepository: RequestMusicRepository())
-//    let searchMusicUseCase: SearchMusicUseCase
-//    let musicChartUseCase: MusicChartUseCase
+    //    let searchMusicUseCase = DefaultSearchMusicUseCase(musicRepository: RequestMusicRepository())
+    //    let musicChartUseCase = DefaultMusicChartUseCase(musicRepository: RequestMusicRepository())
+    let searchMusicUseCase: SearchMusicUseCase
+    let musicChartUseCase: MusicChartUseCase
+    let debounceId = "Kozi"
+    
+    init(
+        searchMusicUseCase: SearchMusicUseCase = DefaultSearchMusicUseCase(),
+        musicChartUseCase: MusicChartUseCase = DefaultMusicChartUseCase()
+    ) {
+        self.searchMusicUseCase = searchMusicUseCase
+        self.musicChartUseCase = musicChartUseCase
+    }
     
     struct State: Equatable {
         var searchTerm: String = ""
-        var music: [Music] = []
+        var searchMusic: [Music] = []
+        var musicChart: [Music] = []
+        var selectedMusicIndex: String = ""
     }
     
     enum Action {
         case resetSearchTerm
         case searchTermChanged(searchTerm: String)
         case requestMusicChart
-        case applyMusic([Music])
-        case resetMusic
+        case applyMusicChart([Music])
+        case applySearchMusic([Music])
+        case resetSearchMusic
         case openAppleMusic(url: URL?)
+        case appleMusicError
+        case musicSelected(String)
+        case uploadMusic
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -36,30 +52,57 @@ struct MusicReducer: ReducerProtocol {
         case .resetSearchTerm:
             state.searchTerm = ""
             return .none
+            
         case .searchTermChanged(let searchTerm):
             state.searchTerm = searchTerm
             return .task {
-                return .applyMusic(try await searchMusicUseCase.execute(searchTerm: searchTerm))
-            } catch: { error in
-                print(error)
-                return .resetMusic
+                return try await .applySearchMusic(searchMusicUseCase.execute(searchTerm: searchTerm))
+            } catch: { Error in
+                print(Error)
+                return .resetSearchMusic
             }
+            .debounce(id: debounceId, for: 0.2, scheduler: DispatchQueue.main)
+            .eraseToEffect()
+            
         case .requestMusicChart:
             return .task {
-                return .applyMusic(try await musicChartUseCase.execute())
+                return .applyMusicChart(try await musicChartUseCase.execute())
             } catch: { error in
                 print(error)
-                return .resetMusic
+                return .appleMusicError
             }
-        case .applyMusic(let music):
-            state.music = music
+            
+        case .applyMusicChart(let music):
+            state.selectedMusicIndex = ""
+            state.musicChart = music
             return .none
-        case .resetMusic:
-            state.music = []
+            
+        case .applySearchMusic(let music):
+            state.selectedMusicIndex = ""
+            state.searchMusic = music
+            print("@LOG \(music.count)")
             return .none
+            
+        case .resetSearchMusic:
+            state.selectedMusicIndex = ""
+            state.searchMusic = []
+            return .none
+            
         case .openAppleMusic(let url):
             openAppleMusic(url: url)
             return .none
+            
+        case .appleMusicError:
+            return .none
+            
+        case .musicSelected(let index):
+            state.selectedMusicIndex = index
+            return .none
+            
+        case .uploadMusic:
+            print("upload music to server")
+            return .none
+        
         }
     }
     
@@ -78,3 +121,9 @@ extension MusicReducer {
         UIApplication.shared.open(appleMusicUrl)
     }
 }
+
+//            .run { action in
+//                try await action.send(.applySearchMusic(searchMusicUseCase.execute(searchTerm: searchTerm)))
+//            }
+//            .debounce(id: id, for: 0.5, scheduler: DispatchQueue.main)
+//            .eraseToEffect()
