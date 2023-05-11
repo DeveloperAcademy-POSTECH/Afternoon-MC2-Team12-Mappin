@@ -18,7 +18,7 @@ struct ArchiveMapView: View {
                 send: { .setListViewPresented($0) }
             )
             ZStack(alignment: .top) {
-                MapView(action: .constant(.none), userTrackingMode: .none)
+                ContentView.build()
                 FakeNavigationBar()
             }
             .navigationTitle(viewStore.state.category.navigationTitle)
