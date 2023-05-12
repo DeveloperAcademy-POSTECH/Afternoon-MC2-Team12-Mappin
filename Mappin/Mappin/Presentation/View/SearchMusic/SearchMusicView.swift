@@ -15,10 +15,10 @@ struct SearchMusicView: View {
     @State private var searchTerm: String = ""
     @State private var selectedCell: String? = nil
     
-    let store: StoreOf<MusicReducer>
-    @ObservedObject var viewStore: ViewStoreOf<MusicReducer>
+    let store: StoreOf<SearchMusicReducer>
+    @ObservedObject var viewStore: ViewStoreOf<SearchMusicReducer>
     
-    init(store: StoreOf<MusicReducer>) {
+    init(store: StoreOf<SearchMusicReducer>) {
         self.store = store
         self.viewStore = ViewStore(self.store, observe: { $0 })
     }
@@ -40,7 +40,7 @@ struct SearchMusicView: View {
                                             .font(.system(size: 16, weight: .regular))
                                             .foregroundColor(.black)
                                     }))
-            .searchable(text: viewStore.binding(get: \.searchTerm, send: MusicReducer.Action.searchTermChanged),
+            .searchable(text: viewStore.binding(get: \.searchTerm, send: SearchMusicReducer.Action.searchTermChanged),
                         placement: .navigationBarDrawer(displayMode: .always))
             .onAppear {
                 settingMuesicAuthorization()
