@@ -12,11 +12,10 @@ import ComposableArchitecture
 
 struct ArchiveMusicView: View {
     
-    @State var tempButton = false
-    let store: StoreOf<SearchMusicReducer>
-    @ObservedObject var viewStore: ViewStoreOf<SearchMusicReducer>
+    let store: StoreOf<ArchiveMusicReducer>
+    @ObservedObject var viewStore: ViewStoreOf<ArchiveMusicReducer>
     
-    init(store: StoreOf<SearchMusicReducer>) {
+    init(store: StoreOf<ArchiveMusicReducer>) {
         self.store = store
         self.viewStore = ViewStore(self.store, observe: { $0 })
     }
@@ -24,31 +23,26 @@ struct ArchiveMusicView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if tempButton {
-                    archiveEmptyView
-                } else {
+                if !viewStore.state.archiveMusic.isEmpty {
                     archiveMusicList
+                } else {
+                    archiveEmptyView
                 }
             }
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading:
-                                    Text("내가 저장한 핀들 돌아보기")
+                                    Text(!viewStore.isOtherPin ? "내가 저장한 핀들 돌아보기" : "다른 사람들이 저장한 핀들 돌아보기")
                                         .font(.system(size: 16, weight: .bold)),
                                 trailing:
                                     Button(action: {
                                         print("취소 버튼 클릭")
-                                    tempButton.toggle()
                                     }, label: {
                                         Text("취소")
                                             .font(.system(size: 16, weight: .regular))
                                             .foregroundColor(.black)
                                     }))
-            .onAppear {
-                settingMuesicAuthorization()
-            }
             .task {
-                viewStore.send(.requestMusicChart)
-                // 서버 API 호출
+                viewStore.send(.requestArchive)
             }
         }
     }
@@ -58,15 +52,15 @@ struct ArchiveMusicView: View {
         withAnimation {
             List {
                 Section {
-                    ForEach(!viewStore.searchTerm.isEmpty ? viewStore.searchMusic : viewStore.musicChart) { music in
-                         // selectedMusicIndex == "" -> 초기 상태, 검색했거나 검색창을 켰을 경우. checkmark와 이중 클릭 확인을 하기 위함
-                         // 초기 상태, 혹은 유저가 검색을 했을 때. opacity를 주기 위함
-                        ArchiveMusicCell(music: music)
+                    ForEach(viewStore.archiveMusic.isEmpty ? [] : viewStore.archiveMusic) { archive in
+                        ArchiveMusicCell(music: archive.music, date: archive.createdAt)
                             .onTapGesture {
                                 print("피닝 되어있는 위치로 이동!")
                         }
                     }
-                    // onDelete
+                    .onDelete { index in
+                        viewStore.send(.removeArchive(index: index))
+                    }
                 } header: {
                 }
 
@@ -76,12 +70,25 @@ struct ArchiveMusicView: View {
     }
     
     var archiveEmptyView: some View {
-        Text("아카이브가 비어있어요")
-    }
-    
-    func settingMuesicAuthorization() {
-        Task {
-            _ = await MusicAuthorization.request()
+        VStack {
+            Text("당신의 감정을 기록해주세요.")
+                .font(.system(size: 15, weight: .regular))
+                .foregroundColor(Color(red: 0.4235, green: 0.4235, blue: 0.4392))
+                .padding(.top, 15)
+            Button {
+                
+            } label: {
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(height: 55)
+                    .padding(.leading, 20)
+                    .padding(.trailing, 20)
+                    .overlay {
+                        Text("현재 위치에 음악 핀하기")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(.white)
+                    }
+            }
+            Spacer()
         }
     }
     

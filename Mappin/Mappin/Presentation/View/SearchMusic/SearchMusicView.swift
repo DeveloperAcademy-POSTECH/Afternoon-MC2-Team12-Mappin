@@ -40,7 +40,7 @@ struct SearchMusicView: View {
                                             .font(.system(size: 16, weight: .regular))
                                             .foregroundColor(.black)
                                     }))
-            .searchable(text: viewStore.binding(get: \.searchTerm, send: MusicReducer.Action.searchTermChanged),
+            .searchable(text: viewStore.binding(get: \.searchTerm, send: SearchMusicReducer.Action.searchTermChanged),
                         placement: .navigationBarDrawer(displayMode: .always))
             .onAppear {
                 settingMuesicAuthorization()

@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ArchiveMusicCell: View {
     var music: Music
+    var date: Date
     
     var body: some View {
         VStack {
             HStack {
-                Text("Apr 11, 2023 ・ 6:03PM ・ 화요일")
+                Text(String(describing: date))
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundColor(Color(red: 0.4235, green: 0.4235, blue: 0.4392))
                 Spacer()
