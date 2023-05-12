@@ -16,7 +16,7 @@ protocol PinMusic: ReducerProtocol {
     var getPinsUseCase: GetPinsUseCase { get }
 }
 
-struct PinMusicReducer: PinMusic {
+struct PinMusicReducer: PinMusic, PassEntityProtocol {
     
     let addPinUseCase: AddPinUseCase
     let getPinsUseCase: GetPinsUseCase

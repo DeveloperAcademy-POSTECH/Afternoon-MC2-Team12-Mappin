@@ -13,8 +13,8 @@ import Combine
 
 struct SearchMusicReducer: ReducerProtocol {
     
-    //    let searchMusicUseCase = DefaultSearchMusicUseCase(musicRepository: RequestMusicRepository())
-    //    let musicChartUseCase = DefaultMusicChartUseCase(musicRepository: RequestMusicRepository())
+   
+    var delegate: PassEntityProtocol?
     let searchMusicUseCase: SearchMusicUseCase
     let musicChartUseCase: MusicChartUseCase
     let debounceId = "Kozi"

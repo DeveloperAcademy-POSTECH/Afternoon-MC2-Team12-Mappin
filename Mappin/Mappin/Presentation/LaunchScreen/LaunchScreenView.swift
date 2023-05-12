@@ -23,13 +23,21 @@ struct LaunchScreenView: View {
                     get: \.isCompleted,
                     send: { .setCompleted($0) }
                 )) {
-                    PrimaryView(store:
+                    PrimaryView(pinStore:
                                     Store(
                                         initialState: PinMusicReducer.State(),
                                         reducer: PinMusicReducer(
                                             addPinUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(AddPinUseCase.self),
                                             getPinsUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(GetPinsUseCase.self)
                                         )._printChanges()
+                                    ),
+                                musicStore:
+                                    Store(
+                                        initialState: SearchMusicReducer.State(),
+                                        reducer: SearchMusicReducer(
+                                            searchMusicUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(SearchMusicUseCase.self),
+                                            musicChartUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(MusicChartUseCase.self)
+                                        )
                                     )
                     )
                 }

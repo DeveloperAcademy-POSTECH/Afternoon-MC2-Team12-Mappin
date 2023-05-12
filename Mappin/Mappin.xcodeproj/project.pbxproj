@@ -86,6 +86,7 @@
 		AF9E9D572A0A161A00EC8D9E /* SearchMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D562A0A161A00EC8D9E /* SearchMusicCell.swift */; };
 		AF9E9D582A0A174900EC8D9E /* SearchMusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1078C92A05101B00DB8EDA /* SearchMusicReducer.swift */; };
 		AF9E9D592A0A17B200EC8D9E /* MusicChartUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1078C62A039E8B00DB8EDA /* MusicChartUseCase.swift */; };
+		D450FEB32A0E135800909E90 /* PassEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450FEB22A0E135800909E90 /* PassEntityProtocol.swift */; };
 		D45C9DFA2A0A22DD00FAA39C /* MKMapView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9DF92A0A22DD00FAA39C /* MKMapView+.swift */; };
 		D45C9E002A0A234500FAA39C /* AnnotaitionPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9DFF2A0A234500FAA39C /* AnnotaitionPin.swift */; };
 		D45C9E082A0A246F00FAA39C /* PinAnnotationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9E072A0A246F00FAA39C /* PinAnnotationProtocol.swift */; };
@@ -192,6 +193,7 @@
 		AF9E9D4C2A08E7E000EC8D9E /* MusicItemCollection+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MusicItemCollection+.swift"; sourceTree = "<group>"; };
 		AF9E9D532A0A10E900EC8D9E /* SearchMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicView.swift; sourceTree = "<group>"; };
 		AF9E9D562A0A161A00EC8D9E /* SearchMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicCell.swift; sourceTree = "<group>"; };
+		D450FEB22A0E135800909E90 /* PassEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassEntityProtocol.swift; sourceTree = "<group>"; };
 		D45C9DF92A0A22DD00FAA39C /* MKMapView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+.swift"; sourceTree = "<group>"; };
 		D45C9DFF2A0A234500FAA39C /* AnnotaitionPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotaitionPin.swift; sourceTree = "<group>"; };
 		D45C9E072A0A246F00FAA39C /* PinAnnotationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAnnotationProtocol.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				AF6800BB2A0393F50096D65B /* PinMusicReducer.swift */,
 				AF1078C92A05101B00DB8EDA /* SearchMusicReducer.swift */,
 				AF12DDF02A0CEAEA00543B28 /* ArchiveMusicReducer.swift */,
+				D450FEB22A0E135800909E90 /* PassEntityProtocol.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -807,6 +810,7 @@
 				3AE353DC2A03935A00D5A2B5 /* PinClustersListAPITarget.swift in Sources */,
 				AF9E9D592A0A17B200EC8D9E /* MusicChartUseCase.swift in Sources */,
 				D4F57CF82A02609100582857 /* AddPinIntent.swift in Sources */,
+				D450FEB32A0E135800909E90 /* PassEntityProtocol.swift in Sources */,
 				3AE353DA2A0390E000D5A2B5 /* APIJSONDecoder.swift in Sources */,
 				D4F19C5D2A09160200ABB567 /* PinMusicReducer.swift in Sources */,
 				3AD1DE392A053E9300A49E95 /* PinsReadListAPITarget.swift in Sources */,

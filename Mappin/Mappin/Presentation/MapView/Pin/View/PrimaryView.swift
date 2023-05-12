@@ -15,20 +15,24 @@ struct PrimaryView: View {
     @State private var isSearchMusicViewPresented = false
     
     let pinStore: StoreOf<PinMusicReducer>
-    let musicStore: StoreOf<MusicReducer>
+    let musicStore: StoreOf<SearchMusicReducer>
     
-    @ObservedObject var viewStore: ViewStoreOf<PinMusicReducer>
+    @ObservedObject var pinViewStore: ViewStoreOf<PinMusicReducer>
+    @ObservedObject var musicViewStore: ViewStoreOf<SearchMusicReducer>
     @State var action: MapView.Action = .none
     
-    init(store: StoreOf<PinMusicReducer>) {
-        self.store = store
-        self.viewStore = ViewStore(self.store, observe: { $0 })
+    init(pinStore: StoreOf<PinMusicReducer>, musicStore: StoreOf<SearchMusicReducer>) {
+        self.pinStore = pinStore
+        self.pinViewStore = ViewStore(self.pinStore, observe: { $0 })
+        
+        self.musicStore = musicStore
+        self.musicViewStore = ViewStore(self.musicStore, observe: { $0 })
     }
     
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
-                MapView(action: .constant(.none), store: viewStore, userTrackingMode: .follow)
+                MapView(action: .constant(.none), store: pinViewStore, userTrackingMode: .follow)
                     .ignoresSafeArea()
                     .opacity(Double(action.yame))
                 
@@ -42,7 +46,7 @@ struct PrimaryView: View {
                     .applyButtonStyle()
                     .opacity(isSearchMusicViewPresented ? 0 : 1)
                     .sheet(isPresented: $isSearchMusicViewPresented) {
-                        SearchMusicView(store: Store(initialState: <#T##ReducerProtocol.State#>, reducer: <#T##ReducerProtocol#>))
+                        SearchMusicView(store: musicStore)
                             .presentationBackgroundInteraction(.enabled)
                     }
                     NavigationLink("내 핀과 다른 사람들 핀 구경하기") {
