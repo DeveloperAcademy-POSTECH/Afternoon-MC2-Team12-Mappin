@@ -32,6 +32,7 @@ struct SearchMusicReducer: ReducerProtocol {
         var searchMusic: [Music] = []
         var musicChart: [Music] = []
         var selectedMusicIndex: String = ""
+        var uploadMusic: Music?
     }
     
     enum Action {
@@ -100,7 +101,11 @@ struct SearchMusicReducer: ReducerProtocol {
             return .none
             
         case .uploadMusic:
-            print("upload music to server")
+            if state.searchTerm.isEmpty {
+                state.uploadMusic = state.musicChart.first(where: { $0.id == state.selectedMusicIndex})
+            } else {
+                state.uploadMusic = state.searchMusic.first(where: { $0.id == state.selectedMusicIndex})
+            }
             return .none
         
         }
