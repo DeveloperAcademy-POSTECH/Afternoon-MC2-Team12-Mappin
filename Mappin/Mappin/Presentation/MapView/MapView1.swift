@@ -70,8 +70,7 @@ struct MapView: UIViewRepresentable {
             mapView.addAnnotation(newPin)
             
         case .updatePins(let newPins):
-            
-            print("@LOG cece")
+
             mapView.removeAllAnotation()
             mapView.addAnnotations(newPins.map { PinAnnotation($0) })
             
@@ -118,7 +117,7 @@ struct MapView: UIViewRepresentable {
 }
 
 extension MapView {
-    private struct Constants {
+    struct Constants {
         static var defaultLatitudeDelta: Double = 0.0043282051271913355
         static var defaultLongitudeDelta: Double = 0.002735072544965078
     }

@@ -13,8 +13,7 @@ import Combine
 
 struct SearchMusicReducer: ReducerProtocol {
     
-   
-    var delegate: PassEntityProtocol?
+    
     let searchMusicUseCase: SearchMusicUseCase
     let musicChartUseCase: MusicChartUseCase
     let debounceId = "Kozi"
@@ -28,10 +27,17 @@ struct SearchMusicReducer: ReducerProtocol {
     }
     
     struct State: Equatable {
+        
+        static func == (lhs: SearchMusicReducer.State, rhs: SearchMusicReducer.State) -> Bool {
+            false
+        }
+        
         var searchTerm: String = ""
         var searchMusic: [Music] = []
         var musicChart: [Music] = []
         var selectedMusicIndex: String = ""
+        var uploadMusic: Music?
+        var parent: PrimaryView?
     }
     
     enum Action {
@@ -45,6 +51,7 @@ struct SearchMusicReducer: ReducerProtocol {
         case appleMusicError
         case musicSelected(String)
         case uploadMusic
+        case initParent(PrimaryView)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -100,9 +107,18 @@ struct SearchMusicReducer: ReducerProtocol {
             return .none
             
         case .uploadMusic:
-            print("upload music to server")
+            if state.searchTerm.isEmpty {
+                state.uploadMusic = state.musicChart.first(where: { $0.id == state.selectedMusicIndex})
+                
+            } else {
+                state.uploadMusic = state.searchMusic.first(where: { $0.id == state.selectedMusicIndex})
+            }
+            state.parent!.sendPin(state.uploadMusic)
             return .none
-        
+            
+        case .initParent(let parent):
+            state.parent = parent
+            return .none
         }
     }
     

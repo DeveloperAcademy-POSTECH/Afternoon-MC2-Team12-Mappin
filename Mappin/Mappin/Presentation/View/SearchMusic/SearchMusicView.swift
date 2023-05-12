@@ -12,13 +12,15 @@ import MusicKit
 
 struct SearchMusicView: View {
     
+    var parent: PrimaryView
     @State private var searchTerm: String = ""
     @State private var selectedCell: String? = nil
     
     let store: StoreOf<SearchMusicReducer>
     @ObservedObject var viewStore: ViewStoreOf<SearchMusicReducer>
     
-    init(store: StoreOf<SearchMusicReducer>) {
+    init(_ parent: PrimaryView, store: StoreOf<SearchMusicReducer>) {
+        self.parent = parent
         self.store = store
         self.viewStore = ViewStore(self.store, observe: { $0 })
     }
@@ -63,7 +65,7 @@ struct SearchMusicView: View {
                         SearchMusicCell(music: music, isSelected: isSelected, noSelection: noSelection)
                             .onTapGesture {
                                 if isSelected {
-                                    viewStore.send(.uploadMusic)
+                                    parent.passMusic()
                                 } else {
                                     viewStore.send(.musicSelected(music.id))
                                 }

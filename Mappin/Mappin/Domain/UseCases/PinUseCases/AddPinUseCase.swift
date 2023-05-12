@@ -38,14 +38,19 @@ final class DefaultAddPinUseCase: AddPinUseCase {
     
     func excute(music: Music) async throws {
         let latitude = locationRepository.latitude
+        print("@KIO 1")
         let longtitude = locationRepository.longitude
+        print("@KIO 2")
         let geoCodeResult = try await geoCodeRepository.requestGeoCode(latitude: latitude, longitude: longtitude)
+        print("@KIO 3")
         let weather = try await weatherRepository.requestWeather(latitude: latitude, longitude: longtitude)
+        print("@KIO 4")
         let location = Location(id: UUID().uuidString,
                                 latitude: latitude,
                                 longitude: longtitude,
                                 locality: geoCodeResult.locality,
                                 subLocality: geoCodeResult.subLocality)
+        
         try await pinsRepository.create(
             music: music,
             location: location,

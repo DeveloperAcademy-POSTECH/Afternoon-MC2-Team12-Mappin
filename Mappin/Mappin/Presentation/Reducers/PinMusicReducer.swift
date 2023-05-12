@@ -16,7 +16,7 @@ protocol PinMusic: ReducerProtocol {
     var getPinsUseCase: GetPinsUseCase { get }
 }
 
-struct PinMusicReducer: PinMusic, PassEntityProtocol {
+struct PinMusicReducer: PinMusic {
     
     let addPinUseCase: AddPinUseCase
     let getPinsUseCase: GetPinsUseCase
@@ -86,6 +86,7 @@ struct PinMusicReducer: PinMusic, PassEntityProtocol {
                         mapPins = try await getPinsUseCase.excuteUsingMap(center: center, latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
                           
                     }
+                    print("@LOG --------------------------------------------------------")
                     print("@LOG delta \(latitudeDelta) and \(longitudeDelta)")
                     print("@LOG pins \(mapPins)")
                     return .mapPins(mapPins)

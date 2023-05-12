@@ -19,8 +19,14 @@ final class RequestGeoCodeRepository: GeoCodeRepository {
             latitude: latitude,
             longitude: longitude), preferredLocale: locale).last!
         
-        return (locality: geoCodeResponse.locality!,
-                subLocality: geoCodeResponse.subLocality!)
+//        print("---------------------")
+//        print(geoCodeResponse.country)
+//        print(geoCodeResponse.administrativeArea)
+//        print(geoCodeResponse.displayRepresentation.title)
+//        print(geoCodeResponse.displayRepresentation.subtitle)
+//        
+        return (locality: geoCodeResponse.locality ?? "사랑시",
+                subLocality: geoCodeResponse.subLocality ?? "고백구 행복동")
     }
 }
 

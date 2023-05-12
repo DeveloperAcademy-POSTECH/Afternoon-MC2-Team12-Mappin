@@ -194,6 +194,7 @@
 		AF9E9D532A0A10E900EC8D9E /* SearchMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicView.swift; sourceTree = "<group>"; };
 		AF9E9D562A0A161A00EC8D9E /* SearchMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicCell.swift; sourceTree = "<group>"; };
 		D450FEB22A0E135800909E90 /* PassEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassEntityProtocol.swift; sourceTree = "<group>"; };
+		D450FEB42A0E2B2C00909E90 /* Mappin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mappin.entitlements; sourceTree = "<group>"; };
 		D45C9DF92A0A22DD00FAA39C /* MKMapView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+.swift"; sourceTree = "<group>"; };
 		D45C9DFF2A0A234500FAA39C /* AnnotaitionPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotaitionPin.swift; sourceTree = "<group>"; };
 		D45C9E072A0A246F00FAA39C /* PinAnnotationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAnnotationProtocol.swift; sourceTree = "<group>"; };
@@ -599,6 +600,7 @@
 		D4F57CD12A0243AB00582857 /* Mappin */ = {
 			isa = PBXGroup;
 			children = (
+				D450FEB42A0E2B2C00909E90 /* Mappin.entitlements */,
 				D4F57CF92A0260D100582857 /* Info.plist */,
 				D4F57CD22A0243AB00582857 /* MappinApp.swift */,
 				D4F57CEB2A02547100582857 /* Common */,
@@ -1021,6 +1023,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mappin/Mappin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mappin/Preview Content\"";
@@ -1056,6 +1059,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mappin/Mappin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mappin/Preview Content\"";

@@ -24,7 +24,8 @@ struct PrimaryView: View {
     init(pinStore: StoreOf<PinMusicReducer>, musicStore: StoreOf<SearchMusicReducer>) {
         self.pinStore = pinStore
         self.pinViewStore = ViewStore(self.pinStore, observe: { $0 })
-        
+            
+            
         self.musicStore = musicStore
         self.musicViewStore = ViewStore(self.musicStore, observe: { $0 })
     }
@@ -46,7 +47,7 @@ struct PrimaryView: View {
                     .applyButtonStyle()
                     .opacity(isSearchMusicViewPresented ? 0 : 1)
                     .sheet(isPresented: $isSearchMusicViewPresented) {
-                        SearchMusicView(store: musicStore)
+                        SearchMusicView(self, store: musicStore)
                             .presentationBackgroundInteraction(.enabled)
                     }
                     NavigationLink("내 핀과 다른 사람들 핀 구경하기") {
@@ -80,3 +81,20 @@ private struct ButtonStyleModifier: ViewModifier {
     }
 }
 
+extension PrimaryView {
+
+    func passMusic() {
+        musicViewStore.send(.initParent(self))
+        musicViewStore.send(.uploadMusic)
+        print("@Log add")
+    }
+    
+    func sendPin(_ music: Music?) {
+        guard let music = music else {
+            print("@LOG Error Add")
+            return
+        }
+
+        pinViewStore.send(.addPin(music: music, latitudeDelta: MapView.Constants.defaultLatitudeDelta, longitudeDelta: MapView.Constants.defaultLatitudeDelta))
+    }
+}

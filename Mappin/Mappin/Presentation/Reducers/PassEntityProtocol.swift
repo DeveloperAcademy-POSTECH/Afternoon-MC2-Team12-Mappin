@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol PassEntityProtocol {
+protocol PassMusic: Equatable {
     
-    func passEntity<T>(_ entity: T)
+    func passMusic(_ view: PrimaryView, _ entity: Music?)
 }

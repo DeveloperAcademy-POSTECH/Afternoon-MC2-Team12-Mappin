@@ -16,6 +16,7 @@ struct APIPinsRepository: PinsRepository {
         location: Location,
         weather: Weather
     ) async throws {
+        print("@KIO temp")
         let parameters = PinsCreateAPITarget.Parameters(
             music: .init(
                 applemusic_id: music.id,
@@ -31,6 +32,7 @@ struct APIPinsRepository: PinsRepository {
             weather: weather.symbolName,
             temperature: Int(weather.temperature) ?? 0
         )
+        print("@KIO \(parameters)")
         let target = APITarget.createPin(parameters: parameters)
         try await provider.justRequest(target)
     }
