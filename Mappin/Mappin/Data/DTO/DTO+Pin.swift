@@ -26,7 +26,6 @@ extension DTO.Pin {
         Pin(
             id: String(id),
             count: 0,
-            userName: "",
             music: Music(
                 id: music.applemusic_id,
                 title: music.title,
@@ -36,7 +35,7 @@ extension DTO.Pin {
             ),
             weather: Weather(
                 id: UUID().uuidString,
-                temperature: String(temperature),
+                temperature: temperature,
                 symbolName: weather
             ),
             createdAt: created_at,
