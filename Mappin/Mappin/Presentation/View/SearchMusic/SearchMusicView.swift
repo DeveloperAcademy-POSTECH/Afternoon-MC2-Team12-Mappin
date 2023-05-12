@@ -13,13 +13,13 @@ import MusicKit
 struct SearchMusicView: View {
     
     var parent: PrimaryView
-    @State private var searchTerm: String = ""
-    @State private var selectedCell: String? = nil
     
     let store: StoreOf<SearchMusicReducer>
     @ObservedObject var viewStore: ViewStoreOf<SearchMusicReducer>
+    @Binding var isSearchMusicViewPresented: Bool
     
-    init(_ parent: PrimaryView, store: StoreOf<SearchMusicReducer>) {
+    init(_ parent: PrimaryView, store: StoreOf<SearchMusicReducer>, close: Binding<Bool>) {
+        self._isSearchMusicViewPresented = close
         self.parent = parent
         self.store = store
         self.viewStore = ViewStore(self.store, observe: { $0 })
@@ -36,7 +36,7 @@ struct SearchMusicView: View {
                                         .font(.system(size: 16, weight: .bold)),
                                 trailing:
                                     Button(action: {
-                                        print("취소 버튼 클릭")
+                                        isSearchMusicViewPresented.toggle()
                                     }, label: {
                                         Text("취소")
                                             .font(.system(size: 16, weight: .regular))

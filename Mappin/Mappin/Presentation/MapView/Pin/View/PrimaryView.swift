@@ -20,6 +20,8 @@ struct PrimaryView: View {
     @ObservedObject var pinViewStore: ViewStoreOf<PinMusicReducer>
     @ObservedObject var musicViewStore: ViewStoreOf<SearchMusicReducer>
     @State var action: MapView.Action = .none
+    @State var tempClose: Bool = false
+    
     
     init(pinStore: StoreOf<PinMusicReducer>, musicStore: StoreOf<SearchMusicReducer>) {
         self.pinStore = pinStore
@@ -47,8 +49,9 @@ struct PrimaryView: View {
                     .applyButtonStyle()
                     .opacity(isSearchMusicViewPresented ? 0 : 1)
                     .sheet(isPresented: $isSearchMusicViewPresented) {
-                        SearchMusicView(self, store: musicStore)
+                        SearchMusicView(self, store: musicStore, close: $isSearchMusicViewPresented)
                             .presentationBackgroundInteraction(.enabled)
+                            
                     }
                     NavigationLink("내 핀과 다른 사람들 핀 구경하기") {
                         ArchiveMapView.build()
