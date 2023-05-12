@@ -11,30 +11,31 @@ struct PrimaryView: View {
     @State private var isSearchMusicViewPresented = false
     
     var body: some View {
-        NavigationView {
-            ZStack(alignment: .bottom) {
-                MapView(action: .constant(.none), userTrackingMode: .follow)
-                    .ignoresSafeArea()
-                
-                VStack(spacing: 10) {
-                    Button("현재 위치에 음악 핀하기") {
-                        isSearchMusicViewPresented.toggle()
-                    }
-                    .applyButtonStyle()
-                    .sheet(isPresented: $isSearchMusicViewPresented) {
-                        SearchMusicView1(isSearchMusicViewPresented: $isSearchMusicViewPresented)
-                    }
-                    
-                    NavigationLink("내 핀과 다른 사람들 핀 구경하기") {
-                        ArchiveMapView.build()
-                    }
-                    .applyButtonStyle()
-                }
-                .font(.system(size: 16, weight: .semibold))
-                .padding(.horizontal, 20)
-                .padding(.bottom, 32)
-            }
-        }
+        Text("s")
+//        NavigationView {
+//            ZStack(alignment: .bottom) {
+//                MapView(action: .constant(.none), userTrackingMode: .follow)
+//                    .ignoresSafeArea()
+//
+//                VStack(spacing: 10) {
+//                    Button("현재 위치에 음악 핀하기") {
+//                        isSearchMusicViewPresented.toggle()
+//                    }
+//                    .applyButtonStyle()
+//                    .sheet(isPresented: $isSearchMusicViewPresented) {
+//                        SearchMusicView1(isSearchMusicViewPresented: $isSearchMusicViewPresented)
+//                    }
+//
+//                    NavigationLink("내 핀과 다른 사람들 핀 구경하기") {
+//                        ArchiveMapView.build()
+//                    }
+//                    .applyButtonStyle()
+//                }
+//                .font(.system(size: 16, weight: .semibold))
+//                .padding(.horizontal, 20)
+//                .padding(.bottom, 32)
+//            }
+//        }
     }
 }
 

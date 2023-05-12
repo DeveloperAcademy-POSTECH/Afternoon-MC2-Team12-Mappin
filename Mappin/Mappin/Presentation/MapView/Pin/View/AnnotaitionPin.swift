@@ -1,5 +1,5 @@
 //
-//  ClusteredPin.swift
+//  AnnotaitionPin.swift
 //  Mappin
 //
 //  Created by changgyo seo on 2023/05/09.
@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 
 
-class ClusterdPin: MKAnnotationView {
+class AnnotaitionPin: MKAnnotationView {
     
     var pin: Pin
     let clusteredCountLabel: UILabel
@@ -18,33 +18,41 @@ class ClusterdPin: MKAnnotationView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        backGroundLayout()
+        
         clusteredCountLabel.text = "\(pin.count)"
         if pin.id == RequestDeviceRepository().deviceId {
-            clusteredCountLabel.textColor = .red
-            pinBackGroundImage.image = UIImage(named: "pinBlue") ?? UIImage(systemName: "pin")
+            clusteredCountLabel.textColor = .blue
+            pinBackGroundImage.image = UIImage(named: pin.count == 1 ? "pinBlueSingle" : "pinBlue")!
+            
         }
         else {
-            clusteredCountLabel.textColor = .blue
-            pinBackGroundImage.image = UIImage(named: "pinBlue") ?? UIImage(systemName: "pin")
+            clusteredCountLabel.textColor = .gray
+            pinBackGroundImage.image = UIImage(named: pin.count == 1 ? "pinGraySingle" : "pinGray")!
         }
         
         pinBackGroundImage.contentMode = .scaleAspectFit
-        layout()
+        backGroundLayout()
+        if pin.count != 0 { addCountLabel() }
     }
     
-    func layout() {
-        [pinBackGroundImage, clusteredCountLabel].forEach {
-            addSubview($0)
-        }
+    func addCountLabel() {
         
-        pinBackGroundImage.translatesAutoresizingMaskIntoConstraints = false
-        pinBackGroundImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        pinBackGroundImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        addSubview(clusteredCountLabel)
         
         clusteredCountLabel.translatesAutoresizingMaskIntoConstraints = false
         clusteredCountLabel.centerXAnchor.constraint(equalTo: pinBackGroundImage.centerXAnchor).isActive = true
         clusteredCountLabel.centerYAnchor.constraint(equalTo: pinBackGroundImage.centerYAnchor, constant: -3).isActive = true
         
+    }
+    
+    func backGroundLayout() {
+        
+        addSubview(pinBackGroundImage)
+        
+        pinBackGroundImage.translatesAutoresizingMaskIntoConstraints = false
+        pinBackGroundImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        pinBackGroundImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {

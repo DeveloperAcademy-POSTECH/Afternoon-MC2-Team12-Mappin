@@ -27,7 +27,9 @@ struct ContentView: View {
         MapView(action: .constant(.none), store: viewStore, userTrackingMode: .follow)
             .ignoresSafeArea()
             .opacity(Double(action.yame))
+            
     }
+    
 }
 
 extension ContentView {

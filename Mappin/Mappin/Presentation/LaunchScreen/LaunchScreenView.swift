@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import MusicKit
 
 struct LaunchScreenView: View {
     let store: StoreOf<LaunchScreenReducer>
@@ -17,6 +18,15 @@ struct LaunchScreenView: View {
             Text("Launch Screen")
                 .onAppear {
                     viewStore.send(.viewAppeared)
+                    Task {
+                        Task {
+                            _ = await MusicAuthorization.request()
+                        }
+                        print("---------------------------------")
+                        let musicSearchUseCase = DefaultSearchMusicUseCase(musicRepository: RequestMusicRepository()) //SearchMusicUseCase = DefaultMockDIContainer.shared.container.resolver.resolve(SearchMusicUseCase.self)
+                        let list = try await musicSearchUseCase.execute(searchTerm: "뿌리").map { $0.title }
+                        print(list.count)
+                    }
                 }
                 .fullScreenCover(isPresented: viewStore.binding(
                     get: \.isCompleted,

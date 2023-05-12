@@ -12,13 +12,15 @@ struct AddPinIntent: AppIntent {
     static var title: LocalizedStringResource = "Add pin"
     static var description = IntentDescription("Let's add our new pin")
     
-    @Parameter(title: "음악")
+    @IntentParameter(title: "음악")
     var music: String
     
     func perform() async throws -> some IntentResult {
-        // this code block used to test
-        let temp = try await $music.requestDisambiguation(among: ["1", "2", "3", "4", "5", "6"], dialog: "which?")
-        //
+        
+        let musicSearchUseCase = DefaultSearchMusicUseCase(musicRepository: RequestMusicRepository()) 
+        let list = try await musicSearchUseCase.execute(searchTerm: music).map { $0.title }
+        _ = try await $music.requestDisambiguation(among: list, dialog: "which?")
+        
         
         return .result()
     }
@@ -27,10 +29,10 @@ struct AddPinIntent: AppIntent {
 struct AddPinShortcutProvider: AppShortcutsProvider {
     
     static var appShortcuts: [AppShortcut] = [
-            AppShortcut(
-                intent: AddPinIntent(),
-                phrases: ["Add pin in \(.applicationName)"]
-            )
+        AppShortcut(
+            intent: AddPinIntent(),
+            phrases: ["Add pin in \(.applicationName)"]
+        )
     ]
 }
 

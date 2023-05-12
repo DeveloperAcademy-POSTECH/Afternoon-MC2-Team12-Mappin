@@ -49,7 +49,7 @@ struct MapView: UIViewRepresentable {
         mapView.userTrackingMode = .follow
         mapView.showsUserLocation = true
         mapView.isUserInteractionEnabled = true
-        mapView.register(ClusterdPin.self, forAnnotationViewWithReuseIdentifier: "")
+        mapView.register(AnnotaitionPin.self, forAnnotationViewWithReuseIdentifier: "AnnotaitionPin")
         
         mapView.delegate = context.coordinator
         
@@ -105,7 +105,7 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            guard let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "") as? ClusterdPin,
+            guard let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "") as? AnnotaitionPin,
                   let pinAnnotation = annotation as? PinAnnotation else {
                 return MKAnnotationView()
             }
