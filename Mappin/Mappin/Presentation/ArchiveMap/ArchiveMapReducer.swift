@@ -48,10 +48,16 @@ class ArchiveMapReducer: ReducerProtocol {
             return .none
             
         case let .receiveMap(action):
-            return .none
+            switch action {
+            default:
+                return .none
+            }
             
         case let .receiveList(action):
-            return .none
+            switch action {
+            default:
+                return .none
+            }
             
         case let .sendMap(action):
             state.mapAction = action

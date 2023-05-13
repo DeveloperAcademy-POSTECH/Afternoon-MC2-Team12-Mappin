@@ -38,7 +38,7 @@ struct PinMusicReducer: PinMusic {
     enum Action: Equatable {
         case act(MapView.Action)
         case actAndChange(MapView.Action)
-        case loadPins(centerLatitude: Double, centerLongitude: Double, latitudeDelta: Double, longitudeDelta: Double)
+        case loadPins(category: PinsCategory?, centerLatitude: Double, centerLongitude: Double, latitudeDelta: Double, longitudeDelta: Double)
         case mapPins([Pin])
         case listPins([Pin])
         case addPin(music: Music, latitudeDelta: Double, longitudeDelta: Double)
@@ -47,8 +47,8 @@ struct PinMusicReducer: PinMusic {
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         state.lastAction = .init(action)
+        
         switch action {
-            
         case .act(let value):
             switch value {
             case .none:
@@ -57,9 +57,11 @@ struct PinMusicReducer: PinMusic {
                 return .none
             case .updatePins(_):
                 return .none
-            case .update(here: let here, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
+            case let .update(here, latitudeDelta, longitudeDelta):
+                let category = state.category
                 return .run { action in
                     await action.send(.loadPins(
+                        category: category,
                         centerLatitude: here.0,
                         centerLongitude: here.1,
                         latitudeDelta: latitudeDelta,
@@ -77,9 +79,11 @@ struct PinMusicReducer: PinMusic {
                 return .none
             case .updatePins(_):
                 return .none
-            case .update(here: let here, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
+            case let .update(here, latitudeDelta, longitudeDelta):
+                let category = state.category
                 return .run { action in
                     await action.send(.loadPins(
+                        category: category,
                         centerLatitude: here.0,
                         centerLongitude: here.1,
                         latitudeDelta: latitudeDelta,
@@ -88,34 +92,54 @@ struct PinMusicReducer: PinMusic {
                 }
             }
             
-        case let .loadPins(centerLatitude, centerLongitude, latitudeDelta, longitudeDelta):
+        case let .loadPins(category, centerLatitude, centerLongitude, latitudeDelta, longitudeDelta):
             return .merge(
                 .task {
                     let mapPins: [Pin]
                     if centerLatitude != 404 && centerLongitude != 404 {
-                        mapPins = try await getPinsUseCase.excuteUsingMap(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+                        mapPins = try await getPinsUseCase.excuteUsingMap(
+                            category: category,
+                            latitudeDelta: latitudeDelta,
+                            longitudeDelta: longitudeDelta
+                        )
                     }
                     else {
-                        mapPins = try await getPinsUseCase.excuteUsingMap(center: (centerLatitude, centerLongitude), latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+                        mapPins = try await getPinsUseCase.excuteUsingMap(
+                            category: category,
+                            center: (centerLatitude, centerLongitude),
+                            latitudeDelta: latitudeDelta,
+                            longitudeDelta: longitudeDelta
+                        )
                     }
                     return .mapPins(mapPins)
                 },
                 .task {
                     let listPins: [Pin]
                     if centerLatitude != 404 && centerLongitude != 404 {
-                        listPins = try await getPinsUseCase.excuteUsingMap(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+                        listPins = try await getPinsUseCase.excuteUsingMap(
+                            category: category,
+                            latitudeDelta: latitudeDelta,
+                            longitudeDelta: longitudeDelta
+                        )
                     }
                     else {
-                        listPins = try await getPinsUseCase.excuteUsingMap(center: (centerLatitude, centerLongitude), latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+                        listPins = try await getPinsUseCase.excuteUsingMap(
+                            category: category,
+                            center: (centerLatitude, centerLongitude),
+                            latitudeDelta: latitudeDelta,
+                            longitudeDelta: longitudeDelta
+                        )
                     }
                     return .listPins(listPins)
                 }
             )
             
-        case .addPin(music: let music, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
+        case let .addPin(music, latitudeDelta, longitudeDelta):
+            let category = state.category
             return .task {
                 try await addPinUseCase.excute(music: music)
                 return .loadPins(
+                    category: category,
                     centerLatitude: 404,
                     centerLongitude: 404,
                     latitudeDelta: latitudeDelta,
@@ -135,7 +159,6 @@ struct PinMusicReducer: PinMusic {
             
         case let .setCategory(category):
             state.category = category
-            print("@LOG category pinmusic \(category)")
             return .none
         }
     }

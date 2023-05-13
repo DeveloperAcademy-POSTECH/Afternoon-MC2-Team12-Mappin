@@ -65,6 +65,14 @@ struct ArchiveMapView: View {
             guard let action = $0 else { return }
             listViewStore.send(action)
         }
+        .onChange(of: mapViewStore.lastAction) {
+            guard let action = $0?.wrapped else { return }
+            viewStore.send(.receiveMap(action))
+        }
+        .onChange(of: listViewStore.lastAction) {
+            guard let action = $0?.wrapped else { return }
+            viewStore.send(.receiveList(action))
+        }
     }
     
     private func FakeNavigationBar() -> some View {

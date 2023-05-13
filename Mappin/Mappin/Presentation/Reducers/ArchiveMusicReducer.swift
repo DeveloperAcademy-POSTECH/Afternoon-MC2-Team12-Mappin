@@ -33,6 +33,7 @@ struct ArchiveMusicReducer: ReducerProtocol {
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         state.lastAction = .init(action)
+        
         switch action {
         case .requestArchive:
             return .task {
@@ -52,7 +53,6 @@ struct ArchiveMusicReducer: ReducerProtocol {
             
         case let .setCategory(category):
             state.category = category
-            print("@LOG category archivemusic \(category)")
             return .none
         }
     }
