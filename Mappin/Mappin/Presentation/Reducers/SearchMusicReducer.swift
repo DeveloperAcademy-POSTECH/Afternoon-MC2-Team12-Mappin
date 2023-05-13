@@ -5,11 +5,10 @@
 //  Created by 한지석 on 2023/05/05.
 //
 
-import UIKit
+import SwiftUI
 
 import ComposableArchitecture
 import Combine
-
 
 struct SearchMusicReducer: ReducerProtocol {
     
@@ -32,6 +31,7 @@ struct SearchMusicReducer: ReducerProtocol {
             false
         }
         
+        var isSearchMusicPresented = false
         var searchTerm: String = ""
         var searchMusic: [Music] = []
         var musicChart: [Music] = []
@@ -41,6 +41,7 @@ struct SearchMusicReducer: ReducerProtocol {
     }
     
     enum Action {
+        case searchMusicPresent(isPresented: Bool)
         case resetSearchTerm
         case searchTermChanged(searchTerm: String)
         case requestMusicChart
@@ -56,6 +57,11 @@ struct SearchMusicReducer: ReducerProtocol {
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
+        case .searchMusicPresent(let isPresented):
+            state.isSearchMusicPresented = isPresented
+            print("@Kozi \(state.isSearchMusicPresented)")
+            return .none
+            
         case .resetSearchTerm:
             state.searchTerm = ""
             return .none
@@ -114,6 +120,7 @@ struct SearchMusicReducer: ReducerProtocol {
                 state.uploadMusic = state.searchMusic.first(where: { $0.id == state.selectedMusicIndex})
             }
             state.parent!.sendPin(state.uploadMusic)
+            state.isSearchMusicPresented = false
             return .none
             
         case .initParent(let parent):
