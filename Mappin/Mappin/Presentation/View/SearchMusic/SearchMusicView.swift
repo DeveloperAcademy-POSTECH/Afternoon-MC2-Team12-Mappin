@@ -16,10 +16,8 @@ struct SearchMusicView: View {
     
     let store: StoreOf<SearchMusicReducer>
     @ObservedObject var viewStore: ViewStoreOf<SearchMusicReducer>
-    @Binding var isSearchMusicViewPresented: Bool
     
-    init(_ parent: PrimaryView, store: StoreOf<SearchMusicReducer>, close: Binding<Bool>) {
-        self._isSearchMusicViewPresented = close
+    init(_ parent: PrimaryView, store: StoreOf<SearchMusicReducer>) {
         self.parent = parent
         self.store = store
         self.viewStore = ViewStore(self.store, observe: { $0 })
@@ -36,17 +34,18 @@ struct SearchMusicView: View {
                                         .font(.system(size: 16, weight: .bold)),
                                 trailing:
                                     Button(action: {
-                                        isSearchMusicViewPresented.toggle()
+                                        viewStore.send(.searchMusicPresent(isPresented: false))
                                     }, label: {
                                         Text("취소")
                                             .font(.system(size: 16, weight: .regular))
                                             .foregroundColor(.black)
                                     }))
             .searchable(text: viewStore.binding(get: \.searchTerm, send: SearchMusicReducer.Action.searchTermChanged),
-                        placement: .navigationBarDrawer(displayMode: .always))
+                        placement: .navigationBarDrawer(displayMode: .always) )
+
             .onAppear {
                 settingMuesicAuthorization()
-                print(MusicAuthorization.currentStatus)
+                print("@Kozi - \(MusicAuthorization.currentStatus)")
             }
             .task {
                 viewStore.send(.requestMusicChart)
@@ -74,6 +73,9 @@ struct SearchMusicView: View {
                 } header: {
                     Text(viewStore.searchTerm.isEmpty ? "현재 이 지역 음악 추천" : "검색 결과")
                         .padding(.leading, 15)
+//                        .foregroundColor(.blue)
+//                        .background(Color.black)
+//                        .padding(.top, -100)
                 }
 
             }
