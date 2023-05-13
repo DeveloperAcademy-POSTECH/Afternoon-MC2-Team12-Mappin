@@ -12,7 +12,7 @@ import MapKit
 
 struct PrimaryView: View {
     
-    @State private var isSearchMusicViewPresented = false
+    @State private var settingsDetent = PresentationDetent.medium
     
     let pinStore: StoreOf<PinMusicReducer>
     let musicStore: StoreOf<SearchMusicReducer>
@@ -40,29 +40,29 @@ struct PrimaryView: View {
                     .opacity(Double(action.yame))
                 
                 VStack(spacing: 10) {
-                    
-                    Button("현재 위치에 음악 핀하기") {
-                        withAnimation {
-                            isSearchMusicViewPresented.toggle()
-                        }
-                    }
+                    Button(action: {
+                        musicViewStore.send(.searchMusicPresent(isPresented: true))
+                    }, label: {
+                        Text("현재 위치에 음악 핀하기")
+                    })
                     .applyButtonStyle()
-                    .opacity(isSearchMusicViewPresented ? 0 : 1)
-                    .sheet(isPresented: $isSearchMusicViewPresented) {
-                        SearchMusicView(self, store: musicStore, close: $isSearchMusicViewPresented)
-                            .presentationBackgroundInteraction(.enabled)
-                            
-                    }
+                    .opacity(musicViewStore.isSearchMusicPresented ? 0 : 1)
                     NavigationLink("내 핀과 다른 사람들 핀 구경하기") {
                         ArchiveMapView.build()
                     }
                     .applyButtonStyle()
-                    .opacity(isSearchMusicViewPresented ? 0 : 1)
+                    .opacity(musicViewStore.isSearchMusicPresented ? 0 : 1)
                 }
                 .font(.system(size: 16, weight: .semibold))
                 .padding(.horizontal, 20)
                 .padding(.bottom, 32)
-                
+                .sheet(isPresented: musicViewStore.binding(get: \.isSearchMusicPresented,
+                                                           send: { .searchMusicPresent(isPresented: $0) })) {
+                    SearchMusicView(self, store: musicStore)
+                        .presentationBackgroundInteraction(.enabled)
+                        .presentationDetents([.fraction(0.12), .medium, .large], selection: $settingsDetent)
+                        .interactiveDismissDisabled()
+                }
             }
         }
     }
