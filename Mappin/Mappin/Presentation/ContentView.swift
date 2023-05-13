@@ -11,15 +11,12 @@ import MapKit
 
 struct ContentView: View {
     
-    let store: StoreOf<PinMusicReducer>
-    
     @ObservedObject var viewStore: ViewStoreOf<PinMusicReducer>
     @State var temp: Double = 100
     @State var action: MapView.Action = .none
     
-    init(store: StoreOf<PinMusicReducer>) {
-        self.store = store
-        self.viewStore = ViewStore(self.store, observe: { $0 })
+    init(viewStore: ViewStoreOf<PinMusicReducer>) {
+        self.viewStore = viewStore
     }
 
     
@@ -34,25 +31,11 @@ struct ContentView: View {
 
 extension ContentView {
     static func build() -> Self {
-        let pinsRepository = APIPinsRepository()
-        let locationRepository = RequestLocationRepository.manager
-        return ContentView(store: Store(
+        let viewStore = ViewStore(Store(
             initialState: PinMusicReducer.State(),
-            reducer: PinMusicReducer(
-                addPinUseCase: DefaultAddPinUseCase(
-                    pinsRepository: pinsRepository,
-                    geoCodeRepository: RequestGeoCodeRepository(),
-                    locationRepository: locationRepository,
-                    weatherRepository: RequestWeatherRepository(),
-                    deviceRepository: RequestDeviceRepository()
-                ),
-                getPinsUseCase: DefaultGetPinUseCase(
-                    locationRepository: locationRepository,
-                    pinsRepository: pinsRepository,
-                    pinClustersRepository: DefaultMockDIContainer.shared.container.resolver.resolve(PinClustersRepository.self)
-                )
-            )
+            reducer: PinMusicReducer.build()
         ))
+        return ContentView(viewStore: viewStore)
     }
 }
 

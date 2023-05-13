@@ -12,12 +12,10 @@ import ComposableArchitecture
 
 struct ArchiveMusicView: View {
     
-    let store: StoreOf<ArchiveMusicReducer>
     @ObservedObject var viewStore: ViewStoreOf<ArchiveMusicReducer>
     
-    init(store: StoreOf<ArchiveMusicReducer>) {
-        self.store = store
-        self.viewStore = ViewStore(self.store, observe: { $0 })
+    init(viewStore: ViewStoreOf<ArchiveMusicReducer>) {
+        self.viewStore = viewStore
     }
     
     var body: some View {

@@ -17,16 +17,22 @@ struct ArchiveMusicReducer: ReducerProtocol {
         var archiveMusic: [Pin] = []
         var archiveIsEmpty = false
         var isOtherPin = true
+        
+        var category: PinsCategory?
+        var lastAction: UniqueAction<Action>?
     }
     
-    enum Action {
+    enum Action: Equatable {
         case requestArchive
         case applyArchive([Pin])
         case archiveCellTapped
         case removeArchive(index: IndexSet)
+        
+        case setCategory(PinsCategory)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
+        state.lastAction = .init(action)
         switch action {
         case .requestArchive:
             return .task {
@@ -43,6 +49,11 @@ struct ArchiveMusicReducer: ReducerProtocol {
         case .removeArchive(let index):
             state.archiveMusic.remove(atOffsets: index)
             return .none
+            
+        case let .setCategory(category):
+            state.category = category
+            print("@LOG category archivemusic \(category)")
+            return .none
         }
     }
 }
@@ -58,3 +69,22 @@ struct TempArchive: Identifiable, Equatable {
 //                                     TempArchive(id: 3, music: Music(id: UUID().uuidString, title: "messi3", artist: "ronaldo", artwork: URL(string: "https://is5-ssl.mzstatic.com/image/thumb/Music122/v4/cf/79/94/cf7994ea-4fe5-9d8f-72a2-9725fc4b2c3a/19UMGIM16534.rgb.jpg/200x200bb.jpg"), appleMusicUrl: nil)),
 //                                     TempArchive(id: 4, music: Music(id: UUID().uuidString, title: "messi4", artist: "ronaldo", artwork: URL(string: "https://is5-ssl.mzstatic.com/image/thumb/Music122/v4/cf/79/94/cf7994ea-4fe5-9d8f-72a2-9725fc4b2c3a/19UMGIM16534.rgb.jpg/200x200bb.jpg"), appleMusicUrl: nil)),
 //                                     TempArchive(id: 5, music: Music(id: UUID().uuidString, title: "messi5", artist: "ronaldo", artwork: URL(string: "https://is5-ssl.mzstatic.com/image/thumb/Music122/v4/cf/79/94/cf7994ea-4fe5-9d8f-72a2-9725fc4b2c3a/19UMGIM16534.rgb.jpg/200x200bb.jpg"), appleMusicUrl: nil))])
+
+extension ArchiveMusicReducer: PinsCategoryReceivable {
+    func receivePinsCategory(_ category: PinsCategory) {
+    }
+}
+
+let store = Store(
+    initialState: ArchiveMusicReducer.State(),
+    reducer: ArchiveMusicReducer(),
+    prepareDependencies: nil
+)
+
+let viewStore = ViewStoreOf<ArchiveMusicReducer>(store)
+
+extension Store: PinsCategoryReceivable where Action == ArchiveMusicReducer.Action {
+    func receivePinsCategory(_ category: PinsCategory) {
+        viewStore.send(.requestArchive)
+    }
+}

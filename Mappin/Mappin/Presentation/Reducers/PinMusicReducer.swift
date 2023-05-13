@@ -30,20 +30,23 @@ struct PinMusicReducer: PinMusic {
         var pinsUsingMap: [Pin] = []
         var pinsUsingList: [Pin] = []
         var mapUserTrakingMode: MapUserTrackingMode = .follow
+        
+        var category: PinsCategory?
+        var lastAction: UniqueAction<Action>?
     }
     
-    enum Action {
-        
+    enum Action: Equatable {
         case act(MapView.Action)
         case actAndChange(MapView.Action)
-        case loadPins(center: (Double, Double), latitudeDelta: Double, longitudeDelta: Double)
+        case loadPins(centerLatitude: Double, centerLongitude: Double, latitudeDelta: Double, longitudeDelta: Double)
         case mapPins([Pin])
         case listPins([Pin])
         case addPin(music: Music, latitudeDelta: Double, longitudeDelta: Double)
+        case setCategory(PinsCategory)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-       
+        state.lastAction = .init(action)
         switch action {
             
         case .act(let value):
@@ -56,7 +59,12 @@ struct PinMusicReducer: PinMusic {
                 return .none
             case .update(here: let here, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
                 return .run { action in
-                    await action.send(.loadPins(center: here, latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta))
+                    await action.send(.loadPins(
+                        centerLatitude: here.0,
+                        centerLongitude: here.1,
+                        latitudeDelta: latitudeDelta,
+                        longitudeDelta: longitudeDelta
+                    ))
                 }
             }
             
@@ -71,33 +79,34 @@ struct PinMusicReducer: PinMusic {
                 return .none
             case .update(here: let here, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
                 return .run { action in
-                    await action.send(.loadPins(center: here, latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta))
+                    await action.send(.loadPins(
+                        centerLatitude: here.0,
+                        centerLongitude: here.1,
+                        latitudeDelta: latitudeDelta,
+                        longitudeDelta: longitudeDelta
+                    ))
                 }
             }
             
-        case .loadPins(center: let center, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
+        case let .loadPins(centerLatitude, centerLongitude, latitudeDelta, longitudeDelta):
             return .merge(
                 .task {
                     let mapPins: [Pin]
-                    if center.1 != 404 && center.0 != 404 {
+                    if centerLatitude != 404 && centerLongitude != 404 {
                         mapPins = try await getPinsUseCase.excuteUsingMap(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
                     }
                     else {
-                        mapPins = try await getPinsUseCase.excuteUsingMap(center: center, latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
-                          
+                        mapPins = try await getPinsUseCase.excuteUsingMap(center: (centerLatitude, centerLongitude), latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
                     }
-                    print("@LOG --------------------------------------------------------")
-                    print("@LOG delta \(latitudeDelta) and \(longitudeDelta)")
-                    print("@LOG pins \(mapPins)")
                     return .mapPins(mapPins)
                 },
                 .task {
                     let listPins: [Pin]
-                    if center.1 != 404 && center.0 != 404 {
+                    if centerLatitude != 404 && centerLongitude != 404 {
                         listPins = try await getPinsUseCase.excuteUsingMap(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
                     }
                     else {
-                        listPins = try await getPinsUseCase.excuteUsingMap(center: center, latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+                        listPins = try await getPinsUseCase.excuteUsingMap(center: (centerLatitude, centerLongitude), latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
                     }
                     return .listPins(listPins)
                 }
@@ -106,7 +115,12 @@ struct PinMusicReducer: PinMusic {
         case .addPin(music: let music, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
             return .task {
                 try await addPinUseCase.excute(music: music)
-                return .loadPins(center: (404, 404), latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+                return .loadPins(
+                    centerLatitude: 404,
+                    centerLongitude: 404,
+                    latitudeDelta: latitudeDelta,
+                    longitudeDelta: longitudeDelta
+                )
             }
             
         case .mapPins(let pins):
@@ -118,6 +132,30 @@ struct PinMusicReducer: PinMusic {
         case .listPins(let pins):
             state.pinsUsingList = pins
             return .none
+            
+        case let .setCategory(category):
+            state.category = category
+            print("@LOG category pinmusic \(category)")
+            return .none
         }
+    }
+}
+
+extension PinMusicReducer {
+    static func build() -> Self {
+        PinMusicReducer(
+            addPinUseCase: DefaultAddPinUseCase(
+                pinsRepository: APIPinsRepository(),
+                geoCodeRepository: RequestGeoCodeRepository(),
+                locationRepository: RequestLocationRepository.manager,
+                weatherRepository: RequestWeatherRepository(),
+                deviceRepository: RequestDeviceRepository()
+            ),
+            getPinsUseCase: DefaultGetPinUseCase(
+                locationRepository: RequestLocationRepository.manager,
+                pinsRepository: APIPinsRepository(),
+                pinClustersRepository: APIPinClustersRepository()
+            )
+        )
     }
 }

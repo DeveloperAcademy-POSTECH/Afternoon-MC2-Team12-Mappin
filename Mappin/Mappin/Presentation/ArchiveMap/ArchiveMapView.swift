@@ -9,16 +9,35 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ArchiveMapView: View {
-    let store: StoreOf<ArchiveMapReducer>
+    typealias MapReducer = PinMusicReducer
+    typealias ListReducer = ArchiveMusicReducer
+    
+    @ObservedObject var viewStore: ViewStoreOf<ArchiveMapReducer>
+    @State var mapViewStore: ViewStoreOf<MapReducer>
+    @State var listViewStore: ViewStoreOf<ListReducer>
+    
+    init(viewStore: ViewStoreOf<ArchiveMapReducer>) {
+        self.viewStore = viewStore
+        
+        self.mapViewStore = ViewStore(Store(
+            initialState: MapReducer.State(),
+            reducer: MapReducer.build()
+        ))
+        
+        self.listViewStore = ViewStore(Store(
+            initialState: ListReducer.State(),
+            reducer: ListReducer()
+        ))
+    }
     
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
+        Group {
             let isListViewPresented = viewStore.binding(
                 get: \.isListViewPresented,
                 send: { .setListViewPresented($0) }
             )
             ZStack(alignment: .top) {
-                ContentView.build()
+                ContentView(viewStore: mapViewStore)
                 FakeNavigationBar()
             }
             .navigationTitle(viewStore.state.category.navigationTitle)
@@ -26,7 +45,7 @@ struct ArchiveMapView: View {
                 ToolbarTitleMenu(viewStore: viewStore)
             }
             .sheet(isPresented: isListViewPresented) {
-                ArchiveView(isPresented: isListViewPresented)
+                ArchiveMusicView(viewStore: listViewStore)
             }
             .onAppear {
                 viewStore.send(.setListViewPresented(true))
@@ -34,6 +53,18 @@ struct ArchiveMapView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()
+        .onAppear {
+            mapViewStore.send(.setCategory(viewStore.category))
+            listViewStore.send(.setCategory(viewStore.category))
+        }
+        .onChange(of: viewStore.mapAction) {
+            guard let action = $0 else { return }
+            mapViewStore.send(action)
+        }
+        .onChange(of: viewStore.listAction) {
+            guard let action = $0 else { return }
+            listViewStore.send(action)
+        }
     }
     
     private func FakeNavigationBar() -> some View {
@@ -58,11 +89,10 @@ struct ArchiveMapView: View {
 
 extension ArchiveMapView {
     static func build() -> Self {
-        let store = Store(
+        ArchiveMapView(viewStore: ViewStore(Store(
             initialState: ArchiveMapReducer.State(),
             reducer: ArchiveMapReducer()
-        )
-        return ArchiveMapView(store: store)
+        )))
     }
 }
 
