@@ -14,7 +14,7 @@ struct PrimaryView: View {
     
     @State private var settingsDetent = PresentationDetent.medium
     
-    let pinStore: StoreOf<PinMusicReducer>
+    let pinStore: StoreOf<PinMusicReducer> // scope
     let musicStore: StoreOf<SearchMusicReducer>
     
     @ObservedObject var pinViewStore: ViewStoreOf<PinMusicReducer>
@@ -34,6 +34,9 @@ struct PrimaryView: View {
     
     var body: some View {
         NavigationView {
+            TCABindView(sendEntity: musicViewStore.state.uploadMusic) { entity in
+                    pinViewStore.send(.addPin(music: entity!, latitudeDelta: 0.0, longitudeDelta: 0.0))
+                }
             ZStack(alignment: .bottom) {
                 MapView(action: .constant(.none), store: pinViewStore, userTrackingMode: .follow)
                     .ignoresSafeArea()
@@ -97,7 +100,27 @@ extension PrimaryView {
             print("@LOG Error Add")
             return
         }
-
         pinViewStore.send(.addPin(music: music, latitudeDelta: MapView.Constants.defaultLatitudeDelta, longitudeDelta: MapView.Constants.defaultLatitudeDelta))
+    }
+}
+
+
+struct TCABindView<entityType>: View {
+    
+    var sendEntity: entityType?
+    var content: (entityType?) -> Void
+    
+    init(sendEntity: entityType?,
+         content: @escaping (entityType?) -> Void) {
+        self.sendEntity = sendEntity
+        self.content = content
+    }
+    
+    var body: some View {
+        EmptyView()
+            .opacity(Double((1...1000).randomElement()!))
+            .onAppear {
+                content(self.sendEntity)
+            }
     }
 }

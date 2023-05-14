@@ -12,18 +12,17 @@ import Combine
 
 struct SearchMusicReducer: ReducerProtocol {
     
-    
     let searchMusicUseCase: SearchMusicUseCase
     let musicChartUseCase: MusicChartUseCase
     let debounceId = "Kozi"
     
-    init(
-        searchMusicUseCase: SearchMusicUseCase = DefaultSearchMusicUseCase(),
-        musicChartUseCase: MusicChartUseCase = DefaultMusicChartUseCase()
-    ) {
-        self.searchMusicUseCase = searchMusicUseCase
-        self.musicChartUseCase = musicChartUseCase
-    }
+//    init(
+//        searchMusicUseCase: SearchMusicUseCase = DefaultSearchMusicUseCase(),
+//        musicChartUseCase: MusicChartUseCase = DefaultMusicChartUseCase()
+//    ) {
+//        self.searchMusicUseCase = searchMusicUseCase
+//        self.musicChartUseCase = musicChartUseCase
+//    }
     
     struct State: Equatable {
         
