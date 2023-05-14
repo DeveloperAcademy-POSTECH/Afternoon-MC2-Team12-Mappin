@@ -73,6 +73,7 @@
 		AF03F8C82A027A8600E90660 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C72A027A8600E90660 /* Weather.swift */; };
 		AF03F8CD2A02835200E90660 /* RequestWeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8CC2A02835200E90660 /* RequestWeatherUseCase.swift */; };
 		AF12DDF12A0CEAEA00543B28 /* ArchiveMusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12DDF02A0CEAEA00543B28 /* ArchiveMusicReducer.swift */; };
+		AF12DDFB2A0FEF4900543B28 /* RemovePinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12DDFA2A0FEF4900543B28 /* RemovePinUseCase.swift */; };
 		AF1D63972A0CD359008E0226 /* ArchiveMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1D63962A0CD359008E0226 /* ArchiveMusicCell.swift */; };
 		AF313BA72A0A2DCE00D38A87 /* ArchiveMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF313BA62A0A2DCE00D38A87 /* ArchiveMusicView.swift */; };
 		AF9E9D432A08E68B00EC8D9E /* RequestMusicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D412A08E68B00EC8D9E /* RequestMusicRepository.swift */; };
@@ -182,6 +183,7 @@
 		AF1078C62A039E8B00DB8EDA /* MusicChartUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicChartUseCase.swift; sourceTree = "<group>"; };
 		AF1078C92A05101B00DB8EDA /* SearchMusicReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicReducer.swift; sourceTree = "<group>"; };
 		AF12DDF02A0CEAEA00543B28 /* ArchiveMusicReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveMusicReducer.swift; sourceTree = "<group>"; };
+		AF12DDFA2A0FEF4900543B28 /* RemovePinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovePinUseCase.swift; sourceTree = "<group>"; };
 		AF1D63962A0CD359008E0226 /* ArchiveMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveMusicCell.swift; sourceTree = "<group>"; };
 		AF313BA62A0A2DCE00D38A87 /* ArchiveMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveMusicView.swift; sourceTree = "<group>"; };
 		AF6800BB2A0393F50096D65B /* PinMusicReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinMusicReducer.swift; sourceTree = "<group>"; };
@@ -708,6 +710,7 @@
 			children = (
 				D4F57D1E2A0397C000582857 /* AddPinUseCase.swift */,
 				D4F19C622A091A2A00ABB567 /* GetPinsUseCase.swift */,
+				AF12DDFA2A0FEF4900543B28 /* RemovePinUseCase.swift */,
 			);
 			path = PinUseCases;
 			sourceTree = "<group>";
@@ -867,6 +870,7 @@
 				3AD1DE5A2A0569B800A49E95 /* MockCurrentUser.swift in Sources */,
 				3AD1DE322A053B4100A49E95 /* APITarget+PinClusters.swift in Sources */,
 				AF313BA72A0A2DCE00D38A87 /* ArchiveMusicView.swift in Sources */,
+				AF12DDFB2A0FEF4900543B28 /* RemovePinUseCase.swift in Sources */,
 				D4F19C632A091A2A00ABB567 /* GetPinsUseCase.swift in Sources */,
 				3A1DC8ED2A0A4EAC00B7462E /* PinsRangeParameters.swift in Sources */,
 				3AD1DE3B2A053EA100A49E95 /* PinsReadDetailAPITarget.swift in Sources */,

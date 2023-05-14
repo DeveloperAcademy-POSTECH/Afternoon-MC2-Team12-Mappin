@@ -15,7 +15,7 @@ final class DefaultMusicChartUseCase: MusicChartUseCase {
     
     private let musicRepository: RequestMusicRepositoryInterface
     
-    init(musicRepository: RequestMusicRepositoryInterface = RequestMusicRepository()) {
+    init(musicRepository: RequestMusicRepositoryInterface) {
         self.musicRepository = musicRepository
     }
     

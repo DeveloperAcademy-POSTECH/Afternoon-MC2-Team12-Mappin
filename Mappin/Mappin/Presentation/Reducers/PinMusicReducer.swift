@@ -24,16 +24,17 @@ struct PinMusicReducer: PinMusic {
     struct IdForDebounce: Hashable { }
     
     struct State: Equatable {
-        
+//        var searchMusicState = SearchMusicReducer.State()
         var mapAction: MapView.Action = .none 
         var currentLocation: MKCoordinateRegion = MKCoordinateRegion()
         var pinsUsingMap: [Pin] = []
         var pinsUsingList: [Pin] = []
         var mapUserTrakingMode: MapUserTrackingMode = .follow
+        var music: Music?
     }
     
     enum Action {
-        
+//        case searchMusic(SearchMusicReducer.Action)
         case act(MapView.Action)
         case actAndChange(MapView.Action)
         case loadPins(center: (Double, Double), latitudeDelta: Double, longitudeDelta: Double)
@@ -43,7 +44,6 @@ struct PinMusicReducer: PinMusic {
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-       
         switch action {
             
         case .act(let value):
@@ -104,10 +104,12 @@ struct PinMusicReducer: PinMusic {
             )
             
         case .addPin(music: let music, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
-            return .task {
-                try await addPinUseCase.excute(music: music)
-                return .loadPins(center: (404, 404), latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
-            }
+            print("@KIO \(music)")
+            return .none
+//            return .task {
+//                try await addPinUseCase.excute(music: music)
+//                return .loadPins(center: (404, 404), latitudeDelta: latitudeDelta, longitudeDelta: 	longitudeDelta)
+//            }
             
         case .mapPins(let pins):
             print("@LOG mapPins")
