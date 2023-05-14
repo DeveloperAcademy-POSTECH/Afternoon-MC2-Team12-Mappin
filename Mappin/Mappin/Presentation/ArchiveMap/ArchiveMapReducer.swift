@@ -33,7 +33,6 @@ struct ArchiveMapReducer: ReducerProtocol {
         case setListViewPresented(Bool)
         case setEstimatedListHeight(CGFloat)
         
-        case receiveMap(MapReducer.Action?)
         case receiveList(ListReducer.Action?)
         case sendMap(MapReducer.Action)
         case sendList(ListReducer.Action)
@@ -44,8 +43,7 @@ struct ArchiveMapReducer: ReducerProtocol {
         case .viewAppeared:
             return .concatenate([
                 .send(.selectCategory(.mine)),
-                .send(.focusToLatestPin),
-                .send(.setListViewPresented(true))
+                .send(.focusToLatestPin)
             ])
             
         case let .selectCategory(category):
@@ -69,15 +67,6 @@ struct ArchiveMapReducer: ReducerProtocol {
         case let .setEstimatedListHeight(height):
             state.estimatedListHeight = height
             return .none
-            
-        case let .receiveMap(action):
-            state.mapAction = nil
-            switch action {
-            case let .listPins(pins):
-                return .send(.sendList(.applyArchive(pins)))
-            default:
-                return .none
-            }
             
         case let .receiveList(action):
             state.listAction = nil

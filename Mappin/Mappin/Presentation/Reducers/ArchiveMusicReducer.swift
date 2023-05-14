@@ -12,10 +12,6 @@ import ComposableArchitecture
 struct ArchiveMusicReducer: ReducerProtocol {
     
     let removePinUseCase: RemovePinUseCase
-//    let getPinUseCase: GetPinsUseCasez/
-//    init(removePinUseCase: RemovePinUseCase = DefaultRemovePinUseCase()) {
-//        self.removePinUseCase = removePinUseCase
-//    }
     
     struct State: Equatable  {
         var archiveMusic: [Pin] = []
@@ -28,8 +24,8 @@ struct ArchiveMusicReducer: ReducerProtocol {
     enum Action: Equatable {
         case applyArchive([Pin])
         case pinTapped(Pin)
-        case removeArchive(index: IndexSet)
-        case pinRemoved(id: Int)
+        case removeArchive(indexSet: IndexSet)
+        case pinRemoved(Pin)
         case setCategory(PinsCategory)
     }
     
@@ -39,24 +35,18 @@ struct ArchiveMusicReducer: ReducerProtocol {
         switch action {
         case .applyArchive(let archiveMusic):
             // 서버에서 받아온 Pin 정보 저장
-            print("@BYO action.applyArchive \(archiveMusic.count)")
-            return .none
-
-        case .removeArchive(let index):
-//            let temp = state.archiveMusic.
-            // 여기 연결하자 내일
-//            print(state.archiveMusic.indexsset)
-            print(index)
-            state.archiveMusic.remove(atOffsets: index)
-            // API Call ?
-//            return .task {
-//                removePinUseCase.execute(id: index)
-//            }
+            state.archiveMusic = archiveMusic
             return .none
             
-        case let .pinRemoved(id):
-            print("@BYO action.pinRemoved \(id)")
-            return .none
+        case let .removeArchive(indexSet):
+            guard let index = indexSet.first else {
+                return .none
+            }
+            let pin = state.archiveMusic.remove(at: index)
+            return .task {
+                try await removePinUseCase.execute(id: Int(pin.id) ?? -1)
+                return .pinRemoved(pin)
+            }
             
         case let .setCategory(category):
             state.category = category

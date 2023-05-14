@@ -42,8 +42,11 @@ struct APIPinsRepository: PinsRepository {
         latitudeDelta: Double,
         longitudeDelta: Double
     ) async throws -> [Pin] {
+        guard let category = category else {
+            return []
+        }
         let parameters = PinsReadListAPITarget.Parameters(
-            category: category?.rawValue,
+            category: category.rawValue,
             center_latitude: centerLatitude,
             center_longitude: centerLongitude,
             latitude_delta: latitudeDelta,
@@ -51,7 +54,6 @@ struct APIPinsRepository: PinsRepository {
         )
         let target = APITarget.readPins(parameters: parameters)
         let dtos = try await provider.requestResponsable(target)
-        
         return dtos.map { $0.entity }
     }
     

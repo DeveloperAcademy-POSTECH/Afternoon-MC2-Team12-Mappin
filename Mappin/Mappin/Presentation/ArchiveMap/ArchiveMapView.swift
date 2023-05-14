@@ -33,6 +33,10 @@ struct ArchiveMapView: View {
             )
             ZStack(alignment: .top) {
                 ContentView(viewStore: mapViewStore)
+                if let pin = mapViewStore.state.detailPin {
+                    DetailPinPopUpView(pin: pin)
+                        .offset(y: 178)
+                }
                 FakeNavigationBar()
             }
             .navigationTitle(viewStore.state.category?.navigationTitle ?? "")
@@ -52,7 +56,6 @@ struct ArchiveMapView: View {
             viewStore.send(.viewAppeared)
         }
         .onChange(of: viewStore.mapAction) {
-            print("@BYO! map \($0)".prefix(100))
             guard let action = $0 else { return }
             mapViewStore.send(action)
         }
@@ -60,8 +63,9 @@ struct ArchiveMapView: View {
             guard let action = $0 else { return }
             listViewStore.send(action)
         }
-        .onChange(of: mapViewStore.lastAction) {
-            viewStore.send(.receiveMap($0?.wrapped))
+        .onChange(of: mapViewStore.pinsUsingList) {
+            viewStore.send(.setListViewPresented(true))
+            listViewStore.send(.applyArchive($0))
         }
         .onChange(of: listViewStore.lastAction) {
             viewStore.send(.receiveList($0?.wrapped))

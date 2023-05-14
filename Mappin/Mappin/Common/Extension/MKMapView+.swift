@@ -10,9 +10,7 @@ import MapKit
 extension  MKMapView {
     
     func removeAllAnotation() {
-        print("LOG2 \(self.annotations.count)")
         removeAnnotations(self.annotations)
-        print("LOG2 \(self.annotations)")
     }
 }
 
