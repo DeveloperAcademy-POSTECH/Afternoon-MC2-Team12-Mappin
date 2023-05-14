@@ -24,8 +24,9 @@ struct PinMusicReducer: PinMusic {
     struct IdForDebounce: Hashable { }
     
     struct State: Equatable {
-        
-        var mapAction: MapView.Action = .none
+
+        var mapAction: MapView.Action = .none 
+
         var currentLocation: MKCoordinateRegion = MKCoordinateRegion()
         var pinsUsingMap: [Pin] = []
         var pinsUsingList: [Pin] = []
@@ -34,9 +35,9 @@ struct PinMusicReducer: PinMusic {
         var detailPin: Pin?
     }
     
+    
     enum Action {
-        
-        case none
+//        case searchMusic(SearchMusicReducer.Action)
         case act(MapView.Action)
         case actAndChange(MapView.Action)
         case loadPins(center: (Double, Double), latitudeDelta: Double, longitudeDelta: Double)
@@ -44,10 +45,10 @@ struct PinMusicReducer: PinMusic {
         case listPins([Pin])
         case addPin(music: Music, latitudeDelta: Double, longitudeDelta: Double)
         case tapPin(CGPoint)
+        case none
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-        
         switch action {
             
         case .none:
@@ -115,10 +116,12 @@ struct PinMusicReducer: PinMusic {
             )
             
         case .addPin(music: let music, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
-            return .task {
-                try await addPinUseCase.excute(music: music)
-                return .loadPins(center: (404, 404), latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
-            }
+            print("@KIO \(music)")
+            return .none
+//            return .task {
+//                try await addPinUseCase.excute(music: music)
+//                return .loadPins(center: (404, 404), latitudeDelta: latitudeDelta, longitudeDelta: 	longitudeDelta)
+//            }
             
         case .mapPins(let pins):
             state.pinsUsingMap = pins

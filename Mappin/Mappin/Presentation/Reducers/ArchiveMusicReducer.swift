@@ -9,14 +9,18 @@ import Foundation
 
 import ComposableArchitecture
 
-
-
 struct ArchiveMusicReducer: ReducerProtocol {
+    
+    let removePinUseCase: RemovePinUseCase
+    
+//    init(removePinUseCase: RemovePinUseCase = DefaultRemovePinUseCase()) {
+//        self.removePinUseCase = removePinUseCase
+//    }
     
     struct State: Equatable  {
         var archiveMusic: [Pin] = []
         var archiveIsEmpty = false
-        var isOtherPin = true
+        var isOtherPin = false
     }
     
     enum Action {
@@ -34,17 +38,28 @@ struct ArchiveMusicReducer: ReducerProtocol {
             }
             
         case .applyArchive(let archiveMusic):
+            // 서버에서 받아온 Pin 정보 저장
             state.archiveMusic = archiveMusic
             return .none
             
         case .archiveCellTapped:
+            // 해당 피닝 위치로 이동
             return .none
             
         case .removeArchive(let index):
+//            let temp = state.archiveMusic.
+            // 여기 연결하자 내일
+//            print(state.archiveMusic.indexsset)
+            print(index)
             state.archiveMusic.remove(atOffsets: index)
+            // API Call ?
+//            return .task {
+//                removePinUseCase.execute(id: index)
+//            }
             return .none
         }
     }
+    
 }
 
 struct TempArchive: Identifiable, Equatable {
