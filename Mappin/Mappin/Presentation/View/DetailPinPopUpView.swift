@@ -73,7 +73,9 @@ struct DetailPinPopUpView: View {
                 Spacer()
                 
                 Label{
-                    Text(pin?.weather.temperature ?? "102" + "º" )
+                    if let temperature = pin?.weather.temperature {
+                        Text(String(temperature) + "º" )
+                    }
                 } icon: {
                     Image(systemName: pin?.weather.symbolName ?? "sun.max.fill")
                         .foregroundColor(.yellow)

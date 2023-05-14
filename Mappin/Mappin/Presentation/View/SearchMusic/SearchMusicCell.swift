@@ -11,7 +11,7 @@ struct SearchMusicCell: View {
     
     var music: Music
     var isSelected: Bool // State로 선언할 경우 다른 곳을 참조할 수 있음.
-    var noSelection: Bool
+//    var noSelection: Bool
     
     var body: some View {
         HStack(spacing: 0) {
@@ -50,14 +50,16 @@ struct SearchMusicCell: View {
                         .foregroundColor(.secondary)
                 }
             }
-            Spacer()
-            Image(systemName: isSelected ? "checkmark" : "plus")
-                .resizable()
-                .frame(width: 17, height: 17)
-                .foregroundColor(isSelected ? .accentColor : .black)
-                .padding(.trailing, 20)
+            
+            EmptyView()
+            
+//            Image(systemName: isSelected ? "checkmark" : "plus")
+//                .resizable()
+//                .frame(width: 17, height: 17)
+//                .foregroundColor(isSelected ? .accentColor : .black)
+//                .padding(.trailing, 20)
         }
-        .opacity(noSelection != isSelected ? 1.0 : 0.4)
+        .opacity(!isSelected ? 1.0 : 0.5)
     }
     
 }

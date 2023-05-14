@@ -8,6 +8,7 @@
 import Foundation
 
 struct PinsRangeParameters: Encodable {
+    let category: String?
     let center_latitude: Double
     let center_longitude: Double
     let horizontal_radius: Double

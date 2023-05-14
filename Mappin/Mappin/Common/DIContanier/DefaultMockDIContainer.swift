@@ -152,13 +152,13 @@ final class DefaultMockDIContainer {
     @ViewBuilder
     func makeContentView() -> some View {
         ContentView (
-            store: Store(
+            viewStore: ViewStore(Store(
                 initialState: PinMusicReducer.State(),
                 reducer: PinMusicReducer(
                     addPinUseCase: container.resolver.resolve(AddPinUseCase.self),
                     getPinsUseCase: container.resolver.resolve(GetPinsUseCase.self)
                 )._printChanges()
-            )
+            ))
         )
     }
 }

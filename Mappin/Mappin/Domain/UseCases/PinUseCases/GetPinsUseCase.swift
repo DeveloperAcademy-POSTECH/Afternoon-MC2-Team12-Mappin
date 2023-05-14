@@ -8,11 +8,31 @@
 import Foundation
 
 protocol GetPinsUseCase {
+    func excuteUsingMap(
+        category: PinsCategory?,
+        center: (Double, Double),
+        latitudeDelta: Double,
+        longitudeDelta: Double
+    ) async throws -> [Pin]
     
-    func excuteUsingMap(center: (Double, Double), latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin]
-    func excuteUsingMap(latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin]
-    func excuteUsingList(latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin]
-    func excuteUsingList(center: (Double, Double), latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin]
+    func excuteUsingMap(
+        category: PinsCategory?,
+        latitudeDelta: Double,
+        longitudeDelta: Double
+    ) async throws -> [Pin]
+    
+    func excuteUsingList(
+        category: PinsCategory?,
+        latitudeDelta: Double,
+        longitudeDelta: Double
+    ) async throws -> [Pin]
+    
+    func excuteUsingList(
+        category: PinsCategory?,
+        center: (Double, Double),
+        latitudeDelta: Double,
+        longitudeDelta: Double
+    ) async throws -> [Pin]
 }
 
 final class DefaultGetPinUseCase: GetPinsUseCase {
@@ -29,9 +49,14 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
         self.pinClustersRepository = pinClustersRepository
     }
     
-    func excuteUsingMap(latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin] {
+    func excuteUsingMap(
+        category: PinsCategory?,
+        latitudeDelta: Double,
+        longitudeDelta: Double
+    ) async throws -> [Pin] {
         let center: (Double, Double) = (locationRepository.latitude, locationRepository.longitude)
         return try await pinClustersRepository.readList(
+            category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
             horizontalRadius: latitudeDelta,
@@ -39,9 +64,14 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
         )
     }
     
-    func excuteUsingList(latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin] {
+    func excuteUsingList(
+        category: PinsCategory?,
+        latitudeDelta: Double,
+        longitudeDelta: Double
+    ) async throws -> [Pin] {
         let center: (Double, Double) = (locationRepository.latitude, locationRepository.longitude)
         return try await pinsRepository.readList(
+            category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
             horizontalRadius: latitudeDelta,
@@ -49,8 +79,14 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
         )
     }
     
-    func excuteUsingMap(center: (Double, Double), latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin] {
-        return try await pinsRepository.readList(
+    func excuteUsingMap(
+        category: PinsCategory?,
+        center: (Double, Double),
+        latitudeDelta: Double,
+        longitudeDelta: Double
+    ) async throws -> [Pin] {
+        return try await pinClustersRepository.readList(
+            category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
             horizontalRadius: latitudeDelta,
@@ -58,8 +94,14 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
         )
     }
     
-    func excuteUsingList(center: (Double, Double), latitudeDelta: Double, longitudeDelta: Double) async throws -> [Pin] {
+    func excuteUsingList(
+        category: PinsCategory?,
+        center: (Double, Double),
+        latitudeDelta: Double,
+        longitudeDelta: Double
+    ) async throws -> [Pin] {
         return try await pinsRepository.readList(
+            category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
             horizontalRadius: latitudeDelta,

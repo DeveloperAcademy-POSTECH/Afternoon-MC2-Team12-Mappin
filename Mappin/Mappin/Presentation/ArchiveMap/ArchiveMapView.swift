@@ -9,31 +9,67 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ArchiveMapView: View {
-    let store: StoreOf<ArchiveMapReducer>
+    typealias Reducer = ArchiveMapReducer
+    typealias MapReducer = PinMusicReducer
+    typealias ListReducer = ArchiveMusicReducer
+    
+    @ObservedObject var viewStore: ViewStoreOf<Reducer>
+    
+    @StateObject private var mapViewStore: ViewStoreOf<MapReducer> = ViewStore(Store(
+        initialState: MapReducer.State(),
+        reducer: MapReducer.build()
+    ), observe: { $0 })
+    
+    @StateObject private var listViewStore: ViewStoreOf<ListReducer> = ViewStore(Store(
+        initialState: ListReducer.State(),
+        reducer: ListReducer.build()
+    ), observe: { $0 })
+    
+    init(viewStore: ViewStoreOf<Reducer>) {
+        self.viewStore = viewStore
+        
+        viewStore.send(.selectCategory(.mine))
+        viewStore.send(.setListViewPresented(true))
+    }
     
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
+        Group {
             let isListViewPresented = viewStore.binding(
                 get: \.isListViewPresented,
                 send: { .setListViewPresented($0) }
             )
             ZStack(alignment: .top) {
-                ContentView.build()
+                ContentView(viewStore: mapViewStore)
                 FakeNavigationBar()
             }
-            .navigationTitle(viewStore.state.category.navigationTitle)
+            .navigationTitle(viewStore.state.category?.navigationTitle ?? "")
             .toolbarTitleMenu {
                 ToolbarTitleMenu(viewStore: viewStore)
             }
             .sheet(isPresented: isListViewPresented) {
-                ArchiveView(isPresented: isListViewPresented)
-            }
-            .onAppear {
-                viewStore.send(.setListViewPresented(true))
+                ArchiveMusicView(viewStore: listViewStore)
+                    .presentationBackgroundInteraction(.enabled)
+                    .presentationDetents([.height(60), .height(viewStore.estimatedListHeight)])
+                    .interactiveDismissDisabled()
             }
         }
         .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()
+        .onChange(of: viewStore.mapAction) {
+            print("@BYO! map \($0)".prefix(100))
+            guard let action = $0 else { return }
+            mapViewStore.send(action)
+        }
+        .onChange(of: viewStore.listAction) {
+            guard let action = $0 else { return }
+            listViewStore.send(action)
+        }
+        .onChange(of: mapViewStore.lastAction) {
+            viewStore.send(.receiveMap($0?.wrapped))
+        }
+        .onChange(of: listViewStore.lastAction) {
+            viewStore.send(.receiveList($0?.wrapped))
+        }
     }
     
     private func FakeNavigationBar() -> some View {
@@ -48,7 +84,7 @@ struct ArchiveMapView: View {
     }
     
     private func ToolbarTitleMenu(viewStore: ViewStoreOf<ArchiveMapReducer>) -> some View {
-        ForEach(ArchiveMapReducer.Category.allCases, id: \.self) { category in
+        ForEach(PinsCategory.allCases, id: \.self) { category in
             Button(category.buttonTitle) {
                 viewStore.send(.selectCategory(category))
             }
@@ -58,11 +94,27 @@ struct ArchiveMapView: View {
 
 extension ArchiveMapView {
     static func build() -> Self {
-        let store = Store(
+        ArchiveMapView(viewStore: ViewStore(Store(
             initialState: ArchiveMapReducer.State(),
-            reducer: ArchiveMapReducer()
-        )
-        return ArchiveMapView(store: store)
+            reducer: ArchiveMapReducer(
+                recentPinUseCase: MockRecentPinUseCase()
+            )
+        ), observe: { $0 }))
+    }
+}
+
+private extension PinsCategory {
+    var navigationTitle: String {
+        switch self {
+        case .mine:
+            return "내 핀만"
+        case .others:
+            return "다른 사람들 핀만"
+        }
+    }
+    
+    var buttonTitle: String {
+        navigationTitle + " 보기"
     }
 }
 

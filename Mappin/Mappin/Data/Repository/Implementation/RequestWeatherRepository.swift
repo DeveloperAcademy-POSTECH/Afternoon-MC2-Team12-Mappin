@@ -29,7 +29,7 @@ final class RequestWeatherRepository: RequestWeatherRepositoryInterface {
         }
         catch {
             print("@Error \(error)")
-            return Weather(id: "", temperature: "3", symbolName: "2")
+            return Weather(id: "", temperature: 3, symbolName: "2")
         }
 
     }

@@ -21,6 +21,7 @@ struct MapView: UIViewRepresentable {
     func makeUIView(context: Context) -> MKMapView {
         
         let mapView = MKMapView()
+        mapView.isRotateEnabled = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             

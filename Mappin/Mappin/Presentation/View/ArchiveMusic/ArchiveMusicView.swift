@@ -12,14 +12,10 @@ import ComposableArchitecture
 
 struct ArchiveMusicView: View {
     
-    let store: StoreOf<ArchiveMusicReducer>
     @ObservedObject var viewStore: ViewStoreOf<ArchiveMusicReducer>
     
-    
-    
-    init(store: StoreOf<ArchiveMusicReducer>) {
-        self.store = store
-        self.viewStore = ViewStore(self.store, observe: { $0 })
+    init(viewStore: ViewStoreOf<ArchiveMusicReducer>) {
+        self.viewStore = viewStore
     }
     
     var body: some View {
@@ -32,20 +28,11 @@ struct ArchiveMusicView: View {
                 }
             }
             .navigationBarTitle("", displayMode: .inline)
-            .navigationBarItems(leading:
-                                    Text(!viewStore.isOtherPin ? "내가 저장한 핀들 돌아보기" : "다른 사람들이 저장한 핀들 돌아보기")
-                .font(.system(size: 16, weight: .bold)),
-                                trailing:
-                                    Button(action: {
-                print("취소 버튼 클릭")
-            }, label: {
-                Text("취소")
-                    .font(.system(size: 16, weight: .regular))
-                    .foregroundColor(.black)
-            }))
-            .task {
-                viewStore.send(.requestArchive)
-            }
+            .navigationBarItems(
+                leading: Text(viewStore.category?.navigationTitle ?? "")
+                    .font(.system(size: 16, weight: .bold))
+                    .padding(.top, 16)
+            )
         }
     }
     
@@ -57,15 +44,13 @@ struct ArchiveMusicView: View {
                     ForEach(viewStore.archiveMusic.isEmpty ? [] : viewStore.archiveMusic) { archive in
                         ArchiveMusicCell(music: archive.music, date: archive.createdAt)
                             .onTapGesture {
-                                print("피닝 되어있는 위치로 이동!")
+                                viewStore.send(.pinTapped(archive))
                             }
                     }
                     .onDelete { index in
                         viewStore.send(.removeArchive(index: index))
                     }
-                } header: {
                 }
-                
             }
             .listStyle(.inset)
         }
@@ -94,4 +79,19 @@ struct ArchiveMusicView: View {
         }
     }
     
+}
+
+private extension PinsCategory {
+    var navigationTitle: String {
+        subject + " 저장한 핀들 돌아보기"
+    }
+    
+    private var subject: String {
+        switch self {
+        case .mine:
+            return "내가"
+        case .others:
+            return "다른 사람들이"
+        }
+    }
 }
