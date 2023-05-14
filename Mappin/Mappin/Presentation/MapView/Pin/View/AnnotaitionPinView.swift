@@ -12,7 +12,7 @@ import MapKit
 class AnnotaitionPinView: MKAnnotationView {
     
     var pin: Pin
-    var pinCategory: PinsCategory = .mine
+    var pinCategory: PinsCategory? = .mine
     let clusteredCountLabel: UILabel
     let pinBackGroundImage: UIImageView
     
@@ -21,6 +21,7 @@ class AnnotaitionPinView: MKAnnotationView {
 
        
         clusteredCountLabel.text = "\(pin.count)"
+        
         if pinCategory == .mine {
             clusteredCountLabel.textColor = .blue
             pinBackGroundImage.image = UIImage(named: pin.count > 1 ? "bluePin" : "bluePinSingle")!

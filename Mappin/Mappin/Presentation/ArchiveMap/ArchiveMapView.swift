@@ -105,8 +105,6 @@ extension ArchiveMapView {
 private extension PinsCategory {
     var navigationTitle: String {
         switch self {
-        case .current:
-            return ""
         case .mine:
             return "내 핀만"
         case .others:

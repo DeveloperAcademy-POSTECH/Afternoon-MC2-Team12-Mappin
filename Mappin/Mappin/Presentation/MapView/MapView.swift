@@ -202,7 +202,6 @@ struct MapView: UIViewRepresentable {
                       let pinAnnotation = annotation as? PinAnnotation else {
                     
                     let current = AnnotaitionPinView()
-                    current.pinCategory = .current
                     
                     return current
                 }
@@ -217,7 +216,6 @@ struct MapView: UIViewRepresentable {
                       let pinAnnotation = annotation as? PinAnnotation else {
                     
                     let current = AnnotaitionPinView()
-                    current.pinCategory = .current
                     
                     return current
                 }
