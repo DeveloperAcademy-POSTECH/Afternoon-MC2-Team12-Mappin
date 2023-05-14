@@ -28,7 +28,7 @@ struct AddPinIntent: AppIntent {
         
         let selectedMusic = try await $music.requestDisambiguation(among: musicList, dialog: "음악을 골라주세요!")
         let index = musicList.firstIndex { $0 == selectedMusic }
-        try await DefaultMockDIContainer.shared.container.resolver.resolve(AddPinUseCase.self).excute(music: uploadMusic[index!])
+        //try await DefaultMockDIContainer.shared.container.resolver.resolve(AddPinUseCase.self).excute(music: uploadMusic[index!])
         return .result(value: selectedMusic, dialog: IntentDialog(stringLiteral:
        "피닝 성공했어요! 감사합니다."))
 

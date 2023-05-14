@@ -205,8 +205,8 @@
             filePath = "Mappin/Presentation/Reducers/PinMusicReducer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "reduce(into:action:)"
             landmarkType = "7">
             <Locations>
@@ -853,8 +853,8 @@
             filePath = "Mappin/Presentation/Reducers/PinMusicReducer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "reduce(into:action:)"
             landmarkType = "7">
          </BreakpointContent>

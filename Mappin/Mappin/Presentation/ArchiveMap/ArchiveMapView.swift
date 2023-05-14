@@ -57,6 +57,7 @@ struct ArchiveMapView: View {
             mapViewStore.send(action)
         }
         .onChange(of: viewStore.listAction) {
+            
             guard let action = $0 else { return }
             listViewStore.send(action)
         }

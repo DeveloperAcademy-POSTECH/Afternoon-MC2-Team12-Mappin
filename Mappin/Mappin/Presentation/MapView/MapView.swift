@@ -68,20 +68,20 @@ struct MapView: UIViewRepresentable {
                     }
                 }
             }
-        case .requestUpdate(here: let here, _, _):
+        case .requestUpdate(let latitude, let longitude, _, _):
             
             mapView.setRegion(
                 MKCoordinateRegion(
-                    center: CLLocationCoordinate2D(latitude: CLLocationDegrees(here.0), longitude: CLLocationDegrees(here.1)),
+                    center: CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude)),
                     latitudinalMeters: MapView.Constants.defaultLatitudeDelta,
                     longitudinalMeters: MapView.Constants.defaultLongitudeDelta),
                 animated: true)
             
-        case .setCenter(let here, let isModal):
+        case .setCenter(let latitude, let longitude, let isModal):
             MapView.isAnimating = true
             mapView.setRegion(
                 MKCoordinateRegion(
-                    center: CLLocationCoordinate2D(latitude: CLLocationDegrees(isModal ? here.0 - Constants.centerOffSet : here.0), longitude: CLLocationDegrees(here.1)),
+                    center: CLLocationCoordinate2D(latitude: CLLocationDegrees(isModal ? latitude - Constants.centerOffSet : latitude), longitude: CLLocationDegrees(longitude)),
                     latitudinalMeters: MapView.Constants.defaultLatitudeDelta,
                     longitudinalMeters: MapView.Constants.defaultLongitudeDelta),
                 animated: true)
@@ -98,31 +98,31 @@ struct MapView: UIViewRepresentable {
             let willRemovePin = annotationPins.first(where: { $0.pin.id == id }) ?? PinAnnotation(Pin.empty)
             mapView.removeAnnotation(willRemovePin)
             
-        case .setCenterWithModalAndAddTemporaryPin(here: let here):
+        case .setCenterWithModalAndAddTemporaryPin(let latitude, let longitude):
             
-            store.send(.actAndChange(.setCenter(here: here, isModal: true)))
+            store.send(.actAndChange(.setCenter(latitude: latitude, longitude: longitude, isModal: true)))
             
-            let currentLocation = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: here.0, longitude: here.1), span: MKCoordinateSpan())
+            let currentLocation = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan())
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 store.send(.actTemporaryPinLocation(currentLocation))
             }
             
             var temporaryPin = Pin.empty
-            temporaryPin.location.latitude = here.0
-            temporaryPin.location.longitude = here.1
+            temporaryPin.location.latitude = latitude
+            temporaryPin.location.longitude = longitude
             temporaryPin.id = Constants.temporaryPinId
             let temp = PinAnnotation(temporaryPin)
             mapView.addAnnotation(temp)
             
-        case .cancelModal(here: let here):
+        case .cancelModal(let latitude, let longitude):
             
             mapView.removeAllAnotation()
-            store.send(.actAndChange(.setCenter(here: here)))
+            store.send(.actAndChange(.setCenter(latitude: latitude, longitude: longitude, isModal: true)))
             
         case .completeAdd(let pin):
             
-            store.send(.actAndChange(.setCenter(here: (pin.location.latitude, pin.location.longitude))))
+            store.send(.actAndChange(.setCenter(latitude: pin.location.latitude, longitude: pin.location.longitude)))
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 3){
                 
@@ -131,6 +131,7 @@ struct MapView: UIViewRepresentable {
             }
             
         case .requestCallMapInfo:
+            print("@KIO here callmapInfo")
             store.send(
                 .act(
                     .reponseCallMapInfo(
@@ -173,7 +174,7 @@ struct MapView: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             if !MapView.isAnimating  && parent.isArchive {
-                parent.store.send(.act(.requestUpdate(here: (mapView.region.center.latitude, mapView.region.center.longitude), latitudeDelta: mapView.region.span.latitudeDelta, longitudeDelta: mapView.region.span.longitudeDelta)))
+                parent.store.send(.act(.requestUpdate(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude, latitudeDelta: mapView.region.span.latitudeDelta, longitudeDelta: mapView.region.span.longitudeDelta)))
                 
                 let pinAnnotationViews = mapView.annotations.map { annotation in
                     guard let pinAnnotationView = mapView.view(for: annotation) as? AnnotaitionPinView else { return AnnotaitionPinView() }
@@ -243,22 +244,18 @@ extension MapView {
 extension MapView {
     
     enum Action: Equatable {
-        
-        static func == (lhs: MapView.Action, rhs: MapView.Action) -> Bool {
-            false
-        }
-        
+    
         case none
         case removePin(id: String) // [TemporaryPoint] 특정 핀을 지우는 메서드
         case responseUpdate([Pin]) // 결과값을 들고 오는
-        case requestUpdate(here: (Double, Double), latitudeDelta: Double, longitudeDelta: Double) // 현재값을 reducer로 던져주는
+        case requestUpdate(latitude: Double, longitude: Double, latitudeDelta: Double, longitudeDelta: Double) // 현재값을 reducer로 던져주는
         
         
         case requestCurrentShowingPinViews([AnnotaitionPinView]) // 현재 핀들의 뷰들의 위치를 주기 위해
         
-        case setCenter(here: (Double, Double), isModal: Bool = false) // 현재위치로 지도 이동
-        case setCenterWithModalAndAddTemporaryPin(here: (Double, Double)) // setcenter, removeAllAnnotation
-        case cancelModal(here: (Double, Double)) // setCenter, removeAllAnntaion, popupclose
+        case setCenter(latitude: Double, longitude: Double, isModal: Bool = false) // 현재위치로 지도 이동
+        case setCenterWithModalAndAddTemporaryPin(latitude: Double, longitude: Double) // setcenter, removeAllAnnotation
+        case cancelModal(latitude: Double, longitude: Double) // setCenter, removeAllAnntaion, popupclose
         case completeAdd(Pin) // setCenter, removeAllAnntaion
         case setCenterAndZoomUp(Pin)
         

@@ -53,10 +53,10 @@ struct PrimaryView: View {
                             pinViewStore.send(
                                 .actAndChange(
                                     .setCenterWithModalAndAddTemporaryPin(
-                                        here: (
+                                        latitude:
                                             RequestLocationRepository.manager.latitude,
-                                            RequestLocationRepository.manager.longitude
-                                        )
+                                        longitude:  RequestLocationRepository.manager.longitude
+                                        
                                     )
                                 )
                             )

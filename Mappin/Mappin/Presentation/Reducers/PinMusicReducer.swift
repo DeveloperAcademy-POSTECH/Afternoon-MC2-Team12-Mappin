@@ -27,7 +27,7 @@ struct PinMusicReducer: PinMusic {
         
         var mapAction: MapView.Action = .none {
             didSet(value) {
-                print("@KIO PIN remove \(value)")
+                print("@KIO here \(value)")
             }
         }
         
@@ -62,7 +62,7 @@ struct PinMusicReducer: PinMusic {
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-        state.lastAction = .init(action)
+//        state.lastAction = .init(action)
         
         switch action {
         case .none:
@@ -75,21 +75,23 @@ struct PinMusicReducer: PinMusic {
             case .responseUpdate(_):
                 return .none
             case .reponseCallMapInfo(let centerLatitude, let centerLongitude, let latitudeDelta, let longitudeDelta):
+                print("@KIO here callmap")
                 let category = state.category
                 return .run { action in
-                    try await action.send(.loadPins(category: category,
+                    print("@KIO here Byo")
+                    await action.send(.loadPins(category: category,
                                           centerLatitude: centerLatitude,
                                           centerLongitude: centerLongitude,
                                           latitudeDelta: latitudeDelta,
                                           longitudeDelta: longitudeDelta))
                 }
-            case .requestUpdate(here: let here, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
+            case .requestUpdate(let latitude, let longitude, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
                 let category = state.category
                 return .run { action in
                     await action.send(.loadPins(
                         category: category,
-                        centerLatitude: here.0,
-                        centerLongitude: here.1,
+                        centerLatitude: latitude,
+                        centerLongitude: longitude,
                         latitudeDelta: latitudeDelta,
                         longitudeDelta: longitudeDelta
                     ))
@@ -110,14 +112,14 @@ struct PinMusicReducer: PinMusic {
             case .responseUpdate(_):
                 return .none
                 
-            case .requestUpdate(here: let here, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
+            case .requestUpdate(let latitude, let longitude, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
                 let category = state.category
                 
                 return .run { action in
                     await action.send(.loadPins(
                         category: category,
-                        centerLatitude: here.0,
-                        centerLongitude: here.1,
+                        centerLatitude: latitude,
+                        centerLongitude: longitude,
                         latitudeDelta: latitudeDelta,
                         longitudeDelta: longitudeDelta
                     ))
@@ -127,6 +129,7 @@ struct PinMusicReducer: PinMusic {
             }
             
         case let .loadPins(category, centerLatitude, centerLongitude, latitudeDelta, longitudeDelta):
+            print("@KIO here Loadpins")
             let center = (centerLatitude, centerLongitude)
             return .merge(
                 .task {
@@ -223,13 +226,11 @@ struct PinMusicReducer: PinMusic {
             return .run { action in
                 await action.send(
                     .actAndChange(
-                        .setCenter(here:
-                                    (returnPin.location.latitude,
-                                     returnPin.location.longitude
+                        .setCenter(latitude: returnPin.location.latitude,
+                                   longitude: returnPin.location.longitude
                                     )
                                   )
                     )
-                )
             }
         case .showPopUpAndCloseAfter:
             
@@ -238,7 +239,7 @@ struct PinMusicReducer: PinMusic {
             state.detailPin = nil
             
             return .run { action in
-                try await action.send(.actAndChange(.setCenter(here: (RequestLocationRepository.manager.latitude, RequestLocationRepository.manager.longitude))))
+                try await action.send(.actAndChange(.setCenter(latitude: RequestLocationRepository.manager.latitude, longitude: RequestLocationRepository.manager.longitude)))
             }
             
         case .actTemporaryPinLocation(let here):
@@ -251,15 +252,12 @@ struct PinMusicReducer: PinMusic {
             
         case let .focusToPin(pin):
             print("@BYO action.focusToPin \(pin)")
-            let here = (pin.location.latitude, pin.location.longitude)
-            return .send(.actAndChange(.setCenter(here: here)))
+            return .send(.actAndChange(.setCenter(latitude: pin.location.latitude, longitude: pin.location.longitude, isModal: false)))
             
         case let .setCategory(category):
             state.category = category
             state.mapAction = .requestCallMapInfo
-            return .run { action in
-                
-            }
+            return .none
         }
     }
 }
