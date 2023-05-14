@@ -21,7 +21,6 @@ extension DTO.PinCluster {
         Pin(
             id: String(main_pin.id),
             count: pins_count,
-            userName: "",
             music: Music(
                 id: main_pin.music.applemusic_id,
                 title: main_pin.music.title,
@@ -31,7 +30,7 @@ extension DTO.PinCluster {
             ),
             weather: Weather(
                 id: UUID().uuidString,
-                temperature: String(main_pin.temperature),
+                temperature: main_pin.temperature,
                 symbolName: main_pin.weather
             ),
             createdAt: main_pin.created_at,

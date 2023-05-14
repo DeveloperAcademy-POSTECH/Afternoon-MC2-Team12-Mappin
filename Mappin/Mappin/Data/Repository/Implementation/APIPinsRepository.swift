@@ -38,12 +38,14 @@ struct APIPinsRepository: PinsRepository {
     }
     
     func readList(
+        category: PinsCategory?,
         centerLatitude: Double,
         centerLongitude: Double,
         horizontalRadius: Double,
         verticalRadius: Double
     ) async throws -> [Pin] {
         let parameters = PinsReadListAPITarget.Parameters(
+            category: category?.rawValue,
             center_latitude: centerLatitude,
             center_longitude: centerLongitude,
             horizontal_radius: horizontalRadius,

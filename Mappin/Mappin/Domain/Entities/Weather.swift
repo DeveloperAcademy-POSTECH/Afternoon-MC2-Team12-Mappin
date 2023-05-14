@@ -9,6 +9,6 @@ import Foundation
 
 struct Weather: Equatable, Identifiable {
     let id: String
-    let temperature: String
+    let temperature: Int
     let symbolName: String
 }

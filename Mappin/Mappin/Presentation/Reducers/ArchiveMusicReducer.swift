@@ -20,17 +20,24 @@ struct ArchiveMusicReducer: ReducerProtocol {
     struct State: Equatable  {
         var archiveMusic: [Pin] = []
         var archiveIsEmpty = false
-        var isOtherPin = false
+        var isOtherPin = true
+        
+        var category: PinsCategory?
+        var lastAction: UniqueAction<Action>?
     }
     
-    enum Action {
+    enum Action: Equatable {
         case requestArchive
         case applyArchive([Pin])
         case archiveCellTapped
         case removeArchive(index: IndexSet)
+        
+        case setCategory(PinsCategory)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
+        state.lastAction = .init(action)
+        
         switch action {
         case .requestArchive:
             return .task {
@@ -56,6 +63,10 @@ struct ArchiveMusicReducer: ReducerProtocol {
 //            return .task {
 //                removePinUseCase.execute(id: index)
 //            }
+            return .none
+            
+        case let .setCategory(category):
+            state.category = category
             return .none
         }
     }
