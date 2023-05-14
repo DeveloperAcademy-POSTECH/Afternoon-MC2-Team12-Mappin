@@ -30,7 +30,7 @@ struct ArchiveMusicView: View {
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(
                 leading: Text(viewStore.category?.navigationTitle ?? "")
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: 22, weight: .bold))
                     .padding(.top, 16)
             )
         }

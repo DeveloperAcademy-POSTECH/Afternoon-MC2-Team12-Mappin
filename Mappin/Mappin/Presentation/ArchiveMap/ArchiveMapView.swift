@@ -25,6 +25,8 @@ struct ArchiveMapView: View {
         reducer: ListReducer.build()
     ), observe: { $0 })
     
+    @State private var settingDetents = PresentationDetent.fraction(0.4)
+    
     var body: some View {
         Group {
             let isListViewPresented = viewStore.binding(
@@ -47,6 +49,7 @@ struct ArchiveMapView: View {
                 ArchiveMusicView(viewStore: listViewStore)
                     .presentationBackgroundInteraction(.enabled)
                     .presentationDetents([.height(60), .height(viewStore.estimatedListHeight)])
+//                    .presentationDetents([.height(60), .height(viewStore.estimatedListHeight)], selection: viewStore.binding(get: viewStore.state.estimatedListHeight, send: viewStore.send(.setEstimatedListHeight(540))))
                     .interactiveDismissDisabled()
             }
         }

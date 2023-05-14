@@ -10,6 +10,14 @@ import Foundation
 extension Date {
     private static let dateFormatter = DateFormatter()
     
+    var dayAndTime: String {
+        formatted(dateFormat: "h:mma · EEEE")
+    }
+    
+    var yearAndMonth: String {
+        formatted(dateFormat: "MMM d, yyyy")
+    }
+    
     var listFormat: String {
         formatted(dateFormat: "MMM d, yyyy · h:mma · EEEE")
     }
