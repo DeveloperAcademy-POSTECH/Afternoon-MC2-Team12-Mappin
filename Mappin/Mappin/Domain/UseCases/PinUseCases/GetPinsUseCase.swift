@@ -61,8 +61,8 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
             category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
-            horizontalRadius: latitudeDelta,
-            verticalRadius: longitudeDelta
+            latitudeDelta: latitudeDelta,
+            longitudeDelta: longitudeDelta
         )
     }
     
@@ -76,8 +76,8 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
             category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
-            horizontalRadius: latitudeDelta,
-            verticalRadius: longitudeDelta
+            latitudeDelta: latitudeDelta,
+            longitudeDelta: longitudeDelta
         )
     }
     
@@ -91,8 +91,8 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
             category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
-            horizontalRadius: latitudeDelta,
-            verticalRadius: longitudeDelta
+            latitudeDelta: latitudeDelta,
+            longitudeDelta: longitudeDelta
         )
     }
     
@@ -106,8 +106,8 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
             category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
-            horizontalRadius: latitudeDelta,
-            verticalRadius: longitudeDelta
+            latitudeDelta: latitudeDelta,
+            longitudeDelta: longitudeDelta
         )
     }
     
