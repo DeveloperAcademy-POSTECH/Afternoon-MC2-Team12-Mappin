@@ -17,6 +17,14 @@ struct MappinApp: App {
             ZStack(alignment: .bottom) {
                 LaunchScreenView.build()
                 ToastView.build()
+//                Store(
+//                    initialState: PinMusicReducer.State(),
+//                    reducer: PinMusicReducer(
+//                        addPinUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(AddPinUseCase.self),
+//                        getPinsUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(GetPinsUseCase.self)
+//                    )
+//                ArchiveMusicView(store: Store(initialState: ArchiveMusicReducer.State(),
+//                                              reducer: ArchiveMusicReducer(removePinUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(RemovePinUseCase.self))))
             }
         }
     }

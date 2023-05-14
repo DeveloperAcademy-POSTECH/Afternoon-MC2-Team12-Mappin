@@ -50,6 +50,7 @@ struct SearchMusicReducer: ReducerProtocol {
         case openAppleMusic(url: URL?)
         case appleMusicError
         case musicSelected(String)
+        case musicCanceled
         case uploadMusic
         case initParent(PrimaryView)
     }
@@ -58,7 +59,6 @@ struct SearchMusicReducer: ReducerProtocol {
         switch action {
         case .searchMusicPresent(let isPresented):
             state.isSearchMusicPresented = isPresented
-            print("@Kozi \(state.isSearchMusicPresented)")
             return .none
             
         case .resetSearchTerm:
@@ -111,6 +111,10 @@ struct SearchMusicReducer: ReducerProtocol {
             state.selectedMusicIndex = index
             return .none
             
+        case .musicCanceled:
+            state.selectedMusicIndex = ""
+            return .none
+            
         case .uploadMusic:
             if state.searchTerm.isEmpty {
                 state.uploadMusic = state.musicChart.first(where: { $0.id == state.selectedMusicIndex})
@@ -119,6 +123,7 @@ struct SearchMusicReducer: ReducerProtocol {
                 state.uploadMusic = state.searchMusic.first(where: { $0.id == state.selectedMusicIndex})
             }
             state.isSearchMusicPresented = false
+            print("Kozi upload - \(String(describing: state.uploadMusic))")
             return .none
             
         case .initParent(let parent):
