@@ -47,4 +47,12 @@ extension APITarget {
             method: .delete
         )
     }
+    
+    static func readLatestPin(parameters: PinsLatestAPITarget.Parameters) -> PinsLatestAPITarget {
+        .init(
+            path: basePath + "/latest",
+            method: .get,
+            parameters: parameters
+        )
+    }
 }

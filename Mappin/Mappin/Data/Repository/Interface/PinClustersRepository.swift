@@ -12,7 +12,7 @@ protocol PinClustersRepository {
         category: PinsCategory?,
         centerLatitude: Double,
         centerLongitude: Double,
-        horizontalRadius: Double,
-        verticalRadius: Double
+        latitudeDelta: Double,
+        longitudeDelta: Double
     ) async throws -> [Pin]
 }

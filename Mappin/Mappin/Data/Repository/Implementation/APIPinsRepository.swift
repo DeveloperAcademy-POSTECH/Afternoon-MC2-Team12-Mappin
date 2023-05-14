@@ -39,15 +39,15 @@ struct APIPinsRepository: PinsRepository {
         category: PinsCategory?,
         centerLatitude: Double,
         centerLongitude: Double,
-        horizontalRadius: Double,
-        verticalRadius: Double
+        latitudeDelta: Double,
+        longitudeDelta: Double
     ) async throws -> [Pin] {
         let parameters = PinsReadListAPITarget.Parameters(
             category: category?.rawValue,
             center_latitude: centerLatitude,
             center_longitude: centerLongitude,
-            horizontal_radius: horizontalRadius,
-            vertical_radius: verticalRadius
+            latitude_delta: latitudeDelta,
+            longitude_delta: longitudeDelta
         )
         let target = APITarget.readPins(parameters: parameters)
         let dtos = try await provider.requestResponsable(target)
@@ -61,5 +61,10 @@ struct APIPinsRepository: PinsRepository {
     
     func delete(id: Int) async throws {
         try await provider.justRequest(.deletePin(id: id))
+    }
+    
+    func readLatest(category: PinsCategory?) async throws -> Pin {
+        let parameters = PinsLatestAPITarget.Parameters(category: category?.rawValue)
+        return try await provider.requestResponsable(APITarget.readLatestPin(parameters: parameters)).entity
     }
 }

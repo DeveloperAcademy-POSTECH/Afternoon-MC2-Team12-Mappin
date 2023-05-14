@@ -37,7 +37,7 @@ struct DetailPinPopUpView: View {
                     Spacer()
                     
                     VStack(alignment: .leading){
-                        Text("\(pin?.createdAt ?? Date())")
+                        Text(pin?.createdAt.dialogFormat ?? "")
                             .font(.system(size: 10))
                         Divider()
                         //.frame(width: 200)

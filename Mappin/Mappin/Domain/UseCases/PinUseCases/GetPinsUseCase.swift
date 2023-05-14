@@ -33,6 +33,8 @@ protocol GetPinsUseCase {
         latitudeDelta: Double,
         longitudeDelta: Double
     ) async throws -> [Pin]
+    
+    func getLatestPin(category: PinsCategory?) async throws -> Pin
 }
 
 final class DefaultGetPinUseCase: GetPinsUseCase {
@@ -59,8 +61,8 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
             category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
-            horizontalRadius: latitudeDelta,
-            verticalRadius: longitudeDelta
+            latitudeDelta: latitudeDelta,
+            longitudeDelta: longitudeDelta
         )
     }
     
@@ -74,8 +76,8 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
             category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
-            horizontalRadius: latitudeDelta,
-            verticalRadius: longitudeDelta
+            latitudeDelta: latitudeDelta,
+            longitudeDelta: longitudeDelta
         )
     }
     
@@ -89,8 +91,8 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
             category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
-            horizontalRadius: latitudeDelta,
-            verticalRadius: longitudeDelta
+            latitudeDelta: latitudeDelta,
+            longitudeDelta: longitudeDelta
         )
     }
     
@@ -104,9 +106,13 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
             category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
-            horizontalRadius: latitudeDelta,
-            verticalRadius: longitudeDelta
+            latitudeDelta: latitudeDelta,
+            longitudeDelta: longitudeDelta
         )
+    }
+    
+    func getLatestPin(category: PinsCategory?) async throws -> Pin {
+        try await pinsRepository.readLatest(category: category)
     }
 }
 
