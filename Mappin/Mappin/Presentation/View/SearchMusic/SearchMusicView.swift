@@ -61,7 +61,12 @@ struct SearchMusicView: View {
                         SearchMusicCell(music: music, isSelected: isSelected, noSelection: noSelection)
                             .onTapGesture {
                                 if isSelected {
+<<<<<<< Updated upstream
                                     viewStore.send(.uploadMusic)
+=======
+                                    parent.passMusic()
+//                                    viewStore.send(.uploadMusic)
+>>>>>>> Stashed changes
                                 } else {
                                     viewStore.send(.musicSelected(music.id))
                                 }
@@ -70,9 +75,6 @@ struct SearchMusicView: View {
                 } header: {
                     Text(viewStore.searchTerm.isEmpty ? "현재 이 지역 음악 추천" : "검색 결과")
                         .padding(.leading, 15)
-//                        .foregroundColor(.blue)
-//                        .background(Color.black)
-//                        .padding(.top, -100)
                 }
 
             }

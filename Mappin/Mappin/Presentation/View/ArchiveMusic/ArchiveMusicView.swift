@@ -34,6 +34,7 @@ struct ArchiveMusicView: View {
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading:
                                     Text(!viewStore.isOtherPin ? "내가 저장한 핀들 돌아보기" : "다른 사람들이 저장한 핀들 돌아보기")
+<<<<<<< Updated upstream
                 .font(.system(size: 16, weight: .bold)),
                                 trailing:
                                     Button(action: {
@@ -43,6 +44,17 @@ struct ArchiveMusicView: View {
                     .font(.system(size: 16, weight: .regular))
                     .foregroundColor(.black)
             }))
+=======
+                                        .font(.system(size: 16, weight: .bold)))
+//                                trailing:
+//                                    Button(action: {
+//                                        print("취소 버튼 클릭")
+//                                    }, label: {
+//                                        Text("취소")
+//                                            .font(.system(size: 16, weight: .regular))
+//                                            .foregroundColor(.black)
+//                                    })
+>>>>>>> Stashed changes
             .task {
                 viewStore.send(.requestArchive)
             }
