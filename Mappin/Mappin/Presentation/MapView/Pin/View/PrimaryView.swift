@@ -34,8 +34,8 @@ struct PrimaryView: View {
     var body: some View {
         NavigationView {
             TCABindView(sendEntity: musicViewStore.state.uploadMusic) { entity in
-                    pinViewStore.send(.addPin(music: entity!, latitudeDelta: 0.0, longitudeDelta: 0.0))
-                }
+                pinViewStore.send(.addPin(music: entity!, latitudeDelta: 0.0, longitudeDelta: 0.0))
+            }
             ZStack(alignment: .bottom) {
                 MapView(action: .constant(.none), store: pinViewStore, userTrackingMode: .follow, isArchive: false)
                     .ignoresSafeArea()

@@ -20,18 +20,16 @@ struct ArchiveMusicReducer: ReducerProtocol {
     struct State: Equatable  {
         var archiveMusic: [Pin] = []
         var archiveIsEmpty = false
-        var isOtherPin = true
         
         var category: PinsCategory?
         var lastAction: UniqueAction<Action>?
     }
     
     enum Action: Equatable {
-        case requestArchive
         case applyArchive([Pin])
-        case archiveCellTapped
+        case pinTapped(Pin)
         case removeArchive(index: IndexSet)
-        
+        case pinRemoved(id: Int)
         case setCategory(PinsCategory)
     }
     
@@ -39,18 +37,10 @@ struct ArchiveMusicReducer: ReducerProtocol {
         state.lastAction = .init(action)
         
         switch action {
-        case .requestArchive:
-            return .task {
-                return .applyArchive([])
-            }
-            
         case .applyArchive(let archiveMusic):
             // 서버에서 받아온 Pin 정보 저장
+            print("@BYO action.applyArchive \(archiveMusic.count)")
             state.archiveMusic = archiveMusic
-            return .none
-            
-        case .archiveCellTapped:
-            // 해당 피닝 위치로 이동
             return .none
             
         case .removeArchive(let index):
@@ -65,8 +55,15 @@ struct ArchiveMusicReducer: ReducerProtocol {
 //            }
             return .none
             
+        case let .pinRemoved(id):
+            print("@BYO action.pinRemoved \(id)")
+            return .none
+            
         case let .setCategory(category):
             state.category = category
+            return .none
+            
+        default:
             return .none
         }
     }
@@ -84,3 +81,11 @@ struct TempArchive: Identifiable, Equatable {
 //                                     TempArchive(id: 3, music: Music(id: UUID().uuidString, title: "messi3", artist: "ronaldo", artwork: URL(string: "https://is5-ssl.mzstatic.com/image/thumb/Music122/v4/cf/79/94/cf7994ea-4fe5-9d8f-72a2-9725fc4b2c3a/19UMGIM16534.rgb.jpg/200x200bb.jpg"), appleMusicUrl: nil)),
 //                                     TempArchive(id: 4, music: Music(id: UUID().uuidString, title: "messi4", artist: "ronaldo", artwork: URL(string: "https://is5-ssl.mzstatic.com/image/thumb/Music122/v4/cf/79/94/cf7994ea-4fe5-9d8f-72a2-9725fc4b2c3a/19UMGIM16534.rgb.jpg/200x200bb.jpg"), appleMusicUrl: nil)),
 //                                     TempArchive(id: 5, music: Music(id: UUID().uuidString, title: "messi5", artist: "ronaldo", artwork: URL(string: "https://is5-ssl.mzstatic.com/image/thumb/Music122/v4/cf/79/94/cf7994ea-4fe5-9d8f-72a2-9725fc4b2c3a/19UMGIM16534.rgb.jpg/200x200bb.jpg"), appleMusicUrl: nil))])
+
+extension ArchiveMusicReducer {
+    static func build() -> Self {
+        ArchiveMusicReducer(
+            removePinUseCase: DefaultRemovePinUseCase(pinsRepository: APIPinsRepository())
+        )
+    }
+}

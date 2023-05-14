@@ -24,7 +24,6 @@ struct ContentView: View {
         MapView(action: .constant(.none), store: viewStore, userTrackingMode: .follow, isArchive: true)
             .ignoresSafeArea()
             .opacity(Double(action.yame))
-            
     }
     
 }
