@@ -32,7 +32,8 @@ struct SearchMusicView: View {
             .navigationBarItems(leading:
                                     Button(action: {
                 musicViewStore.send(.searchMusicPresent(isPresented: false))
-              
+                
+                
             }, label: {
                 Text("취소")
                     .font(.system(size: 16, weight: .bold))
