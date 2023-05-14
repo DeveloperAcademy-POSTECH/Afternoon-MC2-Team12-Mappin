@@ -15,7 +15,7 @@ struct ArchiveMapReducer: ReducerProtocol {
     private static let emptyListHeight: CGFloat = 200
     private static let maxListHeight: CGFloat = 540
     
-    let recentPinUseCase: RecentPinUseCase
+    let getPinsUseCase: GetPinsUseCase
     
     struct State: Equatable {
         var category: PinsCategory?
@@ -27,8 +27,9 @@ struct ArchiveMapReducer: ReducerProtocol {
     }
     
     enum Action: Equatable {
+        case viewAppeared
         case selectCategory(PinsCategory)
-        case focusToRecentPin
+        case focusToLatestPin
         case setListViewPresented(Bool)
         case setEstimatedListHeight(CGFloat)
         
@@ -40,6 +41,13 @@ struct ArchiveMapReducer: ReducerProtocol {
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
+        case .viewAppeared:
+            return .concatenate([
+                .send(.selectCategory(.mine)),
+                .send(.focusToLatestPin),
+                .send(.setListViewPresented(true))
+            ])
+            
         case let .selectCategory(category):
             state.category = category
             return .concatenate([
@@ -47,10 +55,10 @@ struct ArchiveMapReducer: ReducerProtocol {
                 .send(.sendList(.setCategory(category)))
             ])
             
-        case .focusToRecentPin:
+        case .focusToLatestPin:
             let category = state.category
             return .task {
-                let pin = try await recentPinUseCase.getRecentPin(category: category)
+                let pin = try await getPinsUseCase.getLatestPin(category: category)
                 return .sendMap(.focusToPin(pin))
             }
             

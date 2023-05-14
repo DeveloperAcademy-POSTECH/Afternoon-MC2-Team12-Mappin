@@ -24,4 +24,5 @@ protocol PinsRepository {
     
     func readDetail(id: Int) async throws -> Pin
     func delete(id: Int) async throws
+    func readLatest(category: PinsCategory?) async throws -> Pin
 }

@@ -62,4 +62,9 @@ struct APIPinsRepository: PinsRepository {
     func delete(id: Int) async throws {
         try await provider.justRequest(.deletePin(id: id))
     }
+    
+    func readLatest(category: PinsCategory?) async throws -> Pin {
+        let parameters = PinsLatestAPITarget.Parameters(category: category?.rawValue)
+        return try await provider.requestResponsable(APITarget.readLatestPin(parameters: parameters)).entity
+    }
 }

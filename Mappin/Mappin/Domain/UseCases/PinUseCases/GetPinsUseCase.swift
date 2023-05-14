@@ -33,6 +33,8 @@ protocol GetPinsUseCase {
         latitudeDelta: Double,
         longitudeDelta: Double
     ) async throws -> [Pin]
+    
+    func getLatestPin(category: PinsCategory?) async throws -> Pin
 }
 
 final class DefaultGetPinUseCase: GetPinsUseCase {
@@ -107,6 +109,10 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
             horizontalRadius: latitudeDelta,
             verticalRadius: longitudeDelta
         )
+    }
+    
+    func getLatestPin(category: PinsCategory?) async throws -> Pin {
+        try await pinsRepository.readLatest(category: category)
     }
 }
 

@@ -20,8 +20,8 @@
 		3A2811722A0D136500469988 /* PinsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2811712A0D136500469988 /* PinsCategory.swift */; };
 		3A2811782A0E158400469988 /* PinsCategoryReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2811772A0E158400469988 /* PinsCategoryReceivable.swift */; };
 		3A7776FE2A0FEF7C008FA4EA /* UniqueAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7776FD2A0FEF7C008FA4EA /* UniqueAction.swift */; };
-		3A7AF56C2A11243100E2B7E1 /* RecentPinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7AF56B2A11243100E2B7E1 /* RecentPinUseCase.swift */; };
 		3A7AF56E2A113F3A00E2B7E1 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7AF56D2A113F3A00E2B7E1 /* Date+Format.swift */; };
+		3A7AF5702A11573C00E2B7E1 /* PinsLatestAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7AF56F2A11573C00E2B7E1 /* PinsLatestAPITarget.swift */; };
 		3AB4F7692A0373BF004C0F76 /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7682A0373BF004C0F76 /* APITarget.swift */; };
 		3AB4F7852A03792D004C0F76 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7842A03792D004C0F76 /* CombineMoya */; };
 		3AB4F7872A03792D004C0F76 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7862A03792D004C0F76 /* Moya */; };
@@ -131,8 +131,8 @@
 		3A2811712A0D136500469988 /* PinsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsCategory.swift; sourceTree = "<group>"; };
 		3A2811772A0E158400469988 /* PinsCategoryReceivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsCategoryReceivable.swift; sourceTree = "<group>"; };
 		3A7776FD2A0FEF7C008FA4EA /* UniqueAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniqueAction.swift; sourceTree = "<group>"; };
-		3A7AF56B2A11243100E2B7E1 /* RecentPinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPinUseCase.swift; sourceTree = "<group>"; };
 		3A7AF56D2A113F3A00E2B7E1 /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
+		3A7AF56F2A11573C00E2B7E1 /* PinsLatestAPITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsLatestAPITarget.swift; sourceTree = "<group>"; };
 		3AB4F7682A0373BF004C0F76 /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
 		3AB4F7892A03797C004C0F76 /* DTO+Namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DTO+Namespace.swift"; sourceTree = "<group>"; };
 		3AB4F78B2A0379A2004C0F76 /* DTO+Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DTO+Music.swift"; sourceTree = "<group>"; };
@@ -367,6 +367,7 @@
 				3AD1DE3A2A053EA100A49E95 /* PinsReadDetailAPITarget.swift */,
 				3AD1DE3C2A053EAD00A49E95 /* PinsUpdateAPITarget.swift */,
 				3AD1DE352A053CB300A49E95 /* PinsDeleteAPITarget.swift */,
+				3A7AF56F2A11573C00E2B7E1 /* PinsLatestAPITarget.swift */,
 			);
 			path = Pins;
 			sourceTree = "<group>";
@@ -712,7 +713,6 @@
 				D4F57D1E2A0397C000582857 /* AddPinUseCase.swift */,
 				D4F19C622A091A2A00ABB567 /* GetPinsUseCase.swift */,
 				AF12DDFA2A0FEF4900543B28 /* RemovePinUseCase.swift */,
-				3A7AF56B2A11243100E2B7E1 /* RecentPinUseCase.swift */,
 			);
 			path = PinUseCases;
 			sourceTree = "<group>";
@@ -814,7 +814,6 @@
 				D4F57D252A0397CD00582857 /* AddPinRepository.swift in Sources */,
 				D4F57D1C2A03970D00582857 /* Pin.swift in Sources */,
 				AF9E9D572A0A161A00EC8D9E /* SearchMusicCell.swift in Sources */,
-				3A7AF56C2A11243100E2B7E1 /* RecentPinUseCase.swift in Sources */,
 				D4F19C5C2A0915F000ABB567 /* RequestGeoCodeRepository.swift in Sources */,
 				3AD1DE302A053B3700A49E95 /* APITarget+Pins.swift in Sources */,
 				3AE353DC2A03935A00D5A2B5 /* PinClustersListAPITarget.swift in Sources */,
@@ -828,6 +827,7 @@
 				3AD1DE4B2A055FD800A49E95 /* AuthUseCase.swift in Sources */,
 				D45C9DFA2A0A22DD00FAA39C /* MKMapView+.swift in Sources */,
 				D4F57D262A0397CD00582857 /* GeoCodeRepository.swift in Sources */,
+				3A7AF5702A11573C00E2B7E1 /* PinsLatestAPITarget.swift in Sources */,
 				D4F19C5F2A09179200ABB567 /* LocationRepository.swift in Sources */,
 				AF9E9D442A08E68B00EC8D9E /* RequestWeatherRepository.swift in Sources */,
 				D4F57CD32A0243AB00582857 /* MappinApp.swift in Sources */,
