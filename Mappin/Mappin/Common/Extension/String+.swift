@@ -13,12 +13,10 @@ extension String {
         return replacingOccurrences(of: "99x99", with: size)
     }
     
-    func getTemperature() -> String {
-        String(
-            self
-                .split(separator: ".")
-                .compactMap{ Int($0) }
-                .first!
-        )
+    func getTemperature() -> Int {
+        self
+            .split(separator: ".")
+            .compactMap{ Int($0) }
+            .first!
     }
 }

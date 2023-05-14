@@ -15,6 +15,7 @@ protocol PinsRepository {
     ) async throws
     
     func readList(
+        category: PinsCategory?,
         centerLatitude: Double,
         centerLongitude: Double,
         horizontalRadius: Double,
