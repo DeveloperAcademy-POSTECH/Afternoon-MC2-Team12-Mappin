@@ -24,12 +24,15 @@ struct PinMusicReducer: PinMusic {
     struct IdForDebounce: Hashable { }
     
     struct State: Equatable {
-        
+
         var mapAction: MapView.Action = .none 
+
         var currentLocation: MKCoordinateRegion = MKCoordinateRegion()
         var pinsUsingMap: [Pin] = []
         var pinsUsingList: [Pin] = []
         var mapUserTrakingMode: MapUserTrackingMode = .follow
+        var showingPinsView: [AnnotaitionPinView] = []
+        var detailPin: Pin?
         
         var category: PinsCategory?
         var lastAction: UniqueAction<Action>?
@@ -42,6 +45,8 @@ struct PinMusicReducer: PinMusic {
         case mapPins([Pin])
         case listPins([Pin])
         case addPin(music: Music, latitudeDelta: Double, longitudeDelta: Double)
+        case tapPin(CGPoint)
+        case none
         case setCategory(PinsCategory)
     }
     
@@ -49,6 +54,9 @@ struct PinMusicReducer: PinMusic {
         state.lastAction = .init(action)
         
         switch action {
+        case .none:
+            return .none
+            
         case .act(let value):
             switch value {
             case .none:
@@ -68,6 +76,11 @@ struct PinMusicReducer: PinMusic {
                         longitudeDelta: longitudeDelta
                     ))
                 }
+            case .updateShowingPinsView( let views ):
+                state.showingPinsView = views
+                return .none
+            default:
+                return .none
             }
             
         case .actAndChange(let value):
@@ -90,6 +103,8 @@ struct PinMusicReducer: PinMusic {
                         longitudeDelta: longitudeDelta
                     ))
                 }
+            default:
+                return .none
             }
             
         case let .loadPins(category, centerLatitude, centerLongitude, latitudeDelta, longitudeDelta):
@@ -156,6 +171,37 @@ struct PinMusicReducer: PinMusic {
         case .listPins(let pins):
             state.pinsUsingList = pins
             return .none
+            
+        case .tapPin( let point ):
+            var returnPin: Pin?
+            
+            for view in state.showingPinsView {
+                if view.frame.minX != 0.0 {
+                    if view.frame.minX <= point.x
+                        && point.x <= view.frame.minX + 40
+                        && view.frame.minY - 40 <= point.y
+                        && point.y <= view.frame.minY {
+                        
+                        print("@LOG3 FINISH")
+                        returnPin = view.pin
+                    }
+                }
+            }
+            state.detailPin = returnPin
+            guard let returnPin = returnPin else  {
+                return .none
+            }
+            return .run { action in
+                await action.send(
+                    .actAndChange(
+                        .setCenter(here:
+                                    (returnPin.location.latitude,
+                                     returnPin.location.longitude
+                                    )
+                                  )
+                    )
+                )
+            }
             
         case let .setCategory(category):
             state.category = category

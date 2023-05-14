@@ -30,15 +30,15 @@ struct ArchiveMusicView: View {
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading:
                                     Text(!viewStore.isOtherPin ? "내가 저장한 핀들 돌아보기" : "다른 사람들이 저장한 핀들 돌아보기")
-                                        .font(.system(size: 16, weight: .bold)),
+                .font(.system(size: 16, weight: .bold)),
                                 trailing:
                                     Button(action: {
-                                        print("취소 버튼 클릭")
-                                    }, label: {
-                                        Text("취소")
-                                            .font(.system(size: 16, weight: .regular))
-                                            .foregroundColor(.black)
-                                    }))
+                print("취소 버튼 클릭")
+            }, label: {
+                Text("취소")
+                    .font(.system(size: 16, weight: .regular))
+                    .foregroundColor(.black)
+            }))
             .task {
                 viewStore.send(.requestArchive)
             }
@@ -54,14 +54,14 @@ struct ArchiveMusicView: View {
                         ArchiveMusicCell(music: archive.music, date: archive.createdAt)
                             .onTapGesture {
                                 print("피닝 되어있는 위치로 이동!")
-                        }
+                            }
                     }
                     .onDelete { index in
                         viewStore.send(.removeArchive(index: index))
                     }
                 } header: {
                 }
-
+                
             }
             .listStyle(.inset)
         }

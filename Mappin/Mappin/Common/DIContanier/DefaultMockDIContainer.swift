@@ -69,6 +69,7 @@ final class DefaultMockDIContainer {
         container.register(CSRFTokenRepository.self) { _ in
             APICSRFTokenRepository()
         }
+        
     }
     
     func DIUseCase() {
@@ -118,16 +119,32 @@ final class DefaultMockDIContainer {
                 weatherRepository: requestWeatherRepositoryInterfaceImplementation
             )
         }
+        
+        container.register(RemovePinUseCase.self) { _ in
+            DefaultRemovePinUseCase(
+                pinsRepository: pinsRepositoryImplementation
+            )
+        }
     }
     
     func DIReduecer() {
+//        container.register((any ReducerProtocol).self) { resolver in
+//            let addPinUseCaseImplementation = resolver.resolve(RemovePinUseCase.self)
+//            let getPinsUseCaseImplementation = resolver.resolve(GetPinsUseCase.self)
+//
+//            return PinMusicReducer(
+//                addPinUseCase: addPinUseCaseImplementation,
+//                getPinsUseCase: getPinsUseCaseImplementation
+//            )
+//        }
+        
         container.register((any ReducerProtocol).self) { resolver in
             let addPinUseCaseImplementation = resolver.resolve(AddPinUseCase.self)
             let getPinsUseCaseImplementation = resolver.resolve(GetPinsUseCase.self)
+            let removePinUseCaseImplemetation = resolver.resolve(RemovePinUseCase.self)
             
-            return PinMusicReducer(
-                addPinUseCase: addPinUseCaseImplementation,
-                getPinsUseCase: getPinsUseCaseImplementation
+            return ArchiveMusicReducer(
+                removePinUseCase: removePinUseCaseImplemetation
             )
         }
     }

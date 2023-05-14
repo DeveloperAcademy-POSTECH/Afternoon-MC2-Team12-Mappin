@@ -26,7 +26,7 @@ struct ArchiveMapView: View {
         
         self.listViewStore = ViewStore(Store(
             initialState: ListReducer.State(),
-            reducer: ListReducer()
+            reducer: ListReducer(removePinUseCase: DefaultRemovePinUseCase(pinsRepository: APIPinsRepository()))
         ), observe: { $0 })
     }
     

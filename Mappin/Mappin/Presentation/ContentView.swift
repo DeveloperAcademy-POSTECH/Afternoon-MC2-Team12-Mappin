@@ -21,7 +21,7 @@ struct ContentView: View {
 
     
     var body: some View {
-        MapView(action: .constant(.none), store: viewStore, userTrackingMode: .follow)
+        MapView(action: .constant(.none), store: viewStore, userTrackingMode: .follow, isArchive: true)
             .ignoresSafeArea()
             .opacity(Double(action.yame))
             
