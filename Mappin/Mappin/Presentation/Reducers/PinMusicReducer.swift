@@ -127,7 +127,9 @@ struct PinMusicReducer: PinMusic {
             }
             
         case let .loadPins(category, centerLatitude, centerLongitude, latitudeDelta, longitudeDelta):
-            print("@KIO here Loadpins")
+            guard let category = category else {
+                return .none
+            }
             let center = (centerLatitude, centerLongitude)
             return .merge(
                 .task {
