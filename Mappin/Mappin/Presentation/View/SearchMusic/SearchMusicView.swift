@@ -14,10 +14,12 @@ struct SearchMusicView: View {
     
     let musicStore: StoreOf<SearchMusicReducer>
     @ObservedObject var musicViewStore: ViewStoreOf<SearchMusicReducer>
+    @Binding private var settingsDetent: PresentationDetent
     
-    init(musicStore: StoreOf<SearchMusicReducer>) {
+    init(musicStore: StoreOf<SearchMusicReducer>, settingsDetent: Binding<PresentationDetent>) {
         self.musicStore = musicStore
         self.musicViewStore = ViewStore(self.musicStore, observe: { $0 })
+        self._settingsDetent = settingsDetent
     }
     
     var body: some View {
@@ -32,10 +34,9 @@ struct SearchMusicView: View {
             .navigationBarItems(leading:
                                     Button(action: {
                 musicViewStore.send(.searchMusicPresent(isPresented: false))
-              
             }, label: {
                 Text("취소")
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: 17, weight: .regular))
                     .foregroundColor(.red)
             }),
                                 trailing:
@@ -43,7 +44,7 @@ struct SearchMusicView: View {
                 musicViewStore.send(.uploadMusic)
             }, label: {
                 Text("추가")
-                    .font(.system(size: 16, weight: musicViewStore.selectedMusicIndex == "" ? .regular : .bold))
+                    .font(.system(size: 17, weight: .bold))
                     .foregroundColor(musicViewStore.selectedMusicIndex == "" ? .gray : .accentColor)
             })
                                         .disabled(musicViewStore.selectedMusicIndex == "")
@@ -67,8 +68,13 @@ struct SearchMusicView: View {
                 Image(systemName: "magnifyingglass")
                 TextField("Search", text: musicViewStore.binding(get: \.searchTerm,
                                                                  send: SearchMusicReducer.Action.searchTermChanged))
+                .font(.system(size: 17, weight: .regular))
                 .foregroundColor(.primary)
                 .frame(height: 36)
+                .onTapGesture {
+                    settingsDetent = PresentationDetent.fraction(0.71)
+                }
+            
                 if !musicViewStore.searchTerm.isEmpty {
                     Button(action: {
                         musicViewStore.send(.resetSearchTerm)
@@ -108,6 +114,7 @@ struct SearchMusicView: View {
                         }
                 }
             }
+            
             .listStyle(.inset)
         }
     }
