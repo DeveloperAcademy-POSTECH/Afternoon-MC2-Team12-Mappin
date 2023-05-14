@@ -18,10 +18,11 @@ protocol PinsRepository {
         category: PinsCategory?,
         centerLatitude: Double,
         centerLongitude: Double,
-        horizontalRadius: Double,
-        verticalRadius: Double
+        latitudeDelta: Double,
+        longitudeDelta: Double
     ) async throws -> [Pin]
     
     func readDetail(id: Int) async throws -> Pin
     func delete(id: Int) async throws
+    func readLatest(category: PinsCategory?) async throws -> Pin
 }

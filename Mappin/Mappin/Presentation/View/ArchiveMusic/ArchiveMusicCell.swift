@@ -14,7 +14,7 @@ struct ArchiveMusicCell: View {
     var body: some View {
         VStack {
             HStack {
-                Text(String(describing: date))
+                Text(date.listFormat)
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundColor(Color(red: 0.4235, green: 0.4235, blue: 0.4392))
                 Spacer()

@@ -15,15 +15,15 @@ struct APIPinClustersRepository: PinClustersRepository {
         category: PinsCategory?,
         centerLatitude: Double,
         centerLongitude: Double,
-        horizontalRadius: Double,
-        verticalRadius: Double
+        latitudeDelta: Double,
+        longitudeDelta: Double
     ) async throws -> [Pin] {
         let parameters = PinClustersListAPITarget.Parameters(
             category: category?.rawValue,
             center_latitude: centerLatitude,
             center_longitude: centerLongitude,
-            horizontal_radius: horizontalRadius,
-            vertical_radius: verticalRadius
+            latitude_delta: latitudeDelta,
+            longitude_delta: longitudeDelta
         )
         let target = APITarget.readPinClusters(parameters: parameters)
         let dtos = try await provider.requestResponsable(target)

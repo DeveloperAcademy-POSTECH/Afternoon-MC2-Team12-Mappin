@@ -25,13 +25,6 @@ struct ArchiveMapView: View {
         reducer: ListReducer.build()
     ), observe: { $0 })
     
-    init(viewStore: ViewStoreOf<Reducer>) {
-        self.viewStore = viewStore
-        
-        viewStore.send(.selectCategory(.mine))
-        viewStore.send(.setListViewPresented(true))
-    }
-    
     var body: some View {
         Group {
             let isListViewPresented = viewStore.binding(
@@ -55,6 +48,9 @@ struct ArchiveMapView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()
+        .onAppear {
+            viewStore.send(.viewAppeared)
+        }
         .onChange(of: viewStore.mapAction) {
             print("@BYO! map \($0)".prefix(100))
             guard let action = $0 else { return }
@@ -97,7 +93,7 @@ extension ArchiveMapView {
         ArchiveMapView(viewStore: ViewStore(Store(
             initialState: ArchiveMapReducer.State(),
             reducer: ArchiveMapReducer(
-                recentPinUseCase: MockRecentPinUseCase()
+                getPinsUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(GetPinsUseCase.self)
             )
         ), observe: { $0 }))
     }

@@ -16,6 +16,7 @@ struct DetailPinPopUpView: View {
             ImageTitleArtistLocation
                 .padding(.top, 19)
             HStack(alignment: .bottom) {
+
                 Button {
                     if let url = pin.music.appleMusicUrl {
                         openAppleMusic(url: url)
