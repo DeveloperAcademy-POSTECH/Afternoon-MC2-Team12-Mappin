@@ -47,9 +47,10 @@ struct ArchiveMusicView: View {
                                 viewStore.send(.pinTapped(archive))
                             }
                     }
-                    .onDelete { index in
-                        viewStore.send(.removeArchive(index: index))
+                    .onDelete {
+                        viewStore.send(.removeArchive(indexSet: $0))
                     }
+                    .deleteDisabled(viewStore.category != .mine)
                 }
             }
             .listStyle(.inset)

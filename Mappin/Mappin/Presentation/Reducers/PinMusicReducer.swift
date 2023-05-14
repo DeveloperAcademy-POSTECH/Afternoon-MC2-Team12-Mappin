@@ -248,17 +248,15 @@ struct PinMusicReducer: PinMusic {
             return .none
             
         case .refreshPins:
-            print("@BYO action.refreshPins")
+            state.mapAction = .requestCallMapInfo
             return .none
             
         case let .focusToPin(pin):
-            print("@BYO action.focusToPin \(pin)")
             return .send(.actAndChange(.setCenter(latitude: pin.location.latitude, longitude: pin.location.longitude, isModal: false)))
             
         case let .setCategory(category):
             state.category = category
-            state.mapAction = .requestCallMapInfo
-            return .none
+            return .send(.refreshPins)
         }
     }
 }
