@@ -43,8 +43,7 @@ struct ArchiveMapReducer: ReducerProtocol {
         case .viewAppeared:
             return .concatenate([
                 .send(.selectCategory(.mine)),
-                .send(.focusToLatestPin),
-                .send(.setListViewPresented(true))
+                .send(.focusToLatestPin)
             ])
             
         case let .selectCategory(category):

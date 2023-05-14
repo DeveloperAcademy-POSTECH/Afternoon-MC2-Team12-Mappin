@@ -64,6 +64,7 @@ struct ArchiveMapView: View {
             listViewStore.send(action)
         }
         .onChange(of: mapViewStore.pinsUsingList) {
+            viewStore.send(.setListViewPresented(true))
             listViewStore.send(.applyArchive($0))
         }
         .onChange(of: listViewStore.lastAction) {
