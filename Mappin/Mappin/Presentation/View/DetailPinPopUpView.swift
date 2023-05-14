@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailPinPopUpView: View {
     
-    @Binding var pin: Pin?
+    var pin: Pin?
 
     var body: some View {
         VStack{

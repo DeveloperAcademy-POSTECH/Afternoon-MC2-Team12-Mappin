@@ -54,6 +54,9 @@ class AnnotaitionPinView: MKAnnotationView {
         pinBackGroundImage.translatesAutoresizingMaskIntoConstraints = false
         pinBackGroundImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
         pinBackGroundImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        let offset = UIOffset(horizontal: -10, vertical: 0)
+        pinBackGroundImage.frame = pinBackGroundImage.frame.offsetBy(dx: offset.horizontal, dy: offset.vertical)
     }
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {

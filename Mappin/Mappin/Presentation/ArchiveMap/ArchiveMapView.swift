@@ -9,25 +9,27 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ArchiveMapView: View {
+    typealias Reducer = ArchiveMapReducer
     typealias MapReducer = PinMusicReducer
     typealias ListReducer = ArchiveMusicReducer
     
-    @ObservedObject var viewStore: ViewStoreOf<ArchiveMapReducer>
-    @State var mapViewStore: ViewStoreOf<MapReducer>
-    @State var listViewStore: ViewStoreOf<ListReducer>
+    @ObservedObject var viewStore: ViewStoreOf<Reducer>
     
-    init(viewStore: ViewStoreOf<ArchiveMapReducer>) {
+    @StateObject private var mapViewStore: ViewStoreOf<MapReducer> = ViewStore(Store(
+        initialState: MapReducer.State(),
+        reducer: MapReducer.build()
+    ), observe: { $0 })
+    
+    @StateObject private var listViewStore: ViewStoreOf<ListReducer> = ViewStore(Store(
+        initialState: ListReducer.State(),
+        reducer: ListReducer.build()
+    ), observe: { $0 })
+    
+    init(viewStore: ViewStoreOf<Reducer>) {
         self.viewStore = viewStore
         
-        self.mapViewStore = ViewStore(Store(
-            initialState: MapReducer.State(),
-            reducer: MapReducer.build()
-        ), observe: { $0 })
-        
-        self.listViewStore = ViewStore(Store(
-            initialState: ListReducer.State(),
-            reducer: ListReducer(removePinUseCase: DefaultRemovePinUseCase(pinsRepository: APIPinsRepository()))
-        ), observe: { $0 })
+        viewStore.send(.selectCategory(.mine))
+        viewStore.send(.setListViewPresented(true))
     }
     
     var body: some View {
@@ -40,24 +42,21 @@ struct ArchiveMapView: View {
                 ContentView(viewStore: mapViewStore)
                 FakeNavigationBar()
             }
-            .navigationTitle(viewStore.state.category.navigationTitle)
+            .navigationTitle(viewStore.state.category?.navigationTitle ?? "")
             .toolbarTitleMenu {
                 ToolbarTitleMenu(viewStore: viewStore)
             }
             .sheet(isPresented: isListViewPresented) {
                 ArchiveMusicView(viewStore: listViewStore)
-            }
-            .onAppear {
-                viewStore.send(.setListViewPresented(true))
+                    .presentationBackgroundInteraction(.enabled)
+                    .presentationDetents([.height(60), .height(viewStore.estimatedListHeight)])
+                    .interactiveDismissDisabled()
             }
         }
         .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()
-        .onAppear {
-            mapViewStore.send(.setCategory(viewStore.category))
-            listViewStore.send(.setCategory(viewStore.category))
-        }
         .onChange(of: viewStore.mapAction) {
+            print("@BYO! map \($0)".prefix(100))
             guard let action = $0 else { return }
             mapViewStore.send(action)
         }
@@ -66,12 +65,10 @@ struct ArchiveMapView: View {
             listViewStore.send(action)
         }
         .onChange(of: mapViewStore.lastAction) {
-            guard let action = $0?.wrapped else { return }
-            viewStore.send(.receiveMap(action))
+            viewStore.send(.receiveMap($0?.wrapped))
         }
         .onChange(of: listViewStore.lastAction) {
-            guard let action = $0?.wrapped else { return }
-            viewStore.send(.receiveList(action))
+            viewStore.send(.receiveList($0?.wrapped))
         }
     }
     
@@ -99,7 +96,9 @@ extension ArchiveMapView {
     static func build() -> Self {
         ArchiveMapView(viewStore: ViewStore(Store(
             initialState: ArchiveMapReducer.State(),
-            reducer: ArchiveMapReducer()
+            reducer: ArchiveMapReducer(
+                recentPinUseCase: MockRecentPinUseCase()
+            )
         ), observe: { $0 }))
     }
 }

@@ -20,6 +20,7 @@
 		3A2811722A0D136500469988 /* PinsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2811712A0D136500469988 /* PinsCategory.swift */; };
 		3A2811782A0E158400469988 /* PinsCategoryReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2811772A0E158400469988 /* PinsCategoryReceivable.swift */; };
 		3A7776FE2A0FEF7C008FA4EA /* UniqueAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7776FD2A0FEF7C008FA4EA /* UniqueAction.swift */; };
+		3A7AF56C2A11243100E2B7E1 /* RecentPinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7AF56B2A11243100E2B7E1 /* RecentPinUseCase.swift */; };
 		3AB4F7692A0373BF004C0F76 /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F7682A0373BF004C0F76 /* APITarget.swift */; };
 		3AB4F7852A03792D004C0F76 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7842A03792D004C0F76 /* CombineMoya */; };
 		3AB4F7872A03792D004C0F76 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB4F7862A03792D004C0F76 /* Moya */; };
@@ -63,13 +64,7 @@
 		3AE353DC2A03935A00D5A2B5 /* PinClustersListAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DB2A03935A00D5A2B5 /* PinClustersListAPITarget.swift */; };
 		3AE353DE2A03949B00D5A2B5 /* PinClustersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */; };
 		3AE353E02A0394BA00D5A2B5 /* APIPinClustersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DF2A0394BA00D5A2B5 /* APIPinClustersRepository.swift */; };
-		851E3C3B2A0B70FE00744403 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E3C332A0B70FE00744403 /* MainView.swift */; };
-		851E3C3D2A0B70FE00744403 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E3C352A0B70FE00744403 /* Home.swift */; };
 		851E3C3F2A0B70FE00744403 /* PrimaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E3C382A0B70FE00744403 /* PrimaryView.swift */; };
-		851E3C402A0B70FE00744403 /* SearchMusicView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E3C3A2A0B70FE00744403 /* SearchMusicView1.swift */; };
-		85D58E0B2A0B742000E7926C /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58E0A2A0B742000E7926C /* Album.swift */; };
-		85D58E0D2A0B773300E7926C /* SwitchArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58E0C2A0B773300E7926C /* SwitchArchive.swift */; };
-		85D58E0F2A0B855000E7926C /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58E0E2A0B855000E7926C /* ArchiveView.swift */; };
 		AF03F8C32A026BA100E90660 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C22A026BA100E90660 /* Music.swift */; };
 		AF03F8C62A0279B400E90660 /* SearchMusicUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */; };
 		AF03F8C82A027A8600E90660 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C72A027A8600E90660 /* Weather.swift */; };
@@ -89,6 +84,8 @@
 		AF9E9D572A0A161A00EC8D9E /* SearchMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D562A0A161A00EC8D9E /* SearchMusicCell.swift */; };
 		AF9E9D582A0A174900EC8D9E /* SearchMusicReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1078C92A05101B00DB8EDA /* SearchMusicReducer.swift */; };
 		AF9E9D592A0A17B200EC8D9E /* MusicChartUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1078C62A039E8B00DB8EDA /* MusicChartUseCase.swift */; };
+		D413D3872A11353600AFDB1E /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413D3862A11353600AFDB1E /* ArchiveView.swift */; };
+		D413D3892A11355900AFDB1E /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413D3882A11355900AFDB1E /* Album.swift */; };
 		D450FEB32A0E135800909E90 /* PassEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450FEB22A0E135800909E90 /* PassEntityProtocol.swift */; };
 		D450FEB82A0FC84F00909E90 /* DetailPinPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450FEB72A0FC84F00909E90 /* DetailPinPopUpView.swift */; };
 		D45C9DFA2A0A22DD00FAA39C /* MKMapView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C9DF92A0A22DD00FAA39C /* MKMapView+.swift */; };
@@ -133,6 +130,7 @@
 		3A2811712A0D136500469988 /* PinsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsCategory.swift; sourceTree = "<group>"; };
 		3A2811772A0E158400469988 /* PinsCategoryReceivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsCategoryReceivable.swift; sourceTree = "<group>"; };
 		3A7776FD2A0FEF7C008FA4EA /* UniqueAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniqueAction.swift; sourceTree = "<group>"; };
+		3A7AF56B2A11243100E2B7E1 /* RecentPinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPinUseCase.swift; sourceTree = "<group>"; };
 		3AB4F7682A0373BF004C0F76 /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
 		3AB4F7892A03797C004C0F76 /* DTO+Namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DTO+Namespace.swift"; sourceTree = "<group>"; };
 		3AB4F78B2A0379A2004C0F76 /* DTO+Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DTO+Music.swift"; sourceTree = "<group>"; };
@@ -174,13 +172,7 @@
 		3AE353DB2A03935A00D5A2B5 /* PinClustersListAPITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinClustersListAPITarget.swift; sourceTree = "<group>"; };
 		3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinClustersRepository.swift; sourceTree = "<group>"; };
 		3AE353DF2A0394BA00D5A2B5 /* APIPinClustersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPinClustersRepository.swift; sourceTree = "<group>"; };
-		851E3C332A0B70FE00744403 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = ../MapView/Pin/View/MainView.swift; sourceTree = "<group>"; };
-		851E3C352A0B70FE00744403 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Home.swift; path = ../MapView/Pin/View/Home.swift; sourceTree = "<group>"; };
 		851E3C382A0B70FE00744403 /* PrimaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrimaryView.swift; path = ../MapView/Pin/View/PrimaryView.swift; sourceTree = "<group>"; };
-		851E3C3A2A0B70FE00744403 /* SearchMusicView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMusicView1.swift; sourceTree = "<group>"; };
-		85D58E0A2A0B742000E7926C /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
-		85D58E0C2A0B773300E7926C /* SwitchArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchArchive.swift; sourceTree = "<group>"; };
-		85D58E0E2A0B855000E7926C /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
 		AF03F8C22A026BA100E90660 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicUseCase.swift; sourceTree = "<group>"; };
 		AF03F8C72A027A8600E90660 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -200,6 +192,8 @@
 		AF9E9D4C2A08E7E000EC8D9E /* MusicItemCollection+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MusicItemCollection+.swift"; sourceTree = "<group>"; };
 		AF9E9D532A0A10E900EC8D9E /* SearchMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicView.swift; sourceTree = "<group>"; };
 		AF9E9D562A0A161A00EC8D9E /* SearchMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicCell.swift; sourceTree = "<group>"; };
+		D413D3862A11353600AFDB1E /* ArchiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
+		D413D3882A11355900AFDB1E /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		D450FEB22A0E135800909E90 /* PassEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassEntityProtocol.swift; sourceTree = "<group>"; };
 		D450FEB42A0E2B2C00909E90 /* Mappin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mappin.entitlements; sourceTree = "<group>"; };
 		D450FEB72A0FC84F00909E90 /* DetailPinPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPinPopUpView.swift; sourceTree = "<group>"; };
@@ -460,15 +454,6 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
-		851E3C392A0B70FE00744403 /* SearchMusic */ = {
-			isa = PBXGroup;
-			children = (
-				851E3C3A2A0B70FE00744403 /* SearchMusicView1.swift */,
-			);
-			name = SearchMusic;
-			path = ../MapView/Pin/View/SearchMusic;
-			sourceTree = "<group>";
-		};
 		AF03F8C12A02663500E90660 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,15 +517,11 @@
 		AF9E9D512A0A10C600EC8D9E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				85D58E0A2A0B742000E7926C /* Album.swift */,
-				851E3C352A0B70FE00744403 /* Home.swift */,
-				851E3C332A0B70FE00744403 /* MainView.swift */,
+				D413D3882A11355900AFDB1E /* Album.swift */,
+				D413D3862A11353600AFDB1E /* ArchiveView.swift */,
 				851E3C382A0B70FE00744403 /* PrimaryView.swift */,
-				851E3C392A0B70FE00744403 /* SearchMusic */,
 				AF313BA52A0A2D9700D38A87 /* ArchiveMusic */,
 				AF9E9D522A0A10DC00EC8D9E /* SearchMusic */,
-				85D58E0C2A0B773300E7926C /* SwitchArchive.swift */,
-				85D58E0E2A0B855000E7926C /* ArchiveView.swift */,
 				D450FEB72A0FC84F00909E90 /* DetailPinPopUpView.swift */,
 			);
 			path = View;
@@ -728,6 +709,7 @@
 				D4F57D1E2A0397C000582857 /* AddPinUseCase.swift */,
 				D4F19C622A091A2A00ABB567 /* GetPinsUseCase.swift */,
 				AF12DDFA2A0FEF4900543B28 /* RemovePinUseCase.swift */,
+				3A7AF56B2A11243100E2B7E1 /* RecentPinUseCase.swift */,
 			);
 			path = PinUseCases;
 			sourceTree = "<group>";
@@ -829,9 +811,9 @@
 				D4F57D252A0397CD00582857 /* AddPinRepository.swift in Sources */,
 				D4F57D1C2A03970D00582857 /* Pin.swift in Sources */,
 				AF9E9D572A0A161A00EC8D9E /* SearchMusicCell.swift in Sources */,
+				3A7AF56C2A11243100E2B7E1 /* RecentPinUseCase.swift in Sources */,
 				D4F19C5C2A0915F000ABB567 /* RequestGeoCodeRepository.swift in Sources */,
 				3AD1DE302A053B3700A49E95 /* APITarget+Pins.swift in Sources */,
-				85D58E0F2A0B855000E7926C /* ArchiveView.swift in Sources */,
 				3AE353DC2A03935A00D5A2B5 /* PinClustersListAPITarget.swift in Sources */,
 				AF9E9D592A0A17B200EC8D9E /* MusicChartUseCase.swift in Sources */,
 				D4F57CF82A02609100582857 /* AddPinIntent.swift in Sources */,
@@ -854,10 +836,9 @@
 				3A1DC8E72A0A151A00B7462E /* ToastView.swift in Sources */,
 				3AB7EF492A0519D700B8FEDB /* DTO+User.swift in Sources */,
 				851E3C3F2A0B70FE00744403 /* PrimaryView.swift in Sources */,
+				D413D3892A11355900AFDB1E /* Album.swift in Sources */,
 				AF9E9D552A0A12C700EC8D9E /* PinMusicReducer.swift in Sources */,
 				D4F57D212A0397C000582857 /* AddPinUseCase.swift in Sources */,
-				85D58E0B2A0B742000E7926C /* Album.swift in Sources */,
-				85D58E0D2A0B773300E7926C /* SwitchArchive.swift in Sources */,
 				3AE353E02A0394BA00D5A2B5 /* APIPinClustersRepository.swift in Sources */,
 				AF9E9D582A0A174900EC8D9E /* SearchMusicReducer.swift in Sources */,
 				D45C9E0C2A0A461B00FAA39C /* GetPinsRepository.swift in Sources */,
@@ -865,7 +846,6 @@
 				D450FEB82A0FC84F00909E90 /* DetailPinPopUpView.swift in Sources */,
 				3A2811702A0CB5EC00469988 /* ArchiveMapReducer.swift in Sources */,
 				3AE353E02A0394BA00D5A2B5 /* APIPinClustersRepository.swift in Sources */,
-				851E3C3D2A0B70FE00744403 /* Home.swift in Sources */,
 				3AB4F7902A0379B1004C0F76 /* DTO+PinCluster.swift in Sources */,
 				3AD1DE632A08E84000A49E95 /* APICSRFTokenRepository.swift in Sources */,
 				3AD1DE482A055B3300A49E95 /* APIError.swift in Sources */,
@@ -873,7 +853,6 @@
 				3AB4F7972A037A84004C0F76 /* APIPinsRepository.swift in Sources */,
 				3A1DC8E12A08E9A800B7462E /* CSRFTokenAPITarget.swift in Sources */,
 				3AD1DE612A08E83700A49E95 /* CSRFTokenRepository.swift in Sources */,
-				851E3C3B2A0B70FE00744403 /* MainView.swift in Sources */,
 				D4F19C612A0917CC00ABB567 /* DeviceRepository.swift in Sources */,
 				3A28116D2A0B9CF100469988 /* ArchiveMapView.swift in Sources */,
 				3AB4F7932A0379F6004C0F76 /* PinsRepository.swift in Sources */,
@@ -890,6 +869,7 @@
 				3AB4F78A2A03797C004C0F76 /* DTO+Namespace.swift in Sources */,
 				3AD1DE5A2A0569B800A49E95 /* MockCurrentUser.swift in Sources */,
 				3AD1DE322A053B4100A49E95 /* APITarget+PinClusters.swift in Sources */,
+				D413D3872A11353600AFDB1E /* ArchiveView.swift in Sources */,
 				AF313BA72A0A2DCE00D38A87 /* ArchiveMusicView.swift in Sources */,
 				AF12DDFB2A0FEF4900543B28 /* RemovePinUseCase.swift in Sources */,
 				D4F19C632A091A2A00ABB567 /* GetPinsUseCase.swift in Sources */,
@@ -921,7 +901,6 @@
 				3A1DC8DF2A08E99300B7462E /* APITarget+ETC.swift in Sources */,
 				3AD1DE222A05370C00A49E95 /* UsersSignupAPITarget.swift in Sources */,
 				AF12DDF12A0CEAEA00543B28 /* ArchiveMusicReducer.swift in Sources */,
-				851E3C402A0B70FE00744403 /* SearchMusicView1.swift in Sources */,
 				D45C9E002A0A234500FAA39C /* AnnotaitionPinView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

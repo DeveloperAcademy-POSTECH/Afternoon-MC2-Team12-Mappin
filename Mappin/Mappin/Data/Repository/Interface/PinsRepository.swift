@@ -12,7 +12,7 @@ protocol PinsRepository {
         music: Music,
         location: Location,
         weather: Weather
-    ) async throws
+    ) async throws -> Pin
     
     func readList(
         category: PinsCategory?,

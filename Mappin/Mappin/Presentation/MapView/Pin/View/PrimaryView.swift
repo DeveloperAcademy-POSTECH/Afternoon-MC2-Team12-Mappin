@@ -33,37 +33,58 @@ struct PrimaryView: View {
     
     var body: some View {
         NavigationView {
-            TCABindView(sendEntity: musicViewStore.state.uploadMusic) { entity in
-                    pinViewStore.send(.addPin(music: entity!, latitudeDelta: 0.0, longitudeDelta: 0.0))
+            ZStack(alignment: .top) {
+                TCABindView(firstSendEntity: musicViewStore.state.uploadMusic, secondSendEntity: pinViewStore.state.temporaryPinLocation) { music, location  in
+                    pinViewStore.send(.addPin(music: music!, latitude: location!.center.latitude, longitude: location!.center.longitude))
                 }
-            ZStack(alignment: .bottom) {
-                MapView(action: .constant(.none), store: pinViewStore, userTrackingMode: .follow, isArchive: false)
-                    .ignoresSafeArea()
-                    .opacity(Double(action.yame))
-                
-                VStack(spacing: 10) {
-                    Button(action: {
-                        musicViewStore.send(.searchMusicPresent(isPresented: true))
-                    }, label: {
-                        Text("현재 위치에 음악 핀하기")
-                    })
-                    .applyButtonStyle()
-                    .opacity(musicViewStore.isSearchMusicPresented ? 0 : 1)
-                    NavigationLink("내 핀과 다른 사람들 핀 구경하기") {
-                        ArchiveMapView.build()
+                ZStack(alignment: .bottom) {
+                    MapView(action: .constant(.none), store: pinViewStore, userTrackingMode: .follow)
+                        .onTapGesture {
+                            if pinViewStore.state.detailPin != nil {
+                                pinViewStore.send(.showPopUpAndCloseAfter)
+                            }
+                        }
+                        .ignoresSafeArea()
+                        .opacity(Double(action.yame))
+                    
+                    VStack(spacing: 10) {
+                        Button(action: {
+                            musicViewStore.send(.searchMusicPresent(isPresented: true))
+                            pinViewStore.send(
+                                .actAndChange(
+                                    .setCenterWithModalAndAddTemporaryPin(
+                                        here: (
+                                            RequestLocationRepository.manager.latitude,
+                                            RequestLocationRepository.manager.longitude
+                                        )
+                                    )
+                                )
+                            )
+                        }, label: {
+                            Text("현재 위치에 음악 핀하기")
+                        })
+                        .applyButtonStyle()
+                        .opacity(musicViewStore.isSearchMusicPresented ? 0 : 1)
+                        NavigationLink("내 핀과 다른 사람들 핀 구경하기") {
+                            ArchiveMapView.build()
+                        }
+                        .applyButtonStyle()
+                        .opacity(musicViewStore.isSearchMusicPresented ? 0 : 1)
                     }
-                    .applyButtonStyle()
-                    .opacity(musicViewStore.isSearchMusicPresented ? 0 : 1)
+                    .font(.system(size: 16, weight: .semibold))
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 32)
+                    .sheet(isPresented: musicViewStore.binding(get: \.isSearchMusicPresented,
+                                                               send: { .searchMusicPresent(isPresented: $0) })) {
+                        SearchMusicView(pinStore: pinStore, musicStore: musicStore)
+                            .presentationBackgroundInteraction(.enabled)
+                            .presentationDetents([.fraction(0.12), .medium, .large], selection: $settingsDetent)
+                            .interactiveDismissDisabled()
+                    }
                 }
-                .font(.system(size: 16, weight: .semibold))
-                .padding(.horizontal, 20)
-                .padding(.bottom, 32)
-                .sheet(isPresented: musicViewStore.binding(get: \.isSearchMusicPresented,
-                                                           send: { .searchMusicPresent(isPresented: $0) })) {
-                    SearchMusicView(store: musicStore)
-                        .presentationBackgroundInteraction(.enabled)
-                        .presentationDetents([.fraction(0.12), .medium, .large], selection: $settingsDetent)
-                        .interactiveDismissDisabled()
+                if pinViewStore.state.detailPin != nil {
+                    DetailPinPopUpView(pin: pinViewStore.state.detailPin)
+                        .offset(y: 178)
                 }
             }
         }
@@ -87,22 +108,25 @@ private struct ButtonStyleModifier: ViewModifier {
     }
 }
 
-struct TCABindView<entityType>: View {
+struct TCABindView<FirstEntityType: Equatable, SencondEntityType>: View {
     
-    var sendEntity: entityType?
-    var content: (entityType?) -> Void
+    var firstSendEntity: FirstEntityType?
+    var secondSendEntity: SencondEntityType?
+    var content: (FirstEntityType?, SencondEntityType?) -> Void
     
-    init(sendEntity: entityType?,
-         content: @escaping (entityType?) -> Void) {
-        self.sendEntity = sendEntity
+    init(firstSendEntity: FirstEntityType?,
+         secondSendEntity: SencondEntityType?,
+         content: @escaping (FirstEntityType?, SencondEntityType?) -> Void) {
+        self.firstSendEntity = firstSendEntity
+        self.secondSendEntity = secondSendEntity
         self.content = content
     }
     
     var body: some View {
         EmptyView()
             .opacity(Double((1...1000).randomElement()!))
-            .onAppear {
-                content(self.sendEntity)
+            .onChange(of: firstSendEntity) { temp in
+                content(temp, self.secondSendEntity)
             }
     }
 }

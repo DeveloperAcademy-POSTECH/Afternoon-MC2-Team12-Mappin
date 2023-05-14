@@ -11,13 +11,19 @@ import ComposableArchitecture
 import MusicKit
 
 struct SearchMusicView: View {
-
-    let store: StoreOf<SearchMusicReducer>
-    @ObservedObject var viewStore: ViewStoreOf<SearchMusicReducer>
     
-    init(store: StoreOf<SearchMusicReducer>) {
-        self.store = store
-        self.viewStore = ViewStore(self.store, observe: { $0 })
+    let musicStore: StoreOf<SearchMusicReducer>
+    @ObservedObject var musicViewStore: ViewStoreOf<SearchMusicReducer>
+    
+    let pinStore: StoreOf<PinMusicReducer>
+    @ObservedObject var pinViewStore: ViewStoreOf<PinMusicReducer>
+    
+    init(pinStore: StoreOf<PinMusicReducer>, musicStore: StoreOf<SearchMusicReducer>) {
+        self.musicStore = musicStore
+        self.musicViewStore = ViewStore(self.musicStore, observe: { $0 })
+        
+        self.pinStore = pinStore
+        self.pinViewStore = ViewStore(self.pinStore, observe: { $0 })
     }
     
     var body: some View {
@@ -31,23 +37,24 @@ struct SearchMusicView: View {
             .navigationBarTitle("현재 위치에 음악 핀하기", displayMode: .inline)
             .navigationBarItems(leading:
                                     Button(action: {
-                                        viewStore.send(.searchMusicPresent(isPresented: false))
-                                    }, label: {
-                                        Text("취소")
-                                            .font(.system(size: 16, weight: .bold))
-                                            .foregroundColor(.red)
-                                    }),
+                musicViewStore.send(.searchMusicPresent(isPresented: false))
+              
+            }, label: {
+                Text("취소")
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(.red)
+            }),
                                 trailing:
                                     Button(action: {
-                                        viewStore.send(.uploadMusic)
-                                    }, label: {
-                                        Text("추가")
-                                            .font(.system(size: 16, weight: viewStore.selectedMusicIndex == "" ? .regular : .bold))
-                                            .foregroundColor(viewStore.selectedMusicIndex == "" ? .gray : .accentColor)
-                                    })
-                                        .disabled(viewStore.selectedMusicIndex == "")
+                musicViewStore.send(.uploadMusic)
+            }, label: {
+                Text("추가")
+                    .font(.system(size: 16, weight: musicViewStore.selectedMusicIndex == "" ? .regular : .bold))
+                    .foregroundColor(musicViewStore.selectedMusicIndex == "" ? .gray : .accentColor)
+            })
+                                        .disabled(musicViewStore.selectedMusicIndex == "")
                                         .onAppear(perform: {
-                                            print("@Kozi - \(viewStore.selectedMusicIndex)")
+                                            print("@Kozi - \(musicViewStore.selectedMusicIndex)")
                                         })
             )
             .onAppear {
@@ -55,56 +62,56 @@ struct SearchMusicView: View {
                 print("@Kozi - \(MusicAuthorization.currentStatus)")
             }
             .task {
-                viewStore.send(.requestMusicChart)
+                musicViewStore.send(.requestMusicChart)
             }
         }
     }
     
     var searchBar: some View {
-         HStack {
-             HStack {
-                 Image(systemName: "magnifyingglass")
-                 TextField("Search", text: viewStore.binding(get: \.searchTerm,
-                                                             send: SearchMusicReducer.Action.searchTermChanged))
-                     .foregroundColor(.primary)
-                     .frame(height: 36)
-                 if !viewStore.searchTerm.isEmpty {
-                     Button(action: {
-                         viewStore.send(.resetSearchTerm)
-                     }) {
-                         Image(systemName: "xmark.circle.fill")
-                     }
-                 } else {
-                     EmptyView()
-                 }
-
-             }
-             .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-             .foregroundColor(Color(red: 0.5569,
-                                    green: 0.5569,
-                                    blue: 0.5765))
-             .background(Color(red: 0.9216,
-                               green: 0.9216,
-                               blue: 0.9412))
-             .cornerRadius(10.0)
-         }
-         .padding(.horizontal)
-     }
+        HStack {
+            HStack {
+                Image(systemName: "magnifyingglass")
+                TextField("Search", text: musicViewStore.binding(get: \.searchTerm,
+                                                                 send: SearchMusicReducer.Action.searchTermChanged))
+                .foregroundColor(.primary)
+                .frame(height: 36)
+                if !musicViewStore.searchTerm.isEmpty {
+                    Button(action: {
+                        musicViewStore.send(.resetSearchTerm)
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                    }
+                } else {
+                    EmptyView()
+                }
+                
+            }
+            .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+            .foregroundColor(Color(red: 0.5569,
+                                   green: 0.5569,
+                                   blue: 0.5765))
+            .background(Color(red: 0.9216,
+                              green: 0.9216,
+                              blue: 0.9412))
+            .cornerRadius(10.0)
+        }
+        .padding(.horizontal)
+    }
     
     /// 음악 검색 리스트 구현
     var searchMusicList: some View {
         withAnimation {
             List {
-                ForEach(!viewStore.searchTerm.isEmpty ? viewStore.searchMusic : viewStore.musicChart) { music in
-                    let isSelected = viewStore.selectedMusicIndex == music.id // selectedMusicIndex == "" -> 초기 상태, 검색했거나 검색창을 켰을 경우. checkmark와 이중 클릭 확인을 하기 위함
+                ForEach(!musicViewStore.searchTerm.isEmpty ? musicViewStore.searchMusic : musicViewStore.musicChart) { music in
+                    let isSelected = musicViewStore.selectedMusicIndex == music.id // selectedMusicIndex == "" -> 초기 상태, 검색했거나 검색창을 켰을 경우. checkmark와 이중 클릭 확인을 하기 위함
                     SearchMusicCell(music: music, isSelected: isSelected)
                         .onTapGesture {
                             if isSelected {
-                                viewStore.send(.musicCanceled)
+                                musicViewStore.send(.musicCanceled)
                             } else {
-                                viewStore.send(.musicSelected(music.id))
+                                musicViewStore.send(.musicSelected(music.id))
                             }
-                    }
+                        }
                 }
             }
             .listStyle(.inset)
