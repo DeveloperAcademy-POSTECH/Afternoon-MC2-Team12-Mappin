@@ -33,8 +33,8 @@ struct ArchiveMapView: View {
             )
             ZStack(alignment: .top) {
                 ContentView(viewStore: mapViewStore)
-                if mapViewStore.state.detailPin != nil {
-                    DetailPinPopUpView(pin: mapViewStore.state.detailPin)
+                if let pin = mapViewStore.state.detailPin {
+                    DetailPinPopUpView(pin: pin)
                         .offset(y: 178)
                 }
                 FakeNavigationBar()
@@ -56,17 +56,16 @@ struct ArchiveMapView: View {
             viewStore.send(.viewAppeared)
         }
         .onChange(of: viewStore.mapAction) {
-            print("@BYO! map \($0)".prefix(100))
             guard let action = $0 else { return }
             mapViewStore.send(action)
         }
         .onChange(of: viewStore.listAction) {
-            
             guard let action = $0 else { return }
             listViewStore.send(action)
         }
-        .onChange(of: mapViewStore.lastAction) {
-            viewStore.send(.receiveMap($0?.wrapped))
+        .onChange(of: mapViewStore.pinsUsingList) {
+            viewStore.send(.setListViewPresented(true))
+            listViewStore.send(.applyArchive($0))
         }
         .onChange(of: listViewStore.lastAction) {
             viewStore.send(.receiveList($0?.wrapped))
@@ -107,8 +106,6 @@ extension ArchiveMapView {
 private extension PinsCategory {
     var navigationTitle: String {
         switch self {
-        case .current:
-            return ""
         case .mine:
             return "내 핀만"
         case .others:

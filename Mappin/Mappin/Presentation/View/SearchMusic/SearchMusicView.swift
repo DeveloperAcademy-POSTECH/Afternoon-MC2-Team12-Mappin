@@ -14,10 +14,18 @@ struct SearchMusicView: View {
     
     let musicStore: StoreOf<SearchMusicReducer>
     @ObservedObject var musicViewStore: ViewStoreOf<SearchMusicReducer>
+    @Binding private var settingsDetent: PresentationDetent
     
-    init(musicStore: StoreOf<SearchMusicReducer>) {
+    let pinStore: StoreOf<PinMusicReducer>
+    @ObservedObject var pinViewStore: ViewStoreOf<PinMusicReducer>
+    
+    init(pinStore: StoreOf<PinMusicReducer>, musicStore: StoreOf<SearchMusicReducer>, settingsDetent: Binding<PresentationDetent>) {
         self.musicStore = musicStore
         self.musicViewStore = ViewStore(self.musicStore, observe: { $0 })
+        self._settingsDetent = settingsDetent
+        
+        self.pinStore = pinStore
+        self.pinViewStore = ViewStore(self.pinStore, observe: { $0 })
     }
     
     var body: some View {
@@ -32,11 +40,10 @@ struct SearchMusicView: View {
             .navigationBarItems(leading:
                                     Button(action: {
                 musicViewStore.send(.searchMusicPresent(isPresented: false))
-                
-                
+                pinViewStore.send(.actAndChange(.cancelModal(latitude: RequestLocationRepository.manager.latitude, longitude: RequestLocationRepository.manager.longitude)))
             }, label: {
                 Text("취소")
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: 17, weight: .regular))
                     .foregroundColor(.red)
             }),
                                 trailing:
@@ -44,7 +51,7 @@ struct SearchMusicView: View {
                 musicViewStore.send(.uploadMusic)
             }, label: {
                 Text("추가")
-                    .font(.system(size: 16, weight: musicViewStore.selectedMusicIndex == "" ? .regular : .bold))
+                    .font(.system(size: 17, weight: .bold))
                     .foregroundColor(musicViewStore.selectedMusicIndex == "" ? .gray : .accentColor)
             })
                                         .disabled(musicViewStore.selectedMusicIndex == "")
@@ -52,6 +59,14 @@ struct SearchMusicView: View {
                                             print("@Kozi - \(musicViewStore.selectedMusicIndex)")
                                         })
             )
+            .onChange(of: settingsDetent) { newValue in
+                if newValue == .fraction(0.12) {
+                    pinViewStore.send(.modalMinimumHeight(false))
+                }
+                else {
+                    pinViewStore.send(.modalMinimumHeight(true))
+                }
+            }
             .onAppear {
                 settingMuesicAuthorization()
                 print("@Kozi - \(MusicAuthorization.currentStatus)")
@@ -68,8 +83,13 @@ struct SearchMusicView: View {
                 Image(systemName: "magnifyingglass")
                 TextField("Search", text: musicViewStore.binding(get: \.searchTerm,
                                                                  send: SearchMusicReducer.Action.searchTermChanged))
+                .font(.system(size: 17, weight: .regular))
                 .foregroundColor(.primary)
                 .frame(height: 36)
+                .onTapGesture {
+                    settingsDetent = PresentationDetent.fraction(0.71)
+                }
+                
                 if !musicViewStore.searchTerm.isEmpty {
                     Button(action: {
                         musicViewStore.send(.resetSearchTerm)
@@ -109,6 +129,7 @@ struct SearchMusicView: View {
                         }
                 }
             }
+            
             .listStyle(.inset)
         }
     }

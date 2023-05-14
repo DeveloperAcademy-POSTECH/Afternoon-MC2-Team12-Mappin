@@ -12,7 +12,7 @@ import MapKit
 
 struct PrimaryView: View {
     
-    @State private var settingsDetent = PresentationDetent.medium
+    @State private var settingsDetent = PresentationDetent.fraction(0.71)
     
     let pinStore: StoreOf<PinMusicReducer> // scope
     let musicStore: StoreOf<SearchMusicReducer>
@@ -76,14 +76,14 @@ struct PrimaryView: View {
                     .padding(.bottom, 32)
                     .sheet(isPresented: musicViewStore.binding(get: \.isSearchMusicPresented,
                                                                send: { .searchMusicPresent(isPresented: $0) })) {
-                        SearchMusicView(musicStore: musicStore)
+                        SearchMusicView(pinStore: pinStore, musicStore: musicStore, settingsDetent: $settingsDetent)
                             .presentationBackgroundInteraction(.enabled)
-                            .presentationDetents([.fraction(0.12), .medium, .large], selection: $settingsDetent)
+                            .presentationDetents([.fraction(0.12), .fraction(0.71), .large], selection: $settingsDetent)
                             .interactiveDismissDisabled()
                     }
                 }
-                if pinViewStore.state.detailPin != nil {
-                    DetailPinPopUpView(pin: pinViewStore.state.detailPin)
+                if let pin = pinViewStore.state.detailPin{
+                    DetailPinPopUpView(pin: pin)
                         .offset(y: 178)
                 }
             }

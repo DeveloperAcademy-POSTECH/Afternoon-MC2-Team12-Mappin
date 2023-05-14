@@ -39,9 +39,7 @@ struct PinMusicReducer: PinMusic {
         var detailPin: Pin?
         var temporaryPinLocation: MKCoordinateRegion = MKCoordinateRegion()
         var category: PinsCategory?
-        var lastAction: UniqueAction<Action>?
     }
-    gi
     enum Action: Equatable {
         
         case act(MapView.Action)
@@ -59,11 +57,10 @@ struct PinMusicReducer: PinMusic {
         case refreshPins
         case focusToPin(Pin)
         case setCategory(PinsCategory)
+        case modalMinimumHeight(Bool)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-//        state.lastAction = .init(action)
-        
         switch action {
         case .none:
             return .none
@@ -247,7 +244,7 @@ struct PinMusicReducer: PinMusic {
             state.detailPin = nil
             
             return .run { action in
-                try await action.send(.actAndChange(.setCenter(latitude: RequestLocationRepository.manager.latitude, longitude: RequestLocationRepository.manager.longitude)))
+                 await action.send(.actAndChange(.setCenter(latitude: RequestLocationRepository.manager.latitude, longitude: RequestLocationRepository.manager.longitude)))
             }
             
         case .actTemporaryPinLocation(let here):
@@ -255,11 +252,10 @@ struct PinMusicReducer: PinMusic {
             return .none
             
         case .refreshPins:
-            print("@BYO action.refreshPins")
+            state.mapAction = .requestCallMapInfo
             return .none
             
         case let .focusToPin(pin):
-            print("@BYO action.focusToPin \(pin)")
             return .send(.actAndChange(.setCenter(latitude: pin.location.latitude, longitude: pin.location.longitude, isModal: false)))
             
         case let .setCategory(category):
@@ -269,7 +265,12 @@ struct PinMusicReducer: PinMusic {
             
         case .popUpClose:
             state.detailPin = nil
-            return .none
+            return .send(.refreshPins)
+        case .modalMinimumHeight(let isModal):
+            let location = state.temporaryPinLocation.center
+            return .run { action in
+                await action.send(.actAndChange(.setCenter(latitude: location.latitude, longitude: location.longitude, isModal: isModal)))
+            }
         }
     }
 }

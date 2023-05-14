@@ -9,87 +9,131 @@ import SwiftUI
 
 struct DetailPinPopUpView: View {
     
-    var pin: Pin?
+    var pin: Pin
 
     var body: some View {
         VStack{
-            HStack {
-                AsyncImage(url: pin?.music.artwork ??
-                           URL(string: "https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/af/2c/6d/af2c6d62-0ebc-2dff-17b3-8eeb2b3986a0/888735943621.jpg/200x200bb.jpg")
-                )
-                    .frame(width: 105, height: 105)
-                    .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-                
-                Spacer()
-                    .frame(width: 12)
-                
-                VStack(alignment: .leading){
-                    Text(pin?.music.title ?? "빗속에서")
-                        .font(.system(size: 16))
-                        .bold()
-                    
-                    Spacer()
-                        .frame(height: 5)
-                    Text("노래·\(pin?.music.artist ?? "이문세")")
-                        .font(.system(size: 13))
-                        .foregroundColor(.gray)
-                    
-                    Spacer()
-                    
-                    VStack(alignment: .leading){
-                        Text(pin?.createdAt.dialogFormat ?? "")
-                            .font(.system(size: 10))
-                        Divider()
-                        //.frame(width: 200)
-                        
-                        Label{
-                            Text("\(pin?.location.locality ?? "사랑시")·\(pin?.location.subLocality ?? "고백구 행복동")")
-                                .font(.system(size: 10))
-                        } icon: {
-                            Image("Location")
-                                .frame(width: 6, height: 9)
-                        }
-                        
-                    }
-                    .padding(10)
-                    .background(Color.gray.opacity(0.3))
-                    .cornerRadius(9)
-                    
-                    
-                }
-                .frame(height:105)
-            }
-            .padding(.bottom,5)
-            .padding(.top, 19)
+            ImageTitleArtistLocation
+                .padding(.top, 19)
             
-            
-            HStack(alignment: .bottom){
+            HStack(alignment: .bottom) {
                 Button {
-                    print("apple music")
+                    if let url = pin.music.appleMusicUrl {
+                        openAppleMusic(url: url)
+                    }
                 } label: {
-                    Text("애플 뮤직에서 열기")
+                    HStack {
+                        Image("appleMusic")
+                        HStack {
+                            Text("Music에서 열기")
+                                .font(.system(size: 11, weight: .regular))
+                                .foregroundColor(Color(red: 0.6824,
+                                                       green: 0.6824,
+                                                       blue: 0.698))
+                                
+                            Image(systemName: "arrow.up.forward")
+                                .resizable()
+                                .frame(width: 9, height: 9)
+                                .foregroundColor(Color(red: 0.6824,
+                                                       green: 0.6824,
+                                                       blue: 0.698))
+                                .padding(.leading, -7)
+                        }
+                        .frame(width: 100, height: 15)
+                        .padding(.top, 1)
+                        .padding(.leading, -15)
+                    }
                 }
+                .padding(.leading, 2)
+                .padding(.bottom, 10)
                 
                 Spacer()
                 
-                Label{
-                    if let temperature = pin?.weather.temperature {
-                        Text(String(temperature) + "º" )
-                    }
+                Label {
+                    Text(String(pin.weather.temperature) + "º" )
+                        .font(.system(size: 13))
+                        .padding(.leading, -6)
                 } icon: {
-                    Image(systemName: pin?.weather.symbolName ?? "sun.max.fill")
-                        .foregroundColor(.yellow)
+                    Image(systemName: pin.weather.symbolName)
+                        .renderingMode(.original)
                 }
-                .padding(8)
-                .background(Color.gray.opacity(0.3))
-                .cornerRadius(6)
+                .frame(width: 50, height: 32)
+                .background(.white)
+                .cornerRadius(8)
                 
             }
             .padding(.bottom, 20)
             
+            
         }
-        .frame(width: 290, height: 180)
+        .padding(.trailing, 15)
+        .padding(.leading, 15)
         .padding(.bottom, 30)
-        .background(Image("popUpBackGround"))
+        .frame(width: 320, height: 191)
+        .background(
+            Image("popUpBackGround")
+                .renderingMode(.template)
+                .foregroundColor(Color(red: 0.9765, green: 0.9765, blue: 1.0).opacity(0.94))
+        )
     }
+    
+    var ImageTitleArtistLocation: some View {
+        HStack {
+            if let artwork = pin.music.artwork {
+                AsyncImage(url: artwork) { image in
+                    image.image?.resizable()
+                        .frame(width: 105, height: 105)
+                        .cornerRadius(8)
+                }
+            }
+            
+            VStack(alignment: .leading){
+                Text(pin.music.title)
+                    .font(.system(size: 17, weight: .semibold))
+                    .padding(.leading, 7)
+                
+                Text("노래 ∙ \(pin.music.artist)")
+                    .font(.system(size: 15))
+                    .foregroundColor(.gray)
+                    .padding(.leading, 7)
+                
+                VStack(alignment: .leading){
+                    Text("\(Date().dialogFormat)")
+                        .font(.system(size: 10))
+                        .padding(.leading, 5)
+                    Divider()
+                    Label{
+                        Text("\(pin.location.locality) · \(pin.location.subLocality)")
+                            .font(.system(size: 10))
+                            .padding(.leading, -3)
+                    } icon: {
+                        Image(systemName: "location.fill")
+                            .resizable()
+                            .frame(width: 10, height: 10)
+                            .foregroundColor(.accentColor)
+                    }
+                    .padding(.leading, 5)
+                }
+                .padding(10)
+                .background(.white)
+                .cornerRadius(8)
+                
+            }
+            .padding(.top, 5)
+            .padding(.leading, 2)
+        }
+    }
+    
+    func openAppleMusic(url: URL?) {
+        guard let appleMusicUrl = url,
+              UIApplication.shared.canOpenURL(appleMusicUrl)
+        else {
+            print("URL이 없는 음악이거나, URL을 열 수 없음.")
+            return
+        }
+        UIApplication.shared.open(appleMusicUrl)
+    }
+    
 }
+
+

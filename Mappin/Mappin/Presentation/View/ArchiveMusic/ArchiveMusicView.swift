@@ -47,9 +47,10 @@ struct ArchiveMusicView: View {
                                 viewStore.send(.pinTapped(archive))
                             }
                     }
-                    .onDelete { index in
-                        viewStore.send(.removeArchive(index: index))
+                    .onDelete {
+                        viewStore.send(.removeArchive(indexSet: $0))
                     }
+                    .deleteDisabled(viewStore.category != .mine)
                 }
             }
             .listStyle(.inset)
@@ -81,6 +82,7 @@ struct ArchiveMusicView: View {
     
 }
 
+
 private extension PinsCategory {
     var navigationTitle: String {
         subject + " 저장한 핀들 돌아보기"
@@ -88,8 +90,6 @@ private extension PinsCategory {
     
     private var subject: String {
         switch self {
-        case .current:
-            return ""
         case .mine:
             return "내가"
         case .others:
@@ -97,3 +97,14 @@ private extension PinsCategory {
         }
     }
 }
+        
+extension ArchiveMusicView {
+    static func build() -> Self {
+        let store = Store(
+            initialState: ArchiveMusicReducer.State(),
+            reducer: ArchiveMusicReducer(removePinUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(RemovePinUseCase.self)))
+        return ArchiveMusicView(viewStore: ViewStore(store))
+        
+    }
+}
+
