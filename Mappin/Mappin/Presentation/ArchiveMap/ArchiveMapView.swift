@@ -13,22 +13,16 @@ struct ArchiveMapView: View {
     typealias ListReducer = ArchiveMusicReducer
     
     @ObservedObject var viewStore: ViewStoreOf<ArchiveMapReducer>
-    @State var mapViewStore: ViewStoreOf<MapReducer>
-    @State var listViewStore: ViewStoreOf<ListReducer>
     
-    init(viewStore: ViewStoreOf<ArchiveMapReducer>) {
-        self.viewStore = viewStore
-        
-        self.mapViewStore = ViewStore(Store(
-            initialState: MapReducer.State(),
-            reducer: MapReducer.build()
-        ), observe: { $0 })
-        
-        self.listViewStore = ViewStore(Store(
-            initialState: ListReducer.State(),
-            reducer: ListReducer(removePinUseCase: DefaultRemovePinUseCase(pinsRepository: APIPinsRepository()))
-        ), observe: { $0 })
-    }
+    @StateObject private var mapViewStore: ViewStoreOf<MapReducer> = ViewStore(Store(
+        initialState: MapReducer.State(),
+        reducer: MapReducer.build()
+    ), observe: { $0 })
+    
+    @StateObject private var listViewStore: ViewStoreOf<ListReducer> = ViewStore(Store(
+        initialState: ListReducer.State(),
+        reducer: ListReducer.build()
+    ), observe: { $0 })
     
     var body: some View {
         Group {
@@ -53,23 +47,23 @@ struct ArchiveMapView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()
-        .onAppear {
-            mapViewStore.send(.setCategory(viewStore.category))
-            listViewStore.send(.setCategory(viewStore.category))
-        }
         .onChange(of: viewStore.mapAction) {
+            print("@BYO .onChange(of: viewStore.mapAction) \($0)".prefix(100))
             guard let action = $0 else { return }
             mapViewStore.send(action)
         }
         .onChange(of: viewStore.listAction) {
+            print("@BYO .onChange(of: viewStore.listAction) \($0)".prefix(100))
             guard let action = $0 else { return }
             listViewStore.send(action)
         }
         .onChange(of: mapViewStore.lastAction) {
+            print("@BYO .onChange(of: mapViewStore.lastAction) \($0?.wrapped)".prefix(100))
             guard let action = $0?.wrapped else { return }
             viewStore.send(.receiveMap(action))
         }
         .onChange(of: listViewStore.lastAction) {
+            print("@BYO .onChange(of: listViewStore.lastAction) \($0?.wrapped)".prefix(100))
             guard let action = $0?.wrapped else { return }
             viewStore.send(.receiveList(action))
         }

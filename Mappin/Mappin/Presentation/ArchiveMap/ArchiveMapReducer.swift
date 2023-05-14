@@ -38,10 +38,7 @@ class ArchiveMapReducer: ReducerProtocol {
             
         case let .selectCategory(category):
             state.category = category
-            return .concatenate([
-                .send(.sendMap(.setCategory(category))),
-                .send(.sendList(.setCategory(category))),
-            ])
+            return .send(.sendMap(.setCategory(category)))
             
         case let .setListViewPresented(presented):
             state.isListViewPresented = presented
@@ -49,12 +46,18 @@ class ArchiveMapReducer: ReducerProtocol {
             
         case let .receiveMap(action):
             switch action {
+            case let .listPins(pins):
+                return .send(.sendList(.applyArchive(pins)))
             default:
                 return .none
             }
             
         case let .receiveList(action):
             switch action {
+            case let .archiveCellTapped(id):
+                return .send(.sendMap(.focusPin(id: id)))
+            case .pinRemoved:
+                return .send(.sendMap(.refreshPins))
             default:
                 return .none
             }

@@ -47,11 +47,15 @@ struct PinMusicReducer: PinMusic {
         case addPin(music: Music, latitudeDelta: Double, longitudeDelta: Double)
         case tapPin(CGPoint)
         case none
+        
+        case refreshPins
+        case focusPin(id: Int)
         case setCategory(PinsCategory)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         state.lastAction = .init(action)
+        print("@BYO MAP \(action)".prefix(100))
         
         switch action {
         case .none:
@@ -163,7 +167,6 @@ struct PinMusicReducer: PinMusic {
             }
             
         case .mapPins(let pins):
-            print("@LOG mapPins \(pins.map { $0.id })")
             state.pinsUsingMap = pins
             state.mapAction = .updatePins(pins)
             return .none
@@ -202,6 +205,14 @@ struct PinMusicReducer: PinMusic {
                     )
                 )
             }
+            
+        case .refreshPins:
+            print("@BYO action.refreshPins")
+            return .none
+            
+        case let .focusPin(id):
+            print("@BYO action.focusPin \(id)")
+            return .none
             
         case let .setCategory(category):
             state.category = category

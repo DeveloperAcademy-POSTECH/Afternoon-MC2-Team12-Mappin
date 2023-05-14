@@ -70,6 +70,6 @@ final class APIProvider: MoyaProvider<APITarget> {
     }
     
     private func printLog(title: String, message: String) {
-//        print("@LOG \(title)\n\(message)")
+        print("@LOG \(title)\n\(message)")
     }
 }

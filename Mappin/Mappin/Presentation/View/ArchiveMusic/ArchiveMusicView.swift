@@ -39,9 +39,6 @@ struct ArchiveMusicView: View {
                     .font(.system(size: 16, weight: .regular))
                     .foregroundColor(.black)
             }))
-            .task {
-                viewStore.send(.requestArchive)
-            }
         }
     }
     
