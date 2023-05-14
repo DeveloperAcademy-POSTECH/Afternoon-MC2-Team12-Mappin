@@ -43,7 +43,6 @@ struct ArchiveMusicCell: View {
 
                 VStack(alignment: .leading) {
                     Text(music.title)
-                        .font(.system(size: 15, weight: .regular))
                         .lineLimit(1)
                         .foregroundColor(.primary)
                         .padding(.bottom, -5)
@@ -53,6 +52,8 @@ struct ArchiveMusicCell: View {
                             .foregroundColor(.secondary)
                     }
                 }
+                .font(.system(size: 15, weight: .regular))
+                
                 Spacer()
             }
         }

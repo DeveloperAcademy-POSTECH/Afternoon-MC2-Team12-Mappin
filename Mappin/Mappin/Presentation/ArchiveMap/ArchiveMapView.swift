@@ -9,10 +9,11 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ArchiveMapView: View {
+    typealias Reducer = ArchiveMapReducer
     typealias MapReducer = PinMusicReducer
     typealias ListReducer = ArchiveMusicReducer
     
-    @ObservedObject var viewStore: ViewStoreOf<ArchiveMapReducer>
+    @ObservedObject var viewStore: ViewStoreOf<Reducer>
     
     @StateObject private var mapViewStore: ViewStoreOf<MapReducer> = ViewStore(Store(
         initialState: MapReducer.State(),
@@ -24,6 +25,13 @@ struct ArchiveMapView: View {
         reducer: ListReducer.build()
     ), observe: { $0 })
     
+    init(viewStore: ViewStoreOf<Reducer>) {
+        self.viewStore = viewStore
+        
+        viewStore.send(.selectCategory(.mine))
+        viewStore.send(.setListViewPresented(true))
+    }
+    
     var body: some View {
         Group {
             let isListViewPresented = viewStore.binding(
@@ -34,15 +42,15 @@ struct ArchiveMapView: View {
                 ContentView(viewStore: mapViewStore)
                 FakeNavigationBar()
             }
-            .navigationTitle(viewStore.state.category.navigationTitle)
+            .navigationTitle(viewStore.state.category?.navigationTitle ?? "")
             .toolbarTitleMenu {
                 ToolbarTitleMenu(viewStore: viewStore)
             }
             .sheet(isPresented: isListViewPresented) {
                 ArchiveMusicView(viewStore: listViewStore)
-            }
-            .onAppear {
-                viewStore.send(.setListViewPresented(true))
+                    .presentationBackgroundInteraction(.enabled)
+                    .presentationDetents([.height(70), .height(viewStore.estimatedListHeight)])
+                    .interactiveDismissDisabled()
             }
         }
         .navigationBarTitleDisplayMode(.inline)
