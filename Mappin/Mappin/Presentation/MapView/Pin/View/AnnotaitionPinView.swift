@@ -12,6 +12,7 @@ import MapKit
 class AnnotaitionPinView: MKAnnotationView {
     
     var pin: Pin
+    var pinCategory: PinsCategory? = .mine
     let clusteredCountLabel: UILabel
     let pinBackGroundImage: UIImageView
     
@@ -20,19 +21,23 @@ class AnnotaitionPinView: MKAnnotationView {
 
        
         clusteredCountLabel.text = "\(pin.count)"
-        if pin.id == RequestDeviceRepository().deviceId {
+        
+        if pinCategory == .mine {
             clusteredCountLabel.textColor = .blue
-            pinBackGroundImage.image = UIImage(named: pin.count == 1 ? "bluePinSingle" : "bluePin")!
+            pinBackGroundImage.image = UIImage(named: pin.count > 1 ? "bluePin" : "bluePinSingle")!
             
         }
-        else {
+        else if pinCategory == .others {
             clusteredCountLabel.textColor = .gray
-            pinBackGroundImage.image = UIImage(named: pin.count == 1 ? "grayPinSingle" : "grayPin")!
+            pinBackGroundImage.image = UIImage(named: pin.count > 1 ? "grayPin" : "grayPinSingle")!
+        }
+        else {
+            pinBackGroundImage.image = UIImage(named: "currentPin")!
         }
         
         pinBackGroundImage.contentMode = .scaleAspectFit
         backGroundLayout()
-        if pin.count != 1 { addCountLabel() }
+        if pin.count > 1 { addCountLabel() }
     }
     
     func addCountLabel() {
@@ -43,6 +48,8 @@ class AnnotaitionPinView: MKAnnotationView {
         clusteredCountLabel.centerXAnchor.constraint(equalTo: pinBackGroundImage.centerXAnchor).isActive = true
         clusteredCountLabel.centerYAnchor.constraint(equalTo: pinBackGroundImage.centerYAnchor, constant: -3).isActive = true
         
+        let offset = UIOffset(horizontal: -20, vertical: 0)
+        clusteredCountLabel.frame = clusteredCountLabel.frame.offsetBy(dx: offset.horizontal, dy: offset.vertical)
     }
     
     func backGroundLayout() {
@@ -52,10 +59,10 @@ class AnnotaitionPinView: MKAnnotationView {
         pinBackGroundImage.addGestureRecognizer(g)
         
         pinBackGroundImage.translatesAutoresizingMaskIntoConstraints = false
-        pinBackGroundImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        pinBackGroundImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        pinBackGroundImage.widthAnchor.constraint(equalToConstant: 46).isActive = true
+        pinBackGroundImage.heightAnchor.constraint(equalToConstant: 46).isActive = true
         
-        let offset = UIOffset(horizontal: -10, vertical: 0)
+        let offset = UIOffset(horizontal: -20, vertical: 0)
         pinBackGroundImage.frame = pinBackGroundImage.frame.offsetBy(dx: offset.horizontal, dy: offset.vertical)
     }
     
