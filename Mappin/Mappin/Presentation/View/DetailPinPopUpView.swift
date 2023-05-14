@@ -15,8 +15,8 @@ struct DetailPinPopUpView: View {
         VStack{
             ImageTitleArtistLocation
                 .padding(.top, 19)
+            
             HStack(alignment: .bottom) {
-
                 Button {
                     if let url = pin.music.appleMusicUrl {
                         openAppleMusic(url: url)
@@ -52,24 +52,28 @@ struct DetailPinPopUpView: View {
                 Label {
                     Text(String(pin.weather.temperature) + "º" )
                         .font(.system(size: 13))
-//                        .padding(.trailing, 5)
                         .padding(.leading, -6)
                 } icon: {
                     Image(systemName: pin.weather.symbolName)
                         .renderingMode(.original)
                 }
                 .frame(width: 50, height: 32)
-                .background(Color.gray.opacity(0.3))
-                .cornerRadius(6)
+                .background(.white)
+                .cornerRadius(8)
                 
             }
             .padding(.bottom, 20)
             
+            
         }
-        .frame(width: 290, height: 180)
+        .padding(.trailing, 15)
+        .padding(.leading, 15)
         .padding(.bottom, 30)
+        .frame(width: 320, height: 191)
         .background(
             Image("popUpBackGround")
+                .renderingMode(.template)
+                .foregroundColor(Color(red: 0.9765, green: 0.9765, blue: 1.0).opacity(0.94))
         )
     }
     
@@ -93,9 +97,8 @@ struct DetailPinPopUpView: View {
                     .foregroundColor(.gray)
                     .padding(.leading, 7)
                 
-                
                 VStack(alignment: .leading){
-                    Text("\(pin.createdAt)")
+                    Text("\(Date().dialogFormat)")
                         .font(.system(size: 10))
                         .padding(.leading, 5)
                     Divider()
@@ -108,17 +111,16 @@ struct DetailPinPopUpView: View {
                             .resizable()
                             .frame(width: 10, height: 10)
                             .foregroundColor(.accentColor)
-//                            .frame(width: 6, height: 9)
                     }
                     .padding(.leading, 5)
                 }
                 .padding(10)
-                .background(.gray.opacity(0.1))
+                .background(.white)
                 .cornerRadius(8)
+                
             }
             .padding(.top, 5)
             .padding(.leading, 2)
-            
         }
     }
     
@@ -134,9 +136,4 @@ struct DetailPinPopUpView: View {
     
 }
 
-struct DetailPinPopUpView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailPinPopUpView()
-    }
-}
 
