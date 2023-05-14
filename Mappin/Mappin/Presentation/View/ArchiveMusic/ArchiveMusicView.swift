@@ -88,6 +88,8 @@ private extension PinsCategory {
     
     private var subject: String {
         switch self {
+        case .current:
+            return ""
         case .mine:
             return "내가"
         case .others:

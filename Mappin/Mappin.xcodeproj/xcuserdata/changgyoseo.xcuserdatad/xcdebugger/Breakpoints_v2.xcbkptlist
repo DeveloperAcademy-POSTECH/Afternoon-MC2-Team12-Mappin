@@ -198,54 +198,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "42EF3D22-8BDE-459E-B597-78B3FBE1C28A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Mappin/Presentation/MapView/MapView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "makeUIView(context:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "42EF3D22-8BDE-459E-B597-78B3FBE1C28A - 5f73bee375f138ae"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mappin.MapView.makeUIView(context: SwiftUI.UIViewRepresentableContext&lt;Mappin.MapView&gt;) -&gt; __C.MKMapView"
-                  moduleName = "Mappin"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/changgyoseo/Projects/mappin/Mappin/Mappin/Presentation/MapView/MapView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "356">
-               </Location>
-               <Location
-                  uuid = "42EF3D22-8BDE-459E-B597-78B3FBE1C28A - 999e0fee678f98aa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in Mappin.MapView.makeUIView(context: SwiftUI.UIViewRepresentableContext&lt;Mappin.MapView&gt;) -&gt; __C.MKMapView"
-                  moduleName = "Mappin"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/changgyoseo/Projects/mappin/Mappin/Mappin/Presentation/MapView/MapView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "25"
-                  endingLineNumber = "25"
-                  offsetFromSymbolStart = "104">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "4B976C91-A133-4285-80D8-5DFA4B9EC6E4"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -253,8 +205,8 @@
             filePath = "Mappin/Presentation/Reducers/PinMusicReducer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "reduce(into:action:)"
             landmarkType = "7">
             <Locations>
@@ -901,8 +853,8 @@
             filePath = "Mappin/Presentation/Reducers/PinMusicReducer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "reduce(into:action:)"
             landmarkType = "7">
          </BreakpointContent>

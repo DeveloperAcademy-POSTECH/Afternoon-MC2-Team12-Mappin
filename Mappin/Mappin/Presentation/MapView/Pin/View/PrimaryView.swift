@@ -76,7 +76,7 @@ struct PrimaryView: View {
                     .padding(.bottom, 32)
                     .sheet(isPresented: musicViewStore.binding(get: \.isSearchMusicPresented,
                                                                send: { .searchMusicPresent(isPresented: $0) })) {
-                        SearchMusicView(pinStore: pinStore, musicStore: musicStore)
+                        SearchMusicView(musicStore: musicStore)
                             .presentationBackgroundInteraction(.enabled)
                             .presentationDetents([.fraction(0.12), .medium, .large], selection: $settingsDetent)
                             .interactiveDismissDisabled()

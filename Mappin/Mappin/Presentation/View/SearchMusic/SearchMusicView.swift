@@ -15,15 +15,9 @@ struct SearchMusicView: View {
     let musicStore: StoreOf<SearchMusicReducer>
     @ObservedObject var musicViewStore: ViewStoreOf<SearchMusicReducer>
     
-    let pinStore: StoreOf<PinMusicReducer>
-    @ObservedObject var pinViewStore: ViewStoreOf<PinMusicReducer>
-    
-    init(pinStore: StoreOf<PinMusicReducer>, musicStore: StoreOf<SearchMusicReducer>) {
+    init(musicStore: StoreOf<SearchMusicReducer>) {
         self.musicStore = musicStore
         self.musicViewStore = ViewStore(self.musicStore, observe: { $0 })
-        
-        self.pinStore = pinStore
-        self.pinViewStore = ViewStore(self.pinStore, observe: { $0 })
     }
     
     var body: some View {

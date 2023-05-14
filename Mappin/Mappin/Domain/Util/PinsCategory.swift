@@ -8,6 +8,7 @@
 import Foundation
 
 enum PinsCategory: String, CaseIterable {
+    case current
     case mine
     case others
 }
