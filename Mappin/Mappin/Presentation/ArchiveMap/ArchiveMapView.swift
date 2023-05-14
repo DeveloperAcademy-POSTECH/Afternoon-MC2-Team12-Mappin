@@ -33,6 +33,10 @@ struct ArchiveMapView: View {
             )
             ZStack(alignment: .top) {
                 ContentView(viewStore: mapViewStore)
+                if mapViewStore.state.detailPin != nil {
+                    DetailPinPopUpView(pin: mapViewStore.state.detailPin)
+                        .offset(y: 178)
+                }
                 FakeNavigationBar()
             }
             .navigationTitle(viewStore.state.category?.navigationTitle ?? "")

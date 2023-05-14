@@ -87,6 +87,7 @@ struct PinMusicReducer: PinMusic {
                 }
             case .requestUpdate(let latitude, let longitude, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
                 let category = state.category
+                print("@KIO WHy?")
                 return .run { action in
                     await action.send(.loadPins(
                         category: category,
@@ -150,6 +151,7 @@ struct PinMusicReducer: PinMusic {
                             longitudeDelta: longitudeDelta
                         )
                     }
+                    print("@KIO here \(mapPins)")
                     return .mapPins(mapPins)
                 },
                 .task {
@@ -163,6 +165,7 @@ struct PinMusicReducer: PinMusic {
                         )
                     }
                     else {
+                        print("@KIO here fuck")
                         listPins = try await getPinsUseCase.excuteUsingList(
                             category: category,
                             center: center,
@@ -184,6 +187,7 @@ struct PinMusicReducer: PinMusic {
             
         case .mapPins(let pins):
             state.pinsUsingMap = pins
+            print("@KIO WHy? \(pins)")
             state.mapAction = .responseUpdate(pins)
             return .none
             
