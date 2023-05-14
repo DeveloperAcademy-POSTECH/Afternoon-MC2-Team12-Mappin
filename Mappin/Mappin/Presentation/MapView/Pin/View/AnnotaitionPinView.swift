@@ -58,8 +58,8 @@ class AnnotaitionPinView: MKAnnotationView {
         pinBackGroundImage.addGestureRecognizer(g)
         
         pinBackGroundImage.translatesAutoresizingMaskIntoConstraints = false
-        pinBackGroundImage.widthAnchor.constraint(equalToConstant: 46).isActive = true
-        pinBackGroundImage.heightAnchor.constraint(equalToConstant: 46).isActive = true
+        pinBackGroundImage.widthAnchor.constraint(equalToConstant: pinCategory == .current ? 20 : 46).isActive = true
+        pinBackGroundImage.heightAnchor.constraint(equalToConstant: pinCategory == .current ? 20 : 46).isActive = true
         
         let offset = UIOffset(horizontal: -20, vertical: 0)
         pinBackGroundImage.frame = pinBackGroundImage.frame.offsetBy(dx: offset.horizontal, dy: offset.vertical)

@@ -87,6 +87,7 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
         latitudeDelta: Double,
         longitudeDelta: Double
     ) async throws -> [Pin] {
+        print("@KIO here haha")
         return try await pinClustersRepository.readList(
             category: category,
             centerLatitude: center.0,

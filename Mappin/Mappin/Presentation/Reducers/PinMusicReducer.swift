@@ -46,6 +46,7 @@ struct PinMusicReducer: PinMusic {
     enum Action: Equatable {
         
         case act(MapView.Action)
+        case popUpClose
         case actAndChange(MapView.Action)
         case loadPins(category: PinsCategory?, centerLatitude: Double, centerLongitude: Double, latitudeDelta: Double, longitudeDelta: Double)
         case mapPins([Pin])
@@ -87,6 +88,7 @@ struct PinMusicReducer: PinMusic {
                 }
             case .requestUpdate(let latitude, let longitude, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
                 let category = state.category
+                print("@KIO WHy?")
                 return .run { action in
                     await action.send(.loadPins(
                         category: category,
@@ -150,6 +152,7 @@ struct PinMusicReducer: PinMusic {
                             longitudeDelta: longitudeDelta
                         )
                     }
+                    print("@KIO here \(mapPins)")
                     return .mapPins(mapPins)
                 },
                 .task {
@@ -163,6 +166,7 @@ struct PinMusicReducer: PinMusic {
                         )
                     }
                     else {
+                        print("@KIO here fuck")
                         listPins = try await getPinsUseCase.excuteUsingList(
                             category: category,
                             center: center,
@@ -184,6 +188,7 @@ struct PinMusicReducer: PinMusic {
             
         case .mapPins(let pins):
             state.pinsUsingMap = pins
+            print("@KIO WHy? \(pins)")
             state.mapAction = .responseUpdate(pins)
             return .none
             
@@ -198,23 +203,27 @@ struct PinMusicReducer: PinMusic {
             
         case .tapPin( let point ):
             var returnPin: Pin?
-            
+           
             for view in state.showingPinsView {
                 if view.frame.minX != 0.0 {
-                    if view.frame.minX <= point.x
-                        && point.x <= view.frame.minX + 40
-                        && view.frame.minY - 40 <= point.y
-                        && point.y <= view.frame.minY {
+//                    print("@KIO tap x : \(view.frame.minX - 10) <= \(point.x) <= \(view.frame.minX + 32)  y : \(view.frame.minY - 20) <= \(point.y) <= \(view.frame.minY + 36)")
+                    if view.frame.minX - 10 <= point.x
+                        && point.x <= view.frame.minX + 32
+                        && view.frame.minY - 20 <= point.y
+                        && point.y <= view.frame.minY + 36 {
                         
+                        //print("@KIO tap origin : \(view.frame.minX), \(view.frame.minY) comapar : \(point.x), \(point.y)")
                         returnPin = view.pin
                     }
                 }
             }
             state.detailPin = returnPin
             guard let returnPin = returnPin else  {
+                
                 return .none
             }
             if returnPin.count > 1 {
+                print("@KIO tap here")
                 return .run { action in
                     await action.send(
                         .actAndChange(
@@ -257,6 +266,10 @@ struct PinMusicReducer: PinMusic {
         case let .setCategory(category):
             state.category = category
             state.mapAction = .requestCallMapInfo
+            return .none
+            
+        case .popUpClose:
+            state.detailPin = nil
             return .none
         }
     }
