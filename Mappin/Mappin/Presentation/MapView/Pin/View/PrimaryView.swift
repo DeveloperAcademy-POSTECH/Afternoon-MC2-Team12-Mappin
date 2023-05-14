@@ -62,18 +62,21 @@ struct PrimaryView: View {
                             )
                         }, label: {
                             Text("현재 위치에 음악 핀하기")
+                                .applyButtonStyle()
                         })
-                        .applyButtonStyle()
-                        .opacity(musicViewStore.isSearchMusicPresented ? 0 : 1)
-                        NavigationLink("내 핀과 다른 사람들 핀 구경하기") {
+                        
+                        NavigationLink(destination: {
                             ArchiveMapView.build()
-                        }
-                        .applyButtonStyle()
-                        .opacity(musicViewStore.isSearchMusicPresented ? 0 : 1)
+                        }, label: {
+                            Text("내 핀과 다른 사람들 핀 구경하기")
+                                .applyButtonStyle()
+                        })
                     }
                     .font(.system(size: 16, weight: .semibold))
                     .padding(.horizontal, 20)
                     .padding(.bottom, 32)
+                    .opacity(musicViewStore.isSearchMusicPresented ? 0 : 1)
+                    .animation(.easeInOut, value: musicViewStore.isSearchMusicPresented)
                     .sheet(isPresented: musicViewStore.binding(get: \.isSearchMusicPresented,
                                                                send: { .searchMusicPresent(isPresented: $0) })) {
                         SearchMusicView(pinStore: pinStore, musicStore: musicStore, settingsDetent: $settingsDetent)

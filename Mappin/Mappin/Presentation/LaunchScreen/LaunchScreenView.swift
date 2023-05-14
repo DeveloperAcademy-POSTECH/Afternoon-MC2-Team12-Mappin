@@ -12,9 +12,10 @@ import MusicKit
 struct LaunchScreenView: View {
     let store: StoreOf<LaunchScreenReducer>
     
+    @State private var opacity: CGFloat = 0
+    
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            // TODO: add logo
             ZStack {
                 VStack {
                     Spacer()
@@ -25,8 +26,12 @@ struct LaunchScreenView: View {
                 }
                 Image("launchImage")
             }
+            .opacity(opacity)
             .onAppear {
                 viewStore.send(.viewAppeared)
+                withAnimation(.easeOut(duration: 0.5)) {
+                    opacity = 1
+                }
             }
             .fullScreenCover(isPresented: viewStore.binding(
                 get: \.isCompleted,
