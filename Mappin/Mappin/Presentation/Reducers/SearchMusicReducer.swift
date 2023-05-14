@@ -35,7 +35,7 @@ struct SearchMusicReducer: ReducerProtocol {
         var searchMusic: [Music] = []
         var musicChart: [Music] = []
         var selectedMusicIndex: String = ""
-        var uploadMusic: Music?
+        var uploadMusic: Music? 
         var parent: PrimaryView?
     }
     

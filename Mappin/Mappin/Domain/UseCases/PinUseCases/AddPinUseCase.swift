@@ -10,8 +10,10 @@ import Foundation
 protocol AddPinUseCase {
 
     func excute(
-        music: Music
-    ) async throws
+        music: Music,
+        latitude: Double,
+        longitude: Double
+    ) async throws -> Pin
     
 }
 
@@ -36,26 +38,23 @@ final class DefaultAddPinUseCase: AddPinUseCase {
         self.geoCodeRepository = geoCodeRepository
     }
     
-    func excute(music: Music) async throws {
-        let latitude = locationRepository.latitude
-        print("@KIO 1")
-        let longtitude = locationRepository.longitude
-        print("@KIO 2")
-        let geoCodeResult = try await geoCodeRepository.requestGeoCode(latitude: latitude, longitude: longtitude)
-        print("@KIO 3")
-        let weather = try await weatherRepository.requestWeather(latitude: latitude, longitude: longtitude)
-        print("@KIO 4")
+    func excute(music: Music, latitude: Double, longitude: Double) async throws -> Pin {
+        let geoCodeResult = try await geoCodeRepository.requestGeoCode(latitude: latitude, longitude: longitude)
+        let weather = try await weatherRepository.requestWeather(latitude: latitude, longitude: longitude)
         let location = Location(id: UUID().uuidString,
                                 latitude: latitude,
-                                longitude: longtitude,
+                                longitude: longitude,
                                 locality: geoCodeResult.locality,
                                 subLocality: geoCodeResult.subLocality)
         
-        try await pinsRepository.create(
+        
+        
+        return try await pinsRepository.create(
             music: music,
             location: location,
             weather: weather
         )
+        
     }
 }
 

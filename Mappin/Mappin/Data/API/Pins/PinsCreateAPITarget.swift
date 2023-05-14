@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class PinsCreateAPITarget: APITarget, ParametersRequestable {
+final class PinsCreateAPITarget: APITarget, ParametersRequestable, Responsable {
     struct Parameters: Encodable {
         struct Music: Encodable {
             let applemusic_id: String
@@ -24,6 +24,7 @@ final class PinsCreateAPITarget: APITarget, ParametersRequestable {
         let weather: String
         let temperature: Int
     }
+    typealias Response = DTO.Pin
     
     let parameters: Parameters
     
