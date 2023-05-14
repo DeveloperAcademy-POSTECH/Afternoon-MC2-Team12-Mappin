@@ -56,17 +56,15 @@ struct ArchiveMapView: View {
             viewStore.send(.viewAppeared)
         }
         .onChange(of: viewStore.mapAction) {
-            print("@BYO! map \($0)".prefix(100))
             guard let action = $0 else { return }
             mapViewStore.send(action)
         }
         .onChange(of: viewStore.listAction) {
-            
             guard let action = $0 else { return }
             listViewStore.send(action)
         }
-        .onChange(of: mapViewStore.lastAction) {
-            viewStore.send(.receiveMap($0?.wrapped))
+        .onChange(of: mapViewStore.pinsUsingList) {
+            listViewStore.send(.applyArchive($0))
         }
         .onChange(of: listViewStore.lastAction) {
             viewStore.send(.receiveList($0?.wrapped))

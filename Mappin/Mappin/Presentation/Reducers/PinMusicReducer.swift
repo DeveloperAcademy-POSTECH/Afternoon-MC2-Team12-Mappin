@@ -39,7 +39,6 @@ struct PinMusicReducer: PinMusic {
         var detailPin: Pin?
         var temporaryPinLocation: MKCoordinateRegion = MKCoordinateRegion()
         var category: PinsCategory?
-        var lastAction: UniqueAction<Action>?
     }
     
     
@@ -62,8 +61,6 @@ struct PinMusicReducer: PinMusic {
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-//        state.lastAction = .init(action)
-        
         switch action {
         case .none:
             return .none
