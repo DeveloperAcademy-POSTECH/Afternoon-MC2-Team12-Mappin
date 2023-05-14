@@ -41,8 +41,7 @@ struct PinMusicReducer: PinMusic {
         var category: PinsCategory?
         var lastAction: UniqueAction<Action>?
     }
-    
-    
+    gi
     enum Action: Equatable {
         
         case act(MapView.Action)
