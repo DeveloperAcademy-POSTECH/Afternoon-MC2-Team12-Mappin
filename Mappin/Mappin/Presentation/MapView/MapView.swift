@@ -22,32 +22,6 @@ struct MapView: UIViewRepresentable {
         
         let mapView = MKMapView()
         mapView.isRotateEnabled = false
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            
-            mapView.setRegion(
-                MKCoordinateRegion(
-                    center: CLLocationCoordinate2D(latitude: CLLocationDegrees(RequestLocationRepository.manager.latitude), longitude: CLLocationDegrees(RequestLocationRepository.manager.longitude)),
-                    span: MKCoordinateSpan(latitudeDelta: Constants.defaultLatitudeDelta, longitudeDelta: Constants.defaultLongitudeDelta)),
-                animated: true)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            
-            store.send(
-                .act(
-                    .requestUpdate(
-                        here: (
-                            RequestLocationRepository.manager.latitude,
-                            RequestLocationRepository.manager.longitude
-                        ),
-                        latitudeDelta: Constants.defaultLatitudeDelta,
-                        longitudeDelta: Constants.defaultLongitudeDelta
-                    )
-                )
-            )
-        }
-        
-        mapView.isRotateEnabled = false
         mapView.userTrackingMode = isArchive ? .none : .follow
         //mapView.isUserInteractionEnabled = isArchive
         if isArchive {
