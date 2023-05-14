@@ -12,7 +12,7 @@ import ComposableArchitecture
 struct ArchiveMusicReducer: ReducerProtocol {
     
     let removePinUseCase: RemovePinUseCase
-    
+//    let getPinUseCase: GetPinsUseCasez/
 //    init(removePinUseCase: RemovePinUseCase = DefaultRemovePinUseCase()) {
 //        self.removePinUseCase = removePinUseCase
 //    }
@@ -40,9 +40,8 @@ struct ArchiveMusicReducer: ReducerProtocol {
         case .applyArchive(let archiveMusic):
             // 서버에서 받아온 Pin 정보 저장
             print("@BYO action.applyArchive \(archiveMusic.count)")
-            state.archiveMusic = archiveMusic
             return .none
-            
+
         case .removeArchive(let index):
 //            let temp = state.archiveMusic.
             // 여기 연결하자 내일

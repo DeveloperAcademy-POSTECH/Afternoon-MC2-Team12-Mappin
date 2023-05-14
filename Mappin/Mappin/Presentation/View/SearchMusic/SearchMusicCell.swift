@@ -17,7 +17,7 @@ struct SearchMusicCell: View {
         HStack(spacing: 0) {
             Text("")
                 .frame(width: 0, height: 0)
-                .padding(.leading, 15)
+//                .padding(.leading, 15)
             Rectangle()
                 .frame(width: 55, height: 55)
                 .foregroundColor(Color(uiColor: .systemGray4))
@@ -40,12 +40,13 @@ struct SearchMusicCell: View {
 
             VStack(alignment: .leading) {
                 Text(music.title)
-                    .font(.system(size: 15, weight: .regular))
+                    .font(.system(size: 17, weight: .regular))
                     .lineLimit(1)
                     .foregroundColor(.primary)
                     .padding(.bottom, -5)
                 if !music.artist.isEmpty {
                     Text("노래 ・ \(music.artist)")
+                        .font(.system(size: 15, weight: .regular))
                         .lineLimit(1)
                         .foregroundColor(.secondary)
                 }
