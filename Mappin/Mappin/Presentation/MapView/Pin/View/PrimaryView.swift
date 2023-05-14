@@ -26,47 +26,56 @@ struct PrimaryView: View {
     init(pinStore: StoreOf<PinMusicReducer>, musicStore: StoreOf<SearchMusicReducer>) {
         self.pinStore = pinStore
         self.pinViewStore = ViewStore(self.pinStore, observe: { $0 })
-            
-            
+        
         self.musicStore = musicStore
         self.musicViewStore = ViewStore(self.musicStore, observe: { $0 })
     }
     
     var body: some View {
         NavigationView {
-            ZStack(alignment: .bottom) {
-                MapView(action: .constant(.none), store: pinViewStore, userTrackingMode: .follow)
-                    .ignoresSafeArea()
-                    .opacity(Double(action.yame))
-                
-                VStack(spacing: 10) {
-                    
-                    Button("현재 위치에 음악 핀하기") {
-                        withAnimation {
-                            isSearchMusicViewPresented.toggle()
+            ZStack(alignment: .top) {
+                ZStack(alignment: .bottom) {
+                    MapView(action: .constant(.none), store: pinViewStore, userTrackingMode: .follow, isArchive: false)
+                        .ignoresSafeArea()
+                        .opacity(Double(action.yame))
+                        .onTapGesture { point in
+                            print("@LOG3 \(point)")
+                            pinViewStore.send(.tapPin(point))
                         }
-                    }
-                    .applyButtonStyle()
-                    .opacity(isSearchMusicViewPresented ? 0 : 1)
-                    .sheet(isPresented: $isSearchMusicViewPresented) {
-                        SearchMusicView(self, store: musicStore, close: $isSearchMusicViewPresented)
-                            .presentationBackgroundInteraction(.enabled)
+                    
+                    VStack(spacing: 10) {
+                        
+                        Button("현재 위치에 음악 핀하기") {
+                            withAnimation {
+                                isSearchMusicViewPresented.toggle()
+                            }
+                        }
+                        .applyButtonStyle()
+                        .opacity(isSearchMusicViewPresented ? 0 : 1)
+                        .sheet(isPresented: $isSearchMusicViewPresented) {
+                            SearchMusicView(self, store: musicStore, close: $isSearchMusicViewPresented)
+                                .presentationBackgroundInteraction(.enabled)
                             
+                        }
+                        NavigationLink("내 핀과 다른 사람들 핀 구경하기") {
+                            ArchiveMapView.build()
+                        }
+                        .applyButtonStyle()
+                        .opacity(isSearchMusicViewPresented ? 0 : 1)
                     }
-                    NavigationLink("내 핀과 다른 사람들 핀 구경하기") {
-                        ArchiveMapView.build()
-                    }
-                    .applyButtonStyle()
-                    .opacity(isSearchMusicViewPresented ? 0 : 1)
+                    .font(.system(size: 16, weight: .semibold))
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 32)
                 }
-                .font(.system(size: 16, weight: .semibold))
-                .padding(.horizontal, 20)
-                .padding(.bottom, 32)
-                
+                if pinViewStore.state.detailPin != nil {
+                    DetailPinPopUpView(pin: pinViewStore.binding(get: \.detailPin, send: .none))
+                        .offset(y: 180)
+                }
             }
         }
     }
 }
+
 
 private extension View {
     func applyButtonStyle() -> some View {
@@ -85,19 +94,18 @@ private struct ButtonStyleModifier: ViewModifier {
 }
 
 extension PrimaryView {
-
+    
     func passMusic() {
         musicViewStore.send(.initParent(self))
         musicViewStore.send(.uploadMusic)
-        print("@Log add")
     }
     
     func sendPin(_ music: Music?) {
         guard let music = music else {
-            print("@LOG Error Add")
             return
         }
-
+        
         pinViewStore.send(.addPin(music: music, latitudeDelta: MapView.Constants.defaultLatitudeDelta, longitudeDelta: MapView.Constants.defaultLatitudeDelta))
+        isSearchMusicViewPresented = false
     }
 }

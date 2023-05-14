@@ -69,7 +69,7 @@ struct MainView: View {
             //            }
             //            .padding(15)
             
-            MapView1()
+           // MapView1()
            // PrimaryView()
             
         }

@@ -25,26 +25,33 @@ struct PinMusicReducer: PinMusic {
     
     struct State: Equatable {
         
-        var mapAction: MapView.Action = .none 
+        var mapAction: MapView.Action = .none
         var currentLocation: MKCoordinateRegion = MKCoordinateRegion()
         var pinsUsingMap: [Pin] = []
         var pinsUsingList: [Pin] = []
         var mapUserTrakingMode: MapUserTrackingMode = .follow
+        var showingPinsView: [AnnotaitionPinView] = []
+        var detailPin: Pin?
     }
     
     enum Action {
         
+        case none
         case act(MapView.Action)
         case actAndChange(MapView.Action)
         case loadPins(center: (Double, Double), latitudeDelta: Double, longitudeDelta: Double)
         case mapPins([Pin])
         case listPins([Pin])
         case addPin(music: Music, latitudeDelta: Double, longitudeDelta: Double)
+        case tapPin(CGPoint)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-       
+        
         switch action {
+            
+        case .none:
+            return .none
             
         case .act(let value):
             switch value {
@@ -58,6 +65,11 @@ struct PinMusicReducer: PinMusic {
                 return .run { action in
                     await action.send(.loadPins(center: here, latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta))
                 }
+            case .updateShowingPinsView( let views ):
+                state.showingPinsView = views
+                return .none
+            default:
+                return .none
             }
             
         case .actAndChange(let value):
@@ -73,6 +85,8 @@ struct PinMusicReducer: PinMusic {
                 return .run { action in
                     await action.send(.loadPins(center: here, latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta))
                 }
+            default:
+                return .none
             }
             
         case .loadPins(center: let center, latitudeDelta: let latitudeDelta, longitudeDelta: let longitudeDelta):
@@ -84,11 +98,8 @@ struct PinMusicReducer: PinMusic {
                     }
                     else {
                         mapPins = try await getPinsUseCase.excuteUsingMap(center: center, latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
-                          
+                        
                     }
-                    print("@LOG --------------------------------------------------------")
-                    print("@LOG delta \(latitudeDelta) and \(longitudeDelta)")
-                    print("@LOG pins \(mapPins)")
                     return .mapPins(mapPins)
                 },
                 .task {
@@ -110,7 +121,6 @@ struct PinMusicReducer: PinMusic {
             }
             
         case .mapPins(let pins):
-            print("@LOG mapPins")
             state.pinsUsingMap = pins
             state.mapAction = .updatePins(pins)
             return .none
@@ -118,6 +128,43 @@ struct PinMusicReducer: PinMusic {
         case .listPins(let pins):
             state.pinsUsingList = pins
             return .none
+            
+        case .tapPin( let point ):
+            var returnPin: Pin?
+            
+            for view in state.showingPinsView {
+                if view.frame.minX != 0.0 {
+                    if view.frame.minX <= point.x
+                        && point.x <= view.frame.minX + 40
+                        && view.frame.minY - 40 <= point.y
+                        && point.y <= view.frame.minY {
+                        
+                        print("@LOG3 FINISH")
+                        returnPin = view.pin
+                    }
+                }
+            }
+            state.detailPin = returnPin
+            guard let returnPin = returnPin else  {
+                return .none
+            }
+            return .run { action in
+                await action.send(
+                    .actAndChange(
+                        .setCenter(here:
+                                    (returnPin.location.latitude,
+                                     returnPin.location.longitude
+                                    )
+                                  )
+                    )
+                )
+            }
         }
     }
 }
+//
+//    .update(
+//        here: (returnPin.location.latitude,
+//               returnPin.location.longitude),
+//        latitudeDelta: MapView.Constants.defaultLatitudeDelta,
+//        longitudeDelta: MapView.Constants.defaultLatitudeDelta)

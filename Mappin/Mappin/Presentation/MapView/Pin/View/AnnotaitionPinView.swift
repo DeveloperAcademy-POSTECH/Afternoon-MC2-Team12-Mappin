@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 
 
-class AnnotaitionPin: MKAnnotationView {
+class AnnotaitionPinView: MKAnnotationView {
     
     var pin: Pin
     let clusteredCountLabel: UILabel
@@ -17,23 +17,22 @@ class AnnotaitionPin: MKAnnotationView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        backGroundLayout()
-        
+
+       
         clusteredCountLabel.text = "\(pin.count)"
         if pin.id == RequestDeviceRepository().deviceId {
             clusteredCountLabel.textColor = .blue
-            pinBackGroundImage.image = UIImage(named: pin.count == 1 ? "pinBlueSingle" : "pinBlue")!
+            pinBackGroundImage.image = UIImage(named: pin.count == 1 ? "bluePinSingle" : "bluePin")!
             
         }
         else {
             clusteredCountLabel.textColor = .gray
-            pinBackGroundImage.image = UIImage(named: pin.count == 1 ? "pinGraySingle" : "pinGray")!
+            pinBackGroundImage.image = UIImage(named: pin.count == 1 ? "grayPinSingle" : "grayPin")!
         }
         
         pinBackGroundImage.contentMode = .scaleAspectFit
         backGroundLayout()
-        if pin.count != 0 { addCountLabel() }
+        if pin.count != 1 { addCountLabel() }
     }
     
     func addCountLabel() {
@@ -49,6 +48,8 @@ class AnnotaitionPin: MKAnnotationView {
     func backGroundLayout() {
         
         addSubview(pinBackGroundImage)
+        let g = UITapGestureRecognizer(target: self, action: #selector(tap(_:)))
+        pinBackGroundImage.addGestureRecognizer(g)
         
         pinBackGroundImage.translatesAutoresizingMaskIntoConstraints = false
         pinBackGroundImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
@@ -64,12 +65,16 @@ class AnnotaitionPin: MKAnnotationView {
             self.pin = Pin.empty
         }
         self.clusteredCountLabel = UILabel()
-        self.pinBackGroundImage = UIImageView(image: UIImage(named: "pinBlue")!)
+        self.pinBackGroundImage = UIImageView()
 
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func tap(_ sender: Any) {
+        print(pin)
     }
 }

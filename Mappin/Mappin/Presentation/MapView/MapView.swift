@@ -13,16 +13,17 @@ struct MapView: UIViewRepresentable {
     
     @Binding var action: Action
     let store: ViewStoreOf<PinMusicReducer>
-
-    var isArchive: Bool = false
     var userTrackingMode: MKUserTrackingMode
+    
+    var isArchive: Bool = false
+    static var isAnimating = false
     
     func makeUIView(context: Context) -> MKMapView {
         
         let mapView = MKMapView()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-           
+            
             mapView.setRegion(
                 MKCoordinateRegion(
                     center: CLLocationCoordinate2D(latitude: CLLocationDegrees(RequestLocationRepository.manager.latitude), longitude: CLLocationDegrees(RequestLocationRepository.manager.longitude)),
@@ -31,7 +32,7 @@ struct MapView: UIViewRepresentable {
                 animated: true)
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-           
+            
             store.send(
                 .act(
                     .update(
@@ -46,10 +47,12 @@ struct MapView: UIViewRepresentable {
             )
         }
         
+        store.send(.act(.update(here: (mapView.region.center.latitude, mapView.region.center.longitude), latitudeDelta: mapView.region.span.latitudeDelta, longitudeDelta: mapView.region.span.longitudeDelta)))
+        
+        
         mapView.userTrackingMode = .follow
-        mapView.showsUserLocation = true
-        mapView.isUserInteractionEnabled = true
-        mapView.register(AnnotaitionPin.self, forAnnotationViewWithReuseIdentifier: "AnnotaitionPin")
+        //mapView.isUserInteractionEnabled = isArchive
+        mapView.register(AnnotaitionPinView.self, forAnnotationViewWithReuseIdentifier: "AnnotaitionPinView")
         
         mapView.delegate = context.coordinator
         
@@ -57,7 +60,7 @@ struct MapView: UIViewRepresentable {
     }
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
-       
+        
         switch store.mapAction {
         case .none:
             break
@@ -70,10 +73,10 @@ struct MapView: UIViewRepresentable {
             mapView.addAnnotation(newPin)
             
         case .updatePins(let newPins):
-
-            mapView.removeAllAnotation()
-            mapView.addAnnotations(newPins.map { PinAnnotation($0) })
-            
+            if isArchive {
+                mapView.removeAllAnotation()
+                mapView.addAnnotations(newPins.map { PinAnnotation($0) })
+            }
         case .update(here: let here, _, _):
             
             mapView.setRegion(
@@ -82,6 +85,20 @@ struct MapView: UIViewRepresentable {
                     latitudinalMeters: MapView.Constants.defaultLatitudeDelta,
                     longitudinalMeters: MapView.Constants.defaultLongitudeDelta),
                 animated: true)
+            
+        case .updateShowingPinsView(_):
+            break
+        case .setCenter(here: let here):
+            MapView.isAnimating = true
+            mapView.setRegion(
+                MKCoordinateRegion(
+                    center: CLLocationCoordinate2D(latitude: CLLocationDegrees(here.0), longitude: CLLocationDegrees(here.1)),
+                    latitudinalMeters: MapView.Constants.defaultLatitudeDelta,
+                    longitudinalMeters: MapView.Constants.defaultLongitudeDelta),
+                animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                MapView.isAnimating = false
+            }
             
         }
     }
@@ -99,21 +116,46 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-           
-            parent.store.send(.act(.update(here: (mapView.region.center.latitude, mapView.region.center.longitude), latitudeDelta: mapView.region.span.latitudeDelta, longitudeDelta: mapView.region.span.longitudeDelta)))
+            if !MapView.isAnimating  && parent.isArchive {
+                parent.store.send(.act(.update(here: (mapView.region.center.latitude, mapView.region.center.longitude), latitudeDelta: mapView.region.span.latitudeDelta, longitudeDelta: mapView.region.span.longitudeDelta)))
+                
+                let pinAnnotationViews = mapView.annotations.map { annotation in
+                    guard let pinAnnotationView = mapView.view(for: annotation) as? AnnotaitionPinView else { return AnnotaitionPinView() }
+                    
+                    return pinAnnotationView
+                }
+                parent.store.send(.act(.updateShowingPinsView(pinAnnotationViews)))
+            }
+        }
+        
+        func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+            if parent.isArchive {
+                let pinAnnotationViews = mapView.annotations.map { annotation in
+                    guard let pinAnnotationView = mapView.view(for: annotation) as? AnnotaitionPinView else { return AnnotaitionPinView() }
+                    
+                    return pinAnnotationView
+                }
+                parent.store.send(.act(.updateShowingPinsView(pinAnnotationViews)))
+            }
         }
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            guard let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "") as? AnnotaitionPin,
-                  let pinAnnotation = annotation as? PinAnnotation else {
-                return MKAnnotationView()
+            if parent.isArchive {
+                guard let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "AnnotaitionPinView") as? AnnotaitionPinView,
+                      let pinAnnotation = annotation as? PinAnnotation else {
+                    
+                    return MKAnnotationView()
+                }
+                
+                pinView.annotation = pinAnnotation
+                pinView.pin = pinAnnotation.pin
+                
+                return pinView
             }
-            
-            pinView.pin = pinAnnotation.pin
-            
-            return pinView
+            return nil
         }
     }
+    
 }
 
 extension MapView {
@@ -135,6 +177,8 @@ extension MapView {
         case createTemporaryPin(currentLocation: CLLocationCoordinate2D)
         case updatePins([Pin])
         case update(here: (Double, Double), latitudeDelta: Double, longitudeDelta: Double)
+        case updateShowingPinsView([AnnotaitionPinView])
+        case setCenter(here: (Double, Double))
         
         var yame: Int {
             (1...10000).randomElement()!
