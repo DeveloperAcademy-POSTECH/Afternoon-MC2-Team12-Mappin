@@ -29,16 +29,6 @@ struct ContentView: View {
     
 }
 
-extension ContentView {
-    static func build() -> Self {
-        let viewStore = ViewStore(Store(
-            initialState: PinMusicReducer.State(),
-            reducer: PinMusicReducer.build()
-        ))
-        return ContentView(viewStore: viewStore)
-    }
-}
-
 extension UUID: Identifiable {
     public var id: String { self.uuidString }
 }

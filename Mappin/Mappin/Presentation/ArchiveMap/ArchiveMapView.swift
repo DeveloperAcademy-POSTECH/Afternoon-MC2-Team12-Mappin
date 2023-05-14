@@ -22,12 +22,12 @@ struct ArchiveMapView: View {
         self.mapViewStore = ViewStore(Store(
             initialState: MapReducer.State(),
             reducer: MapReducer.build()
-        ))
+        ), observe: { $0 })
         
         self.listViewStore = ViewStore(Store(
             initialState: ListReducer.State(),
             reducer: ListReducer()
-        ))
+        ), observe: { $0 })
     }
     
     var body: some View {
@@ -100,7 +100,7 @@ extension ArchiveMapView {
         ArchiveMapView(viewStore: ViewStore(Store(
             initialState: ArchiveMapReducer.State(),
             reducer: ArchiveMapReducer()
-        )))
+        ), observe: { $0 }))
     }
 }
 

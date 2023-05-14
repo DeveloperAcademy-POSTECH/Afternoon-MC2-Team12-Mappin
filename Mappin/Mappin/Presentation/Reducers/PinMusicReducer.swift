@@ -148,7 +148,7 @@ struct PinMusicReducer: PinMusic {
             }
             
         case .mapPins(let pins):
-            print("@LOG mapPins")
+            print("@LOG mapPins \(pins.map { $0.id })")
             state.pinsUsingMap = pins
             state.mapAction = .updatePins(pins)
             return .none
@@ -167,18 +167,8 @@ struct PinMusicReducer: PinMusic {
 extension PinMusicReducer {
     static func build() -> Self {
         PinMusicReducer(
-            addPinUseCase: DefaultAddPinUseCase(
-                pinsRepository: APIPinsRepository(),
-                geoCodeRepository: RequestGeoCodeRepository(),
-                locationRepository: RequestLocationRepository.manager,
-                weatherRepository: RequestWeatherRepository(),
-                deviceRepository: RequestDeviceRepository()
-            ),
-            getPinsUseCase: DefaultGetPinUseCase(
-                locationRepository: RequestLocationRepository.manager,
-                pinsRepository: APIPinsRepository(),
-                pinClustersRepository: APIPinClustersRepository()
-            )
+            addPinUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(AddPinUseCase.self),
+            getPinsUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(GetPinsUseCase.self)
         )
     }
 }
