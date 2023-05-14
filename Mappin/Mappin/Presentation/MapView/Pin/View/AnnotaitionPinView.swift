@@ -21,8 +21,10 @@ class AnnotaitionPinView: MKAnnotationView {
 
        
         clusteredCountLabel.text = "\(pin.count)"
-        
-        if pinCategory == .mine {
+        if pinCategory == nil {
+            pinBackGroundImage.image = UIImage(named: "currentPin")!
+        }
+        else if pinCategory == .mine {
             clusteredCountLabel.textColor = .blue
             pinBackGroundImage.image = UIImage(named: pin.count > 1 ? "bluePin" : "bluePinSingle")!
             
@@ -30,9 +32,6 @@ class AnnotaitionPinView: MKAnnotationView {
         else if pinCategory == .others {
             clusteredCountLabel.textColor = .gray
             pinBackGroundImage.image = UIImage(named: pin.count > 1 ? "grayPin" : "grayPinSingle")!
-        }
-        else {
-            pinBackGroundImage.image = UIImage(named: "currentPin")!
         }
         
         pinBackGroundImage.contentMode = .scaleAspectFit
@@ -59,8 +58,8 @@ class AnnotaitionPinView: MKAnnotationView {
         pinBackGroundImage.addGestureRecognizer(g)
         
         pinBackGroundImage.translatesAutoresizingMaskIntoConstraints = false
-        pinBackGroundImage.widthAnchor.constraint(equalToConstant: 46).isActive = true
-        pinBackGroundImage.heightAnchor.constraint(equalToConstant: 46).isActive = true
+        pinBackGroundImage.widthAnchor.constraint(equalToConstant: pinCategory == nil ? 20 : 46).isActive = true
+        pinBackGroundImage.heightAnchor.constraint(equalToConstant: pinCategory == nil ? 20 : 46).isActive = true
         
         let offset = UIOffset(horizontal: -20, vertical: 0)
         pinBackGroundImage.frame = pinBackGroundImage.frame.offsetBy(dx: offset.horizontal, dy: offset.vertical)

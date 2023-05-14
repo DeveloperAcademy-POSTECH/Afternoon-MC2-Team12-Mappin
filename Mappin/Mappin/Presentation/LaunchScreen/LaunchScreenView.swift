@@ -16,38 +16,45 @@ struct LaunchScreenView: View {
     
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            Image("launchscreen")
-                .resizable()
-                .scaledToFill()
-                .opacity(opacity)
-                .onAppear {
-                    viewStore.send(.viewAppeared)
-                    withAnimation(.easeOut(duration: 0.5)) {
-                        opacity = 1
-                    }
+            ZStack {
+                VStack {
+                    Spacer()
+                    Image("launchSubTitle")
+                        .padding(.bottom, 20)
+                    Image("launchTitle")
+                        .padding(.bottom, 82)
                 }
-                .fullScreenCover(isPresented: viewStore.binding(
-                    get: \.isCompleted,
-                    send: { .setCompleted($0) }
-                )) {
-                    PrimaryView(pinStore:
-                                    Store(
-                                        initialState: PinMusicReducer.State(),
-                                        reducer: PinMusicReducer(
-                                            addPinUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(AddPinUseCase.self),
-                                            getPinsUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(GetPinsUseCase.self)
-                                        )._printChanges()
-                                    ),
-                                musicStore:
-                                    Store(
-                                        initialState: SearchMusicReducer.State(),
-                                        reducer: SearchMusicReducer(
-                                            searchMusicUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(SearchMusicUseCase.self),
-                                            musicChartUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(MusicChartUseCase.self)
-                                        )
+                Image("launchImage")
+            }
+            .opacity(opacity)
+            .onAppear {
+                viewStore.send(.viewAppeared)
+                withAnimation(.easeOut(duration: 0.5)) {
+                    opacity = 1
+                }
+            }
+            .fullScreenCover(isPresented: viewStore.binding(
+                get: \.isCompleted,
+                send: { .setCompleted($0) }
+            )) {
+                PrimaryView(pinStore:
+                                Store(
+                                    initialState: PinMusicReducer.State(),
+                                    reducer: PinMusicReducer(
+                                        addPinUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(AddPinUseCase.self),
+                                        getPinsUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(GetPinsUseCase.self)
+                                    )._printChanges()
+                                ),
+                            musicStore:
+                                Store(
+                                    initialState: SearchMusicReducer.State(),
+                                    reducer: SearchMusicReducer(
+                                        searchMusicUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(SearchMusicUseCase.self),
+                                        musicChartUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(MusicChartUseCase.self)
                                     )
-                    )
-                }
+                                )
+                )
+            }
         }
     }
 }

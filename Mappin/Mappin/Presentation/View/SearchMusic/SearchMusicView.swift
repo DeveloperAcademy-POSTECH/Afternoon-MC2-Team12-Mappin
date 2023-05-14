@@ -16,10 +16,16 @@ struct SearchMusicView: View {
     @ObservedObject var musicViewStore: ViewStoreOf<SearchMusicReducer>
     @Binding private var settingsDetent: PresentationDetent
     
-    init(musicStore: StoreOf<SearchMusicReducer>, settingsDetent: Binding<PresentationDetent>) {
+    let pinStore: StoreOf<PinMusicReducer>
+    @ObservedObject var pinViewStore: ViewStoreOf<PinMusicReducer>
+    
+    init(pinStore: StoreOf<PinMusicReducer>, musicStore: StoreOf<SearchMusicReducer>, settingsDetent: Binding<PresentationDetent>) {
         self.musicStore = musicStore
         self.musicViewStore = ViewStore(self.musicStore, observe: { $0 })
         self._settingsDetent = settingsDetent
+        
+        self.pinStore = pinStore
+        self.pinViewStore = ViewStore(self.pinStore, observe: { $0 })
     }
     
     var body: some View {
@@ -34,6 +40,7 @@ struct SearchMusicView: View {
             .navigationBarItems(leading:
                                     Button(action: {
                 musicViewStore.send(.searchMusicPresent(isPresented: false))
+                pinViewStore.send(.actAndChange(.cancelModal(latitude: RequestLocationRepository.manager.latitude, longitude: RequestLocationRepository.manager.longitude)))
             }, label: {
                 Text("취소")
                     .font(.system(size: 17, weight: .regular))
@@ -52,6 +59,14 @@ struct SearchMusicView: View {
                                             print("@Kozi - \(musicViewStore.selectedMusicIndex)")
                                         })
             )
+            .onChange(of: settingsDetent) { newValue in
+                if newValue == .fraction(0.12) {
+                    pinViewStore.send(.modalMinimumHeight(false))
+                }
+                else {
+                    pinViewStore.send(.modalMinimumHeight(true))
+                }
+            }
             .onAppear {
                 settingMuesicAuthorization()
                 print("@Kozi - \(MusicAuthorization.currentStatus)")
@@ -74,7 +89,7 @@ struct SearchMusicView: View {
                 .onTapGesture {
                     settingsDetent = PresentationDetent.fraction(0.71)
                 }
-            
+                
                 if !musicViewStore.searchTerm.isEmpty {
                     Button(action: {
                         musicViewStore.send(.resetSearchTerm)
