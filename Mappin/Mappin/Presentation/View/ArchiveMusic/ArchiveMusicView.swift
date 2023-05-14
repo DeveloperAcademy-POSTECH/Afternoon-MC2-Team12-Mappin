@@ -81,6 +81,7 @@ struct ArchiveMusicView: View {
     
 }
 
+
 private extension PinsCategory {
     var navigationTitle: String {
         subject + " 저장한 핀들 돌아보기"
@@ -95,3 +96,14 @@ private extension PinsCategory {
         }
     }
 }
+        
+extension ArchiveMusicView {
+    static func build() -> Self {
+        let store = Store(
+            initialState: ArchiveMusicReducer.State(),
+            reducer: ArchiveMusicReducer(removePinUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(RemovePinUseCase.self)))
+        return ArchiveMusicView(viewStore: ViewStore(store))
+        
+    }
+}
+
