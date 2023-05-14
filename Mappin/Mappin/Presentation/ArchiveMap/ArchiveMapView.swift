@@ -49,31 +49,26 @@ struct ArchiveMapView: View {
             .sheet(isPresented: isListViewPresented) {
                 ArchiveMusicView(viewStore: listViewStore)
                     .presentationBackgroundInteraction(.enabled)
-                    .presentationDetents([.height(70), .height(viewStore.estimatedListHeight)])
+                    .presentationDetents([.height(60), .height(viewStore.estimatedListHeight)])
                     .interactiveDismissDisabled()
             }
         }
         .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()
         .onChange(of: viewStore.mapAction) {
-            print("@BYO .onChange(of: viewStore.mapAction) \($0)".prefix(100))
+            print("@BYO! map \($0)".prefix(100))
             guard let action = $0 else { return }
             mapViewStore.send(action)
         }
         .onChange(of: viewStore.listAction) {
-            print("@BYO .onChange(of: viewStore.listAction) \($0)".prefix(100))
             guard let action = $0 else { return }
             listViewStore.send(action)
         }
         .onChange(of: mapViewStore.lastAction) {
-            print("@BYO .onChange(of: mapViewStore.lastAction) \($0?.wrapped)".prefix(100))
-            guard let action = $0?.wrapped else { return }
-            viewStore.send(.receiveMap(action))
+            viewStore.send(.receiveMap($0?.wrapped))
         }
         .onChange(of: listViewStore.lastAction) {
-            print("@BYO .onChange(of: listViewStore.lastAction) \($0?.wrapped)".prefix(100))
-            guard let action = $0?.wrapped else { return }
-            viewStore.send(.receiveList(action))
+            viewStore.send(.receiveList($0?.wrapped))
         }
     }
     
@@ -101,7 +96,9 @@ extension ArchiveMapView {
     static func build() -> Self {
         ArchiveMapView(viewStore: ViewStore(Store(
             initialState: ArchiveMapReducer.State(),
-            reducer: ArchiveMapReducer()
+            reducer: ArchiveMapReducer(
+                recentPinUseCase: MockRecentPinUseCase()
+            )
         ), observe: { $0 }))
     }
 }

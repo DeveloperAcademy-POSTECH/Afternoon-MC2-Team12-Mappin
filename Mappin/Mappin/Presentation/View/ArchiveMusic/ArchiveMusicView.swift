@@ -44,7 +44,7 @@ struct ArchiveMusicView: View {
                     ForEach(viewStore.archiveMusic.isEmpty ? [] : viewStore.archiveMusic) { archive in
                         ArchiveMusicCell(music: archive.music, date: archive.createdAt)
                             .onTapGesture {
-                                viewStore.send(.archiveCellTapped(id: Int(archive.id) ?? -1))
+                                viewStore.send(.pinTapped(archive))
                             }
                     }
                     .onDelete { index in

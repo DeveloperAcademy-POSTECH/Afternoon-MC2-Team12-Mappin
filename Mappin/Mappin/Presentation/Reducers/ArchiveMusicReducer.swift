@@ -27,7 +27,7 @@ struct ArchiveMusicReducer: ReducerProtocol {
     
     enum Action: Equatable {
         case applyArchive([Pin])
-        case archiveCellTapped(id: Int)
+        case pinTapped(Pin)
         case removeArchive(index: IndexSet)
         case pinRemoved(id: Int)
         case setCategory(PinsCategory)
@@ -35,18 +35,12 @@ struct ArchiveMusicReducer: ReducerProtocol {
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         state.lastAction = .init(action)
-        print("@BYO LIST \(action)".prefix(100))
         
         switch action {
         case .applyArchive(let archiveMusic):
             // 서버에서 받아온 Pin 정보 저장
             print("@BYO action.applyArchive \(archiveMusic.count)")
             state.archiveMusic = archiveMusic
-            return .none
-            
-        case let .archiveCellTapped(id):
-            // 해당 피닝 위치로 이동
-            print("@BYO action.archiveCellTapped \(id)")
             return .none
             
         case .removeArchive(let index):
@@ -67,6 +61,9 @@ struct ArchiveMusicReducer: ReducerProtocol {
             
         case let .setCategory(category):
             state.category = category
+            return .none
+            
+        default:
             return .none
         }
     }

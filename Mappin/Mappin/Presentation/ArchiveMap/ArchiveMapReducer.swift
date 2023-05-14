@@ -8,12 +8,14 @@
 import Foundation
 import ComposableArchitecture
 
-class ArchiveMapReducer: ReducerProtocol {
+struct ArchiveMapReducer: ReducerProtocol {
     typealias MapReducer = PinMusicReducer
     typealias ListReducer = ArchiveMusicReducer
     
     private static let emptyListHeight: CGFloat = 200
     private static let maxListHeight: CGFloat = 540
+    
+    let recentPinUseCase: RecentPinUseCase
     
     struct State: Equatable {
         var category: PinsCategory?
@@ -26,11 +28,12 @@ class ArchiveMapReducer: ReducerProtocol {
     
     enum Action: Equatable {
         case selectCategory(PinsCategory)
+        case focusToRecentPin
         case setListViewPresented(Bool)
         case setEstimatedListHeight(CGFloat)
         
-        case receiveMap(MapReducer.Action)
-        case receiveList(ListReducer.Action)
+        case receiveMap(MapReducer.Action?)
+        case receiveList(ListReducer.Action?)
         case sendMap(MapReducer.Action)
         case sendList(ListReducer.Action)
     }
@@ -44,6 +47,13 @@ class ArchiveMapReducer: ReducerProtocol {
                 .send(.sendList(.setCategory(category)))
             ])
             
+        case .focusToRecentPin:
+            let category = state.category
+            return .task {
+                let pin = try await recentPinUseCase.getRecentPin(category: category)
+                return .sendMap(.focusToPin(pin))
+            }
+            
         case let .setListViewPresented(presented):
             state.isListViewPresented = presented
             return .none
@@ -53,6 +63,7 @@ class ArchiveMapReducer: ReducerProtocol {
             return .none
             
         case let .receiveMap(action):
+            state.mapAction = nil
             switch action {
             case let .listPins(pins):
                 return .send(.sendList(.applyArchive(pins)))
@@ -61,13 +72,13 @@ class ArchiveMapReducer: ReducerProtocol {
             }
             
         case let .receiveList(action):
+            state.listAction = nil
             switch action {
             case let .applyArchive(pins):
                 let height = Self.getEstimatedListHeight(pins.count)
-                print("@BYO height \(height)")
                 return .send(.setEstimatedListHeight(height))
-            case let .archiveCellTapped(id):
-                return .send(.sendMap(.focusPin(id: id)))
+            case let .pinTapped(pin):
+                return .send(.sendMap(.focusToPin(pin)))
             case .pinRemoved:
                 return .send(.sendMap(.refreshPins))
             default:
