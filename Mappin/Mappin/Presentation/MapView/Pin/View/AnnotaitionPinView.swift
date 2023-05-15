@@ -20,7 +20,6 @@ class AnnotaitionPinView: MKAnnotationView {
         super.layoutSubviews()
 
        
-        clusteredCountLabel.text = "\(pin.count)"
         if pinCategory == nil {
             pinBackGroundImage.image = UIImage(named: "currentPin")!
         }
@@ -42,6 +41,7 @@ class AnnotaitionPinView: MKAnnotationView {
     func addCountLabel() {
         
         addSubview(clusteredCountLabel)
+        clusteredCountLabel.text = "\(pin.count)"
         
         clusteredCountLabel.translatesAutoresizingMaskIntoConstraints = false
         clusteredCountLabel.centerXAnchor.constraint(equalTo: pinBackGroundImage.centerXAnchor).isActive = true

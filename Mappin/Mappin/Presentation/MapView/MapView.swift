@@ -152,7 +152,7 @@ struct MapView: UIViewRepresentable {
             }
             
         case .requestCallMapInfo:
-            print("@KIO here callmapInfo")
+            
             store.send(
                 .act(
                     .reponseCallMapInfo(
@@ -193,7 +193,7 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            if !MapView.isAnimating  && parent.isArchive {
+            if parent.isArchive {
                 parent.store.send(.act(.requestUpdate(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude, latitudeDelta: mapView.region.span.latitudeDelta, longitudeDelta: mapView.region.span.longitudeDelta)))
                 
                 let pinAnnotationViews = mapView.annotations.map { annotation in
