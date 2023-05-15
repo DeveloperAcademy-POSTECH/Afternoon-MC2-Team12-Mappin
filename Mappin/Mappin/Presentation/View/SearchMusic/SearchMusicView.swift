@@ -32,8 +32,6 @@ struct SearchMusicView: View {
         NavigationView {
             VStack {
                 searchBar
-                    .padding(.bottom, 10)
-                Divider()
                 if musicViewStore.musicChart == [] {
                     progressView
                 } else {
@@ -120,20 +118,25 @@ struct SearchMusicView: View {
     var searchMusicList: some View {
         withAnimation {
             List {
-                ForEach(!musicViewStore.searchTerm.isEmpty ? musicViewStore.searchMusic : musicViewStore.musicChart) { music in
-                    let isSelected = musicViewStore.selectedMusicIndex == music.id // selectedMusicIndex == "" -> 초기 상태, 검색했거나 검색창을 켰을 경우. checkmark와 이중 클릭 확인을 하기 위함
-                    SearchMusicCell(music: music, isSelected: isSelected)
-//                        .frame(height: 55)
-                        .onTapGesture {
-                            if isSelected {
-                                musicViewStore.send(.musicCanceled)
-                            } else {
-                                musicViewStore.send(.musicSelected(music.id))
+                Section(content: {
+                    ForEach(!musicViewStore.searchTerm.isEmpty ? musicViewStore.searchMusic : musicViewStore.musicChart) { music in
+                        let isSelected = musicViewStore.selectedMusicIndex == music.id // selectedMusicIndex == "" -> 초기 상태, 검색했거나 검색창을 켰을 경우. checkmark와 이중 클릭 확인을 하기 위함
+                        SearchMusicCell(music: music, isSelected: isSelected)
+                            .onTapGesture {
+                                if isSelected {
+                                    musicViewStore.send(.musicCanceled)
+                                } else {
+                                    musicViewStore.send(.musicSelected(music.id))
+                                }
                             }
-                        }
-                }
+                    }
+                }, header: {
+                    if musicViewStore.searchTerm.isEmpty {
+                        Text("현재 이 지역 음악 추천")
+                            .font(.system(size: 14, weight: .semibold))
+                    }
+                })
             }
-            
             .listStyle(.inset)
         }
     }
