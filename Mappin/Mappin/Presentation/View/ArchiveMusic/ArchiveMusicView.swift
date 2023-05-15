@@ -21,18 +21,54 @@ struct ArchiveMusicView: View {
     var body: some View {
         NavigationView {
             VStack {
+                topView
+                    .padding(.top, 27)
                 if !viewStore.state.archiveMusic.isEmpty {
                     archiveMusicList
                 } else {
                     archiveEmptyView
                 }
             }
-            .navigationBarTitle("", displayMode: .inline)
-            .navigationBarItems(
-                leading: Text(viewStore.category?.navigationTitle ?? "")
-                    .font(.system(size: 22, weight: .bold))
-                    .padding(.top, 16)
-            )
+        }
+    }
+    
+    var topView: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack {
+                VStack {
+                    Image(systemName: "location.circle.fill")
+                        .resizable()
+                        .foregroundColor(.accentColor)
+                        .frame(width: 32, height: 32)
+
+                }
+                .padding(.top, 8)
+                .padding(.bottom, 9)
+                .padding(.leading, 16)
+                
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(viewStore.category?.navigationTitle ?? "")
+                        .frame(height: 28)
+                        .font(.system(size: 22, weight: .bold))
+                        .padding(.bottom, 3)
+                    Text("\(viewStore.archiveMusic.count)개의 저장된 핀")
+                        .frame(height: 18)
+                        .font(.system(size: 13, weight: .regular))
+                        .foregroundColor(Color(red: 0.2353, green: 0.2353, blue: 0.2627).opacity(0.6))
+                }
+            }
+            .padding(.bottom, 18)
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.black.opacity(0.3), lineWidth: 0.33)
+                .frame(width: 130, height: 33)
+                .overlay {
+                    Text("가장 최근순 정렬")
+                        .font(.system(size: 15, weight: .regular))
+                }
+                .padding(.leading, 16)
+                .padding(.bottom, 10)
+            Divider()
+                .foregroundColor(Color.blue.opacity(0.3))
         }
     }
     
@@ -43,6 +79,7 @@ struct ArchiveMusicView: View {
                 Section {
                     ForEach(viewStore.archiveMusic.isEmpty ? [] : viewStore.archiveMusic) { archive in
                         ArchiveMusicCell(music: archive.music, date: archive.createdAt)
+                            .listRowInsets(EdgeInsets())
                             .onTapGesture {
                                 viewStore.send(.pinTapped(archive))
                             }
@@ -71,7 +108,6 @@ struct ArchiveMusicView: View {
     }
     
 }
-
 
 private extension PinsCategory {
     var navigationTitle: String {
