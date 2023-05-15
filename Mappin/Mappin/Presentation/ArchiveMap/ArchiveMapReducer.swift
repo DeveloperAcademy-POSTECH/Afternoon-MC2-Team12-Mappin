@@ -56,8 +56,11 @@ struct ArchiveMapReducer: ReducerProtocol {
         case .focusToLatestPin:
             let category = state.category
             return .task {
-                let pin = try await getPinsUseCase.getLatestPin(category: category)
-                return .sendMap(.focusToPin(pin))
+                guard let pin = try? await getPinsUseCase.getLatestPin(category: category) else {
+                    let location = RequestLocationRepository.manager
+                    return .sendMap(.focusToLocation(latitude: location.latitude, longitude: location.longitude))
+                }
+                return .sendMap(.focusToLocation(latitude: pin.location.latitude, longitude: pin.location.longitude))
             }
             
         case let .setListViewPresented(presented):

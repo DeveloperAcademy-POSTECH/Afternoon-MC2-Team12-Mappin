@@ -55,6 +55,7 @@ struct PinMusicReducer: PinMusic {
         case actTemporaryPinLocation(MKCoordinateRegion)
         case none
         case refreshPins
+        case focusToLocation(latitude: Double, longitude: Double)
         case focusToPin(Pin)
         case setCategory(PinsCategory)
         case modalMinimumHeight(Bool)
@@ -259,6 +260,9 @@ struct PinMusicReducer: PinMusic {
         case .refreshPins:
             state.mapAction = .requestCallMapInfo
             return .none
+            
+        case let .focusToLocation(latitude, longitude):
+            return .send(.actAndChange(.setCenter(latitude: latitude, longitude: longitude, isModal: false)))
             
         case let .focusToPin(pin):
             print("@KIO Last PLZ \(pin)")
