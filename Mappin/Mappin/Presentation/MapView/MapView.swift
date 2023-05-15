@@ -94,22 +94,18 @@ struct MapView: UIViewRepresentable {
                 animated: true)
             
         case .setCenter(let latitude, let longitude, let isModal):
-            MapView.isAnimating = true
-            
-            mapView.setRegion(latitude: isModal ? latitude - Constants.centerOffSet : latitude,
-                              longitude: longitude,
-                              latitudeDelta: isArchive ? mapView.region.span.latitudeDelta : MapView.Constants.defaultLatitudeDelta,
-                              longitudeDelta:  isArchive ? mapView.region.span.longitudeDelta : MapView.Constants.defaultLongitudeDelta)
-//            mapView.setRegion(
-//                MKCoordinateRegion(
-//                    center: CLLocationCoordinate2D(latitude: CLLocationDegrees(isModal ? latitude - Constants.centerOffSet : latitude), longitude: CLLocationDegrees(longitude)),
-//                    latitudinalMeters: isArchive ? mapView.region.span.latitudeDelta : MapView.Constants.defaultLatitudeDelta,
-//                    longitudinalMeters: isArchive ? mapView.region.span.latitudeDelta : MapView.Constants.defaultLongitudeDelta),
-//                animated: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                MapView.isAnimating = false
+          
+            animationEnded {
+                mapView.setRegion(latitude: isModal ? latitude - Constants.centerOffSet : latitude,
+                                  longitude: longitude,
+                                  latitudeDelta: MapView.Constants.defaultLatitudeDelta,
+                                  longitudeDelta: MapView.Constants.defaultLongitudeDelta)
             }
             
+            //print("@KIO Last PLZ \(latitude) \(longitude))")
+            
+
+        
         case .removePin(let id):
             let annotationPins = mapView.annotations.map { annotation in
                 guard let annotaionPin = annotation as? PinAnnotation else { return PinAnnotation(Pin.empty) }
@@ -128,9 +124,9 @@ struct MapView: UIViewRepresentable {
                                                      span: MKCoordinateSpan(latitudeDelta: Constants.defaultLatitudeDelta,
                                                                             longitudeDelta: Constants.defaultLongitudeDelta))
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                store.send(.actTemporaryPinLocation(currentLocation))
-            }
+
+            store.send(.actTemporaryPinLocation(currentLocation))
+            
             
             var temporaryPin = Pin.empty
             temporaryPin.location.latitude = latitude
@@ -302,9 +298,10 @@ extension MapView {
     
     func animationEnded(completion: @escaping ()->Void ) {
         MapView.isAnimating = true
+        completion()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-            completion()
+           
             MapView.isAnimating = false
         }
     }

@@ -222,6 +222,7 @@ struct PinMusicReducer: PinMusic {
             }
             if returnPin.count > 1 {
                 print("@KIO tap here")
+                state.detailPin = nil
                 return .run { action in
                     await action.send(
                         .actAndChange(
@@ -230,14 +231,16 @@ struct PinMusicReducer: PinMusic {
                     )
                 }
             }
-            return .run { action in
-                await action.send(
-                    .actAndChange(
-                        .setCenter(latitude: returnPin.location.latitude,
-                                   longitude: returnPin.location.longitude
-                                    )
-                                  )
+            else {
+                return .run { action in
+                    await action.send(
+                        .actAndChange(
+                            .setCenter(latitude: returnPin.location.latitude,
+                                       longitude: returnPin.location.longitude
+                                      )
+                        )
                     )
+                }
             }
         case .showPopUpAndCloseAfter:
             
@@ -258,6 +261,8 @@ struct PinMusicReducer: PinMusic {
             return .none
             
         case let .focusToPin(pin):
+            print("@KIO Last PLZ \(pin)")
+            state.detailPin = pin
             return .send(.actAndChange(.setCenter(latitude: pin.location.latitude, longitude: pin.location.longitude, isModal: false)))
             
         case let .setCategory(category):
@@ -268,8 +273,10 @@ struct PinMusicReducer: PinMusic {
         case .popUpClose:
             state.detailPin = nil
             return .send(.refreshPins)
+            
         case .modalMinimumHeight(let isModal):
             let location = state.temporaryPinLocation.center
+            print("@KIO Last PLZ \(location)")
             return .run { action in
                 await action.send(.actAndChange(.setCenter(latitude: location.latitude, longitude: location.longitude, isModal: isModal)))
             }
