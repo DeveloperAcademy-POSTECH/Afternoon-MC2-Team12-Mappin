@@ -59,25 +59,15 @@ struct ArchiveMusicView: View {
     
     var archiveEmptyView: some View {
         VStack {
-            Text("당신의 감정을 기록해주세요.")
-                .font(.system(size: 15, weight: .regular))
+            Spacer()
+            Text(viewStore.category?.emptyContent ?? "")
+                .multilineTextAlignment(.center)
+                .font(.system(size: 15))
                 .foregroundColor(Color(red: 0.4235, green: 0.4235, blue: 0.4392))
                 .padding(.top, 15)
-            Button {
-                
-            } label: {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(height: 55)
-                    .padding(.leading, 20)
-                    .padding(.trailing, 20)
-                    .overlay {
-                        Text("현재 위치에 음악 핀하기")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.white)
-                    }
-            }
             Spacer()
         }
+        .frame(height: 80)
     }
     
 }
@@ -85,10 +75,19 @@ struct ArchiveMusicView: View {
 
 private extension PinsCategory {
     var navigationTitle: String {
-        subject + " 저장한 핀들 돌아보기"
+        navigationSubject + " 저장한 핀들 돌아보기"
     }
     
-    private var subject: String {
+    var emptyContent: String {
+        switch self {
+        case .mine:
+            return "아직 당신이 저장한 기록이 없습니다.\n당신의 감정을 기록해주세요."
+        case .others:
+            return "이 주변에 저장된 기록이 없습니다."
+        }
+    }
+    
+    private var navigationSubject: String {
         switch self {
         case .mine:
             return "내가"

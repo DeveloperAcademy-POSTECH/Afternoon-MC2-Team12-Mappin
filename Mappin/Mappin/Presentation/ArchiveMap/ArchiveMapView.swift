@@ -48,8 +48,7 @@ struct ArchiveMapView: View {
             .sheet(isPresented: isListViewPresented) {
                 ArchiveMusicView(viewStore: listViewStore)
                     .presentationBackgroundInteraction(.enabled)
-                    .presentationDetents([.height(60), .height(viewStore.estimatedListHeight)])
-//                    .presentationDetents([.height(60), .height(viewStore.estimatedListHeight)], selection: viewStore.binding(get: viewStore.state.estimatedListHeight, send: viewStore.send(.setEstimatedListHeight(540))))
+                    .presentationDetents([.height(viewStore.estimatedListHeight), .fraction(0.12)])
                     .interactiveDismissDisabled()
             }
         }
