@@ -25,14 +25,11 @@ struct ArchiveMapView: View {
         reducer: ListReducer.build()
     ), observe: { $0 })
     
-    @State private var settingDetents = PresentationDetent.fraction(0.4)
+    private static let foldedPresentationDetent = PresentationDetent.fraction(0.12)
+    @State private var presentationDetent = foldedPresentationDetent
     
     var body: some View {
         Group {
-            let isListViewPresented = viewStore.binding(
-                get: \.isListViewPresented,
-                send: { .setListViewPresented($0) }
-            )
             ZStack(alignment: .top) {
                 ContentView(viewStore: mapViewStore)
                 if let pin = mapViewStore.state.detailPin {
@@ -45,10 +42,16 @@ struct ArchiveMapView: View {
             .toolbarTitleMenu {
                 ToolbarTitleMenu(viewStore: viewStore)
             }
-            .sheet(isPresented: isListViewPresented) {
+            .sheet(isPresented: viewStore.binding(
+                get: \.isListViewPresented,
+                send: { .setListViewPresented($0) }
+            )) {
                 ArchiveMusicView(viewStore: listViewStore)
                     .presentationBackgroundInteraction(.enabled)
-                    .presentationDetents([.height(viewStore.estimatedListHeight), .fraction(0.12)])
+                    .presentationDetents(
+                        [.height(viewStore.estimatedListHeight), Self.foldedPresentationDetent],
+                        selection: $presentationDetent
+                    )
                     .interactiveDismissDisabled()
             }
         }
@@ -64,6 +67,12 @@ struct ArchiveMapView: View {
         .onChange(of: viewStore.listAction) {
             guard let action = $0 else { return }
             listViewStore.send(action)
+        }
+        .onChange(of: presentationDetent) {
+            viewStore.send(.setListViewFolded($0 == Self.foldedPresentationDetent))
+        }
+        .onChange(of: viewStore.isListViewFolded) { _ in
+            presentationDetent = viewStore.isListViewFolded ? Self.foldedPresentationDetent : .height(viewStore.estimatedListHeight)
         }
         .onChange(of: mapViewStore.pinsUsingList) {
             viewStore.send(.setListViewPresented(true))

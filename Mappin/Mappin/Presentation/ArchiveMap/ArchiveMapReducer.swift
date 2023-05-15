@@ -20,6 +20,7 @@ struct ArchiveMapReducer: ReducerProtocol {
     struct State: Equatable {
         var category: PinsCategory?
         var isListViewPresented: Bool = false
+        var isListViewFolded: Bool = false
         var estimatedListHeight: CGFloat = emptyListHeight
         
         var mapAction: MapReducer.Action?
@@ -31,6 +32,7 @@ struct ArchiveMapReducer: ReducerProtocol {
         case selectCategory(PinsCategory)
         case focusToLatestPin
         case setListViewPresented(Bool)
+        case setListViewFolded(Bool)
         case setEstimatedListHeight(CGFloat)
         
         case receiveList(ListReducer.Action?)
@@ -67,6 +69,10 @@ struct ArchiveMapReducer: ReducerProtocol {
             state.isListViewPresented = presented
             return .none
             
+        case let .setListViewFolded(folded):
+            state.isListViewFolded = folded
+            return .none
+            
         case let .setEstimatedListHeight(height):
             state.estimatedListHeight = height
             return .none
@@ -78,7 +84,10 @@ struct ArchiveMapReducer: ReducerProtocol {
                 let height = Self.getEstimatedListHeight(pins.count)
                 return .send(.setEstimatedListHeight(height))
             case let .pinTapped(pin):
-                return .send(.sendMap(.focusToPin(pin)))
+                return .concatenate([
+                    .send(.setListViewFolded(true)),
+                    .send(.sendMap(.focusToPin(pin)))
+                ])
             case .pinRemoved:
                 return .send(.sendMap(.refreshPins))
             default:
