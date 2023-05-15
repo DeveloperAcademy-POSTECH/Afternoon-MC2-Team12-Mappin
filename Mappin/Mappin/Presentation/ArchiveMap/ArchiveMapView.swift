@@ -13,6 +13,8 @@ struct ArchiveMapView: View {
     typealias MapReducer = PinMusicReducer
     typealias ListReducer = ArchiveMusicReducer
     
+    @Environment(\.dismiss) var dismiss
+    
     @ObservedObject var viewStore: ViewStoreOf<Reducer>
     
     @StateObject private var mapViewStore: ViewStoreOf<MapReducer> = ViewStore(Store(
@@ -25,7 +27,7 @@ struct ArchiveMapView: View {
         reducer: ListReducer.build()
     ), observe: { $0 })
     
-    private static let foldedPresentationDetent = PresentationDetent.fraction(0.12)
+    private static let foldedPresentationDetent = PresentationDetent.fraction(0.45)
     @State private var presentationDetent = foldedPresentationDetent
     
     var body: some View {
@@ -34,14 +36,16 @@ struct ArchiveMapView: View {
                 ContentView(viewStore: mapViewStore)
                 if let pin = mapViewStore.state.detailPin {
                     DetailPinPopUpView(pin: pin)
-                        .offset(y: 178)
+                        .offset(y: 230)
                 }
                 FakeNavigationBar()
             }
             .navigationTitle(viewStore.state.category?.navigationTitle ?? "")
+            .navigationBarItems(leading: customBackButton)
             .toolbarTitleMenu {
                 ToolbarTitleMenu(viewStore: viewStore)
             }
+            .navigationBarBackButtonHidden()
             .sheet(isPresented: viewStore.binding(
                 get: \.isListViewPresented,
                 send: { .setListViewPresented($0) }
@@ -49,7 +53,7 @@ struct ArchiveMapView: View {
                 ArchiveMusicView(viewStore: listViewStore)
                     .presentationBackgroundInteraction(.enabled)
                     .presentationDetents(
-                        [.height(viewStore.estimatedListHeight), Self.foldedPresentationDetent],
+                        [.fraction(0.45), .fraction(0.71), .large],
                         selection: $presentationDetent
                     )
                     .interactiveDismissDisabled()
@@ -101,7 +105,21 @@ struct ArchiveMapView: View {
             }
         }
     }
+    
+    var customBackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            HStack {
+                Image(systemName: "chevron.left")
+                    .foregroundColor(.blue)
+                Text("홈")
+            }
+        }
+    }
+    
 }
+
 
 extension ArchiveMapView {
     static func build() -> Self {
