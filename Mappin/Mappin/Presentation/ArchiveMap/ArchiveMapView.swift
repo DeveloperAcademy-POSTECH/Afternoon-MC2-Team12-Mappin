@@ -55,56 +55,40 @@ struct ArchiveMapView: View {
         .sheet(isPresented: mapViewStore.binding(get: { !$0.detailPinIsEmpty },
                                                  send: { .detailPinValidate(!$0) })) {
             if let pin = mapViewStore.detailPin {
-                //                NavigationView {
-                
-                //                        .frame(height: 604)
-                //                        .navigationBarItems(leading: Text("Hi"))
-                //                }
-                ArchiveInfoView(pin: pin)
+                ArchiveInfoView(pin: pin, mapViewStore: mapViewStore)
                     .presentationBackgroundInteraction(.enabled)
                     .presentationDetents([.height(357), .height(604)])
+//                ArchiveInfoView(pin: pin)
+
             }
         }
-        
-                                                 .sheet(isPresented: viewStore.binding(
-                                                    get: \.isListViewPresented,
-                                                    send: { .setListViewPresented($0) }
-                                                 )) {
-                                                     ArchiveMusicView(viewStore: listViewStore)
-                                                         .presentationBackgroundInteraction(.enabled)
-                                                         .presentationDetents(
-                                                            [.fraction(0.45), .fraction(0.71), .large],
-                                                            selection: $presentationDetent
-                                                         )
-                                                         .interactiveDismissDisabled()
-                                                 }
-        
-                                                 .navigationBarTitleDisplayMode(.inline)
-                                                 .ignoresSafeArea()
-                                                 .onAppear {
-                                                     viewStore.send(.viewAppeared)
-                                                 }
-                                                 .onChange(of: viewStore.mapAction) {
-                                                     guard let action = $0 else { return }
-                                                     mapViewStore.send(action)
-                                                 }
-                                                 .onChange(of: viewStore.listAction) {
-                                                     guard let action = $0 else { return }
-                                                     listViewStore.send(action)
-                                                 }
-                                                 .onChange(of: presentationDetent) {
-                                                     viewStore.send(.setListViewFolded($0 == Self.foldedPresentationDetent))
-                                                 }
-                                                 .onChange(of: viewStore.isListViewFolded) { _ in
-                                                     presentationDetent = viewStore.isListViewFolded ? Self.foldedPresentationDetent : .height(viewStore.estimatedListHeight)
-                                                 }
-                                                 .onChange(of: mapViewStore.pinsUsingList) {
-                                                     viewStore.send(.setListViewPresented(true))
-                                                     listViewStore.send(.applyArchive($0))
-                                                 }
-                                                 .onChange(of: listViewStore.lastAction) {
-                                                     viewStore.send(.receiveList($0?.wrapped))
-                                                 }
+        .navigationBarTitleDisplayMode(.inline)
+        .ignoresSafeArea()
+        .onAppear {
+            viewStore.send(.viewAppeared)
+            print("@Kozi - \(ObjectIdentifier(mapViewStore))")
+        }
+        .onChange(of: viewStore.mapAction) {
+            guard let action = $0 else { return }
+            mapViewStore.send(action)
+        }
+        .onChange(of: viewStore.listAction) {
+            guard let action = $0 else { return }
+            listViewStore.send(action)
+        }
+        .onChange(of: presentationDetent) {
+            viewStore.send(.setListViewFolded($0 == Self.foldedPresentationDetent))
+        }
+        .onChange(of: viewStore.isListViewFolded) { _ in
+            presentationDetent = viewStore.isListViewFolded ? Self.foldedPresentationDetent : .height(viewStore.estimatedListHeight)
+        }
+        .onChange(of: mapViewStore.pinsUsingList) {
+            viewStore.send(.setListViewPresented(true))
+            listViewStore.send(.applyArchive($0))
+        }
+        .onChange(of: listViewStore.lastAction) {
+            viewStore.send(.receiveList($0?.wrapped))
+        }
     }
     
     private func FakeNavigationBar() -> some View {

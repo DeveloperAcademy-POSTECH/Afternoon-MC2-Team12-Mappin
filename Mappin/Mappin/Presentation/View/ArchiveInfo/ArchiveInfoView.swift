@@ -7,11 +7,26 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 struct ArchiveInfoView: View {
     // 357
+    @Environment(\.dismiss) var dismiss
+//    @StateObject private var listViewStore: ViewStoreOf<ListReducer> = ViewStore(Store(
+//        initialState: ListReducer.State(),
+//        reducer: ListReducer.build()
+//    ), observe: { $0 })
+    @ObservedObject var infoViewStore: ViewStoreOf<ArchiveInfoReducer> = ViewStore(Store(initialState: ArchiveInfoReducer.State(pin: nil), reducer: ArchiveInfoReducer(removePinUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(RemovePinUseCase.self))))
+    @ObservedObject var mapViewStore: ViewStoreOf<PinMusicReducer>
     
     var pin: Pin
     
+    init(pin: Pin, mapViewStore: ViewStoreOf<PinMusicReducer>) {
+        self.pin = pin
+        self.mapViewStore = mapViewStore
+    }
+
+ 
     var body: some View {
         NavigationView {
             ScrollView {
@@ -24,7 +39,8 @@ struct ArchiveInfoView: View {
                         }
                         Spacer()
                         Button {
-                            
+                            mapViewStore.send(.detailPinValidate(true))
+                            dismiss()
                         } label: {
                             Image(systemName: "x.circle.fill")
                                 .foregroundColor(Color(red: 0.2353, green: 0.2353, blue: 0.2627).opacity(0.3))
@@ -35,36 +51,42 @@ struct ArchiveInfoView: View {
                     archiveInfo
                     Spacer()
                     Button {
-                        
+                        infoViewStore.send(.openAppleMusic(pin.music.appleMusicUrl!))
                     } label: {
                         Text("Music에서 열기")
-                            .font(.system(size: 15, weight: .semibold))
-                            .foregroundColor(Color(red: 0.2353, green: 0.2353, blue: 0.2627).opacity(0.6))
+                            .font(.system(size: 15, weight: .bold))
                             .frame(maxWidth: .infinity)
                             .frame(height: 55)
                     }
                     .background(Color(red: 0.4627, green: 0.4627, blue: 0.502).opacity(0.12))
                     .cornerRadius(10)
                     .padding(.top, 88)
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 15)
                     
+                    // 다른 사람 핀 볼 경우 삭제 버튼 ishidden
                     Button {
-                        
+                        infoViewStore.send(.removeArchive(pin.id))
+                        mapViewStore.send(.detailPinValidate(true))
+                        dismiss()
                     } label: {
                         Text("삭제")
-                            .font(.system(size: 15, weight: .semibold))
+                            .font(.system(size: 15, weight: .bold))
                             .foregroundColor(.red)
                             .frame(maxWidth: .infinity)
                             .frame(height: 55)
                     }
                     .background(Color(red: 0.4627, green: 0.4627, blue: 0.502).opacity(0.12))
                     .cornerRadius(10)
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 15)
                 }
-                .scrollDisabled(true)
-                .listStyle(.inset)
             }
-            
+            .onAppear {
+                print("@Kozi2 - \(ObjectIdentifier(mapViewStore))")
+            }
+            .onChange(of: infoViewStore.isSomethingRemoved) { _ in
+                mapViewStore.send(.refreshPins)
+            }
+            .scrollDisabled(true)
         }
         
         
@@ -95,10 +117,10 @@ struct ArchiveInfoView: View {
                 .font(.system(size: 20, weight: .semibold))
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
-                .padding(.leading, 10)
-                .padding(.trailing, 10)
+                .padding(.horizontal, 10)
             Text(pin.music.artist)
                 .font(.system(size: 15, weight: .regular))
+                .foregroundColor(Color(red: 0.2353, green: 0.2353, blue: 0.2627).opacity(0.6))
                 .padding(.bottom, 10)
             Text("\(pin.location.locality) · \(pin.location.subLocality)")
                 .font(.system(size: 15, weight: .regular))
@@ -108,9 +130,3 @@ struct ArchiveInfoView: View {
         }
     }
 }
-//
-//struct ArchiveInfoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ArchiveInfoView(pin: Pin(id: "172", count: 3, music: Music(id: "123", title: "Sometimes", artist: "Crush", artwork: URL(string: "https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/d0/f9/7f/d0f97ffc-6051-1240-9647-ff0c76a584a8/81311607.jpg/500x500bb.jpg") , appleMusicUrl: URL(string: "https://music.apple.com/kr/album/sometimes/1624014208?i=1624014209&l=en")), weather: Weather(id: "123", temperature: 18, symbolName: "sun.max"), createdAt: Date(), location: Location(id: "22", latitude: 36.015282, longitude: 129.323173, locality: "포항시", subLocality: "지곡동")))
-//    }
-//}

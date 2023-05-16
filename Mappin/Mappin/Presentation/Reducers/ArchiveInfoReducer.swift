@@ -10,21 +10,36 @@ import UIKit
 import ComposableArchitecture
 
 struct ArchiveInfoReducer: ReducerProtocol {
+//    typealias MapReducer = PinMusicReducer
+    
+    let removePinUseCase: RemovePinUseCase
     
     struct State: Equatable {
-        let id: Int
+        var id: Int = 0
+        var pin: Pin?
+        var isSomethingRemoved = false
     }
     
     enum Action {
-        case removeArchive
-        case openAppleMusic
+        case removeArchive(Int)
+        case openAppleMusic(URL)
+        case pinRemoved
     }
-    
+
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
+        state.isSomethingRemoved = false
         switch action {
-        case .removeArchive:
+        case let .removeArchive(id):
+            print("@Kozi \(id)")
+            return .task {
+                try await removePinUseCase.execute(id: id)
+                return .pinRemoved
+            }
+        case .openAppleMusic(let url):
+            openAppleMusic(url: url)
             return .none
-        case .openAppleMusic:
+        case .pinRemoved:
+            state.isSomethingRemoved = true
             return .none
         }
     }
