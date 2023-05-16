@@ -29,26 +29,15 @@ struct APIPinsRepository: PinsRepository {
             locality: location.locality,
             sub_locality: location.subLocality,
             weather: weather.symbolName,
-            temperature: Int(weather.temperature) ?? 0
+            temperature: weather.temperature
         )
         let target = APITarget.createPin(parameters: parameters)
         return try await provider.requestResponsable(target).entity
     }
     
-    func readList(
-        category: PinsCategory?,
-        centerLatitude: Double,
-        centerLongitude: Double,
-        latitudeDelta: Double,
-        longitudeDelta: Double
-    ) async throws -> [Pin] {
-        let parameters = PinsReadListAPITarget.Parameters(
-            category: category?.rawValue,
-            center_latitude: centerLatitude,
-            center_longitude: centerLongitude,
-            latitude_delta: latitudeDelta,
-            longitude_delta: longitudeDelta
-        )
+    func readList(ids: [Int]) async throws -> [Pin] {
+        let serializedIds = ids.map { String($0) }.joined(separator: ",")
+        let parameters = PinsReadListAPITarget.Parameters(ids: serializedIds)
         let target = APITarget.readPins(parameters: parameters)
         let dtos = try await provider.requestResponsable(target)
         return dtos.map { $0.entity }

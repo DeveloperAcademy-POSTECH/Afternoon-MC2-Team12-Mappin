@@ -157,21 +157,12 @@ struct PinMusicReducer: PinMusic {
                 .task {
                     let listPins: [Pin]
                     if centerLatitude != 404 && centerLongitude != 404 {
-                        listPins = try await getPinsUseCase.excuteUsingList(
-                            category: category,
-                            center: center,
-                            latitudeDelta: latitudeDelta,
-                            longitudeDelta: longitudeDelta
-                        )
+                        // TODO: BYO API
+                        listPins = try await getPinsUseCase.excuteUsingList(ids: [])
                     }
                     else {
-                        print("@KIO here fuck")
-                        listPins = try await getPinsUseCase.excuteUsingList(
-                            category: category,
-                            center: center,
-                            latitudeDelta: latitudeDelta,
-                            longitudeDelta: longitudeDelta
-                        )
+                        // TODO: BYO API
+                        listPins = try await getPinsUseCase.excuteUsingList(ids: [])
                     }
                     return .listPins(listPins)
                 }

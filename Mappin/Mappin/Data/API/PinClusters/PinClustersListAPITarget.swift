@@ -8,7 +8,14 @@
 import Foundation
 
 final class PinClustersListAPITarget: APITarget, ParametersRequestable, Responsable {
-    typealias Parameters = PinsRangeParameters
+    struct Parameters: Encodable {
+        let category: String?
+        let center_latitude: Double
+        let center_longitude: Double
+        let latitude_delta: Double
+        let longitude_delta: Double
+    }
+    
     typealias Response = [DTO.PinCluster]
     
     let parameters: Parameters
