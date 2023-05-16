@@ -40,7 +40,7 @@ struct PrimaryView: View {
                 ZStack(alignment: .bottom) {
                     MapView(action: .constant(.none), store: pinViewStore, userTrackingMode: .follow)
                         .ignoresSafeArea()
-                        .opacity(Double(action.yame))
+                        
                     
                     VStack(spacing: 10) {
                         Button(action: {
@@ -77,7 +77,7 @@ struct PrimaryView: View {
                                                                send: { .searchMusicPresent(isPresented: $0) })) {
                         SearchMusicView(pinStore: pinStore, musicStore: musicStore, settingsDetent: $settingsDetent)
                             .presentationBackgroundInteraction(.enabled)
-                            .presentationDetents([.fraction(0.12), .fraction(0.71), .large], selection: $settingsDetent)
+                            .presentationDetents([.fraction(0.71), .large], selection: $settingsDetent)
                             .interactiveDismissDisabled()
                     }
                 }

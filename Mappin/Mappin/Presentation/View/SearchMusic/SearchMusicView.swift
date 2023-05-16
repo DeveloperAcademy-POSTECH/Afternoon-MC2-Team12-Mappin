@@ -60,14 +60,6 @@ struct SearchMusicView: View {
             })
                                         .disabled(musicViewStore.selectedMusicIndex == "")
             )
-            .onChange(of: settingsDetent) { newValue in
-                if newValue == .height(113) {
-                    pinViewStore.send(.modalMinimumHeight(false))
-                }
-                else {
-                    pinViewStore.send(.modalMinimumHeight(true))
-                }
-            }
             .onAppear {
                 settingMuesicAuthorization()
                 print("@Kozi - \(MusicAuthorization.currentStatus)")
@@ -124,8 +116,9 @@ struct SearchMusicView: View {
                         SearchMusicCell(music: music, isSelected: isSelected)
                             .onTapGesture {
                                 if isSelected {
-                                    musicViewStore.send(.musicCanceled)
+                                    musicViewStore.send(.uploadMusic)
                                 } else {
+                                    print("@KIO what?")
                                     musicViewStore.send(.musicSelected(music.id))
                                 }
                             }

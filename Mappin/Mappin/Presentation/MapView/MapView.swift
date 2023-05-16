@@ -47,19 +47,18 @@ struct MapView: UIViewRepresentable {
     }
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
-        
+        print("@KIO what? come \(store.state)")
         switch store.mapAction {
         case .none:
-            print("@KIO cute \(mapView.annotations.count)")
             mapView.showsUserLocation = true
             break
             
-        case .setCenterWithModal(let latitude, let longitude):
+        case .setCenterWithModal(let latitude, let longitude, let much):
             let latitudeDelta = mapView.region.span.latitudeDelta
             let longitudeDelta = mapView.region.span.longitudeDelta
+            print("@KIO lati 3 \(latitude) and \(longitude)")
             
-
-            mapView.setRegion(latitude: latitude - (latitudeDelta / 4),
+            mapView.setRegion(latitude: latitude - (latitudeDelta / much),
                               longitude: longitude,
                               latitudeDelta: latitudeDelta,
                               longitudeDelta: longitudeDelta)
@@ -69,7 +68,6 @@ struct MapView: UIViewRepresentable {
             
         case .responseUpdate(let newPins):
             if isArchive && store.state.mapState == .loadPin {
-                print("@KIO test update responseUpdate")
                 
                 mapView.removeAllAnotation()
                 mapView.addAnnotations( newPins.map{ PinAnnotation($0) })
@@ -92,25 +90,41 @@ struct MapView: UIViewRepresentable {
             
             mapView.showsUserLocation = false
             store.send(.changeMapState(.showTemporaryPin))
-            store.send(.actAndChange(.setCenter(latitude: latitude, longitude: longitude, isModal: true)))
             
-            
-            let currentLocation = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
+            let currentLocation = MKCoordinateRegion(center:
+                                                        CLLocationCoordinate2D(
+                                                            latitude:  latitude,
+                                                            longitude: longitude
+                                                        ),
                                                      span: MKCoordinateSpan(latitudeDelta: Constants.defaultLatitudeDelta,
                                                                             longitudeDelta: Constants.defaultLongitudeDelta))
             
+            var temporaryPin = PinCluster.empty
+            temporaryPin.location.latitude = latitude
+            temporaryPin.location.longitude = longitude
             
-            store.send(.actTemporaryPinLocation(currentLocation))
+            let temp = PinAnnotation(temporaryPin)
+            mapView.addAnnotation(temp)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
-                var temporaryPin = PinCluster.empty
-                temporaryPin.location.latitude = latitude
-                temporaryPin.location.longitude = longitude
-                
-                let temp = PinAnnotation(temporaryPin)
-                print("@KIO test dont show \(store.state.mapState)")
-                mapView.addAnnotation(temp)
-            }
+            var region = mapView.region
+            region.center.latitude = latitude
+            region.center.longitude = longitude
+            
+            store.send(.actTemporaryPinLocation(
+                region
+            ))
+            
+            let latitudeDelta = mapView.region.span.latitudeDelta
+            let longitudeDelta = mapView.region.span.longitudeDelta
+            
+            store.send(.changeMapState(.showTemporaryPin))
+            
+            mapView.setRegion(latitude: latitude - (latitudeDelta / 2.5 ),
+                              longitude: longitude,
+                              latitudeDelta: latitudeDelta,
+                              longitudeDelta: longitudeDelta)
+            
+            store.send(.actAndChange(.dummy))
             
             
         case .cancelModal(let latitude, let longitude):
@@ -119,7 +133,6 @@ struct MapView: UIViewRepresentable {
             
             mapView.removeAllAnotation()
             
-            print("@KIO cute \(store.state.mapAction)")
             store.send(.actAndChange(.none))
             mapView.setRegion(latitude: latitude, longitude: longitude, latitudeDelta: Constants.defaultLatitudeDelta, longitudeDelta: Constants.defaultLongitudeDelta)
             
@@ -213,16 +226,17 @@ struct MapView: UIViewRepresentable {
                 
                 pinView.annotation = pinAnnotation
                 pinView.pinCluter = pinAnnotation.pinCluter
-                pinView.alpha = parent.store.state.mapState == .showTemporaryPin ? 0.5 : 1.0
+                pinView.alpha = parent.store.state.mapState == .showTemporaryPin ? 0.2 : 1.0
                 
                 return pinView
             }
         }
         
         func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-            if parent.isArchive == false && parent.store.state.mapState != .showTemporaryPin {
+            if parent.isArchive == false && parent.store.state.mapState != .showTemporaryPin && parent.store.mapState != .showingPopUp {
                 if let location = userLocation.location {
-                    mapView.setRegion(latitude: location.coordinate.latitude,
+                    mapView.setRegion(animated: false,
+                                      latitude: location.coordinate.latitude,
                                       longitude: location.coordinate.longitude,
                                       latitudeDelta: Constants.defaultLatitudeDelta,
                                       longitudeDelta: Constants.defaultLongitudeDelta)
@@ -256,12 +270,14 @@ extension MapView {
         case setCenterWithModalAndAddTemporaryPin(latitude: Double, longitude: Double) // setcenter, removeAllAnnotation
         case cancelModal(latitude: Double, longitude: Double) // setCenter, removeAllAnntaion, popupclose
         case completeAdd(Pin) // setCenter, removeAllAnntaion
-
+        
         
         case requestCallMapInfo
         case reponseCallMapInfo(centerLatitude: Double, centerLongitude: Double, latitudeDelta: Double, longitudeDelta: Double)
         case removeAllAnnotation
-        case setCenterWithModal(Double, Double)
+        case setCenterWithModal(Double, Double, Double)
+        case showUserLocation(Bool)
+        case dummy
         
         var yame: Int {
             (1...10000).randomElement()!

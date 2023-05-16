@@ -21,7 +21,7 @@ class AnnotaitionPinView: MKAnnotationView {
 
        
         if pinCategory == nil {
-            pinBackGroundImage.image = UIImage(named: "currentPin")!
+            pinBackGroundImage.image = UIImage(named: "currentLocation")!
         }
         else if pinCategory == .mine {
             clusteredCountLabel.textColor = .blue

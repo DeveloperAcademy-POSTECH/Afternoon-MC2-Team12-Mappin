@@ -27,7 +27,11 @@ struct PinMusicReducer: PinMusic {
     
     struct State: Equatable {
         
-        var mapAction: MapView.Action = .none
+        var mapAction: MapView.Action = .none {
+            didSet(newVlaue) {
+                print("@KIO what? \(newVlaue)")
+            }
+        }
         var mapState: MapView.State = .justShowing
         
         var currentLocation: MKCoordinateRegion = MKCoordinateRegion()
@@ -60,7 +64,6 @@ struct PinMusicReducer: PinMusic {
         case focusToLocation(latitude: Double, longitude: Double)
         case focusToPin(Pin)
         case setCategory(PinsCategory)
-        case modalMinimumHeight(Bool)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -205,11 +208,13 @@ struct PinMusicReducer: PinMusic {
             }
             
             return .run { action in
+                print("@KIO what? here tap")
                 await action.send(
                     .actAndChange(
                         .setCenterWithModal(
                             returnPin.location.latitude,
-                            returnPin.location.longitude
+                            returnPin.location.longitude,
+                            4
                         )
                     )
                 )
@@ -225,6 +230,7 @@ struct PinMusicReducer: PinMusic {
             //[Temporary]
             
             return .run { action in
+                print("@KIO what? here showpop")
                 await action.send(.actAndChange(.setCenter(latitude: RequestLocationRepository.manager.latitude, longitude: RequestLocationRepository.manager.longitude)))
                 await action.send(.changeMapState(.justShowing))
             }
@@ -238,6 +244,7 @@ struct PinMusicReducer: PinMusic {
             return .none
             
         case let .focusToLocation(latitude, longitude):
+            print("@KIO what? here focus")
             return .send(.actAndChange(.setCenter(latitude: latitude, longitude: longitude, isModal: false)))
             
         case let .focusToPin(pin):
@@ -245,7 +252,8 @@ struct PinMusicReducer: PinMusic {
             
             print("@KIO plz \(pin)")
             state.detailPin = pin // modal
-            return .send(.actAndChange(.setCenterWithModal(pin.location.latitude, pin.location.longitude)))
+            print("@KIO what? here focus")
+            return .send(.actAndChange(.setCenterWithModal(pin.location.latitude, pin.location.longitude, 4)))
             
         case let .setCategory(category):
             state.category = category
@@ -257,12 +265,6 @@ struct PinMusicReducer: PinMusic {
             state.mapState = .justShowing
             return .send(.refreshPins)
             
-        case .modalMinimumHeight(let isModal):
-            let location = state.temporaryPinLocation.center
-            
-            return .run { action in
-                await action.send(.actAndChange(.setCenter(latitude: location.latitude, longitude: location.longitude, isModal: isModal)))
-            }
         }
     }
 }
