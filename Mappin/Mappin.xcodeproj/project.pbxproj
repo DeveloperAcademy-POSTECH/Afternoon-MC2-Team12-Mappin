@@ -13,7 +13,6 @@
 		3A1DC8E72A0A151A00B7462E /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1DC8E62A0A151A00B7462E /* ToastView.swift */; };
 		3A1DC8E92A0A161D00B7462E /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1DC8E82A0A161D00B7462E /* ToastManager.swift */; };
 		3A1DC8EB2A0A21FB00B7462E /* ToastManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1DC8EA2A0A21FB00B7462E /* ToastManagerProtocol.swift */; };
-		3A1DC8ED2A0A4EAC00B7462E /* PinsRangeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1DC8EC2A0A4EAC00B7462E /* PinsRangeParameters.swift */; };
 		3A1DC8EF2A0A8D9600B7462E /* BinaryFloatingPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1DC8EE2A0A8D9600B7462E /* BinaryFloatingPoint+.swift */; };
 		3A28116D2A0B9CF100469988 /* ArchiveMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A28116C2A0B9CF100469988 /* ArchiveMapView.swift */; };
 		3A2811702A0CB5EC00469988 /* ArchiveMapReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A28116F2A0CB5EC00469988 /* ArchiveMapReducer.swift */; };
@@ -125,7 +124,6 @@
 		3A1DC8E62A0A151A00B7462E /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		3A1DC8E82A0A161D00B7462E /* ToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManager.swift; sourceTree = "<group>"; };
 		3A1DC8EA2A0A21FB00B7462E /* ToastManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManagerProtocol.swift; sourceTree = "<group>"; };
-		3A1DC8EC2A0A4EAC00B7462E /* PinsRangeParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsRangeParameters.swift; sourceTree = "<group>"; };
 		3A1DC8EE2A0A8D9600B7462E /* BinaryFloatingPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryFloatingPoint+.swift"; sourceTree = "<group>"; };
 		3A28116C2A0B9CF100469988 /* ArchiveMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveMapView.swift; sourceTree = "<group>"; };
 		3A28116F2A0CB5EC00469988 /* ArchiveMapReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveMapReducer.swift; sourceTree = "<group>"; };
@@ -398,7 +396,6 @@
 			children = (
 				3AD1DE252A05375C00A49E95 /* AuthParameters.swift */,
 				3AD1DE472A055B3300A49E95 /* APIError.swift */,
-				3A1DC8EC2A0A4EAC00B7462E /* PinsRangeParameters.swift */,
 				3AD1DE412A053F8300A49E95 /* ParametersRequestable.swift */,
 				3AD1DE452A0544E900A49E95 /* Responsable.swift */,
 			);
@@ -881,7 +878,6 @@
 				AF12DDFB2A0FEF4900543B28 /* RemovePinUseCase.swift in Sources */,
 				D4F19C632A091A2A00ABB567 /* GetPinsUseCase.swift in Sources */,
 				3A7776FE2A0FEF7C008FA4EA /* UniqueAction.swift in Sources */,
-				3A1DC8ED2A0A4EAC00B7462E /* PinsRangeParameters.swift in Sources */,
 				3AD1DE3B2A053EA100A49E95 /* PinsReadDetailAPITarget.swift in Sources */,
 				AF9E9D432A08E68B00EC8D9E /* RequestMusicRepository.swift in Sources */,
 				AF1D63972A0CD359008E0226 /* ArchiveMusicCell.swift in Sources */,
