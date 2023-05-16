@@ -42,6 +42,16 @@ struct ArchiveMapView: View {
             }
             .navigationBarBackButtonHidden()
         }
+        .sheet(isPresented: viewStore.binding(get: \.isListViewPresented,
+                                              send: { .setListViewPresented($0) })) {
+            ArchiveMusicView(viewStore: listViewStore)
+                .presentationBackgroundInteraction(.enabled)
+                .presentationDetents(
+                    [.fraction(0.45), .fraction(0.71), .large],
+                    selection: $presentationDetent
+                )
+                .interactiveDismissDisabled()
+        }
         .sheet(isPresented: mapViewStore.binding(get: { !$0.detailPinIsEmpty },
                                                  send: { .detailPinValidate(!$0) })) {
             if let pin = mapViewStore.detailPin {
