@@ -45,20 +45,18 @@ struct ArchiveMapView: View {
         .sheet(isPresented: mapViewStore.binding(get: { !$0.detailPinIsEmpty },
                                                  send: { .detailPinValidate(!$0) })) {
             if let pin = mapViewStore.detailPin {
-//                NavigationView {
-                    
-//                        .frame(height: 604)
-//                        .navigationBarItems(leading: Text("Hi"))
-//                }
-                ArchiveInfoView(pin: pin)
+                ArchiveInfoView(pin: pin, mapViewStore: mapViewStore)
                     .presentationBackgroundInteraction(.enabled)
                     .presentationDetents([.height(357), .height(604)])
+//                ArchiveInfoView(pin: pin)
+
             }
         }
         .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()
         .onAppear {
             viewStore.send(.viewAppeared)
+            print("@Kozi - \(ObjectIdentifier(mapViewStore))")
         }
         .onChange(of: viewStore.mapAction) {
             guard let action = $0 else { return }
@@ -81,6 +79,7 @@ struct ArchiveMapView: View {
         .onChange(of: listViewStore.lastAction) {
             viewStore.send(.receiveList($0?.wrapped))
         }
+        
     }
     
     private func FakeNavigationBar() -> some View {
