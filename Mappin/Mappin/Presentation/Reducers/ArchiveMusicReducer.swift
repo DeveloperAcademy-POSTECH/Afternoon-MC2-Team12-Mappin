@@ -25,7 +25,7 @@ struct ArchiveMusicReducer: ReducerProtocol {
         case applyArchive([Pin])
         case pinTapped(Pin)
         case removeArchive(indexSet: IndexSet)
-        case pinRemoved(Pin)
+        case pinRemoved(Int)
         case setCategory(PinsCategory)
     }
     
@@ -42,10 +42,11 @@ struct ArchiveMusicReducer: ReducerProtocol {
             guard let index = indexSet.first else {
                 return .none
             }
+            
             let pin = state.archiveMusic.remove(at: index)
             return .task {
-                try await removePinUseCase.execute(id: Int(pin.id) ?? -1)
-                return .pinRemoved(pin)
+                try await removePinUseCase.execute(id: pin.id)
+                return .pinRemoved(pin.id)
             }
             
         case let .setCategory(category):

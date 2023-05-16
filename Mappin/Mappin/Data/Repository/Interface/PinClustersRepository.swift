@@ -14,5 +14,5 @@ protocol PinClustersRepository {
         centerLongitude: Double,
         latitudeDelta: Double,
         longitudeDelta: Double
-    ) async throws -> [Pin]
+    ) async throws -> [PinCluster]
 }

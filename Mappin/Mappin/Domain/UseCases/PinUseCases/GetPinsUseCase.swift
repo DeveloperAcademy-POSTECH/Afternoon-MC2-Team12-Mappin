@@ -13,26 +13,15 @@ protocol GetPinsUseCase {
         center: (Double, Double),
         latitudeDelta: Double,
         longitudeDelta: Double
-    ) async throws -> [Pin]
+    ) async throws -> [PinCluster]
     
     func excuteUsingMap(
         category: PinsCategory?,
         latitudeDelta: Double,
         longitudeDelta: Double
-    ) async throws -> [Pin]
+    ) async throws -> [PinCluster]
     
-    func excuteUsingList(
-        category: PinsCategory?,
-        latitudeDelta: Double,
-        longitudeDelta: Double
-    ) async throws -> [Pin]
-    
-    func excuteUsingList(
-        category: PinsCategory?,
-        center: (Double, Double),
-        latitudeDelta: Double,
-        longitudeDelta: Double
-    ) async throws -> [Pin]
+    func excuteUsingList(ids: [Int]) async throws -> [Pin]
     
     func getLatestPin(category: PinsCategory?) async throws -> Pin
 }
@@ -55,24 +44,10 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
         category: PinsCategory?,
         latitudeDelta: Double,
         longitudeDelta: Double
-    ) async throws -> [Pin] {
+    ) async throws -> [PinCluster] {
         let center: (Double, Double) = (locationRepository.latitude, locationRepository.longitude)
+        // TODO: BYO API
         return try await pinClustersRepository.readList(
-            category: category,
-            centerLatitude: center.0,
-            centerLongitude: center.1,
-            latitudeDelta: latitudeDelta,
-            longitudeDelta: longitudeDelta
-        )
-    }
-    
-    func excuteUsingList(
-        category: PinsCategory?,
-        latitudeDelta: Double,
-        longitudeDelta: Double
-    ) async throws -> [Pin] {
-        let center: (Double, Double) = (locationRepository.latitude, locationRepository.longitude)
-        return try await pinsRepository.readList(
             category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
@@ -86,9 +61,10 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
         center: (Double, Double),
         latitudeDelta: Double,
         longitudeDelta: Double
-    ) async throws -> [Pin] {
-        print("@KIO here haha")
+    ) async throws -> [PinCluster] {
+        // TODO: BYO API
         return try await pinClustersRepository.readList(
+
             category: category,
             centerLatitude: center.0,
             centerLongitude: center.1,
@@ -97,19 +73,8 @@ final class DefaultGetPinUseCase: GetPinsUseCase {
         )
     }
     
-    func excuteUsingList(
-        category: PinsCategory?,
-        center: (Double, Double),
-        latitudeDelta: Double,
-        longitudeDelta: Double
-    ) async throws -> [Pin] {
-        return try await pinsRepository.readList(
-            category: category,
-            centerLatitude: center.0,
-            centerLongitude: center.1,
-            latitudeDelta: latitudeDelta,
-            longitudeDelta: longitudeDelta
-        )
+    func excuteUsingList(ids: [Int]) async throws -> [Pin] {
+        try await pinsRepository.readList(ids: ids)
     }
     
     func getLatestPin(category: PinsCategory?) async throws -> Pin {

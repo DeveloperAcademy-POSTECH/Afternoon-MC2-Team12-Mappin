@@ -23,7 +23,7 @@ struct ArchiveMusicView: View {
             VStack {
                 topView
                     .padding(.top, 27)
-                if !viewStore.state.archiveMusic.isEmpty {
+                if viewStore.state.archiveMusic != nil {
                     archiveMusicList
                 } else {
                     archiveEmptyView
@@ -77,12 +77,13 @@ struct ArchiveMusicView: View {
         withAnimation {
             List {
                 Section {
-                    ForEach(viewStore.archiveMusic.isEmpty ? [] : viewStore.archiveMusic) { archive in
+                    ForEach(viewStore.archiveMusic) { archive in
                         ArchiveMusicCell(music: archive.music, date: archive.createdAt)
                             .listRowInsets(EdgeInsets())
                             .onTapGesture {
                                 viewStore.send(.pinTapped(archive))
                             }
+                        EmptyView()
                     }
                     .onDelete {
                         viewStore.send(.removeArchive(indexSet: $0))

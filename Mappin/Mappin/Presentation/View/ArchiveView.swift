@@ -76,9 +76,3 @@ func myArchiveList()-> some View {
     }
     .padding(.leading, 15)
 }
-
-//struct ArchiveView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ArchiveView()
-//    }
-//}

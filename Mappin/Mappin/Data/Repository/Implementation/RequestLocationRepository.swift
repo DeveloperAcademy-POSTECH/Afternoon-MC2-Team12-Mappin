@@ -21,7 +21,7 @@ final class RequestLocationRepository: NSObject, CLLocationManagerDelegate, Loca
         longitude = 0
         super.init()
         manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         print("Start")
         
         switch manager.authorizationStatus {

@@ -9,13 +9,13 @@ import MapKit
 
 class PinAnnotation: NSObject, MKAnnotation {
     
-    var pin: Pin
+    var pinCluter: PinCluster
     var coordinate: CLLocationCoordinate2D {
-        CLLocationCoordinate2D(latitude: pin.location.latitude, longitude: pin.location.longitude)
+        CLLocationCoordinate2D(latitude: pinCluter.location.latitude, longitude: pinCluter.location.longitude)
     }
     
-    init(_ pin: Pin) {
+    init(_ pinCluster: PinCluster) {
         
-        self.pin = pin
+        self.pinCluter = pinCluster
     }
 }
