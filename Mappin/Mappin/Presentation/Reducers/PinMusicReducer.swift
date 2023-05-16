@@ -39,6 +39,7 @@ struct PinMusicReducer: PinMusic {
         var detailPin: Pin?
         var temporaryPinLocation: MKCoordinateRegion = MKCoordinateRegion()
         var category: PinsCategory?
+        var detailPinIsEmpty = true
     }
     enum Action: Equatable {
         
@@ -59,6 +60,7 @@ struct PinMusicReducer: PinMusic {
         case focusToPin(Pin)
         case setCategory(PinsCategory)
         case modalMinimumHeight(Bool)
+        case detailPinValidate(Bool)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -194,6 +196,7 @@ struct PinMusicReducer: PinMusic {
         case .completeAddPin(let pin):
             state.detailPin = pin
             state.mapAction = .completeAdd(pin)
+            state.detailPinIsEmpty = false
             return .none
             
         case .listPins(let pins):
@@ -217,6 +220,7 @@ struct PinMusicReducer: PinMusic {
                 }
             }
             state.detailPin = returnPin
+            
             guard let returnPin = returnPin else  {
                 
                 return .none
@@ -224,6 +228,7 @@ struct PinMusicReducer: PinMusic {
             if returnPin.count > 1 {
                 print("@KIO tap here")
                 state.detailPin = nil
+                state.detailPinIsEmpty = true
                 return .run { action in
                     await action.send(
                         .actAndChange(
@@ -233,6 +238,7 @@ struct PinMusicReducer: PinMusic {
                 }
             }
             else {
+                state.detailPinIsEmpty = false
                 return .run { action in
                     await action.send(
                         .actAndChange(
@@ -248,7 +254,7 @@ struct PinMusicReducer: PinMusic {
             print("@KIO PIN remove bfore")
             state.mapAction = .removePin(id: "-1")
             state.detailPin = nil
-            
+            state.detailPinIsEmpty = true
             return .run { action in
                  await action.send(.actAndChange(.setCenter(latitude: RequestLocationRepository.manager.latitude, longitude: RequestLocationRepository.manager.longitude)))
             }
@@ -267,6 +273,7 @@ struct PinMusicReducer: PinMusic {
         case let .focusToPin(pin):
             print("@KIO Last PLZ \(pin)")
             state.detailPin = pin
+            state.detailPinIsEmpty = false
             return .send(.actAndChange(.setCenter(latitude: pin.location.latitude, longitude: pin.location.longitude, isModal: false)))
             
         case let .setCategory(category):
@@ -276,6 +283,7 @@ struct PinMusicReducer: PinMusic {
             
         case .popUpClose:
             state.detailPin = nil
+            state.detailPinIsEmpty = true
             return .send(.refreshPins)
             
         case .modalMinimumHeight(let isModal):
@@ -284,6 +292,9 @@ struct PinMusicReducer: PinMusic {
             return .run { action in
                 await action.send(.actAndChange(.setCenter(latitude: location.latitude, longitude: location.longitude, isModal: isModal)))
             }
+        case let .detailPinValidate(bool):
+            state.detailPinIsEmpty = bool
+            return .none
         }
     }
 }
