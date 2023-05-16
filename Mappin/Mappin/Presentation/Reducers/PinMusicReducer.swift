@@ -246,7 +246,7 @@ struct PinMusicReducer: PinMusic {
         case .showPopUpAndCloseAfter:
             
             print("@KIO PIN remove bfore")
-            state.mapAction = .removePin(id: "-1")
+            state.mapAction = .removePin(id: -1)
             state.detailPin = nil
             
             return .run { action in

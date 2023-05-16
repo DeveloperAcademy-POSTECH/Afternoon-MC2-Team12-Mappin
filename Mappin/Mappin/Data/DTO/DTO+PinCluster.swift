@@ -19,7 +19,7 @@ extension DTO {
 extension DTO.PinCluster {
     var entity: Pin {
         Pin(
-            id: String(main_pin.id),
+            id: main_pin.id,
             count: pins_count,
             music: Music(
                 id: main_pin.music.applemusic_id,

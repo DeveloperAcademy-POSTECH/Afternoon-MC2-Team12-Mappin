@@ -24,7 +24,7 @@ extension DTO {
 extension DTO.Pin {
     var entity: Pin {
         Pin(
-            id: String(id),
+            id: id,
             count: 0,
             music: Music(
                 id: music.applemusic_id,
