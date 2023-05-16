@@ -7,11 +7,14 @@
 
 import Foundation
 
-struct Location: Identifiable, Equatable {
+struct Location: Equatable {
     
-    let id: String
     var latitude: Double // 위도
     var longitude: Double // 경도
     let locality: String // 포항시
     let subLocality: String // 죽도동
+}
+
+extension Location {
+    static var empty = Location(latitude: 0.0, longitude: 0.0, locality: "", subLocality: "")
 }

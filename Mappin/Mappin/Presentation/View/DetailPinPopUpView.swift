@@ -10,6 +10,7 @@ import SwiftUI
 struct DetailPinPopUpView: View {
     
     var pin: Pin
+    var cancelContent: () -> Void
 
     var body: some View {
         VStack{

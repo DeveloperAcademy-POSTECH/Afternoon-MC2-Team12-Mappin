@@ -11,7 +11,7 @@ import MapKit
 
 class AnnotaitionPinView: MKAnnotationView {
     
-    var pin: Pin
+    var pinCluter: PinCluster
     var pinCategory: PinsCategory? = .mine
     let clusteredCountLabel: UILabel
     let pinBackGroundImage: UIImageView
@@ -20,28 +20,28 @@ class AnnotaitionPinView: MKAnnotationView {
         super.layoutSubviews()
 
        
-        clusteredCountLabel.text = "\(pin.count)"
         if pinCategory == nil {
-            pinBackGroundImage.image = UIImage(named: "currentPin")!
+            pinBackGroundImage.image = UIImage(named: "currentLocation")!
         }
         else if pinCategory == .mine {
             clusteredCountLabel.textColor = .blue
-            pinBackGroundImage.image = UIImage(named: pin.count > 1 ? "bluePin" : "bluePinSingle")!
+            pinBackGroundImage.image = UIImage(named: pinCluter.pinsCount > 1 ? "bluePin" : "bluePinSingle")!
             
         }
         else if pinCategory == .others {
             clusteredCountLabel.textColor = .gray
-            pinBackGroundImage.image = UIImage(named: pin.count > 1 ? "grayPin" : "grayPinSingle")!
+            pinBackGroundImage.image = UIImage(named: pinCluter.pinsCount > 1 ? "grayPin" : "grayPinSingle")!
         }
         
         pinBackGroundImage.contentMode = .scaleAspectFit
         backGroundLayout()
-        if pin.count > 1 { addCountLabel() }
+        if pinCluter.pinsCount > 1 { addCountLabel() }
     }
     
     func addCountLabel() {
         
         addSubview(clusteredCountLabel)
+        clusteredCountLabel.text = "\(pinCluter.pinsCount)"
         
         clusteredCountLabel.translatesAutoresizingMaskIntoConstraints = false
         clusteredCountLabel.centerXAnchor.constraint(equalTo: pinBackGroundImage.centerXAnchor).isActive = true
@@ -68,10 +68,10 @@ class AnnotaitionPinView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         
         if let annotation = annotation as? PinAnnotation {
-            self.pin = annotation.pin
+            self.pinCluter = annotation.pinCluter
         }
         else {
-            self.pin = Pin.empty
+            self.pinCluter = PinCluster.empty
         }
         self.clusteredCountLabel = UILabel()
         self.pinBackGroundImage = UIImageView()
@@ -84,6 +84,6 @@ class AnnotaitionPinView: MKAnnotationView {
     }
     
     @objc func tap(_ sender: Any) {
-        print(pin)
+        print(pinCluter)
     }
 }

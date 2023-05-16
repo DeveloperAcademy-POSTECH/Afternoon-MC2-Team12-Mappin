@@ -17,7 +17,7 @@ struct APIPinClustersRepository: PinClustersRepository {
         centerLongitude: Double,
         latitudeDelta: Double,
         longitudeDelta: Double
-    ) async throws -> [Pin] {
+    ) async throws -> [PinCluster] {
         let parameters = PinClustersListAPITarget.Parameters(
             category: category?.rawValue,
             center_latitude: centerLatitude,
@@ -27,7 +27,6 @@ struct APIPinClustersRepository: PinClustersRepository {
         )
         let target = APITarget.readPinClusters(parameters: parameters)
         let dtos = try await provider.requestResponsable(target)
-    
         return dtos.map { $0.entity }
     }
 }

@@ -33,8 +33,7 @@ struct ArchiveMapView: View {
     var body: some View {
         Group {
             ZStack(alignment: .top) {
-                ContentView(viewStore: mapViewStore)
-                FakeNavigationBar()
+                contentView
             }
             .navigationTitle(viewStore.state.category?.navigationTitle ?? "")
             .navigationBarItems(leading: customBackButton)
@@ -126,6 +125,25 @@ extension ArchiveMapView {
                 getPinsUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(GetPinsUseCase.self)
             )
         ), observe: { $0 }))
+    }
+    
+    @ViewBuilder
+    var contentView: some View {
+        ContentView(viewStore: mapViewStore)
+            .onTapGesture {
+                if mapViewStore.state.listPins != nil {
+                    mapViewStore.send(.popUpClose)
+                }
+            }
+            .gesture(
+                DragGesture()
+                  .onEnded { _ in
+                      if mapViewStore.state.listPins != nil {
+                          mapViewStore.send(.popUpClose)
+                      }
+                  }
+              )
+        FakeNavigationBar()
     }
 }
 

@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct Weather: Equatable, Identifiable {
-    let id: String
+struct Weather: Equatable {
     let temperature: Int
     let symbolName: String
 }
