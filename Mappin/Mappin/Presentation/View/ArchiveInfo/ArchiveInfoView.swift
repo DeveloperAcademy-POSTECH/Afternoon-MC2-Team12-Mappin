@@ -108,9 +108,9 @@ struct ArchiveInfoView: View {
         }
     }
 }
-
-struct ArchiveInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        ArchiveInfoView(pin: Pin(id: "172", count: 3, music: Music(id: "123", title: "Sometimes", artist: "Crush", artwork: URL(string: "https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/d0/f9/7f/d0f97ffc-6051-1240-9647-ff0c76a584a8/81311607.jpg/500x500bb.jpg") , appleMusicUrl: URL(string: "https://music.apple.com/kr/album/sometimes/1624014208?i=1624014209&l=en")), weather: Weather(id: "123", temperature: 18, symbolName: "sun.max"), createdAt: Date(), location: Location(id: "22", latitude: 36.015282, longitude: 129.323173, locality: "포항시", subLocality: "지곡동")))
-    }
-}
+//
+//struct ArchiveInfoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ArchiveInfoView(pin: Pin(id: "172", count: 3, music: Music(id: "123", title: "Sometimes", artist: "Crush", artwork: URL(string: "https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/d0/f9/7f/d0f97ffc-6051-1240-9647-ff0c76a584a8/81311607.jpg/500x500bb.jpg") , appleMusicUrl: URL(string: "https://music.apple.com/kr/album/sometimes/1624014208?i=1624014209&l=en")), weather: Weather(id: "123", temperature: 18, symbolName: "sun.max"), createdAt: Date(), location: Location(id: "22", latitude: 36.015282, longitude: 129.323173, locality: "포항시", subLocality: "지곡동")))
+//    }
+//}

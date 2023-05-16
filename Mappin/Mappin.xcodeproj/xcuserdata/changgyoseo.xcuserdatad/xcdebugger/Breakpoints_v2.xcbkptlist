@@ -1100,6 +1100,84 @@
             endingLineNumber = "66"
             landmarkName = "excuteUsingMap(category:center:latitudeDelta:longitudeDelta:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1FE5CB78-AFAE-4649-B31B-228EA4A5D9BB - e30390fab1ab132"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Mappin.DefaultGetPinUseCase.excuteUsingMap(category: Swift.Optional&lt;Mappin.PinsCategory&gt;, center: (Swift.Double, Swift.Double), latitudeDelta: Swift.Double, longitudeDelta: Swift.Double) async throws -&gt; Swift.Array&lt;Mappin.PinCluster&gt;"
+                  moduleName = "Mappin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/changgyoseo/Projects/mappin/Mappin/Mappin/Domain/UseCases/PinUseCases/GetPinsUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "1FE5CB78-AFAE-4649-B31B-228EA4A5D9BB - 664190a5bd1e53cc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for Mappin.DefaultGetPinUseCase.excuteUsingMap(category: Swift.Optional&lt;Mappin.PinsCategory&gt;, center: (Swift.Double, Swift.Double), latitudeDelta: Swift.Double, longitudeDelta: Swift.Double) async throws -&gt; Swift.Array&lt;Mappin.PinCluster&gt;"
+                  moduleName = "Mappin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/changgyoseo/Projects/mappin/Mappin/Mappin/Domain/UseCases/PinUseCases/GetPinsUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "1FE5CB78-AFAE-4649-B31B-228EA4A5D9BB - 2ea069b8f54df534"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Mappin.DefaultGetPinUseCase.excuteUsingMap(category: Swift.Optional&lt;Mappin.PinsCategory&gt;, center: (Swift.Double, Swift.Double), latitudeDelta: Swift.Double, longitudeDelta: Swift.Double) async throws -&gt; Swift.Array&lt;Mappin.PinCluster&gt;"
+                  moduleName = "Mappin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/changgyoseo/Projects/mappin/Mappin/Mappin/Domain/UseCases/PinUseCases/GetPinsUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "1FE5CB78-AFAE-4649-B31B-228EA4A5D9BB - 3ed881e16c5b4b37"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for Mappin.DefaultGetPinUseCase.excuteUsingMap(category: Swift.Optional&lt;Mappin.PinsCategory&gt;, center: (Swift.Double, Swift.Double), latitudeDelta: Swift.Double, longitudeDelta: Swift.Double) async throws -&gt; Swift.Array&lt;Mappin.PinCluster&gt;"
+                  moduleName = "Mappin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/changgyoseo/Projects/mappin/Mappin/Mappin/Domain/UseCases/PinUseCases/GetPinsUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6D5DB144-47D6-4517-A93D-48825ABB98AC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mappin/Presentation/View/PopUpView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "PopUpView"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

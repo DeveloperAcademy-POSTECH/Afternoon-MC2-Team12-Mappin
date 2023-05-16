@@ -82,10 +82,10 @@ struct PrimaryView: View {
                     }
                 }
                 if let pin = pinViewStore.state.detailPin {
-                    DetailPinPopUpView(pin: pin) {
+                    PopUpView(pin: pin) {
                         pinViewStore.send(.showPopUpAndCloseAfter)
                     }
-                    .offset(y: 178)
+                    
                 }
             }
         }

@@ -159,6 +159,7 @@ struct PinMusicReducer: PinMusic {
             }
             
         case .loadPinsUsingList(let ids):
+            print("@KIO lalala")
             return .task {
                 let listPins = try await getPinsUseCase.excuteUsingList(ids: ids)
                 return .listPins(listPins)
@@ -201,28 +202,35 @@ struct PinMusicReducer: PinMusic {
                         && view.frame.minY - 20 <= point.y
                         && point.y <= view.frame.minY + 36 {
                         
-                        returnPin = view.pinCluter
+                        if view.pinCluter.pinsCount != 0 {
+                            returnPin = view.pinCluter
+                        }
                     }
                 }
             }
-            state.detailPin = returnPin
+            
             guard let returnPin = returnPin else  {
-                
                 return .none
             }
+            print("@KIO lalala \(returnPin.location)")
             
-            return .run { action in
-                print("@KIO what? here tap")
-                await action.send(
-                    .actAndChange(
-                        .setCenterWithModal(
-                            returnPin.location.latitude,
-                            returnPin.location.longitude,
-                            4
+            if returnPin.pinsCount == 1 {
+                return .none
+            }
+            else {
+                return .run { action in
+                    print("@KIO what? here tap")
+                    await action.send(
+                        .actAndChange(
+                            .setCenterWithModal(
+                                returnPin.location.latitude,
+                                returnPin.location.longitude,
+                                4
+                            )
                         )
                     )
-                )
-                await action.send(.loadPinsUsingList(returnPin.pinIds))
+                    await action.send(.loadPinsUsingList(returnPin.pinIds))
+                }
             }
             
         case .showPopUpAndCloseAfter:
