@@ -14,3 +14,7 @@ struct Location: Equatable {
     let locality: String // 포항시
     let subLocality: String // 죽도동
 }
+
+extension Location {
+    static var empty = Location(latitude: 0.0, longitude: 0.0, locality: "", subLocality: "")
+}

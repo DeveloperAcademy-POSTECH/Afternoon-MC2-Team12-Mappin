@@ -23,7 +23,7 @@ struct ArchiveMusicView: View {
             VStack {
                 topView
                     .padding(.top, 27)
-                if !viewStore.state.archiveMusic.isEmpty {
+                if viewStore.state.archiveMusic != nil {
                     archiveMusicList
                 } else {
                     archiveEmptyView
@@ -51,7 +51,7 @@ struct ArchiveMusicView: View {
                         .frame(height: 28)
                         .font(.system(size: 22, weight: .bold))
                         .padding(.bottom, 3)
-                    Text("\(viewStore.archiveMusic.count)개의 저장된 핀")
+                    Text("\(viewStore.archiveMusic.pinsCount)개의 저장된 핀")
                         .frame(height: 18)
                         .font(.system(size: 13, weight: .regular))
                         .foregroundColor(Color(red: 0.2353, green: 0.2353, blue: 0.2627).opacity(0.6))
@@ -77,12 +77,13 @@ struct ArchiveMusicView: View {
         withAnimation {
             List {
                 Section {
-                    ForEach(viewStore.archiveMusic.isEmpty ? [] : viewStore.archiveMusic) { archive in
-                        ArchiveMusicCell(music: archive.music, date: archive.createdAt)
-                            .listRowInsets(EdgeInsets())
-                            .onTapGesture {
-                                viewStore.send(.pinTapped(archive))
-                            }
+                    ForEach(viewStore.archiveMusic.pinIds) { id in
+//                        ArchiveMusicCell(music: archive.music, date: archive.createdAt)
+//                            .listRowInsets(EdgeInsets())
+//                            .onTapGesture {
+//                                viewStore.send(.pinTapped(archive))
+//                            }
+                        EmptyView()
                     }
                     .onDelete {
                         viewStore.send(.removeArchive(indexSet: $0))

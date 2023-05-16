@@ -142,8 +142,8 @@
             filePath = "Mappin/Presentation/Reducers/PinMusicReducer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "reduce(into:action:)"
             landmarkType = "7">
             <Locations>
@@ -991,6 +991,66 @@
                   endingLineNumber = "52"
                   offsetFromSymbolStart = "76">
                </Location>
+               <Location
+                  uuid = "69EC606D-8FB1-48FE-905E-63834F4C1D2B - b549d63d0396680e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for Mappin.DefaultAddPinUseCase.excute(music: Mappin.Music, latitude: Swift.Double, longitude: Swift.Double) async throws -&gt; Mappin.Pin"
+                  moduleName = "Mappin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/changgyoseo/Projects/mappin/Mappin/Mappin/Domain/UseCases/PinUseCases/AddPinUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "308">
+               </Location>
+               <Location
+                  uuid = "69EC606D-8FB1-48FE-905E-63834F4C1D2B - 17d8531063782666"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) await resume partial function for Mappin.DefaultAddPinUseCase.excute(music: Mappin.Music, latitude: Swift.Double, longitude: Swift.Double) async throws -&gt; Mappin.Pin"
+                  moduleName = "Mappin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/changgyoseo/Projects/mappin/Mappin/Mappin/Domain/UseCases/PinUseCases/AddPinUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "69EC606D-8FB1-48FE-905E-63834F4C1D2B - 45622f22b39f2400"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for Mappin.DefaultAddPinUseCase.excute(music: Mappin.Music, latitude: Swift.Double, longitude: Swift.Double) async throws -&gt; Mappin.Pin"
+                  moduleName = "Mappin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/changgyoseo/Projects/mappin/Mappin/Mappin/Domain/UseCases/PinUseCases/AddPinUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "69EC606D-8FB1-48FE-905E-63834F4C1D2B - a66525fc34782d57"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(10) suspend resume partial function for Mappin.DefaultAddPinUseCase.excute(music: Mappin.Music, latitude: Swift.Double, longitude: Swift.Double) async throws -&gt; Mappin.Pin"
+                  moduleName = "Mappin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/changgyoseo/Projects/mappin/Mappin/Mappin/Domain/UseCases/PinUseCases/AddPinUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "76">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -1004,8 +1064,8 @@
             filePath = "Mappin/Presentation/MapView/MapView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "mapView(_:viewFor:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1020,8 +1080,8 @@
             filePath = "Mappin/Presentation/MapView/MapView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "mapView(_:viewFor:)"
             landmarkType = "7">
          </BreakpointContent>

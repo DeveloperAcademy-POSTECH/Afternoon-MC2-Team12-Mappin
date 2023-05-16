@@ -39,11 +39,6 @@ struct PrimaryView: View {
                 }
                 ZStack(alignment: .bottom) {
                     MapView(action: .constant(.none), store: pinViewStore, userTrackingMode: .follow)
-                        .onTapGesture {
-                            if pinViewStore.state.detailPin != nil {
-                                pinViewStore.send(.showPopUpAndCloseAfter)
-                            }
-                        }
                         .ignoresSafeArea()
                         .opacity(Double(action.yame))
                     
@@ -86,9 +81,11 @@ struct PrimaryView: View {
                             .interactiveDismissDisabled()
                     }
                 }
-                if let pin = pinViewStore.state.detailPin{
-                    DetailPinPopUpView(pin: pin)
-                        .offset(y: 178)
+                if let pin = pinViewStore.state.detailPin {
+                    DetailPinPopUpView(pin: pin) {
+                        pinViewStore.send(.showPopUpAndCloseAfter)
+                    }
+                    .offset(y: 178)
                 }
             }
         }

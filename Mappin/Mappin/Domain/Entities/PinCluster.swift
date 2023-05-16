@@ -8,12 +8,16 @@
 import Foundation
 
 struct PinCluster: Equatable, Identifiable {
-    let mainPin: Pin
-    let pinIds: [Int]
-    let pinsCount: Int
-    let location: Location
+    var mainPin: Pin
+    var pinIds: [Int]
+    var pinsCount: Int
+    var location: Location
     
     var id: Int {
         mainPin.id
     }
+}
+
+extension PinCluster {
+    static var empty = PinCluster(mainPin: Pin.empty, pinIds: [], pinsCount: 0, location: Location.empty)
 }

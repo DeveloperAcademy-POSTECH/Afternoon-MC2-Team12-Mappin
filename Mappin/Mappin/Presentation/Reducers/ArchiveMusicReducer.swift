@@ -14,7 +14,7 @@ struct ArchiveMusicReducer: ReducerProtocol {
     let removePinUseCase: RemovePinUseCase
     
     struct State: Equatable  {
-        var archiveMusic: [Pin] = []
+        var archiveMusic: PinCluster = PinCluster.empty
         var archiveIsEmpty = false
         
         var category: PinsCategory?
@@ -22,10 +22,10 @@ struct ArchiveMusicReducer: ReducerProtocol {
     }
     
     enum Action: Equatable {
-        case applyArchive([Pin])
-        case pinTapped(Pin)
+        case applyArchive(PinCluster)
+        case pinTapped(PinCluster)
         case removeArchive(indexSet: IndexSet)
-        case pinRemoved(Pin)
+        case pinRemoved(Int)
         case setCategory(PinsCategory)
     }
     
@@ -42,10 +42,11 @@ struct ArchiveMusicReducer: ReducerProtocol {
             guard let index = indexSet.first else {
                 return .none
             }
-            let pin = state.archiveMusic.remove(at: index)
+            
+            let pinID = state.archiveMusic.pinIds.remove(at: index)
             return .task {
-                try await removePinUseCase.execute(id: Int(pin.id) ?? -1)
-                return .pinRemoved(pin)
+                try await removePinUseCase.execute(id: pinID)
+                return .pinRemoved(pinID)
             }
             
         case let .setCategory(category):
