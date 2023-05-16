@@ -34,13 +34,11 @@ extension DTO.Pin {
                 appleMusicUrl: URL(string: music.applemusic_url)
             ),
             weather: Weather(
-                id: UUID().uuidString,
                 temperature: temperature,
                 symbolName: weather
             ),
             createdAt: created_at,
             location: Location(
-                id: UUID().uuidString,
                 latitude: latitude,
                 longitude: longitude,
                 locality: locality,

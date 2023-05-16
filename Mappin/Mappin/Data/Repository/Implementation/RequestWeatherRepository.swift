@@ -23,13 +23,12 @@ final class RequestWeatherRepository: RequestWeatherRepositoryInterface {
         do {
             let responseWeather = try await weatherService.weather(for: location)
             let temperature = String(describing: responseWeather.currentWeather.temperature)
-            return Weather(id: UUID().uuidString,
-                           temperature: temperature.getTemperature(),
+            return Weather(temperature: temperature.getTemperature(),
                            symbolName: responseWeather.currentWeather.symbolName)
         }
         catch {
             print("@Error \(error)")
-            return Weather(id: "", temperature: 3, symbolName: "2")
+            return Weather(temperature: 3, symbolName: "2")
         }
 
     }

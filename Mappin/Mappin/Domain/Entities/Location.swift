@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct Location: Identifiable, Equatable {
+struct Location: Equatable {
     
-    let id: String
     var latitude: Double // 위도
     var longitude: Double // 경도
     let locality: String // 포항시

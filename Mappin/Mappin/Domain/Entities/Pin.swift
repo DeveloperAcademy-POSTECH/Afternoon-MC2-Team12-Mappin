@@ -10,7 +10,7 @@ import CoreLocation
 
 struct Pin: Equatable, Identifiable {
     
-    static let empty = Pin(id: 0, count: 0, music: Music(id: "", title: "", artist: "", artwork: nil, appleMusicUrl: nil), weather: Weather(id: "", temperature: 0, symbolName: ""), createdAt: Date(), location: Location(id: "", latitude: 0, longitude: 0, locality: "", subLocality: ""))
+    static let empty = Pin(id: 0, count: 0, music: Music(id: "", title: "", artist: "", artwork: nil, appleMusicUrl: nil), weather: Weather(temperature: 0, symbolName: ""), createdAt: Date(), location: Location(latitude: 0, longitude: 0, locality: "", subLocality: ""))
     
     
     var id: Int

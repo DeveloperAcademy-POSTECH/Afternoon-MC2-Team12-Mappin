@@ -29,13 +29,11 @@ extension DTO.PinCluster {
                 appleMusicUrl: URL(string: main_pin.music.applemusic_url)
             ),
             weather: Weather(
-                id: UUID().uuidString,
                 temperature: main_pin.temperature,
                 symbolName: main_pin.weather
             ),
             createdAt: main_pin.created_at,
             location: Location(
-                id: UUID().uuidString,
                 latitude: latitude,
                 longitude: longitude,
                 locality: main_pin.locality,
