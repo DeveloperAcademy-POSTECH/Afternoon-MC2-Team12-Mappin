@@ -41,17 +41,18 @@ struct ArchiveMapView: View {
                 ToolbarTitleMenu(viewStore: viewStore)
             }
             .navigationBarBackButtonHidden()
-            .sheet(isPresented: viewStore.binding(
-                get: \.isListViewPresented,
-                send: { .setListViewPresented($0) }
-            )) {
-                ArchiveMusicView(viewStore: listViewStore)
+        }
+        .sheet(isPresented: mapViewStore.binding(get: { !$0.detailPinIsEmpty },
+                                                 send: { .detailPinValidate(!$0) })) {
+            if let pin = mapViewStore.detailPin {
+//                NavigationView {
+                    
+//                        .frame(height: 604)
+//                        .navigationBarItems(leading: Text("Hi"))
+//                }
+                ArchiveInfoView(pin: pin)
                     .presentationBackgroundInteraction(.enabled)
-                    .presentationDetents(
-                        [.fraction(0.45), .fraction(0.71), .large],
-                        selection: $presentationDetent
-                    )
-                    .interactiveDismissDisabled()
+                    .presentationDetents([.height(357), .height(604)])
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -166,3 +167,16 @@ struct ArchiveMapView_Previews: PreviewProvider {
         ArchiveMapView.build()
     }
 }
+
+//            .sheet(isPresented: viewStore.binding(
+//                get: \.isListViewPresented,
+//                send: { .setListViewPresented($0) }
+//            )) {
+//                ArchiveMusicView(viewStore: listViewStore)
+//                    .presentationBackgroundInteraction(.enabled)
+//                    .presentationDetents(
+//                        [.fraction(0.45), .fraction(0.71), .large],
+//                        selection: $presentationDetent
+//                    )
+//                    .interactiveDismissDisabled()
+//            }
