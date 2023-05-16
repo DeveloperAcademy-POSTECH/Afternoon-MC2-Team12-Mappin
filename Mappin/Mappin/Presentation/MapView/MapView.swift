@@ -263,7 +263,7 @@ extension MapView {
         static var defaultLatitudeDelta: Double = 0.0017311351539746056
         static var defaultLongitudeDelta: Double = 0.0011165561592463291
         static var centerOffSet: Double = 0.00068
-        static var temporaryPinId: String = "-1"
+        static var temporaryPinId: Int = -1
     }
 }
 
@@ -272,7 +272,7 @@ extension MapView {
     enum Action: Equatable {
     
         case none
-        case removePin(id: String) // [TemporaryPoint] 특정 핀을 지우는 메서드
+        case removePin(id: Int) // [TemporaryPoint] 특정 핀을 지우는 메서드
         case responseUpdate([Pin]) // 결과값을 들고 오는
         case requestUpdate(latitude: Double, longitude: Double, latitudeDelta: Double, longitudeDelta: Double) // 현재값을 reducer로 던져주는
         

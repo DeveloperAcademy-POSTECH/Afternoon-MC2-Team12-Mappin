@@ -65,6 +65,7 @@
 		3AE353DC2A03935A00D5A2B5 /* PinClustersListAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DB2A03935A00D5A2B5 /* PinClustersListAPITarget.swift */; };
 		3AE353DE2A03949B00D5A2B5 /* PinClustersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */; };
 		3AE353E02A0394BA00D5A2B5 /* APIPinClustersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE353DF2A0394BA00D5A2B5 /* APIPinClustersRepository.swift */; };
+		3AEBFCD62A1370B0001C7219 /* PinCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEBFCD52A1370B0001C7219 /* PinCluster.swift */; };
 		851E3C3F2A0B70FE00744403 /* PrimaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E3C382A0B70FE00744403 /* PrimaryView.swift */; };
 		AF03F8C32A026BA100E90660 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C22A026BA100E90660 /* Music.swift */; };
 		AF03F8C62A0279B400E90660 /* SearchMusicUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */; };
@@ -175,6 +176,7 @@
 		3AE353DB2A03935A00D5A2B5 /* PinClustersListAPITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinClustersListAPITarget.swift; sourceTree = "<group>"; };
 		3AE353DD2A03949B00D5A2B5 /* PinClustersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinClustersRepository.swift; sourceTree = "<group>"; };
 		3AE353DF2A0394BA00D5A2B5 /* APIPinClustersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPinClustersRepository.swift; sourceTree = "<group>"; };
+		3AEBFCD52A1370B0001C7219 /* PinCluster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCluster.swift; sourceTree = "<group>"; };
 		851E3C382A0B70FE00744403 /* PrimaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrimaryView.swift; path = ../MapView/Pin/View/PrimaryView.swift; sourceTree = "<group>"; };
 		AF03F8C22A026BA100E90660 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		AF03F8C52A0279B400E90660 /* SearchMusicUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicUseCase.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 				3AD1DE562A05695800A49E95 /* User */,
 				D4F57D182A03970D00582857 /* Location.swift */,
 				D4F57D192A03970D00582857 /* Pin.swift */,
+				3AEBFCD52A1370B0001C7219 /* PinCluster.swift */,
 				AF03F8C22A026BA100E90660 /* Music.swift */,
 				AF03F8C72A027A8600E90660 /* Weather.swift */,
 			);
@@ -812,6 +815,7 @@
 				AF9E9D4A2A08E78E00EC8D9E /* RequestMusicRepositoryInterface.swift in Sources */,
 				D4F57CFC2A02635400582857 /* RequestLocationRepository.swift in Sources */,
 				3AB7EF472A0519AE00B8FEDB /* APIUsersRepository.swift in Sources */,
+				3AEBFCD62A1370B0001C7219 /* PinCluster.swift in Sources */,
 				D4F57CD52A0243AB00582857 /* ContentView.swift in Sources */,
 				D45C9E112A0A754B00FAA39C /* DefaultMockDIContainer.swift in Sources */,
 				3A2811722A0D136500469988 /* PinsCategory.swift in Sources */,
