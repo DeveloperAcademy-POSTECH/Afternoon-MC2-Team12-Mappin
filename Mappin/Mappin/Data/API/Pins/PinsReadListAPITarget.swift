@@ -8,7 +8,10 @@
 import Foundation
 
 final class PinsReadListAPITarget: APITarget, ParametersRequestable, Responsable {
-    typealias Parameters = PinsRangeParameters
+    struct Parameters: Encodable {
+        var ids: String
+    }
+    
     typealias Response = [DTO.Pin]
     
     let parameters: Parameters
