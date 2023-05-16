@@ -74,6 +74,7 @@
 		AF12DDFB2A0FEF4900543B28 /* RemovePinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12DDFA2A0FEF4900543B28 /* RemovePinUseCase.swift */; };
 		AF1D63972A0CD359008E0226 /* ArchiveMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1D63962A0CD359008E0226 /* ArchiveMusicCell.swift */; };
 		AF313BA72A0A2DCE00D38A87 /* ArchiveMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF313BA62A0A2DCE00D38A87 /* ArchiveMusicView.swift */; };
+		AF477E2E2A13682400E718BD /* ArchiveInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E2D2A13682400E718BD /* ArchiveInfoView.swift */; };
 		AF9E9D432A08E68B00EC8D9E /* RequestMusicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D412A08E68B00EC8D9E /* RequestMusicRepository.swift */; };
 		AF9E9D442A08E68B00EC8D9E /* RequestWeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D422A08E68B00EC8D9E /* RequestWeatherRepository.swift */; };
 		AF9E9D492A08E78E00EC8D9E /* RequestWeatherRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E9D472A08E78D00EC8D9E /* RequestWeatherRepositoryInterface.swift */; };
@@ -185,6 +186,7 @@
 		AF12DDFA2A0FEF4900543B28 /* RemovePinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovePinUseCase.swift; sourceTree = "<group>"; };
 		AF1D63962A0CD359008E0226 /* ArchiveMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveMusicCell.swift; sourceTree = "<group>"; };
 		AF313BA62A0A2DCE00D38A87 /* ArchiveMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveMusicView.swift; sourceTree = "<group>"; };
+		AF477E2D2A13682400E718BD /* ArchiveInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveInfoView.swift; sourceTree = "<group>"; };
 		AF6800BB2A0393F50096D65B /* PinMusicReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinMusicReducer.swift; sourceTree = "<group>"; };
 		AF9E9D412A08E68B00EC8D9E /* RequestMusicRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestMusicRepository.swift; path = Mappin/Data/Repository/Implementation/RequestMusicRepository.swift; sourceTree = SOURCE_ROOT; };
 		AF9E9D422A08E68B00EC8D9E /* RequestWeatherRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestWeatherRepository.swift; path = Mappin/Data/Repository/Implementation/RequestWeatherRepository.swift; sourceTree = SOURCE_ROOT; };
@@ -518,6 +520,14 @@
 			path = ArchiveMusic;
 			sourceTree = "<group>";
 		};
+		AF477E2C2A13680C00E718BD /* ArchiveInfo */ = {
+			isa = PBXGroup;
+			children = (
+				AF477E2D2A13682400E718BD /* ArchiveInfoView.swift */,
+			);
+			path = ArchiveInfo;
+			sourceTree = "<group>";
+		};
 		AF9E9D512A0A10C600EC8D9E /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -526,6 +536,7 @@
 				851E3C382A0B70FE00744403 /* PrimaryView.swift */,
 				AF313BA52A0A2D9700D38A87 /* ArchiveMusic */,
 				AF9E9D522A0A10DC00EC8D9E /* SearchMusic */,
+				AF477E2C2A13680C00E718BD /* ArchiveInfo */,
 				D450FEB72A0FC84F00909E90 /* DetailPinPopUpView.swift */,
 			);
 			path = View;
@@ -868,6 +879,7 @@
 				3AB4F78C2A0379A2004C0F76 /* DTO+Music.swift in Sources */,
 				D4F19C542A08DC0300ABB567 /* MKCoordinateRegion+.swift in Sources */,
 				3AB4F7992A037CA5004C0F76 /* Encodable+Dictionary.swift in Sources */,
+				AF477E2E2A13682400E718BD /* ArchiveInfoView.swift in Sources */,
 				3AE353DE2A03949B00D5A2B5 /* PinClustersRepository.swift in Sources */,
 				3AB4F78A2A03797C004C0F76 /* DTO+Namespace.swift in Sources */,
 				3AD1DE5A2A0569B800A49E95 /* MockCurrentUser.swift in Sources */,
