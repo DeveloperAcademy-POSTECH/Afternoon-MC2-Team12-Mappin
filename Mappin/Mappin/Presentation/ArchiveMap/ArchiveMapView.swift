@@ -35,9 +35,23 @@ struct ArchiveMapView: View {
             )
             ZStack(alignment: .top) {
                 ContentView(viewStore: mapViewStore)
+                    .onTapGesture {
+                        if mapViewStore.state.detailPin != nil {
+                            mapViewStore.send(.popUpClose)
+                        }
+                    }
+                    .gesture(
+                        DragGesture()
+                          .onEnded { _ in
+                              if mapViewStore.state.detailPin != nil {
+                                  mapViewStore.send(.popUpClose)
+                              }
+                          }
+                      )
+                
                 if let pin = mapViewStore.state.detailPin {
                     DetailPinPopUpView(pin: pin)
-                        .offset(y: 178)
+                        .offset(y: 230)
                 }
                 FakeNavigationBar()
             }
