@@ -142,8 +142,8 @@
             filePath = "Mappin/Presentation/Reducers/PinMusicReducer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "reduce(into:action:)"
             landmarkType = "7">
             <Locations>
@@ -1064,8 +1064,8 @@
             filePath = "Mappin/Presentation/MapView/MapView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "mapView(_:viewFor:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1080,9 +1080,25 @@
             filePath = "Mappin/Presentation/MapView/MapView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "mapView(_:viewFor:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1FE5CB78-AFAE-4649-B31B-228EA4A5D9BB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mappin/Domain/UseCases/PinUseCases/GetPinsUseCase.swift"
+            startingColumnNumber = "48"
+            endingColumnNumber = "48"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "excuteUsingMap(category:center:latitudeDelta:longitudeDelta:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

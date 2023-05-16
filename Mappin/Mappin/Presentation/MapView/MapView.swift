@@ -54,6 +54,16 @@ struct MapView: UIViewRepresentable {
             mapView.showsUserLocation = true
             break
             
+        case .setCenterWithModal(let latitude, let longitude):
+            let latitudeDelta = mapView.region.span.latitudeDelta
+            let longitudeDelta = mapView.region.span.longitudeDelta
+            
+
+            mapView.setRegion(latitude: latitude - (latitudeDelta / 4),
+                              longitude: longitude,
+                              latitudeDelta: latitudeDelta,
+                              longitudeDelta: longitudeDelta)
+            
         case .removeAllAnnotation:
             mapView.removeAllAnotation()
             
@@ -153,6 +163,7 @@ struct MapView: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             if parent.isArchive {
+                print( print("@KIO check \(mapView.region.center.latitude) and \(mapView.region.span.latitudeDelta)"))
                 parent.store.send(.act(.requestUpdate(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude, latitudeDelta: mapView.region.span.latitudeDelta, longitudeDelta: mapView.region.span.longitudeDelta)))
                 
                 let pinAnnotationViews = mapView.annotations.map { annotation in
@@ -250,6 +261,7 @@ extension MapView {
         case requestCallMapInfo
         case reponseCallMapInfo(centerLatitude: Double, centerLongitude: Double, latitudeDelta: Double, longitudeDelta: Double)
         case removeAllAnnotation
+        case setCenterWithModal(Double, Double)
         
         var yame: Int {
             (1...10000).randomElement()!

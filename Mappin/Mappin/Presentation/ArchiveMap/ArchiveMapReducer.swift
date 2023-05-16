@@ -81,7 +81,7 @@ struct ArchiveMapReducer: ReducerProtocol {
             state.listAction = nil
             switch action {
             case let .applyArchive(pins):
-                let height = Self.getEstimatedListHeight(pins.pinsCount)
+                let height = Self.getEstimatedListHeight(pins.count)
                 return .send(.setEstimatedListHeight(height))
             case let .pinTapped(pin):
                 return .concatenate([

@@ -142,11 +142,6 @@ extension ArchiveMapView {
                       }
                   }
               )
-        
-        if let pin = mapViewStore.state.detailPin {
-            DetailPinPopUpView(pin: pin)
-                .offset(y: 230)
-        }
         FakeNavigationBar()
     }
 }
