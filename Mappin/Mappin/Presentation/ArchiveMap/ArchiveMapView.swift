@@ -13,6 +13,8 @@ struct ArchiveMapView: View {
     typealias MapReducer = PinMusicReducer
     typealias ListReducer = ArchiveMusicReducer
     
+    @Environment(\.dismiss) var dismiss
+    
     @ObservedObject var viewStore: ViewStoreOf<Reducer>
     
     @StateObject private var mapViewStore: ViewStoreOf<MapReducer> = ViewStore(Store(
@@ -25,14 +27,11 @@ struct ArchiveMapView: View {
         reducer: ListReducer.build()
     ), observe: { $0 })
     
-    @State private var settingDetents = PresentationDetent.fraction(0.4)
+    private static let foldedPresentationDetent = PresentationDetent.fraction(0.45)
+    @State private var presentationDetent = foldedPresentationDetent
     
     var body: some View {
         Group {
-            let isListViewPresented = viewStore.binding(
-                get: \.isListViewPresented,
-                send: { .setListViewPresented($0) }
-            )
             ZStack(alignment: .top) {
                 ContentView(viewStore: mapViewStore)
                     .onTapGesture {
@@ -56,13 +55,21 @@ struct ArchiveMapView: View {
                 FakeNavigationBar()
             }
             .navigationTitle(viewStore.state.category?.navigationTitle ?? "")
+            .navigationBarItems(leading: customBackButton)
             .toolbarTitleMenu {
                 ToolbarTitleMenu(viewStore: viewStore)
             }
-            .sheet(isPresented: isListViewPresented) {
+            .navigationBarBackButtonHidden()
+            .sheet(isPresented: viewStore.binding(
+                get: \.isListViewPresented,
+                send: { .setListViewPresented($0) }
+            )) {
                 ArchiveMusicView(viewStore: listViewStore)
                     .presentationBackgroundInteraction(.enabled)
-                    .presentationDetents([.height(viewStore.estimatedListHeight), .fraction(0.12)])
+                    .presentationDetents(
+                        [.fraction(0.45), .fraction(0.71), .large],
+                        selection: $presentationDetent
+                    )
                     .interactiveDismissDisabled()
             }
         }
@@ -78,6 +85,12 @@ struct ArchiveMapView: View {
         .onChange(of: viewStore.listAction) {
             guard let action = $0 else { return }
             listViewStore.send(action)
+        }
+        .onChange(of: presentationDetent) {
+            viewStore.send(.setListViewFolded($0 == Self.foldedPresentationDetent))
+        }
+        .onChange(of: viewStore.isListViewFolded) { _ in
+            presentationDetent = viewStore.isListViewFolded ? Self.foldedPresentationDetent : .height(viewStore.estimatedListHeight)
         }
         .onChange(of: mapViewStore.pinsUsingList) {
             viewStore.send(.setListViewPresented(true))
@@ -106,7 +119,21 @@ struct ArchiveMapView: View {
             }
         }
     }
+    
+    var customBackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            HStack {
+                Image(systemName: "chevron.left")
+                    .foregroundColor(.blue)
+                Text("홈")
+            }
+        }
+    }
+    
 }
+
 
 extension ArchiveMapView {
     static func build() -> Self {

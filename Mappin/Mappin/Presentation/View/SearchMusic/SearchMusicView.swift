@@ -32,15 +32,18 @@ struct SearchMusicView: View {
         NavigationView {
             VStack {
                 searchBar
-                    .padding(.bottom, 15)
-                Divider()
-                searchMusicList
+                if musicViewStore.musicChart == [] {
+                    progressView
+                } else {
+                    searchMusicList
+                }
             }
             .navigationBarTitle("현재 위치에 음악 핀하기", displayMode: .inline)
             .navigationBarItems(leading:
                                     Button(action: {
                 musicViewStore.send(.searchMusicPresent(isPresented: false))
                 pinViewStore.send(.actAndChange(.cancelModal(latitude: RequestLocationRepository.manager.latitude, longitude: RequestLocationRepository.manager.longitude)))
+                settingsDetent = PresentationDetent.fraction(0.71)
             }, label: {
                 Text("취소")
                     .font(.system(size: 17, weight: .regular))
@@ -49,18 +52,16 @@ struct SearchMusicView: View {
                                 trailing:
                                     Button(action: {
                 musicViewStore.send(.uploadMusic)
+                settingsDetent = PresentationDetent.fraction(0.71)
             }, label: {
                 Text("추가")
                     .font(.system(size: 17, weight: .bold))
                     .foregroundColor(musicViewStore.selectedMusicIndex == "" ? .gray : .accentColor)
             })
                                         .disabled(musicViewStore.selectedMusicIndex == "")
-                                        .onAppear(perform: {
-                                            print("@Kozi - \(musicViewStore.selectedMusicIndex)")
-                                        })
             )
             .onChange(of: settingsDetent) { newValue in
-                if newValue == .fraction(0.12) {
+                if newValue == .height(113) {
                     pinViewStore.send(.modalMinimumHeight(false))
                 }
                 else {
@@ -117,21 +118,32 @@ struct SearchMusicView: View {
     var searchMusicList: some View {
         withAnimation {
             List {
-                ForEach(!musicViewStore.searchTerm.isEmpty ? musicViewStore.searchMusic : musicViewStore.musicChart) { music in
-                    let isSelected = musicViewStore.selectedMusicIndex == music.id // selectedMusicIndex == "" -> 초기 상태, 검색했거나 검색창을 켰을 경우. checkmark와 이중 클릭 확인을 하기 위함
-                    SearchMusicCell(music: music, isSelected: isSelected)
-                        .onTapGesture {
-                            if isSelected {
-                                musicViewStore.send(.musicCanceled)
-                            } else {
-                                musicViewStore.send(.musicSelected(music.id))
+                Section(content: {
+                    ForEach(!musicViewStore.searchTerm.isEmpty ? musicViewStore.searchMusic : musicViewStore.musicChart) { music in
+                        let isSelected = musicViewStore.selectedMusicIndex == music.id // selectedMusicIndex == "" -> 초기 상태, 검색했거나 검색창을 켰을 경우. checkmark와 이중 클릭 확인을 하기 위함
+                        SearchMusicCell(music: music, isSelected: isSelected)
+                            .onTapGesture {
+                                if isSelected {
+                                    musicViewStore.send(.musicCanceled)
+                                } else {
+                                    musicViewStore.send(.musicSelected(music.id))
+                                }
                             }
-                        }
-                }
+                    }
+                }, header: {
+                    if musicViewStore.searchTerm.isEmpty {
+                        Text("현재 이 지역 음악 추천")
+                            .font(.system(size: 14, weight: .semibold))
+                    }
+                })
             }
-            
             .listStyle(.inset)
         }
+    }
+    
+    var progressView: some View {
+        ProgressView()
+            .frame(maxHeight: .infinity)
     }
     
     func settingMuesicAuthorization() {

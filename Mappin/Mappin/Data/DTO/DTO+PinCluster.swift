@@ -19,7 +19,7 @@ extension DTO {
 extension DTO.PinCluster {
     var entity: Pin {
         Pin(
-            id: String(main_pin.id),
+            id: main_pin.id,
             count: pins_count,
             music: Music(
                 id: main_pin.music.applemusic_id,
@@ -29,13 +29,11 @@ extension DTO.PinCluster {
                 appleMusicUrl: URL(string: main_pin.music.applemusic_url)
             ),
             weather: Weather(
-                id: UUID().uuidString,
                 temperature: main_pin.temperature,
                 symbolName: main_pin.weather
             ),
             createdAt: main_pin.created_at,
             location: Location(
-                id: UUID().uuidString,
                 latitude: latitude,
                 longitude: longitude,
                 locality: main_pin.locality,

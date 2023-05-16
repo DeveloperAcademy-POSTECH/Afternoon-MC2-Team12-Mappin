@@ -79,13 +79,22 @@ struct DetailPinPopUpView: View {
     
     var ImageTitleArtistLocation: some View {
         HStack {
-            if let artwork = pin.music.artwork {
-                AsyncImage(url: artwork) { image in
-                    image.image?.resizable()
-                        .frame(width: 105, height: 105)
-                        .cornerRadius(8)
+            Rectangle()
+                .frame(width: 105, height: 105)
+                .foregroundColor(Color(uiColor: .systemGray4))
+                .overlay {
+                    if let artwork = pin.music.artwork {
+                        AsyncImage(url: artwork) { image in
+                            image.resizable()
+                                .frame(width: 105, height: 105)
+                        } placeholder: {
+                            ProgressView()
+                                .frame(width: 105, height: 105)
+                        }
+
+                    }
                 }
-            }
+                .cornerRadius(8)
             
             VStack(alignment: .leading){
                 Text(pin.music.title)

@@ -61,20 +61,21 @@ struct PrimaryView: View {
                                 )
                             )
                         }, label: {
-                            Text("현재 위치에 음악 핀하기")
+                            Text("현재 위치에 감정 기록하기")
                                 .applyButtonStyle()
                         })
                         
                         NavigationLink(destination: {
                             ArchiveMapView.build()
                         }, label: {
-                            Text("내 핀과 다른 사람들 핀 구경하기")
+                            Text("나와 다른 사람의 기록 살펴보기")
                                 .applyButtonStyle()
                         })
                     }
                     .font(.system(size: 16, weight: .semibold))
                     .padding(.horizontal, 20)
                     .padding(.bottom, 32)
+                    .shadow(color: Color.black.opacity(0.3), radius: 100, y: 10)
                     .opacity(musicViewStore.isSearchMusicPresented ? 0 : 1)
                     .animation(.easeInOut, value: musicViewStore.isSearchMusicPresented)
                     .sheet(isPresented: musicViewStore.binding(get: \.isSearchMusicPresented,
@@ -105,9 +106,10 @@ private struct ButtonStyleModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity)
-            .frame(height: 55)
+            .frame(height: 50)
+            .font(.system(size: 16, weight: .bold))
             .background(.white)
-            .cornerRadius(10)
+            .cornerRadius(12)
     }
 }
 
