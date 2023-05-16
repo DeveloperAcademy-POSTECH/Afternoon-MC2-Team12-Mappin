@@ -39,26 +39,25 @@ struct SearchMusicView: View {
                 }
             }
             .navigationBarTitle("현재 위치에 음악 핀하기", displayMode: .inline)
-            .navigationBarItems(leading:
-                                    Button(action: {
-                musicViewStore.send(.searchMusicPresent(isPresented: false))
-                pinViewStore.send(.actAndChange(.cancelModal(latitude: RequestLocationRepository.manager.latitude, longitude: RequestLocationRepository.manager.longitude)))
-                settingsDetent = PresentationDetent.fraction(0.71)
-            }, label: {
-                Text("취소")
-                    .font(.system(size: 17, weight: .regular))
-                    .foregroundColor(.red)
-            }),
-                                trailing:
-                                    Button(action: {
-                musicViewStore.send(.uploadMusic)
-                settingsDetent = PresentationDetent.fraction(0.71)
-            }, label: {
-                Text("추가")
-                    .font(.system(size: 17, weight: .bold))
-                    .foregroundColor(musicViewStore.selectedMusicIndex == "" ? .gray : .accentColor)
-            })
-                                        .disabled(musicViewStore.selectedMusicIndex == "")
+            .navigationBarItems(
+                leading: Button(action: {
+                    musicViewStore.send(.searchMusicPresent(isPresented: false))
+                    pinViewStore.send(.actAndChange(.cancelModal(latitude: RequestLocationRepository.manager.latitude, longitude: RequestLocationRepository.manager.longitude)))
+                    settingsDetent = PresentationDetent.fraction(0.71)
+                }, label: {
+                    Text("취소")
+                        .font(.system(size: 17, weight: .regular))
+                        .foregroundColor(.red)
+                }),
+                trailing: Button(action: {
+                    musicViewStore.send(.uploadMusic)
+                    settingsDetent = PresentationDetent.fraction(0.71)
+                }, label: {
+                    Text("추가")
+                        .font(.system(size: 17, weight: .bold))
+                        .foregroundColor(musicViewStore.selectedMusicIndex == "" ? .gray : .accentColor)
+                })
+                .disabled(musicViewStore.selectedMusicIndex == "")
             )
             .onAppear {
                 settingMuesicAuthorization()
@@ -115,12 +114,7 @@ struct SearchMusicView: View {
                         let isSelected = musicViewStore.selectedMusicIndex == music.id // selectedMusicIndex == "" -> 초기 상태, 검색했거나 검색창을 켰을 경우. checkmark와 이중 클릭 확인을 하기 위함
                         SearchMusicCell(music: music, isSelected: isSelected)
                             .onTapGesture {
-                                if isSelected {
-                                    musicViewStore.send(.uploadMusic)
-                                } else {
-                                    print("@KIO what?")
-                                    musicViewStore.send(.musicSelected(music.id))
-                                }
+                                musicViewStore.send(.musicSelected(isSelected ? "" : music.id))
                             }
                     }
                 }, header: {
