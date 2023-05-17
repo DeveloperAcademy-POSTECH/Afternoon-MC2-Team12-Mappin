@@ -17,18 +17,24 @@ struct ArchiveInfoReducer: ReducerProtocol {
     struct State: Equatable {
         var id: Int = 0
         var pin: Pin?
+        var category: PinsCategory?
         var isSomethingRemoved = false
     }
     
     enum Action {
+        case setPin(Pin)
         case removeArchive(Int)
         case openAppleMusic(URL)
         case pinRemoved
+        case setCategory(PinsCategory)
     }
 
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         state.isSomethingRemoved = false
         switch action {
+        case let .setPin(pin):
+            state.pin = pin
+            return .none
         case let .removeArchive(id):
             print("@Kozi \(id)")
             return .task {
@@ -40,6 +46,9 @@ struct ArchiveInfoReducer: ReducerProtocol {
             return .none
         case .pinRemoved:
             state.isSomethingRemoved = true
+            return .none
+        case let .setCategory(category):
+            state.category = category
             return .none
         }
     }
