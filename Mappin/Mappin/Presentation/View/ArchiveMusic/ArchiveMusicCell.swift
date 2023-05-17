@@ -12,66 +12,39 @@ struct ArchiveMusicCell: View {
     var date: Date
     
     var body: some View {
-        ZStack {
-            Rectangle()
-                .foregroundColor(.white)
-                .frame(height: 107)
-                .overlay {
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text(date.dayAndTime)
-                            .frame(height: 18)
-                            .font(.system(size: 13, weight: .regular))
-                            .foregroundColor(Color(red: 0.4235, green: 0.4235, blue: 0.4392))
-                            .padding(.leading, 15)
-                            .padding(.top, 3)
-                            .padding(.bottom, 3)
-
-                        HStack {
-                            VStack(alignment: .leading, spacing: 0) {
-                                Text(date.yearAndMonth)
-                                    .frame(height: 25)
-                                    .font(.system(size: 20, weight: .semibold))
-                                    .padding(.bottom, 3)
-                                
-                                Text(music.title)
-                                    .frame(height: 20)
-                                    .font(.system(size: 15, weight: .semibold))
-                                    .foregroundColor(Color(red: 0.2353, green: 0.2353, blue: 0.2627).opacity(0.6))
-                                    .lineLimit(1)
-
-                                if !music.artist.isEmpty {
-                                    Text(music.artist)
-                                        .frame(height: 18)
-                                        .font(.system(size: 13, weight: .regular))
-                                        .foregroundColor(Color(red: 0.2353, green: 0.2353, blue: 0.2627).opacity(0.6))
-                                        .lineLimit(1)
-                                        .foregroundColor(.secondary)
-                                }
-                            }
-                            .padding(.leading, 15)
-                            Spacer()
-                            Rectangle()
-                                .frame(width: 64, height: 64)
-                                .foregroundColor(Color(uiColor: .systemGray4))
-                                .overlay {
-                                    if let existingArtwork = music.artwork {
-                                        AsyncImage(url: existingArtwork) { image in
-                                            image
-                                                .resizable()
-                                                .frame(width: 64, height: 64)
-                                        } placeholder: {
-                                            ProgressView()
-                                                .frame(width: 64, height: 64)
-                                        }
-                                    }
-                                }
-                                .cornerRadius(8)
-                                .padding(.trailing, 15)
-                        }
-                        .padding(.bottom, 5)
+        HStack {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(date.yearAndMonth)
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundColor(Color(red: 108 / 255, green: 108 / 255, blue: 112 / 255))
+                    .padding(.bottom, 10)
+                Text(music.title)
+                    .font(.system(size: 20, weight: .semibold))
+                    .foregroundColor(.black)
+                Text(music.artist)
+                    .font(.system(size: 17))
+                    .foregroundColor(Color(red: 60 / 255, green: 60 / 255, blue: 67 / 255, opacity: 0.6))
+            }
+            Spacer()
+            Group {
+                if let existingArtwork = music.artwork {
+                    AsyncImage(url: existingArtwork) { image in
+                        image
+                            .resizable()
+                            .frame(width: 64, height: 64)
+                    } placeholder: {
+                        ProgressView()
+                            .frame(width: 64, height: 64)
                     }
                 }
+            }
+            .background(Color.black.opacity(0.7))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
         }
+        .frame(height: 95)
+        .padding(.leading, 20)
+        .padding(.trailing, 16)
+        .background(Color.white.cornerRadius(6))
     }
 }
 

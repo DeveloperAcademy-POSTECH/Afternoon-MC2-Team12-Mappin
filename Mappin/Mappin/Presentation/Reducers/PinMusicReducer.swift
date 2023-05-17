@@ -203,7 +203,9 @@ struct PinMusicReducer: PinMusic {
                         && view.frame.minY - 20 <= point.y
                         && point.y <= view.frame.minY + 36 {
                         
-                        returnPin = view.pinCluter
+                        if view.pinCluter.pinsCount != 0 {
+                            returnPin = view.pinCluter
+                        }
                     }
                 }
             }
