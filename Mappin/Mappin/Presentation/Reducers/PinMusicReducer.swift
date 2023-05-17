@@ -162,6 +162,7 @@ struct PinMusicReducer: PinMusic {
             print("@KIO lalala")
             return .task {
                 let listPins = try await getPinsUseCase.excuteUsingList(ids: ids)
+                print("@KIO lalala \(listPins)")
                 return .listPins(listPins)
             }
             
@@ -174,7 +175,7 @@ struct PinMusicReducer: PinMusic {
             }
             
         case .mapPins(let pins):
-            print("@KIO test update map Pins")
+            print("@Kozi test update map Pins")
             state.pinsUsingMap = pins
             state.mapAction = .responseUpdate(pins)
             return .none
@@ -215,7 +216,21 @@ struct PinMusicReducer: PinMusic {
             print("@KIO lalala \(returnPin.location)")
             
             if returnPin.pinsCount == 1 {
-                return .none
+                print("@Kozi hi")
+                state.detailPinIsEmpty = false
+                state.detailPin = returnPin.mainPin
+                return .run { action in
+                    print("@KIO what? here tap")
+                    await action.send(
+                        .actAndChange(
+                            .setCenterWithModal(
+                                returnPin.location.latitude,
+                                returnPin.location.longitude,
+                                4
+                            )
+                        )
+                    )
+                }
             }
             else {
                 return .run { action in
@@ -250,8 +265,10 @@ struct PinMusicReducer: PinMusic {
             return .none
             
         case .refreshPins:
+            state.mapState = .loadPin
             state.mapAction = .requestCallMapInfo
-            return .none
+            print("@Kozi refresh")
+            return .none//.send(.actAndChange(.load))
             
         case let .focusToLocation(latitude, longitude):
             print("@KIO what? here focus")
