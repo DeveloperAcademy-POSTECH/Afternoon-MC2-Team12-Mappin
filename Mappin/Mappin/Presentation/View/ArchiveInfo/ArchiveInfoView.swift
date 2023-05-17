@@ -39,7 +39,7 @@ struct ArchiveInfoView: View {
                         }
                         Spacer()
                         Button {
-                            mapViewStore.send(.detailPinValidate(true))
+                            mapViewStore.send(.toggleDetailPin(false))
                             dismiss()
                         } label: {
                             Image(systemName: "x.circle.fill")
@@ -66,7 +66,7 @@ struct ArchiveInfoView: View {
                     // 다른 사람 핀 볼 경우 삭제 버튼 ishidden
                     Button {
                         infoViewStore.send(.removeArchive(pin.id))
-                        mapViewStore.send(.detailPinValidate(true))
+                        mapViewStore.send(.toggleDetailPin(false))
                         dismiss()
                     } label: {
                         Text("삭제")

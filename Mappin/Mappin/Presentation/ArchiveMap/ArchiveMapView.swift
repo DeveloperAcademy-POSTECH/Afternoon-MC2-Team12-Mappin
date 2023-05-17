@@ -42,8 +42,20 @@ struct ArchiveMapView: View {
             }
             .navigationBarBackButtonHidden()
         }
-        .sheet(isPresented: viewStore.binding(get: \.isListViewPresented,
-                                              send: { .setListViewPresented($0) })) {
+        .sheet(isPresented: mapViewStore.binding(
+            get: \.hasDetailPin,
+            send: { .toggleDetailPin($0) }
+        )) {
+            if let pin = mapViewStore.detailPin {
+                ArchiveInfoView(pin: pin, mapViewStore: mapViewStore)
+                    .presentationBackgroundInteraction(.enabled)
+                    .presentationDetents([.height(357), .height(604)])
+            }
+        }
+        .sheet(isPresented: viewStore.binding(
+            get: \.isListViewPresented,
+            send: { .setListViewPresented($0) }
+        )) {
             ArchiveMusicView(viewStore: listViewStore)
                 .presentationBackgroundInteraction(.enabled)
                 .presentationDetents(
@@ -51,16 +63,6 @@ struct ArchiveMapView: View {
                     selection: $presentationDetent
                 )
                 .interactiveDismissDisabled()
-        }
-        .sheet(isPresented: mapViewStore.binding(get: { !$0.detailPinIsEmpty },
-                                                 send: { .detailPinValidate(!$0) })) {
-            if let pin = mapViewStore.detailPin {
-                ArchiveInfoView(pin: pin, mapViewStore: mapViewStore)
-                    .presentationBackgroundInteraction(.enabled)
-                    .presentationDetents([.height(357), .height(604)])
-//                ArchiveInfoView(pin: pin)
-
-            }
         }
         .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()
