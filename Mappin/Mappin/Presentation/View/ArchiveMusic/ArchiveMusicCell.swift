@@ -25,6 +25,8 @@ struct ArchiveMusicCell: View {
                     .font(.system(size: 17))
                     .foregroundColor(Color(red: 60 / 255, green: 60 / 255, blue: 67 / 255, opacity: 0.6))
             }
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
             Spacer()
             Group {
                 if let existingArtwork = music.artwork {

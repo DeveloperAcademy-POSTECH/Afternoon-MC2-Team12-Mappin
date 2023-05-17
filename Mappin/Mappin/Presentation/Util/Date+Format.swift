@@ -18,8 +18,12 @@ extension Date {
         formatted(dateFormat: "MMM d, yyyy")
     }
     
-    var listFormat: String {
-        formatted(dateFormat: "MMM d, yyyy · h:mma · EEEE")
+    var weekday: String {
+        formatted(dateFormat: "EEEE")
+    }
+    
+    var time: String {
+        formatted(dateFormat: "h:mma")
     }
     
     var dialogFormat: String {
