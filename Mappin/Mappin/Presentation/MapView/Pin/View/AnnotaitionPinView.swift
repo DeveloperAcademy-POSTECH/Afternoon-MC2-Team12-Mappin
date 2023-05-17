@@ -18,8 +18,9 @@ class AnnotaitionPinView: MKAnnotationView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
-       
+        
+        subviews.forEach { $0.removeFromSuperview() }
+        
         if pinCategory == nil {
             pinBackGroundImage.image = UIImage(named: "currentLocation")!
         }

@@ -234,6 +234,7 @@ struct PinMusicReducer: PinMusic {
                 }
             }
             else {
+                state.detailPin = nil
                 return .run { action in
                     print("@KIO what? here tap")
                     await action.send(
@@ -283,8 +284,7 @@ struct PinMusicReducer: PinMusic {
             
         case let .setCategory(category):
             state.category = category
-            state.mapAction = .requestCallMapInfo
-            return .none
+            return .send(.refreshPins)
             
         case .popUpClose:
             state.detailPin = nil
