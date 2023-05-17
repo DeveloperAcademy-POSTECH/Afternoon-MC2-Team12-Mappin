@@ -12,18 +12,18 @@ import ComposableArchitecture
 struct ArchiveInfoView: View {
     // 357
     @Environment(\.dismiss) var dismiss
-//    @StateObject private var listViewStore: ViewStoreOf<ListReducer> = ViewStore(Store(
-//        initialState: ListReducer.State(),
-//        reducer: ListReducer.build()
-//    ), observe: { $0 })
     @ObservedObject var infoViewStore: ViewStoreOf<ArchiveInfoReducer> = ViewStore(Store(initialState: ArchiveInfoReducer.State(pin: nil), reducer: ArchiveInfoReducer(removePinUseCase: DefaultMockDIContainer.shared.container.resolver.resolve(RemovePinUseCase.self))))
     @ObservedObject var mapViewStore: ViewStoreOf<PinMusicReducer>
     
     var pin: Pin
+    var category: PinsCategory?
     
     init(pin: Pin, mapViewStore: ViewStoreOf<PinMusicReducer>) {
         self.pin = pin
         self.mapViewStore = mapViewStore
+        if let category = mapViewStore.category {
+            self.category = category
+        }
     }
 
  
@@ -60,7 +60,7 @@ struct ArchiveInfoView: View {
                     }
                     .background(Color(red: 0.4627, green: 0.4627, blue: 0.502).opacity(0.12))
                     .cornerRadius(10)
-                    .padding(.top, 88)
+                    .padding(.top, category == .mine ? 88 : 149)
                     .padding(.horizontal, 15)
                     
                     // 다른 사람 핀 볼 경우 삭제 버튼 ishidden
@@ -78,10 +78,14 @@ struct ArchiveInfoView: View {
                     .background(Color(red: 0.4627, green: 0.4627, blue: 0.502).opacity(0.12))
                     .cornerRadius(10)
                     .padding(.horizontal, 15)
+                    .opacity(category == .mine ? 1.0 : 0)
                 }
             }
             .onAppear {
-                print("@Kozi2 - \(ObjectIdentifier(mapViewStore))")
+                infoViewStore.send(.setPin(pin))
+                if category != nil {
+                    infoViewStore.send(.setCategory(category!))
+                }
             }
             .onChange(of: infoViewStore.isSomethingRemoved) { _ in
                 mapViewStore.send(.refreshPins)
