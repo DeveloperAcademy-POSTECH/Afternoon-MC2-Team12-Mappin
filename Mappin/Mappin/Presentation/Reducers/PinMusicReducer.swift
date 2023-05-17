@@ -42,8 +42,11 @@ struct PinMusicReducer: PinMusic {
         var listPins: [Pin] = []
         var temporaryPinLocation: MKCoordinateRegion = MKCoordinateRegion()
         var category: PinsCategory?
-        var detailPinIsEmpty = true
         var detailPin: Pin?
+        
+        var hasDetailPin: Bool {
+            detailPin != nil
+        }
     }
     enum Action: Equatable {
         
@@ -65,7 +68,7 @@ struct PinMusicReducer: PinMusic {
         case focusToLocation(latitude: Double, longitude: Double)
         case focusToPin(Pin)
         case setCategory(PinsCategory)
-        case detailPinValidate(Bool)
+        case toggleDetailPin(Bool)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -185,7 +188,6 @@ struct PinMusicReducer: PinMusic {
             state.detailPin = pin
             state.mapState = .showingPopUp
             state.mapAction = .completeAdd(pin)
-            state.detailPinIsEmpty = false
             return .none
             
         case .listPins(let pins):
@@ -217,7 +219,6 @@ struct PinMusicReducer: PinMusic {
             
             if returnPin.pinsCount == 1 {
                 print("@Kozi hi")
-                state.detailPinIsEmpty = false
                 state.detailPin = returnPin.mainPin
                 return .run { action in
                     print("@KIO what? here tap")
@@ -233,6 +234,7 @@ struct PinMusicReducer: PinMusic {
                 }
             }
             else {
+                state.detailPin = nil
                 return .run { action in
                     print("@KIO what? here tap")
                     await action.send(
@@ -252,7 +254,6 @@ struct PinMusicReducer: PinMusic {
             
             print("@KIO PIN remove bfore")
             state.detailPin = nil
-            state.detailPinIsEmpty = true
             state.mapAction = .removeAllAnnotation
             return .run { action in
                 print("@KIO what? here showpop")
@@ -278,27 +279,22 @@ struct PinMusicReducer: PinMusic {
             
             print("@KIO plz \(pin)")
             state.detailPin = pin // modal
-            state.detailPinIsEmpty = false
             print("@KIO what? here focus")
             return .send(.actAndChange(.setCenterWithModal(pin.location.latitude, pin.location.longitude, 4)))
             
         case let .setCategory(category):
             state.category = category
-            state.mapAction = .requestCallMapInfo
-            return .none
+            return .send(.refreshPins)
             
         case .popUpClose:
             state.detailPin = nil
-            state.detailPinIsEmpty = true
             return .send(.refreshPins)
             
-        case let .detailPinValidate(bool):
-            state.detailPinIsEmpty = bool
+        case let .toggleDetailPin(hasPin):
+            if !hasPin {
+                state.detailPin = nil
+            }
             return .none
-            
-//             state.mapState = .justShowing
-//             return .send(.refreshPins)
-
         }
     }
 }
